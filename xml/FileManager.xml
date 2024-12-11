@@ -9,12 +9,12 @@
 			<centertop>50%</centertop>
 			<width>68</width>
 			<height>68</height>
-			<texture colordiffuse="$VAR[MenuSelectorColor]" border="2">icons/file-manager/left-right.png</texture>
+			<texture colordiffuse="$VAR[FocusColorTheme]" border="2">icons/file-manager/left-right.png</texture>
 			<animation effect="fade" start="0" end="100" time="300" delay="100">WindowOpen</animation>
 			<animation effect="fade" start="100" end="0" time="160">WindowClose</animation>
 		</control>
 		<control type="group">
-			<left>0</left>
+			<left>10</left>
 			<include>OpenClose_Left</include>
 			<!-- <include content="ContentPanel">
 				<param name="width" value="872" />
@@ -28,7 +28,7 @@
 			</include>
 			<control type="scrollbar" id="60">
 				<top>150</top>
-				<left>0</left>
+				<left>-20</left>
 				<width>12</width>
 				<bottom>102</bottom>
 				<onleft>20</onleft>
@@ -40,7 +40,7 @@
 		</control>
 		<control type="group">
 			<width>818</width>
-			<right>0</right>
+			<right>10</right>
 			<include>OpenClose_Right</include>
 			<!-- <include content="ContentPanel">
 				<param name="width" value="878" />
@@ -55,7 +55,7 @@
 				<param name="width" value="817" />
 			</include>
 			<control type="scrollbar" id="61">
-				<left>800</left>
+				<left>820</left>
 				<animation effect="slide" end="5,0" time="0" condition="true">Conditional</animation>
 				<top>150</top>
 				<width>12</width>

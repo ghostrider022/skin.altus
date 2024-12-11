@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-  <variable name="BlurTextureVar">
+  <variable name="ImageTextureSourceVar">
     <!-- <value condition="ControlGroup(12000).HasFocus | Window.IsVisible(tvguide) | Window.IsVisible(tvchannels)">$VAR[ChannelListEPGIconVar]</value> -->
-    <value condition="[Window.IsVisible(Home) + !ControlGroup(15000).HasFocus] | Window.IsVisible(1121)">$VAR[HomeFanartVar]</value>
-    <value condition="Control.IsVisible(50)">$VAR[ListArtworkVar]</value>
+    <value condition="[Window.IsVisible(Home) + !ControlGroup(15000).HasFocus + !String.IsEqual(Container(9000).ListItem.Property(id),weather)] | Window.IsVisible(1121)">$VAR[HomeFanartVar]</value>
+    <!-- <value condition="Window.IsVisible(Home) + [ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)]">$VAR[WeatherFanartVar]</value> -->
+    <value condition="![Window.IsVisible(Home) | Window.IsVisible(1121)]">$VAR[MediaFanartVar]</value>
+    <!-- <value condition="Control.IsVisible(50)">$VAR[ListArtworkVar]</value>
     <value condition="Control.IsVisible(51)">$VAR[PosterFlowColorVar]</value>
-    <value condition="Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(501)">$VAR[MediaFanartVar]</value>
+    <value condition="Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(501)">$VAR[MediaFanartVar]</value> -->
 	</variable>
 
   <variable name="AltusCustomBackgroundImage">
 		<value condition="!String.IsEmpty(Skin.String(AltusCustomBackground))">$INFO[Skin.String(AltusCustomBackground)]</value>
 		<value condition="String.IsEmpty(Skin.String(AltusCustomBackground))">special://skin/resources/fallback.jpg</value>
 	</variable>
+  <!-- <variable name="SpotlightColorDiffuse">
+		<value condition="String.IsEmpty(Window(Home).Property(SpotlightWidget))">FF404040</value>
+		<value>FF000000</value>
+	</variable> -->
+
+
 
   <variable name="HomeFanartVar">
+    <value condition="!String.IsEmpty(ListItem.Thumb) + ![Skin.HasSetting(Enable.AlternateSpotlight) | String.IsEmpty(Window(Home).Property(SpotlightWidget))] + $EXP[isEpisode]">$INFO[ListItem.Thumb]</value>
     <value condition="!String.IsEmpty(ListItem.Art(fanart)) | [String.IsEmpty(ListItem.Art(landscape)) + !String.IsEmpty(ListItem.Art(fanart))] | [!$EXP[isContent] + !String.IsEmpty(ListItem.Art(fanart))]">$INFO[ListItem.Art(fanart)]</value>
     <value condition="!String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
     <value condition="Window.IsActive(musicinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo)">$INFO[Window(home).Property(infobackground)]</value>
@@ -50,6 +59,11 @@
 		<value condition="!String.IsEmpty(ListItem.Art(clearlogo))">$INFO[ListItem.Art(clearlogo)]</value>
 		<value condition="!String.IsEmpty(Container.ListItem.Art(tvshow.clearlogo))">$INFO[Container.ListItem.Art(tvshow.clearlogo)]</value>
 		<value>$INFO[ListItem.Art(clearlogo)]</value>
+	</variable>
+
+  <variable name="PlayerClearlogoVar">
+		<value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
+		<value condition="!String.IsEmpty(Player.Art(tvshow.clearlogo))">$INFO[Player.Art(tvshow.clearlogo)]</value>
 	</variable>
 
 	<variable name="FlixPosterVar">

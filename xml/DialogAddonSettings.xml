@@ -26,23 +26,17 @@
 				<ondown>20</ondown>
 			</control>
 			<control type="button" id="10">
-				<!-- <animation condition="ControlGroup(5).HasFocus | Control.HasFocus(60)">
-					<effect type="fade" start="100" end="0" time="300" tween="cubic" easing="in"/>
-					<effect type="slide" start="0,0" end="-200,0" time="300" tween="cubic" easing="in" />
-				</animation> -->
 				<description>Default Category Button</description>
 				<height>80</height>
 				<width>345</width>
 				<textoffsetx>20</textoffsetx>
-				<textoffsety>19</textoffsety>
-				<textcolor>darkgrey</textcolor>
+				<textcolor>unfocused_text</textcolor>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 				<align>center</align>
-				<aligny>left</aligny>
-				<font>font27_title</font>
-				<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+				<aligny>center</aligny>
+				<font>font32_title</font>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/addonsettingsmenu.png</texturefocus>
 				<texturenofocus/>
-				<!-- <texturenofocus colordiffuse="button_focus2">masks/categorywidget-unfocused.png</texturenofocus> -->
 			</control>
 			<control type="grouplist" id="5">
 				<description>control area</description>
@@ -51,7 +45,6 @@
 				<width>1060</width>
 				<height>720</height>
 				<pagecontrol>60</pagecontrol>
-				<textcolor>green</textcolor>
 				<onleft>3</onleft>
 				<onright>60</onright>
 				<onup>5</onup>
@@ -137,15 +130,15 @@
 				<top>747</top>
 				<width>345</width>
 				<height>80</height>
-				<font>font27_title</font>
+				<font>font32_title</font>
 				<aligny>left</aligny>
 				<align>center</align>
 				<onclick>SettingsLevelChange</onclick>
 				<textoffsetx>0</textoffsetx>
-				<textoffsety>19</textoffsety>
-				<textcolor>darkgrey</textcolor>
+				<textoffsety>17</textoffsety>
+				<textcolor>unfocused_text</textcolor>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
-				<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/addonsettingsmenu.png</texturefocus>
 				<texturenofocus />
 				<radioposx>40</radioposx>
 				<radioposy>0</radioposy>

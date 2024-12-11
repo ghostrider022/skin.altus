@@ -41,23 +41,25 @@
 					<focusposition>4</focusposition>
 					<itemlayout height="86" width="1900">
 						<control type="label">
-							<left>20</left>
-							<width>150</width>
-							<bottom>0</bottom>
+							<height>86</height>
+							<left>40</left>
+							<width>130</width>
+							<top>2</top>
 							<aligny>left</aligny>
 							<textoffsety>20</textoffsety>
 							<textcolor>grey</textcolor>
 							<label>$INFO[ListItem.StartTime]</label>
 						</control>
 						<control type="label">
-							<left>100</left>
-							<width>610</width>
-							<bottom>0</bottom>
+							<height>86</height>
+							<left>90</left>
+							<width>590</width>
+							<top>2</top>
 							<align>right</align>
 							<aligny>left</aligny>
 							<textoffsety>20</textoffsety>
+							<label>$VAR[PVRListItemSubLabelFocused]</label>
 							<textcolor>unfocused_text</textcolor>
-							<label>$VAR[PVRListItemSubLabel]</label>
 						</control>
 					</itemlayout>
 					<focusedlayout height="300" width="1900">
@@ -66,14 +68,14 @@
 							<left>0</left>
 							<width>730</width>
 							<top>0</top>
-							<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+							<texture colordiffuse="$VAR[FocusColorTheme]">focus/pvrchannelguide.png</texture>
 							<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(11)">Conditional</animation>
 						</control>
 						<control type="label">
 							<height>86</height>
-							<left>20</left>
-							<width>150</width>
-							<top>0</top>
+							<left>40</left>
+							<width>130</width>
+							<top>2</top>
 							<aligny>left</aligny>
 							<textoffsety>20</textoffsety>
 							<label>$INFO[ListItem.StartTime]</label>
@@ -81,9 +83,9 @@
 						</control>
 						<control type="label">
 							<height>86</height>
-							<left>100</left>
-							<width>610</width>
-							<top>0</top>
+							<left>90</left>
+							<width>590</width>
+							<top>2</top>
 							<align>right</align>
 							<aligny>left</aligny>
 							<textoffsety>20</textoffsety>
@@ -91,18 +93,14 @@
 							<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 							<scroll>true</scroll>
 						</control>
-						<control type="group">
+						<control type="textbox">
+							<left>10</left>
+							<top>105</top>
+							<width>715</width>
+							<height>193</height>
+							<label>$INFO[ListItem.Plot]</label>
+							<autoscroll time="3000" delay="4000" repeat="5000">$PARAM[focused]</autoscroll>
 							<visible>!String.IsEmpty(ListItem.Plot)</visible>
-							<animation effect="fade" start="0" end="100" time="200">Focus</animation>
-							
-							<control type="textbox">
-								<left>10</left>
-								<top>105</top>
-								<width>715</width>
-								<height>178</height>
-								<label>$INFO[ListItem.Plot]</label>
-								<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(AutoScroll)</autoscroll>
-							</control>
 						</control>
 					</focusedlayout>
 				</control>

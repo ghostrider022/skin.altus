@@ -64,9 +64,9 @@
 			</control>
 			<control type="group">
 				<include>OpenClose_Left</include>
-				<include content="MenuContentPanel">
+				<!-- <include content="MenuContentPanel">
 					<param name="width" value="530" />
-				</include>
+				</include> -->
 				<control type="fixedlist" id="9000">
 					<left>40</left>
 					<top>250</top>

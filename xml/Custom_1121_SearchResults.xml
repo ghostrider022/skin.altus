@@ -36,7 +36,7 @@
               <param name="list_id" value="27012"/>
             </include>
 						<include content="WidgetListPoster" condition="!Skin.HasSetting(HideAnimeResults) + String.IsEqual(Skin.String(current_search_provider),1)">
-              <param name="content_path" value="plugin://plugin.video.fenlight/?mode=build_tvshow_list&amp;action=tmdb_anime_search&amp;query=$INFO[Skin.String(SearchInputEncoded)]"/>
+              <param name="content_path" value="$VAR[SearchProviderAnimeVar]"/>
               <param name="widget_header" value="Anime"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27013"/>
@@ -54,13 +54,13 @@
               <param name="list_id" value="27015"/>
             </include>
             <include content="WidgetListPoster" condition="!Skin.HasSetting(HidePeopleResults) + String.IsEqual(Skin.String(current_search_provider),2)">
-              <param name="content_path" value="plugin://plugin.video.umbrella/?action=actorSearchMovies&amp;name=$INFO[Skin.String(SearchInputEncoded)]"/>
+              <param name="content_path" value="$VAR[SearchProviderActors/ActressesMoviesVar]"/>
               <param name="widget_header" value="Actors/Actresses (Movies)"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27016"/>
             </include>
             <include content="WidgetListPoster" condition="!Skin.HasSetting(HidePeopleResults) + String.IsEqual(Skin.String(current_search_provider),2)">
-              <param name="content_path" value="plugin://plugin.video.umbrella/?action=actorSearchTV&amp;name=$INFO[Skin.String(SearchInputEncoded)]"/>
+              <param name="content_path" value="$VAR[SearchProviderActors/ActressesTVShowsVar]"/>
               <param name="widget_header" value="Actors/Actresses (TV Shows)"/>
               <param name="widget_target" value="videos"/>
               <param name="list_id" value="27017"/>
@@ -90,7 +90,7 @@
 							<param name="list_id" value="270201"/>
 						</include>
 						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
-							<param name="content_path" value="plugin://plugin.video.umbrella/?action=trakt_search_lists&amp;media_type=movies&amp;name=$INFO[Skin.String(SearchInputTraktEncoded)]"/>
+							<param name="content_path" value="$VAR[SearchProviderTRAKTListsMoviesVar]"/>
 							<param name="widget_header" value="TRAKT Lists (Movies)"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27021"/>
@@ -102,7 +102,7 @@
 							<param name="list_id" value="270211"/>
 						</include>
 						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
-							<param name="content_path" value="plugin://plugin.video.umbrella/?action=trakt_search_lists&amp;media_type=tvshows&amp;name=$INFO[Skin.String(SearchInputTraktEncoded)]"/>
+							<param name="content_path" value="$VAR[SearchProviderTRAKTListsTVShowsVar]"/>
 							<param name="widget_header" value="TRAKT Lists (TV Shows)"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27022"/>
@@ -155,10 +155,10 @@
 					<animation type="Conditional" condition="!ControlGroup(2000).HasFocus" reversible="true">
 						<effect type="slide" start="0" end="610" time="500" tween="cubic" easing="inout" />
 					</animation>
-					<include content="MenuContentPanel">
+					<!-- <include content="MenuContentPanel">
 						<param name="width" value="611"/>
-						<!-- <param name="width" value="600"/> -->
-					</include>
+						<param name="width" value="600"/>
+					</include> -->
 					<!-- <visible allowhiddenfocus="true">true</visible> -->
 					<control type="group">
 						<visible>![$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | $EXP[isEpisode]] + String.IsEmpty(Skin.String(DatabaseStatus))</visible>
@@ -218,7 +218,7 @@
               <param name="id" value="9000" />
               <param name="list_width" value="380" />
               <param name="img_width" value="422" />
-              <param name="img_texture" value="masks/focus_searchmenu.png" />
+              <param name="img_texture" value="focus/searchmenu.png" />
             </include>
 						<content>
 							<!-- SEARCH HISTORY -->

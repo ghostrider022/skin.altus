@@ -19,17 +19,11 @@
     !Window.IsVisible(subtitlesearch) + 
     !Window.IsVisible(MusicOSD)
   </visible>
-  <onload condition="!VideoPlayer.Content(livetv)">AlarmClock(toggleLabelOn,Skin.Reset(ToggleLabel),00:00:12,silent,loop)</onload>
-  <onload condition="!VideoPlayer.Content(livetv)">AlarmClock(toggleLabelOff,Skin.SetString(ToggleLabel,on),00:00:06,silent,loop)</onload>
-  <onunload>CancelAlarm(toggleLabelOn,silent)</onunload>
-  <onunload>CancelAlarm(toggleLabelOff,silent)</onunload>
-  <onunload>Skin.Reset(ToggleLabel)</onunload>
   <controls>
-    <include content="OSDBackgrounds"/>
+    <include content="OSDBackground"/>
     <control type="group">
       <top>860</top>
-      <include condition="String.IsEqual(Skin.String(OSDStyleSetting),0)" content="Seekbar"/>
-      <include condition="String.IsEqual(Skin.String(OSDStyleSetting),1)" content="OD_Seekbar"/>
+      <include>Seekbar</include>
     </control>
   </controls>
 </window>

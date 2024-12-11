@@ -339,7 +339,7 @@
 				<width>1815</width>
 				<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
 				<font>font32</font>
-				<textcolor>$VAR[MenuSelectorColor]</textcolor>
+				<textcolor>$VAR[FocusColorTheme]</textcolor>
 				<shadowcolor>text_shadow</shadowcolor>
 				<align>center</align>
 			</control>

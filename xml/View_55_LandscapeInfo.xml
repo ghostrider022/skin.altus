@@ -179,7 +179,6 @@
         <control type="group">
           <left>40</left>
           <top>255</top>
-          
 					<control type="image">
 						<left>10</left>
 						<top>-20</top>
@@ -352,7 +351,7 @@
 			</control> -->
 			<include content="ProgressBar">
 				<param name="left" value="40"/>
-				<param name="top" value="345"/>
+				<param name="top" value="350"/>
 				<param name="width" value="545"/>
 				<param name="visible1" value="![$PARAM[focused] + Control.HasFocus($PARAM[list_id])]"/>
 				<param name="visible2" value="![$PARAM[focused] + [Control.IsVisible(55) | Control.IsVisible(501)]]"/>
@@ -373,7 +372,7 @@
 				<width>1815</width>
 				<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
 				<font>font32</font>
-				<textcolor>$VAR[MenuSelectorColor]</textcolor>
+				<textcolor>$VAR[FocusColorTheme]</textcolor>
 				<shadowcolor>text_shadow</shadowcolor>
 				<align>center</align>
 			</control>
@@ -415,14 +414,14 @@
 					[Container.Content(videos) + [String.IsEqual(Skin.String(Skin.ForcedView.videos),$LOCALIZE[311011]) | String.IsEmpty(Skin.String(Skin.ForcedView.videos))]] | 
 					
 					[Container.Content(games) + [String.IsEqual(Skin.String(Skin.ForcedView.games),$LOCALIZE[311011]) | String.IsEmpty(Skin.String(Skin.ForcedView.games))]]</visible>
-					<itemlayout width="459" height="280" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),0) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<itemlayout width="459" height="285" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),0) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
 						<control type="group">
 							<left>35</left>
 							<top>0</top>
 							<include>SmallLandscapeLayout</include>
 						</control>
 					</itemlayout>
-					<focusedlayout width="459" height="280" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),0) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<focusedlayout width="459" height="285" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),0) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
 						<control type="group">
 							<depth>DepthContentPopout</depth>
 							<left>35</left>
@@ -433,14 +432,14 @@
 							<include>SetDBTypeProperty</include>
 						</control>
 					</focusedlayout>
-				<itemlayout width="613" height="363" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),1) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+				<itemlayout width="613" height="373" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),1) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
 					<control type="group">
 						<left>35</left>
 						<top>0</top>
 						<include>LandscapeLayout</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="613" height="363" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),1) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+				<focusedlayout width="613" height="373" condition="String.IsEqual(Skin.String(LandscapeSizeSetting),1) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>35</left>

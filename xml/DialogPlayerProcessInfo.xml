@@ -6,6 +6,7 @@
 	<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 	<onunload>ClearProperty(PlayerInfoDialogFocus,Home)</onunload>
 	<controls>
+		<!-- <include>PlayerLogoProcessor</include> -->
 		<control type="group">
 			<bottom>0</bottom>
 			<height>250</height>

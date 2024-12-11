@@ -28,6 +28,8 @@
 				<top>242</top>
 				<width>855</width>
 				<height>12</height>
+				<texturebg colordiffuse="$VAR[FocusColorTheme]" border="5">progress/bars/progressback_sysinfo.png</texturebg>
+				<midtexture colordiffuse="$VAR[FocusColorTheme]" border="5">progress/bars/progress_sysinfo.png</midtexture>
 				<info>System.Progressbar</info>
 			</control>
 			<control type="grouplist" id="9000">

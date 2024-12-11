@@ -334,8 +334,8 @@
 	</include>
 
 	<include name="ArtworkAnimations">
-		<animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
-		<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
+		<animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+		<animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
 		<animation effect="fade" time="400">VisibleChange</animation>
 	</include>
 
@@ -345,34 +345,30 @@
 	</include>
 
 	<include name="WidgetAutoInfoAnimations">
-		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_autoinfo_timer),Skin.Numeric(WidgetAutoInfoDelay)) + String.IsEqual(Skin.String(AutoInfoFadeSetting),0)" reversible="false">
-			<effect type="fade" start="100" end="60" time="300" tween="sine" easing="inout" />
+		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id])) + String.IsEqual(Skin.String(AutoInfoFadeSetting),0)" reversible="false">
+			<!-- <effect type="fade" start="100" end="60" time="300" tween="sine" easing="inout" /> -->
 			<effect type="fadediffuse" start="FFE9E9E9" end="FF4C4C4C" time="300" />
 		</animation>
-		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_autoinfo_timer),Skin.Numeric(WidgetAutoInfoDelay)) + String.IsEqual(Skin.String(AutoInfoFadeSetting),1)" reversible="false">
-			<effect type="fade" start="100" end="40" time="300" tween="sine" easing="inout" />
-			<effect type="fadediffuse" start="FFE9E9E9" end="FF4C4C4C" time="300" />
+		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id])) + String.IsEqual(Skin.String(AutoInfoFadeSetting),1)" reversible="false">
+			<!-- <effect type="fade" start="100" end="40" time="300" tween="sine" easing="inout" /> -->
+			<effect type="fadediffuse" start="FFE9E9E9" end="FF3A3A3A" time="300" />
 		</animation>
-		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_autoinfo_timer),Skin.Numeric(WidgetAutoInfoDelay)) + String.IsEqual(Skin.String(AutoInfoFadeSetting),2)" reversible="false">
-			<effect type="fade" start="100" end="20" time="300" tween="sine" easing="inout" />
-			<effect type="fadediffuse" start="FFE9E9E9" end="FF4C4C4C" time="300" />
-		</animation>
-		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_autoinfo_timer),Skin.Numeric(WidgetAutoInfoDelay)) + String.IsEqual(Skin.String(AutoInfoFadeSetting),3)" reversible="false">
+		<animation condition="!Skin.HasSetting(Disable.WidgetAutoInfo) + Control.HasFocus($PARAM[list_id]) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id])) + String.IsEqual(Skin.String(AutoInfoFadeSetting),2)" reversible="false">
 			<effect type="fade" start="100" end="0" time="300" tween="sine" easing="inout" />
-			<effect type="fadediffuse" start="FFE9E9E9" end="FF4C4C4C" time="300" />
+			<!-- <effect type="fadediffuse" start="FFE9E9E9" end="FF161616" time="300" /> -->
 		</animation>
 	</include>
 
 	<include name="WidgetUnfocusedAnimations">
 		<animation condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + !Control.HasFocus($PARAM[list_id]) + ControlGroup(2000).HasFocus" reversible="true">
-			<effect type="fade" start="100" end="80" time="300" tween="sine" easing="inout" />
+			<!-- <effect type="fade" start="100" end="80" time="300" tween="sine" easing="inout" /> -->
 			<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="300" />
 		</animation>
 	</include>
 
 	<include name="StackedWidgetAnimations">
 		<animation condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Window(Home).Property(StackedWidget)) + ControlGroup(2000).HasFocus" reversible="true">
-			<effect type="fade" start="100" end="80" time="300" tween="sine" easing="inout" />
+			<!-- <effect type="fade" start="100" end="80" time="300" tween="sine" easing="inout" /> -->
 			<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="300" />
 		</animation>
 		<animation condition="Container($PARAM[list_id]).IsUpdating" reversible="true" pulse="true">
@@ -381,13 +377,37 @@
 		</animation>
 	</include>
 
+	<include name="SpotlightAnimations">
+		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + Integer.IsGreaterOrEqual($PARAM[list_id],Window(Home).Property(altus_saved_list_id))" reversible="false">
+			<effect type="fade" start="0" end="100" time="600" />
+		</animation>
+		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_saved_list_id))" reversible="false">
+			<effect type="fade" start="100" end="0" time="400" />
+		</animation>
+	</include>
+
+	<include name="SpotlightAnimations_Stacked">
+		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget))" reversible="true">
+			<effect type="fade" start="100" end="0" time="500" tween="cubic" easing="out"/>
+		</animation>
+	</include>
+
+	<include name="SpotlightAnimations_Fade">
+		<animation effect="fade" start="100" end="0" time="500" tween="cubic" easing="in" condition="!Skin.HasSetting(Enable.AlternateSpotlight) + !String.IsEmpty(Window(Home).Property(SpotlightWidget)) + Control.HasFocus($PARAM[list_id])">Conditional</animation>
+		<animation effect="fade" start="0" end="100" time="500" tween="cubic" easing="in" condition="[Skin.HasSetting(Enable.AlternateSpotlight) | String.IsEmpty(Window(Home).Property(SpotlightWidget)) | !Control.HasFocus($PARAM[list_id])]">Conditional</animation>
+	</include>
+
+
+
 	<!-- <include name="WidgetVisibilityAnimations">
-		<animation condition="!String.IsEmpty(Window(Home).Property(SpotLightWidget)) + Integer.IsGreaterOrEqual($PARAM[list_id],Window(Home).Property(altus_saved_list_id))" reversible="false">
-			<effect type="fade" start="0" end="100" time="0" />
+		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + [Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_saved_list_id)) | [Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id)) + Integer.IsGreater($PARAM[list_id],Window(Home).Property(altus_saved_list_id))] | Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id))]" reversible="false">
+				<effect type="fade" start="100" end="0" time="0" />
 		</animation>
-		<animation condition="!String.IsEmpty(Window(Home).Property(SpotLightWidget)) + [Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_saved_list_id)) | Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id))]" reversible="false">
-			<effect type="fade" start="100" end="0" time="0" />
+		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_saved_list_id)) | [Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id)) + Integer.IsGreater($PARAM[list_id],Window(Home).Property(altus_saved_list_id))] | Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id))]" reversible="false">
+				<effect type="fade" start="0" end="100" time="0" />
 		</animation>
-	</include> -->
+</include> -->
 
 </includes>
+
+<!-- If 22012 is less than  -->

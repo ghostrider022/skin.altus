@@ -2,13 +2,13 @@
 <includes>
 	<include name="OSDButton">
     <textureradioonfocus colordiffuse="focused_text">$PARAM[texture]</textureradioonfocus>
-    <textureradioonnofocus colordiffuse="b0c8c8c8">$PARAM[texture]</textureradioonnofocus>
+    <textureradioonnofocus colordiffuse="ccfafafa">$PARAM[texture]</textureradioonnofocus>
     <textureradioofffocus colordiffuse="focused_text">$PARAM[texture]</textureradioofffocus>
-    <textureradiooffnofocus colordiffuse="b0c8c8c8">$PARAM[texture]</textureradiooffnofocus>
+    <textureradiooffnofocus colordiffuse="ccfafafa">$PARAM[texture]</textureradiooffnofocus>
     <textureradioondisabled colordiffuse="disabled">$PARAM[texture]</textureradioondisabled>
     <textureradiooffdisabled colordiffuse="disabled">$PARAM[texture]</textureradiooffdisabled>
     <texturefocus colordiffuse="button_focus">osd/fullscreen/buttons/button-fo.png</texturefocus>
-    <texturenofocus colordiffuse="4da0a0a0">osd/fullscreen/buttons/button-fo.png</texturenofocus>
+    <texturenofocus/>
     <alttexturefocus border="3" colordiffuse="button_focus">osd/Button.png</alttexturefocus>
     <width>64</width>
     <height>62</height>
@@ -37,20 +37,18 @@
 		<param name="height">70</param>
 		<param name="right">25</param>
 		<param name="textoffsetx">40</param>
-		<param name="textoffsety">12</param>
+		<param name="texture">focus/settings.png</param>
 		<definition>
 			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
-			<textoffsety>$PARAM[textoffsety]</textoffsety>
-			<top>0</top>
 			<height>$PARAM[height]</height>
 			<right>$PARAM[right]</right>
-			<aligny>left</aligny>
+			<aligny>center</aligny>
 			<invalidcolor>invalid</invalidcolor>
 			<selectedcolor>selected</selectedcolor>
 			<font>font32</font>
 			<textcolor>unfocused_text</textcolor>
 			<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
-			<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texturefocus>
+			<texturefocus colordiffuse="$VAR[FocusColorTheme]">$PARAM[texture]</texturefocus>
 			<texturenofocus />
 		</definition>
 	</include>
@@ -58,20 +56,17 @@
 		<param name="height">70</param>
 		<param name="right">25</param>
 		<param name="textoffsetx">40</param>
-		<param name="textoffsety">13</param>
 		<definition>
 			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
-			<textoffsety>$PARAM[textoffsety]</textoffsety>
-			<top>0</top>
 			<height>$PARAM[height]</height>
 			<right>$PARAM[right]</right>
-			<aligny>left</aligny>
+			<aligny>center</aligny>
 			<invalidcolor>invalid</invalidcolor>
 			<selectedcolor>selected</selectedcolor>
 			<font>font32</font>
-			<textcolor>darkgrey</textcolor>
+			<textcolor>unfocused_text</textcolor>
 			<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
-			<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texturefocus>
+			<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/mediasource.png</texturefocus>
 			<texturenofocus />
 		</definition>
 	</include>
@@ -79,20 +74,18 @@
 		<param name="height">70</param>
 		<param name="right">25</param>
 		<param name="textoffsetx">40</param>
-		<param name="textoffsety">15</param>
 		<definition>
 			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
-			<textoffsety>$PARAM[textoffsety]</textoffsety>
-			<top>0</top>
 			<height>$PARAM[height]</height>
 			<right>$PARAM[right]</right>
-			<aligny>left</aligny>
+			<aligny>center</aligny>
+			<align>center</align>
 			<textcolor>unfocused_text</textcolor>
 			<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 			<font>font37</font>
 			<invalidcolor>invalid</invalidcolor>
 			<selectedcolor>selected</selectedcolor>
-			<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+			<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/settingsmenu.png</texturefocus>
 			<texturenofocus />
 		</definition>
 	</include>
@@ -109,7 +102,7 @@
 			<font>font14</font>
 			<invalidcolor>invalid</invalidcolor>
 			<selectedcolor>selected</selectedcolor>
-			<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+			<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/pvrchannelsbutton.png</texturefocus>
 			<texturenofocus colordiffuse="00FFFFFF">colors/white.png</texturenofocus>
 		</definition>
 	</include>
@@ -124,15 +117,26 @@
 		<textcolor>grey</textcolor>
 	</include>
 	<include name="SettingsItemCommon">
-		<texturenofocus border="40" colordiffuse="dialog_bg">buttons/dialogbutton-nofo.png</texturenofocus>
-		<texturefocus border="40" colordiffuse="$VAR[FocusColorTheme]">buttons/dialogbutton-fo.png</texturefocus>
-		<height>100</height>
+		<texturenofocus />
+		<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/pvrchannelsbutton.png</texturefocus>
+		<height>70</height>
 		<aligny>center</aligny>
 		<textoffsetx>40</textoffsetx>
 		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
-		<textcolor>darkgrey</textcolor>
-		<alttexturefocus border="40" colordiffuse="$VAR[FocusColorTheme]">buttons/dialogbutton-fo.png</alttexturefocus>
-		<alttexturenofocus border="40" colordiffuse="dialog_bg">buttons/dialogbutton-nofo.png</alttexturenofocus>
+		<textcolor>unfocused_text</textcolor>
+		<alttexturefocus  colordiffuse="$VAR[FocusColorTheme]">focus/pvrchannelsbutton.png</alttexturefocus>
+		<alttexturenofocus />
+	</include>
+	<include name="SettingsItemCommon1">
+		<texturenofocus />
+		<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/pvrgroupsbutton.png</texturefocus>
+		<height>60</height>
+		<aligny>center</aligny>
+		<textoffsetx>40</textoffsetx>
+		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
+		<textcolor>unfocused_text</textcolor>
+		<alttexturefocus  colordiffuse="$VAR[FocusColorTheme]">focus/pvrgroupsbutton.png</alttexturefocus>
+		<alttexturenofocus />
 	</include>
 	<include name="SettingsLabelCommon">
 		<height>50</height>
@@ -148,6 +152,7 @@
 		<param name="font">font27_title</param>
 		<param name="onclick"></param>
 		<param name="visible">true</param>
+		<param name="texture">focus/dialog.png</param>
 		<definition>
 			<control type="button" id="$PARAM[id]">
 				<width>$PARAM[width]</width>
@@ -155,13 +160,14 @@
 				<label>$PARAM[label]</label>
 				<font>$PARAM[font]</font>
 				<textoffsetx>20</textoffsetx>
-				<textoffsety>14</textoffsety>
 				<onclick>$PARAM[onclick]</onclick>
 				<wrapmultiline>$PARAM[wrapmultiline]</wrapmultiline>
 				<align>center</align>
-				<textcolor>darkgrey</textcolor>
+				<aligny>left</aligny>
+				<textoffsety>13</textoffsety>
+				<textcolor>unfocused_text</textcolor>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
-				<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">$PARAM[texture]</texturefocus>
 				<texturenofocus/>
 				<!-- <texturenofocus colordiffuse="dialog_bg">buttons/dnfo.png</texturenofocus> -->
 				<visible>$PARAM[visible]</visible>
@@ -174,7 +180,7 @@
 		<textoffsety>27</textoffsety>
 		<texturefocus colordiffuse="$VAR[FocusColorTheme]">buttons/roundbutton-fo.png</texturefocus>
 		<texturenofocus />
-		<textcolor>darkgrey</textcolor>
+		<textcolor>unfocused_text</textcolor>
 		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 		<align>center</align>
 		<aligny>top</aligny>
@@ -359,12 +365,11 @@
 		<itemlayout height="70" width="446">
 			<control type="label">
 				<textoffsetx>20</textoffsetx>
-				<top>-1</top>
 				<width>446</width>
 				<height>70</height>
 				<align>center</align>
 				<aligny>center</aligny>
-				<textcolor>darkgrey</textcolor>
+				<textcolor>unfocused_text</textcolor>
 				<label>$INFO[ListItem.Label]</label>
 				<font>font32</font>
 			</control>
@@ -374,11 +379,10 @@
 				<top></top>
 				<width>446</width>
 				<height>70</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+				<texture colordiffuse="$VAR[FocusColorTheme]">focus/contextmenu.png</texture>
 			</control>
 			<control type="label">
 				<textoffsetx>20</textoffsetx>
-				<top>-1</top>
 				<width>446</width>
 				<height>70</height>
 				<align>center</align>

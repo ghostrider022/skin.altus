@@ -4,6 +4,7 @@
 	<backgroundcolor>background</backgroundcolor>
 	<views>50,51,52,54,55,56,500,501</views>
 	<menucontrol>9000</menucontrol>
+	<onload>ClearProperty(SpotlightWidget,Home)</onload>
 	<!-- <onunload condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunload> -->
 	<controls>
 		<include>DefaultBackground</include>
@@ -19,7 +20,7 @@
 				<visible>
 					![Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(52) | $EXP[infodialog_active]] + 
 					[
-						[!$EXP[isContent] + Skin.HasSetting(Enable.BackgroundBlur) + [Control.IsVisible(54) | Control.IsVisible(56)]] | 
+						[!$EXP[isContent] + Skin.HasSetting(Enable.Fanart) + [Control.IsVisible(54) | Control.IsVisible(56)]] | 
 						[[[Container.Content(movies) + String.IsEqual(Skin.String(ArtworkChoice.movies),0)] | 
 						[Container.Content(tvshows) + String.IsEqual(Skin.String(ArtworkChoice.tvshows),0)] | 
 						[Container.Content(seasons) + String.IsEqual(Skin.String(ArtworkChoice.seasons),0)] | 

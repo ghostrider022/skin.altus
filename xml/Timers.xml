@@ -14,14 +14,6 @@
         <stop>!Player.Paused | Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(1110_topbaroverlay),5)</stop>
     </timer> -->
     <timer>
-        <name>widget_autoinfo_timer</name>
-        <description>Timer to automatically show info for widgets</description>
-        <start reset="true">Control.HasFocus($PARAM[list_id])</start>
-        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(widget_autoinfo_timer),Skin.Numeric(WidgetAutoInfoDelay))</stop>
-        <!-- <onstart>Notification(widgetimer, Widget autoinfo timer started, 1000)</onstart>
-        <onstop>Notification(widgetimer, Widget autoinfo timer stopped, 1000)</onstop> -->
-    </timer>
-    <timer>
         <name>posterflow_scroll_timer</name>
         <description>Timer to automatically display information on PosterFlow view after scrolling</description>
         <start reset="true">Control.HasFocus($PARAM[list_id])</start>
@@ -38,16 +30,6 @@
         <onstop condition="!Container.Content(episodes)">Skin.SetString(Skin.ForcedView.$INFO[Container.Content],$INFO[Container.Viewmode])</onstop>
         <!-- <onstop>Notification(View Locked,$INFO[Container.Content] - $INFO[Container.Viewmode],3000)</onstop> -->
         <!-- <onstop>Notification(View locked$VAR[ContentTypeLabel], [UPPERCASE]$INFO[Container.Viewmode][/UPPERCASE], 2000)</onstop> -->
-    </timer>
-    <timer>
-        <name>end_playback_timer</name>
-        <description>Timer to automatically stop playback</description>
-        <start>Player.Paused + Skin.HasSetting(Enable.AutoEndPlayback)</start>
-        <reset>!Player.Paused + Skin.HasSetting(Enable.AutoEndPlayback)</reset>
-        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(end_playback_timer),Skin.Numeric(PlaybackDelaySecs))</stop>
-        <onstop>PlayerControl(Stop)</onstop>
-        <!-- <onstart>Notification(skintimer, End playback timer started, 1000)</onstart>
-        <onstop>Notification(skintimer, End playback timer stopped, 1000)</onstop> -->
     </timer>
     
 </timers>

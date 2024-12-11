@@ -2,18 +2,18 @@
 <includes>
 	<include name="MediaMenuItemsCommon">
 		<width>470</width>
-		<textoffsetx>20</textoffsetx>
+		<textoffsetx>40</textoffsetx>
 		<textoffsety>14</textoffsety>
 		<top>0</top>
 		<height>71</height>
-		<radioposx>370</radioposx>
+		<radioposx>350</radioposx>
 		<aligny>left</aligny>
 		<textcolor>unfocused_text</textcolor>
 		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 		<invalidcolor>invalid</invalidcolor>
-		<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+		<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/mediapanel.png</texturefocus>
 		<texturenofocus />
-		<alttexturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</alttexturefocus>
+		<alttexturefocus colordiffuse="$VAR[FocusColorTheme]">focus/mediapanel.png</alttexturefocus>
 		<alttexturenofocus></alttexturenofocus>
 	</include>
 	<include name="PVRQuickNavItemsCommon">
@@ -35,7 +35,7 @@
 				<textureradioonnofocus colordiffuse="unfocused_text">$PARAM[icon]</textureradioonnofocus>
 				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon]</textureradioofffocus>
 				<textureradiooffnofocus colordiffuse="unfocused_text">$PARAM[icon]</textureradiooffnofocus>
-				<textureradiooffdisabled colordiffuse="$VAR[MenuSelectorColor]">$PARAM[icon]</textureradiooffdisabled>
+				<textureradiooffdisabled colordiffuse="$VAR[FocusColorTheme]">$PARAM[icon]</textureradiooffdisabled>
 				<onclick condition="String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(TV$PARAM[area])</onclick>
 				<onclick condition="!String.IsEmpty(Window.Property(IsRadio))">ActivateWindow(Radio$PARAM[area])</onclick>
 				<enable>!Window.IsActive(TV$PARAM[area]) + !Window.IsActive(Radio$PARAM[area])</enable>
@@ -256,7 +256,7 @@
 	</include>
 	<include name="MediaMenuLabelCommon">
 		<width>470</width>
-		<textoffsetx>20</textoffsetx>
+		<textoffsetx>41</textoffsetx>
 		<textoffsety>10</textoffsety>
 		<height>50</height>
 		<radioposx>300</radioposx>
@@ -279,7 +279,7 @@
 			<visible>$EXP[sidebar_visible] + !System.HasActiveModalDialog</visible>
 			<animation effect="fade" time="200">VisibleChange</animation>
 		</control> -->
-		<control type="image">
+		<!-- <control type="image">
 			<left>0</left>
 			<top>0</top>
 			<width>570</width>
@@ -294,7 +294,7 @@
 			<height>100%</height>
 			<texture colordiffuse="$VAR[MediaMenuDiffuse]">colors/white.png</texture>
 			<visible>Control.IsVisible(51)</visible>
-		</control>
+		</control> -->
 		<control type="button" id="6131">
 			<left>0</left>
 			<top>0</top>
@@ -357,7 +357,7 @@
 	</include>
 	<include name="MediaMenuListCommon">
 		<definition>
-			<left>20</left>
+			<left>30</left>
 			<top>100</top>
 			<width>470</width>
 			<height>970</height>
@@ -485,12 +485,6 @@
 				<onclick>$VAR[TitleSettingToggleVar]</onclick>
 				<visible>!Control.IsVisible(50) + !Skin.HasSetting(Enable.Clearlogo) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<!-- <control type="radiobutton" id="6058">
-				<include>MediaMenuItemsCommon</include>
-				<label>Background blur</label>
-				<onclick>Skin.ToggleSetting(Enable.BackgroundBlur)</onclick>
-				<selected>Skin.HasSetting(Enable.BackgroundBlur)</selected>
-			</control> -->
 			<control type="button" id="6058">
 				<include>MediaMenuItemsCommon</include>
 				<label>Artwork size</label>

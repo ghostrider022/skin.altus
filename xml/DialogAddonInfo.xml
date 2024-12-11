@@ -14,7 +14,7 @@
 				<include>FullScreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture colordiffuse="primary_background">special://skin/extras/backgrounds/primary.jpg</texture>
-				<visible>!Skin.HasSetting(Enable.BackgroundBlur)</visible>
+				<visible>!Skin.HasSetting(Enable.Fanart)</visible>
 			</control>
 			<centertop>50%</centertop>
 			<height>1080</height>

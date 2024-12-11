@@ -23,7 +23,7 @@
 				<include>ListThumbInfoPanel</include>
 			</control>
 			<include content="TopBar">
-				<param name="breadcrumbs_label" value="$LOCALIZE[1036]" />
+				<param name="breadcrumbs_label" value="[COLOR unfocused_text]$LOCALIZE[1036][/COLOR]" />
 			</include>
 			<include content="BottomBar">
 				<param name="info_visible" value="true" />

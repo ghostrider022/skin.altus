@@ -79,8 +79,8 @@
 						<top>-492</top>
 						<bottom>72</bottom>
 						<width>12</width>
-						<texturesliderbar colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbar>
-						<texturesliderbarfocus colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbarfocus>
+						<texturesliderbar colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbar>
+						<texturesliderbarfocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbarfocus>
 						<onleft condition="![Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)]">9000</onleft>
 						<onleft condition="Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)">9000</onleft>
 						<onright condition="![Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)]">52</onright>
@@ -95,8 +95,8 @@
 						<top>-290</top>
 						<bottom>7</bottom>
 						<width>12</width>
-						<texturesliderbar colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbar>
-						<texturesliderbarfocus colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbarfocus>
+						<texturesliderbar colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbar>
+						<texturesliderbarfocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbarfocus>
 						<onleft condition="![Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)]">9000</onleft>
 						<onleft condition="Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)">9000</onleft>
 						<onright condition="![Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)]">50</onright>
@@ -111,8 +111,8 @@
 						<top>-542</top>
 						<bottom>155</bottom>
 						<width>12</width>
-						<texturesliderbar colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbar>
-						<texturesliderbarfocus colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbarfocus>
+						<texturesliderbar colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbar>
+						<texturesliderbarfocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbarfocus>
 						<onleft condition="![Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)]">9000</onleft>
 						<onleft condition="Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)">9000</onleft>
 						<onright condition="![Window.IsVisible(musicplaylist) | Window.IsVisible(videoplaylist)]">50</onright>
@@ -136,8 +136,8 @@
 						<height>12</height>
 						<texturesliderbackground />
 						<onup>50</onup>
-						<texturesliderbar colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbar>
-						<texturesliderbarfocus colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texturesliderbarfocus>
+						<texturesliderbar colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbar>
+						<texturesliderbarfocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbarfocus>
 						<ondown condition="Control.IsVisible(51) | Control.IsVisible(54)">Container.SetViewMode(500)</ondown>
 						<ondown condition="Control.IsVisible(55)">Container.SetViewMode(501)</ondown>
 						<orientation>horizontal</orientation>
@@ -287,7 +287,7 @@
 		<param name="align">left</param>
 		<param name="height">75</param>
 		<param name="font">font32</param>
-		<param name="fontcolor">darkgrey</param>
+		<param name="fontcolor">unfocused_text</param>
 		<param name="diffuse">$PARAM[diffuse]</param>
 		<definition>
 			<itemlayout width="$PARAM[width]" height="$PARAM[height]">
@@ -311,7 +311,7 @@
 					</control>
 					<control type="label">
 						<left>80</left>
-						<top>-3</top>
+						<top>-2</top>
 						<right>20</right>
 						<bottom>0</bottom>
 						<align>$PARAM[align]</align>
@@ -324,15 +324,13 @@
 				<control type="group">
 					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
 					<control type="label">
-						<left>45</left>
-						<top>-3</top>
+						<left>65</left>
 						<right>45</right>
 						<bottom>0</bottom>
 						<align>$PARAM[align]</align>
 						<font>$PARAM[font]</font>
-						<aligny>left</aligny>
-						<textoffsety>17</textoffsety>
-						<textcolor>darkgrey</textcolor>
+						<aligny>center</aligny>
+						<textcolor>unfocused_text</textcolor>
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 				</control>
@@ -366,7 +364,7 @@
 					</control>
 					<control type="label">
 						<left>80</left>
-						<top>-3</top>
+						<top>-2</top>
 						<right>20</right>
 						<bottom>0</bottom>
 						<align>$PARAM[align]</align>
@@ -379,14 +377,11 @@
 				<control type="group">
 					<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
 					<control type="label">
-						<left>45</left>
-						<top>-3</top>
+						<left>65</left>
 						<right>45</right>
-						<bottom>0</bottom>
 						<align>$PARAM[align]</align>
 						<font>$PARAM[font]</font>
-						<aligny>left</aligny>
-						<textoffsety>17</textoffsety>
+						<aligny>center</aligny>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 						<scroll>true</scroll>
@@ -418,10 +413,10 @@
 		</control>
 	</include>
 
-	<!-- <include name="MediaFlag">
+	<include name="MediaFlag">
 		<param name="width">115</param>
 		<param name="height">60</param>
-		<param name="visible">true</param>
+		<param name="visible">false</param>
 		<definition>
 			<control type="image">
 				<width>$PARAM[width]</width>
@@ -433,9 +428,9 @@
 				<visible>![Skin.HasSetting(TrailerPlaying) | Window.IsVisible(12003) | Window.IsVisible(Home) | Window.IsVisible(1121) | Control.IsVisible(50) | Control.IsVisible(500) | Control.IsVisible(501)]</visible>
 			</control>
 		</definition>
-	</include> -->
+	</include>
 
-	<!-- <include name="MediaFlags">
+	<include name="MediaFlags">
 		<param name="infolabel_prefix"></param>
 		<param name="resolution_var">$VAR[ResolutionFlagVar]</param>
 		<definition>
@@ -450,7 +445,8 @@
 				<usecontrolcoords>true</usecontrolcoords>
 				<control type="group">
 					<width>140</width>
-					<visible>[System.AddonIsEnabled(resource.images.studios.white) | System.AddonIsEnabled(resource.images.studios.coloured)] + !String.IsEmpty($PARAM[infolabel_prefix]ListItem.Studio)</visible>
+					<visible>false</visible>
+					<!-- <visible>[System.AddonIsEnabled(resource.images.studios.white) | System.AddonIsEnabled(resource.images.studios.coloured)] + !String.IsEmpty($PARAM[infolabel_prefix]ListItem.Studio)</visible> -->
 					<include condition="!Skin.HasSetting(Disable.ColorStudio)" content="MediaFlag">
 						<param name="texture" value="$INFO[$PARAM[infolabel_prefix]ListItem.Studio,resource://resource.images.studios.white/,.png]" />
 					</include>
@@ -484,7 +480,7 @@
 				</include>
 			</control>
 		</definition>
-	</include> -->
+	</include>
 
 	<include name="WeatherIconMyWeather">
 		<control type="group">
@@ -533,24 +529,20 @@
 						<left>25</left>
 						<top>0</top>
 						<right>25</right>
-						<bottom>0</bottom>
-						<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texture>
+						<texture colordiffuse="$VAR[FocusColorTheme]">focus/filemanager.png</texture>
 						<animation effect="fade" start="100" end="0" time="40" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
 					</control>
 					<control type="image">
-						<left>40</left>
+						<left>60</left>
 						<top>-3</top>
 						<width>32</width>
-						<bottom>0</bottom>
 						<aspectratio aligny="center">keep</aspectratio>
 						<texture colordiffuse="$VAR[FocusedTextColorVar]">$VAR[ListWatchedIconVar]</texture>
 					</control>
 					<control type="label">
-						<left>90</left>
-						<top>0</top>
-						<bottom>0</bottom>
+						<left>110</left>
 						<right>20</right>
-						<aligny>left</aligny>
+						<aligny>center</aligny>
 						<textoffsety>11</textoffsety>
 						<scroll>true</scroll>
 						<label>$INFO[ListItem.Label]</label>
@@ -558,13 +550,10 @@
 						<shadowcolor>text_shadow</shadowcolor>
 					</control>
 					<control type="label">
-						<left>0</left>
+						<left>20</left>
 						<textoffsetx>30</textoffsetx>
-						<top>0</top>
-						<bottom>0</bottom>
-						<right>0</right>
 						<align>right</align>
-						<aligny>left</aligny>
+						<aligny>center</aligny>
 						<textoffsety>11</textoffsety>
 						<label>$INFO[ListItem.Label2]</label>
 						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
@@ -573,7 +562,7 @@
 				</focusedlayout>
 				<itemlayout height="list_item_height">
 					<control type="image">
-						<left>40</left>
+						<left>60</left>
 						<top>-3</top>
 						<width>32</width>
 						<bottom>0</bottom>
@@ -581,27 +570,22 @@
 						<texture colordiffuse="unfocused_text">$VAR[ListWatchedIconVar]</texture>
 					</control>
 					<control type="label">
-						<left>90</left>
-						<top>0</top>
-						<bottom>0</bottom>
+						<left>110</left>
 						<right>20</right>
-						<aligny>left</aligny>
+						<aligny>center</aligny>
 						<textoffsety>11</textoffsety>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>unfocused_text</textcolor>
 						<shadowcolor>text_shadow</shadowcolor>
 					</control>
 					<control type="label">
-						<left>0</left>
+						<left>20</left>
 						<textoffsetx>30</textoffsetx>
-						<top>0</top>
-						<bottom>0</bottom>
-						<right>0</right>
 						<align>right</align>
-						<aligny>left</aligny>
+						<aligny>center</aligny>
 						<textoffsety>11</textoffsety>
 						<label>$INFO[ListItem.Label2]</label>
-							<textcolor>unfocused_text</textcolor>
+						<textcolor>unfocused_text</textcolor>
 						<shadowcolor>text_shadow</shadowcolor>
 					</control>
 				</itemlayout>
@@ -692,16 +676,6 @@
 				<height>80</height>
 				<itemgap>0</itemgap>
 				<orientation>vertical</orientation>
-				<!-- <control type="label">
-					<width>1400</width>
-					<label>$PARAM[main_label]</label>
-					<font>font12</font>
-					<textcolor>unfocused_text</textcolor>
-					<shadowcolor>text_shadow</shadowcolor>
-					<height>45</height>
-					<scroll>true</scroll>
-					<animation effect="slide" start="0,0" end="0,15" time="0" condition="String.IsEmpty(Control.GetLabel($PARAM[id]))">Conditional</animation>
-				</control> -->
 				<control type="label" id="$PARAM[id]">
 					<label>$PARAM[sub_label]</label>
 					<textcolor>$VAR[FocusColorTheme]</textcolor>
@@ -710,17 +684,6 @@
 					<shadowcolor>text_shadow</shadowcolor>
 					<height>100</height>
 					<width>1400</width>
-					<visible>!Skin.HasSetting(Enable.BackgroundBlur)</visible>
-				</control>
-				<control type="label" id="$PARAM[id]">
-					<label>$PARAM[sub_label]</label>
-					<textcolor>unfocused_text</textcolor>
-					<font>font27_title</font>
-					<left>85</left>
-					<shadowcolor>text_shadow</shadowcolor>
-					<height>100</height>
-					<width>1400</width>
-					<visible>Skin.HasSetting(Enable.BackgroundBlur)</visible>
 				</control>
 			</control>
 		</definition>
@@ -772,8 +735,8 @@
 				<top>$PARAM[down_posy]</top>
 				<width>48</width>
 				<height>48</height>
-				<texturefocus colordiffuse="unfocused_text">overlays/arrowdown.png</texturefocus>
-				<texturenofocus colordiffuse="unfocused_text">overlays/arrowdown.png</texturenofocus>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">overlays/arrowdown.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[FocusColorTheme]">overlays/arrowdown.png</texturenofocus>
 				<animation effect="zoom" start="100,0" end="100,100" center="auto" time="200" delay="10">VisibleChange</animation>
 				<animation effect="zoom" start="100,0" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
 				<animation effect="zoom" start="100,100" end="100,0" center="auto" time="200">WindowClose</animation>
@@ -787,8 +750,8 @@
 				<top>$PARAM[up_posy]</top>
 				<width>48</width>
 				<height>48</height>
-				<texturefocus colordiffuse="unfocused_text" flipy="true">overlays/arrowdown.png</texturefocus>
-				<texturenofocus colordiffuse="unfocused_text" flipy="true">overlays/arrowdown.png</texturenofocus>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]" flipy="true">overlays/arrowdown.png</texturefocus>
+				<texturenofocus colordiffuse="$VAR[FocusColorTheme]" flipy="true">overlays/arrowdown.png</texturenofocus>
 				<animation effect="zoom" start="100,0" end="100,100" center="auto" time="200" delay="10">VisibleChange</animation>
 				<animation effect="zoom" start="100,0" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
 				<animation effect="zoom" start="100,100" end="100,0" center="auto" time="200">WindowClose</animation>
@@ -864,7 +827,7 @@
 			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 			<!-- <texture colordiffuse="f5282828">colors/black.png</texture> -->
 			<!-- <texture colordiffuse="FC030303">colors/white.png</texture> -->
-			<texture colordiffuse="$VAR[MenuSelectorColor]">colors/commons.png</texture>
+			<texture colordiffuse="$VAR[FocusColorTheme]" flipy="true">colors/commons.png</texture>
 			<visible>$PARAM[darken_bg]</visible>
 		</control>
 		<control type="button">
@@ -885,7 +848,7 @@
 				<align>center</align> 
 				<aligny>center</aligny>
 				<font>font36_title</font>
-				<textcolor>darkgrey</textcolor>
+				<textcolor>unfocused_text</textcolor>
 				<shadowcolor>black</shadowcolor>
 			</control>
 		</control>
@@ -900,7 +863,7 @@
 			<animation effect="fade" start="0" end="100" time="300">WindowOpen</animation>
 			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 			<!-- <texture colordiffuse="F2FFFFFF">colors/black.png</texture> -->
-			<texture colordiffuse="$VAR[MenuSelectorColor]">colors/commons.png</texture>
+			<texture colordiffuse="$VAR[FocusColorTheme]" flipy="true">colors/commons.png</texture>
 		</control>
 	</include>
 
@@ -913,7 +876,7 @@
 				<depth>DepthBars</depth>
 				<!-- <animation effect="fade" start="0" end="100" time="300" condition="!Container.Scrolling">Conditional</animation> -->
 				<animation effect="fade" start="0" end="100" time="300" condition="[Window.Previous(fullscreenvideo) | Window.Previous(startup)] + !Window.IsVisible(1109)">WindowOpen</animation>
-				<visible>String.IsEmpty(Window(Home).Property(SpotLightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(51) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56)] | Window.IsVisible(extendedprogressdialog)</visible>
+				<visible>String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(51) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56)] | Window.IsVisible(extendedprogressdialog)</visible>
 				<control type="image">
 					<!-- <visible>Window.IsVisible(extendedprogressdialog)</visible> -->
 					<left>0</left>
@@ -963,7 +926,7 @@
 				<control type="grouplist">
 					<top>0</top>
 					<align>right</align>
-					<right>33</right>
+					<right>28</right>
 					<height>200</height>
 					<orientation>horizontal</orientation>
 					<width>1100</width>
@@ -1041,7 +1004,7 @@
 					</control>
 					<control type="image">
 						<width>60</width>
-						<height>110</height>
+						<height>97</height>
 						<fadetime>300</fadetime>
 						<aspectratio aligny="center" align="left">keep</aspectratio>
 						<texture colordiffuse="unfocused_text">$INFO[Weather.FanartCode,weather/small/,.png]</texture>
@@ -1053,8 +1016,8 @@
 						<width>auto</width>
 						<aligny>center</aligny>
 						<align>right</align>
-						<label>[COLOR unfocused_text]$INFO[Window(Weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits][/COLOR]  [B]•[/B] </label>
-						<textcolor>$VAR[MenuSelectorColor]</textcolor>
+						<label>[COLOR unfocused_text]$INFO[Window(Weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits][/COLOR]  • </label>
+						<textcolor>$VAR[FocusColorTheme]</textcolor>
 						<visible>Skin.HasSetting(show_weatherinfo) + Weather.IsFetched + ![String.IsEqual(Weather.FanartCode,na)]</visible>
 					</control>
 					<control type="label">
@@ -1128,7 +1091,7 @@
 	<include name="TopBarLabels">
 		<visible>![Window.IsVisible(Home) | Window.IsVisible(1121) | Control.IsVisible(51) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56)]</visible>
 		
-		<left>37</left>
+		<left>32</left>
 		<description>Left side of top bar</description>
 		<top>-7</top>
 		<height>100</height>
@@ -1172,7 +1135,7 @@
 	</include>
 	<include name="BreadcrumbsLabel">
 		<font>font45</font>
-		<textcolor>$VAR[MenuSelectorColor]</textcolor>
+		<textcolor>$VAR[FocusColorTheme]</textcolor>
 		<shadowcolor>text_shadow</shadowcolor>
 		<top>7</top>
 		<height>100</height>
@@ -1181,69 +1144,17 @@
 
 	<include name="ColoredBackgroundImages">
 		<control type="group">
-			<visible>Skin.HasSetting(Enable.BackgroundBlur) + !Player.HasMedia</visible>
+			<depth>DepthBackground</depth>
+			<include>FullScreenDimensions</include>
 			<control type="image" id="100000">
-				<visible>false</visible>
-				<texture fallback="$VAR[AltusCustomBackgroundImage]">$VAR[BlurTextureVar]</texture>
-			</control>
-			<control type="image">
-				<fadetime>500</fadetime>
-				<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
-				<!-- <animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
-				<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
-				<animation effect="fade" time="400">VisibleChange</animation> -->
-				<depth>DepthBackground</depth>
-				<include>FullScreenDimensions</include>
+				<visible>!Player.HasMedia + Skin.HasSetting(Enable.Fanart) + String.IsEmpty(Listitem.Art(fanart)) + ![Window.IsVisible(Home) | Window.IsVisible(1121)] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Window.IsVisible(busydialog)</visible>
 				<aspectratio>scale</aspectratio>
-				<texture colordiffuse="FF3d3d3d">$INFO[Window(home).Property(listitem_blurred)]</texture>
+				<texture colordiffuse="FF646464" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ImageTextureSourceVar]</texture>
 			</control>
-		</control>
-		
-		<control type="group">
-			<visible>!Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))</visible>
 			<control type="image">
-				<depth>DepthBackground</depth>
-				<include>FullScreenDimensions</include>
 				<aspectratio>scale</aspectratio>
 				<texture colordiffuse="primary_background">special://skin/extras/backgrounds/primary.jpg</texture>
-				<visible>!Skin.HasSetting(Enable.BackgroundBlur)</visible>
-			<!-- <visible>
-				!Skin.HasSetting(Enable.BackgroundBlur) + 
-				[
-						[![ControlGroup(15000).HasFocus | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(501)] | Control.IsVisible(400)] | 
-						[
-								[[Control.IsVisible(50) + 
-									![Window.IsVisible(tvchannels) | Window.IsVisible(tvguide) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvtimers) | Window.IsVisible(tvtimerrules) | Window.IsVisible(tvsearch)] + 
-									![
-										[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
-										[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
-										[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
-										[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] |
-										[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)] | 
-										[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
-										[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] |
-										[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)]
-									]
-								] | Control.IsVisible(500) | Control.IsVisible(501) | 
-								 Window.IsVisible(1100) |
-								 [[Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56)] + 
-										[[Container.Content(movies) + String.IsEqual(Skin.String(ArtworkChoice.movies),1)] | 
-										 [Container.Content(tvshows) + String.IsEqual(Skin.String(ArtworkChoice.tvshows),1)] | 
-										 [Container.Content(seasons) + String.IsEqual(Skin.String(ArtworkChoice.seasons),1)] | 
-										 [Container.Content(episodes) + String.IsEqual(Skin.String(ArtworkChoice.episodes),1)]
-										]
-								 ] |
-								 [!Window.IsVisible(Home) + !Window.IsVisible(1121) + 
-										[[Container.Content(movies) + String.IsEqual(Skin.String(ArtworkChoice.movies),1)] | 
-										 [Container.Content(tvshows) + String.IsEqual(Skin.String(ArtworkChoice.tvshows),1)] | 
-										 [Container.Content(seasons) + String.IsEqual(Skin.String(ArtworkChoice.seasons),1)] | 
-										 [Container.Content(episodes) + String.IsEqual(Skin.String(ArtworkChoice.episodes),1)]
-										]
-								 ]
-								]
-						]
-				]
-				</visible> -->
+				<visible>!Player.HasMedia + !Skin.HasSetting(Enable.Fanart) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Skin.String(TrailerPlaying))</visible>
 			</control>
 		</control>
 	</include>
@@ -1251,9 +1162,16 @@
 	<include name="FullScreenDimensions">
 		<left>0</left>
 		<top>0</top>
+		<width>100%</width>
+		<height>100%</height>
+	</include>
+
+	<!-- <include name="FullScreenFanartDimensions">
+		<left>0</left>
+		<top>0</top>
 		<width>101%</width>
 		<height>101%</height>
-	</include>
+	</include> -->
 
 	<include name="NetflixScreenDimensions">
 		<right>-3</right>
@@ -1276,91 +1194,71 @@
 		<height>523</height>
 	</include>
 
-	<include name="PVRBackground">
-		<control type="image">
-			<include>NetflixScreenDimensions</include>
-			<include>MediaMenuAnimations</include>
-			<aspectratio>stretch</aspectratio>
-			<fadetime>500</fadetime>
-			<texture background="true" diffuse="overlays/netflixfanartdiffuse.png">$VAR[AltusCustomBackgroundImage]</texture>
-			<visible>!Player.HasMedia</visible>
+	<include name="MainLogoProcessor">
+		<control type="image" id="100001">
+			<visible>false</visible>
+			<texture>$VAR[ClearlogoVar]</texture>
 		</control>
+	</include>
+
+	<include name="PlayerLogoProcessor">
+    <control type="image" id="100001">
+			<visible>false</visible>
+			<texture>$VAR[PlayerClearlogoVar]</texture>
+    </control>
 	</include>
 
 	<include name="DefaultBackground">
 		<definition>
-			<control type="group">
+			<include>MainLogoProcessor</include>
+			<control type="videowindow">
+				<depth>DepthBackground</depth>
+				<include>FullScreenDimensions</include>
 				<visible>Player.HasVideo</visible>
-				<control type="videowindow">
-					<depth>DepthBackground</depth>
-					<include>NetflixScreenVideoDimensions</include>
-					<visible>!Slideshow.IsActive</visible>
-					<visible>Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Window.IsVisible(tvchannels) | Window.IsVisible(tvguide) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvtimers) | Window.IsVisible(tvtimerrules) | Window.IsVisible(tvsearch)</visible>
-				</control>
-				<control type="videowindow">
-					<depth>DepthBackground</depth>
-					<include>FullScreenDimensions</include>
-					<visible>!Slideshow.IsActive</visible>
-					<visible>![Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Window.IsVisible(tvchannels) | Window.IsVisible(tvguide) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvtimers) | Window.IsVisible(tvtimerrules) | Window.IsVisible(tvsearch)]</visible>
-				</control>
-				<control type="image">
-					<right>-3</right>
-					<top>-3</top>
-					<width>1410</width>
-					<height>730</height>
-					<texture colordiffuse="black">overlays/netflixtrailerdiffuse.png</texture>
-					<visible>Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Window.IsVisible(tvchannels) | Window.IsVisible(tvguide) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvtimers) | Window.IsVisible(tvtimerrules) | Window.IsVisible(tvsearch)</visible>
-				</control>
-				<control type="image">
-					<include>FullScreenDimensions</include>
-					<texture colordiffuse="99000000">colors/white.png</texture>
-					<visible>![Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Window.IsVisible(tvchannels) | Window.IsVisible(tvguide) | Window.IsVisible(tvrecordings) | Window.IsVisible(tvtimers) | Window.IsVisible(tvtimerrules) | Window.IsVisible(tvsearch)]</visible>
-				</control>
-				<control type="visualisation">
-					<include>FullScreenDimensions</include>
-					<visible>!Slideshow.IsActive</visible>
-					<visible>Player.HasAudio + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia)) + Visualisation.Enabled</visible>
-				</control>
+				<visible>!Slideshow.IsActive</visible>
+			</control>
+			<control type="visualisation">
+				<include>FullScreenDimensions</include>
+				<visible>!Slideshow.IsActive</visible>
+				<visible>Player.HasAudio + String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia)) + Visualisation.Enabled</visible>
+			</control>
+			<control type="image">
+				<include>FullScreenDimensions</include>
+				<texture colordiffuse="B3000000">colors/white.png</texture>
+				<visible>Player.HasVideo</visible>
 			</control>
 			<control type="group">
+				<depth>DepthBackground</depth>
 				<include>FullScreenDimensions</include>
 				<animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
 				<control type="group">
-					<!-- <animation effect="fade" start="100" end="bg_alpha" time="0" condition="!Control.IsVisible(31111)">Conditional</animation> -->
 					<animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(FullscreenGame) | Window.Previous(startup)">WindowOpen</animation>
 					<include>ColoredBackgroundImages</include>
 				</control>
-				<!-- <control type="group" id="31111">
-					<visible>[Window.IsVisible(Home) | Window.IsVisible(1121) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56)] + [![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))]</visible>
-					<depth>DepthBackground</depth>
-					<animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
-					<animation effect="fade" start="100" end="0" time="500">WindowClose</animation>
-					<animation effect="fade" time="400">VisibleChange</animation>
-					<control type="image" id="32111">
-						<right>-3</right>
-						<top>-3</top>
-						<width>1300</width>
-						<height>731</height>
-						<aspectratio>stretch</aspectratio>
-						<fadetime>500</fadetime>
-						<animation effect="fade" time="400">VisibleChange</animation>
-						<texture background="true" diffuse="overlays/netflixfanartdiffuse.png">$VAR[MediaFanartVar]</texture>
-						<visible>!Control.IsVisible(502) | $EXP[infodialog_active]</visible>
-					</control>
-					
-					<control type="image">
-						<left>-3</left>
-						<top>0</top>
-						<right>1193</right>
-						<height>100%</height>
-						<aspectratio aligny="center">scale</aspectratio>
-						<fadetime>400</fadetime>
-						<include>OpenClose_Left</include>
-						<animation effect="fade" time="400">VisibleChange</animation>
-						<texture background="true" colordiffuse="$VAR[Fanartosd_lightnessVar]">$VAR[PosterVar]</texture>
-						<visible>!Control.IsVisible(32111)</visible>
-					</control>
-				</control> -->
+				<control type="image" id="100000">
+					<animation effect="fadediffuse" end="ff9c9c9c" start="FFFFFFFF" time="300" condition="!String.IsEmpty(Listitem.Art(fanart))">Conditional</animation>
+					<!-- <animation effect="fadediffuse" end="ffc3c3c3" start="FFFFFFFF" time="300" condition="!String.IsEmpty(Listitem.Art(fanart))">Conditional</animation> -->
+					<!-- <include>ArtworkAnimations</include> -->
+					<aspectratio>scale</aspectratio>
+					<fadetime>400</fadetime>
+					<texture background="true" colordiffuse="FF646464" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ImageTextureSourceVar]</texture>
+					<visible>[Skin.HasSetting(Enable.Fanart) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + 
+					![ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)] + 
+					![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | 
+					!String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + 
+					![Control.IsVisible(50) + 
+							[
+									[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
+									[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
+									[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
+									[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
+									[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] | 
+									[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+									[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+							]
+					]
+					</visible>
+				</control>
 			</control>
 		</definition>
 	</include>
@@ -1373,7 +1271,7 @@
 				<depth>DepthBars</depth>
 				<animation effect="fade" start="100" end="0" time="300" condition="Window.Next(visualisation) | Window.Next(screencalibration)">WindowClose</animation>
 				<animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(startup) | Window.Previous(visualisation)">WindowOpen</animation>
-				<visible>![ControlGroup(15000).HasFocus | Control.IsVisible(50) | Control.IsVisible(56)]</visible>
+				<visible>String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(50) | Control.IsVisible(56)]</visible>
 				<bottom>0</bottom>
 				<control type="image">
 					<left>0</left>
@@ -1558,7 +1456,6 @@
 				<right>$PARAM[right]</right>
 				<top>$PARAM[top]</top>
 				<height>$PARAM[height]</height>
-				<visible>!Skin.HasSetting(Disable.MenuBackgroundPanel)</visible>
 			</control>
     </definition>
 	</include>
@@ -1794,34 +1691,34 @@
 	<include name="FlixInfoIcon">
 		<control type="togglebutton">
 			<left>50</left>
-			<width>auto</width>
+			<width max="1180">auto</width>
 			<top>56</top>
-			<height>49</height>
+			<height>40</height>
 			<align>left</align>
 			<aligny>center</aligny>
 			<textoffsetx>14</textoffsetx>
 			<!-- <textoffsety>9.1</textoffsety> -->
-			<font>FlixPanelIcon</font>
-			<textcolor>unfocused_text</textcolor>
-			<texturenofocus border="13" colordiffuse="$VAR[FlixIconColor]">masks/flixicon-filled.png</texturenofocus>
-			<label>[UPPERCASE]$PARAM[flixlabel][/UPPERCASE]</label>
+			<font>font36_title</font>
+			<textcolor>$VAR[FocusColorTheme]</textcolor>
+			<!-- <texturenofocus border="13" colordiffuse="59080808">masks/flixicon-filled.png</texturenofocus> -->
+			<label>$PARAM[flixlabel]</label>
 			<visible>$PARAM[visible]</visible>
 		</control>
 	</include>
 
-	<include name="DO_FlixInfoIcon">
+	<include name="OSD_FlixInfoIcon">
 		<control type="togglebutton">
 			<left>50</left>
 			<width>auto</width>
 			<top>56</top>
-			<height>54</height>
+			<height>42</height>
 			<align>center</align>
 			<!-- <aligny>center</aligny> -->
 			<textoffsetx>16</textoffsetx>
-			<textoffsety>10.3</textoffsety>
+			<textoffsety>5.3</textoffsety>
 			<font>PlayerCodecs</font>
-			<textcolor>unfocused_text</textcolor>
-			<texturenofocus border="13" colordiffuse="$VAR[FlixIconColor]">masks/flixicon-filled.png</texturenofocus>
+			<textcolor>CC080808</textcolor>
+			<texturenofocus border="13" colordiffuse="ccfafafa">masks/flixicon-filled.png</texturenofocus>
 			<label>[UPPERCASE][LIGHT]$PARAM[flixlabel][/LIGHT][/UPPERCASE]</label>
 			<visible>$PARAM[visible]</visible>
 		</control>
@@ -1832,10 +1729,10 @@
 			<left>$PARAM[left]</left>
 			<top>$PARAM[top]</top>
 			<width>$PARAM[width]</width>
-			<height>5</height>
-			<texturebg colordiffuse="$VAR[FocusColorTheme]" border="1">osd/Progress1.png</texturebg>
-			<midtexture colordiffuse="$VAR[FocusColorTheme]" border="1">osd/Progress.png</midtexture>
+			<height>7</height>
 			<info>ListItem.Property(WatchedProgress)</info>
+			<!-- <texturebg colordiffuse="$VAR[FocusColorTheme]" border="2">progress/bars/progressback_items.png</texturebg>
+			<midtexture colordiffuse="$VAR[FocusColorTheme]" border="2">progress/bars/progress_items.png</midtexture> -->
 			<visible>[String.IsEqual(ListItem.DBtype,movie) + !String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0)] | [Integer.IsGreater(ListItem.Property(UnwatchedEpisodes),0) + !String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0)] | [String.IsEqual(ListItem.DBtype,episode) + !String.IsEmpty(ListItem.Property(WatchedProgress)) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0)]</visible>
 			<visible>$PARAM[visible1]</visible>
 			<visible>$PARAM[visible2]</visible>
@@ -1843,10 +1740,10 @@
 	</include>
 
 	<include name="WidgetAutoInfoTimer">
-		<control type="button">
+    <control type="button">
 			<visible>false</visible>
-			<onfocus condition="!Skin.HasSetting(Disable.WidgetAutoInfo)">Skin.TimerStart(widget_autoinfo_timer)</onfocus>
-		</control>
+			<onfocus condition="!Skin.HasSetting(Disable.WidgetAutoInfo)">RunScript(script.altus.helper,mode=widget_info_timer&amp;list_id=$PARAM[list_id])</onfocus>
+    </control>
 	</include>
 
 	<include name="WallTimer">
@@ -1860,13 +1757,6 @@
 		<control type="button">
 			<visible>false</visible>
 			<onfocus>Skin.TimerStart(posterflow_scroll_timer)</onfocus>
-		</control>
-	</include>
-
-	<include name="PlaybackTimer">
-		<control type="button">
-			<visible>false</visible>
-			<onfocus>Skin.TimerStart(end_playback_timer)</onfocus>
 		</control>
 	</include>
 
@@ -1884,10 +1774,32 @@
 		</control>
 	</include>
 
+	<include name="SaveLinkedListID">
+		<control type="button">
+			<visible>false</visible>
+			<onfocus>SetProperty(altus_linked_list_id,$PARAM[linked_id],home)</onfocus>
+		</control>
+	</include>
+
+	<include name="ClearLinkedListID">
+		<control type="button">
+			<visible>false</visible>
+			<onfocus>ClearProperty(altus_linked_list_id,home)</onfocus>
+		</control>
+	</include>
+
+	<include name="SetSpotlightProperties">
+		<control type="button">
+			<visible>false</visible>
+			<onfocus condition="!Skin.HasSetting(Enable.AlternateSpotlight)">SetProperty(SpotlightWidget,true,Home)</onfocus>
+		</control>
+	</include>
+
 	<include name="SetDBTypeProperty">
 		<control type="button">
 			<visible>false</visible>
 			<onfocus>SetProperty(CurrentDBType,$INFO[ListItem.DBType],Home)</onfocus>
+			<onunfocus>ClearProperty(CurrentDBType,Home)</onunfocus>
 			<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
 		</control>
 	</include>
@@ -1896,6 +1808,13 @@
 		<control type="button">
 			<visible>false</visible>
 			<onfocus>ClearProperty(StackedWidget,Home)</onfocus>
+		</control>
+	</include>
+
+	<include name="ClearSpotlightProperties">
+		<control type="button">
+			<visible>false</visible>
+			<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
 		</control>
 	</include>
 	

@@ -6,6 +6,10 @@
 		<value condition="ListItem.HasArchive">windows/pvr/archive.png</value>
 		<value condition="ListItem.HasReminder">icons/pvr/timers/bell.png</value>
 	</variable>
+	<variable name="ChannelOrLabelVar">
+    <value condition="String.IsEmpty(ListItem.EpgEventTitle)">$INFO[ListItem.Label]</value>
+    <value>$INFO[ListItem.ChannelName]</value>
+	</variable>
 	<variable name="PVRMySearchLabel1Var">
 		<value condition="!String.IsEmpty(ListItem.ChannelName)">$INFO[ListItem.ChannelName]</value>
 		<value>$INFO[ListItem.Label]</value>
@@ -127,28 +131,28 @@
 		<value>$INFO[ListItem.Plot]</value>
 	</variable> -->
 	<variable name="SelectLabel">
-		<value condition="!Skin.HasSetting(Enable.BackgroundBlur)">$VAR[SelectLabel.NoBlur]</value>
+		<value condition="!Skin.HasSetting(Enable.Fanart)">$VAR[SelectLabel.NoBlur]</value>
 		<value>$VAR[SelectLabel.Blur]</value>
 	</variable>
 	<variable name="SelectLabel.NoBlur">
-		<value condition="Control.IsVisible(3)">[COLOR button_focus]$INFO[Container(3).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR button_focus]$INFO[Container(3).CurrentPage]/$INFO[Container(3).NumPages][/COLOR]</value>
-		<value>[COLOR button_focus]$INFO[Container(6).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR button_focus]$INFO[Container(6).CurrentPage]/$INFO[Container(6).NumPages][/COLOR]</value>
+		<value condition="Control.IsVisible(3)">[COLOR button_focus]$INFO[Container(3).NumItems][/COLOR] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - [COLOR unfocused_text]$INFO[Container(3).CurrentPage]/$INFO[Container(3).NumPages][/COLOR]</value>
+		<value>[COLOR button_focus]$INFO[Container(6).NumItems][/COLOR] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - [COLOR unfocused_text]$INFO[Container(6).CurrentPage]/$INFO[Container(6).NumPages][/COLOR]</value>
 	</variable>
 	<variable name="SelectLabel.Blur">
-		<value condition="Control.IsVisible(3)">[COLOR unfocused_text]$INFO[Container(3).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR unfocused_text]$INFO[Container(3).CurrentPage]/$INFO[Container(3).NumPages][/COLOR]</value>
-		<value>[COLOR unfocused_text]$INFO[Container(6).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR unfocused_text]$INFO[Container(6).CurrentPage]/$INFO[Container(6).NumPages][/COLOR]</value>
+		<value condition="Control.IsVisible(3)">$INFO[Container(3).NumItems] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - [COLOR unfocused_text]$INFO[Container(3).CurrentPage]/$INFO[Container(3).NumPages][/COLOR]</value>
+		<value>$INFO[Container(6).NumItems] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - [COLOR unfocused_text]$INFO[Container(6).CurrentPage]/$INFO[Container(6).NumPages][/COLOR]</value>
 	</variable>
 	<variable name="FileBrowserSelectLabel">
-		<value condition="!Skin.HasSetting(Enable.BackgroundBlur)">$VAR[FileBrowserSelectLabel.NoBlur]</value>
+		<value condition="!Skin.HasSetting(Enable.Fanart)">$VAR[FileBrowserSelectLabel.NoBlur]</value>
 		<value>$VAR[FileBrowserSelectLabel.Blur]</value>
 	</variable>
 	<variable name="FileBrowserSelectLabel.NoBlur">
-		<value condition="Control.IsVisible(450)">[COLOR button_focus]$INFO[Container(450).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR button_focus]$INFO[Container(450).CurrentPage]/$INFO[Container(450).NumPages][/COLOR]</value>
-		<value>[COLOR button_focus]$INFO[Container(451).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR button_focus]$INFO[Container(451).CurrentPage]/$INFO[Container(451).NumPages][/COLOR]</value>
+		<value condition="Control.IsVisible(450)">[COLOR button_focus]$INFO[Container(450).NumItems][/COLOR] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - $INFO[Container(450).CurrentPage]/$INFO[Container(450).NumPages]</value>
+		<value>[COLOR button_focus]$INFO[Container(451).NumItems][/COLOR] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - $INFO[Container(451).CurrentPage]/$INFO[Container(451).NumPages]</value>
 	</variable>
 	<variable name="FileBrowserSelectLabel.Blur">
-		<value condition="Control.IsVisible(450)">[COLOR unfocused_text]$INFO[Container(450).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR unfocused_text]$INFO[Container(450).CurrentPage]/$INFO[Container(450).NumPages][/COLOR]</value>
-		<value>[COLOR unfocused_text]$INFO[Container(451).NumItems][/COLOR] $LOCALIZE[31036] - [COLOR unfocused_text]$INFO[Container(451).CurrentPage]/$INFO[Container(451).NumPages][/COLOR]</value>
+		<value condition="Control.IsVisible(450)">$INFO[Container(450).NumItems] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - [COLOR unfocused_text]$INFO[Container(450).CurrentPage]/$INFO[Container(450).NumPages][/COLOR]</value>
+		<value>$INFO[Container(451).NumItems] [COLOR unfocused_text]$LOCALIZE[31036][/COLOR] - [COLOR unfocused_text]$INFO[Container(451).CurrentPage]/$INFO[Container(451).NumPages][/COLOR]</value>
 	</variable>
 	<!-- <variable name="BannerArtVar">
 		<value condition="ListItem.IsParentFolder">DefaultBackBanner.png</value>
@@ -355,13 +359,9 @@
 		<value condition="!String.IsEmpty(Skin.String(OSDAutoCloseTime))">$INFO[Skin.String(OSDAutoCloseTime)]</value>
 		<value condition="String.IsEmpty(Skin.String(OSDAutoCloseTime))">4</value> <!-- Default value -->
 	</variable>
-	<variable name="SkinSettingEndPlaybackSecs">
-		<value condition="!String.IsEmpty(Skin.String(PlaybackDelaySecs))">$INFO[Skin.String(PlaybackDelaySecs)]</value>
-		<value condition="String.IsEmpty(Skin.String(PlaybackDelaySecs))">1800</value> <!-- Default value -->
-	</variable>
 	<variable name="SkinSettingWidgetAutoInfoDelay">
-		<value condition="!String.IsEmpty(Skin.String(WidgetAutoInfoDelay))">$INFO[Skin.String(WidgetAutoInfoDelay)]</value>
-		<value condition="String.IsEmpty(Skin.String(WidgetAutoInfoDelay))">1</value> <!-- Default value -->
+    <value condition="!String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">$INFO[Skin.String(altus_widget_autoinfo_delay)]</value>
+    <value condition="String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">750</value> <!-- Default 750ms -->
 	</variable>
 	<variable name="SkinSettingPosterFlowAutoInfoDelay">
 		<value condition="!String.IsEmpty(Skin.String(PosterFlowAutoInfoDelay))">$INFO[Skin.String(PosterFlowAutoInfoDelay)]</value>
@@ -414,15 +414,6 @@
 		<value condition="!String.IsEmpty(MusicPlayer.Station)">$INFO[MusicPlayer.Station]</value>
 		<value>$LOCALIZE[31000]...</value>
 	</variable>
-	<variable name="OSDSubLabelVar">
-		<value condition="Window.IsActive(visualisation) + Integer.IsGreater(Playlist.Length(music),1) + Integer.IsGreater(Playlist.Position(music),0)">$LOCALIZE[554] $INFO[Playlist.Position] / $INFO[Playlist.Length]</value>
-		<value condition="VideoPlayer.Content(musicvideos)">$VAR[NowPlayingSublabelVar,,[CR]]$INFO[player.chapter,[COLOR button_focus]$LOCALIZE[21396]: [/COLOR]]$INFO[Player.ChapterCount,/]$INFO[Player.ChapterName, - ]</value>
-		<value condition="VideoPlayer.Content(episodes) + !player.chaptercount">$INFO[VideoPlayer.MPAA,, [COLOR accent_color][B]|[/B][/COLOR]] $VAR[GenreVarOSD] It is currently $INFO[System.Time]. The $VAR[OSDMediaType] will end at $INFO[Player.FinishTime].</value>
-		<value condition="VideoPlayer.Content(episodes) + player.chaptercount">$INFO[VideoPlayer.MPAA,, [COLOR accent_color][B]|[/B][/COLOR]] $VAR[GenreVarOSD] It is currently $INFO[System.Time]. The $VAR[OSDMediaType] will end at $INFO[Player.FinishTime].</value>
-		<value condition="VideoPlayer.Content(LiveTV) | PVR.IsPlayingRecording | PVR.IsPlayingEpgTag">$INFO[VideoPlayer.Season,[COLOR button_focus][CAPITALIZE]$LOCALIZE[36906][/CAPITALIZE]:[/COLOR] S]$INFO[VideoPlayer.Episode,E, [COLOR accent_color][B]|[/B][/COLOR] ]$INFO[VideoPlayer.EpisodeName]</value>
-		<!-- <value condition="player.chaptercount + [!VideoPlayer.Content(episodes) + !VideoPlayer.Content(LiveTV)]">$INFO[player.chapter,[COLOR button_focus]$LOCALIZE[21396]:[/COLOR] ]$INFO[Player.ChapterCount,/]$INFO[Player.ChapterName, - ]</value> -->
-		<value>$INFO[VideoPlayer.MPAA,, [COLOR accent_color][B]|[/B][/COLOR]] $VAR[GenreVarOSD] It is currently $INFO[System.Time]. The $VAR[OSDMediaType] will end at $INFO[Player.FinishTime].</value>
-	</variable>
 	<variable name="OSDNextLabelVar">
 		<value condition="Window.IsActive(visualisation)">$INFO[MusicPlayer.offset(1).Title,[COLOR button_focus]$LOCALIZE[19031]: [/COLOR]]$INFO[MusicPlayer.offset(1).Artist, - ]$INFO[MusicPlayer.offset(1).Album, - ]$INFO[MusicPlayer.offset(1).Year, (,)]</value>
 		<value condition="VideoPlayer.Content(musicvideos)">$INFO[VideoPlayer.offset(1).Title,[COLOR button_focus]$LOCALIZE[19031]: [/COLOR]]$INFO[VideoPlayer.offset(1).Artist, - ]$INFO[VideoPlayer.offset(1).Album, - ]$INFO[VideoPlayer.offset(1).Year, (,)]</value>
@@ -432,10 +423,6 @@
 		<value condition="Window.IsActive(fullscreenvideo) + !Skin.HasSetting(Disable.OSDEndTime)">$INFO[System.Time] [B]»[/B] $INFO[VideoPlayer.FinishTime]</value>
 		<value condition="Window.IsActive(fullscreenvideo) + Skin.HasSetting(Disable.OSDEndTime)">$INFO[System.Time]</value>
 		<!-- <value>$INFO[VideoPlayer.offset(1).Title,[COLOR button_focus]$LOCALIZE[19031]: [/COLOR]]$INFO[VideoPlayer.offset(1).Year, (,)]</value> -->
-	</variable>
-	<variable name="PlayerClearLogoVar">
-		<value condition="!String.IsEmpty(Player.Art(clearlogo))">$INFO[Player.Art(clearlogo)]</value>
-		<value condition="!String.IsEmpty(Player.Art(tvshow.clearlogo))">$INFO[Player.Art(tvshow.clearlogo)]</value>
 	</variable>
 	<!-- <variable name="HomeFanartVar">
 		<value condition="!String.isempty(ListItem.Thumb) + $EXP[isEpisode]">$INFO[ListItem.Thumb]</value>
@@ -453,7 +440,7 @@
 		<value condition="!String.IsEmpty(Container.ListItem.Art(fanart))">$INFO[Container.ListItem.Art(fanart)]</value>
 	</variable> -->
 	<variable name="ListWatchedIconVar">
-    <value condition="String.IsEqual(Container.PluginName,plugin.video.pov)">$VAR[ListWatchedIconVar.POV]</value>
+    <value condition="String.IsEqual(Container.PluginName,plugin.video.pov) | String.IsEqual(Container.PluginName,plugin.video.umbrella)">$VAR[ListWatchedIconVar.POV]</value>
     <value>$VAR[ListWatchedIconVar.All]</value>
 	</variable>
 
@@ -508,7 +495,7 @@
 		<value condition="ListItem.HasReminder">icons/pvr/timers/bell.png</value>
 		<value condition="ListItem.HasTimer">icons/pvr/timers/recording.png</value>
 		<value condition="ListItem.IsCollection">overlays/set.png</value>
-		<value condition="ListItem.IsPlaying">overlays/watched/OverlayPlaying-List.png</value>
+		<value condition="ListItem.IsPlaying">osd/fullscreen/buttons/play.png</value>
 		<value condition="ListItem.IsResumable">overlays/watched/resume.png</value>
 		<value condition="ListItem.HasArchive">windows/pvr/archive.png</value>
 		<value condition="Integer.IsGreater(ListItem.Playcount,0)">OverlayWatched.png</value>
@@ -534,7 +521,7 @@
 		<value>[COLOR unfocused_text]$LOCALIZE[3][/COLOR]</value>
 	</variable>
 	<!-- <variable name="BreadcrumbsPVRChannelsVar">
-		<value condition="!Skin.HasSetting(Enable.BackgroundBlur)">$VAR[BreadcrumbsPVRChannels.NoBlur]</value>
+		<value condition="!Skin.HasSetting(Enable.Fanart)">$VAR[BreadcrumbsPVRChannels.NoBlur]</value>
 		<value>$VAR[BreadcrumbsPVRChannels.Blur]</value>
 	</variable> -->
 	<variable name="BreadcrumbsPVRChannels.NoBlur">
@@ -546,7 +533,7 @@
 		<value>[COLOR unfocused_text]$LOCALIZE[19021][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[19019][/COLOR] [B]»[/B] [COLOR unfocused_text]$INFO[Control.GetLabel(29)][/COLOR]</value>
 	</variable>
 	<!-- <variable name="BreadcrumbsPVRGuideVar">
-		<value condition="!Skin.HasSetting(Enable.BackgroundBlur)">$VAR[BreadcrumbsPVRGuide.NoBlur]</value>
+		<value condition="!Skin.HasSetting(Enable.Fanart)">$VAR[BreadcrumbsPVRGuide.NoBlur]</value>
 		<value>$VAR[BreadcrumbsPVRGuide.Blur]</value>
 	</variable> -->
 	<variable name="BreadcrumbsPVRGuideVar">
@@ -565,20 +552,24 @@
 		<value condition="Window.IsActive(TVRecordings) + String.Contains(Control.GetLabel(7),*)">$LOCALIZE[19020] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ] - $LOCALIZE[19179]</value>
 		<value condition="Window.IsActive(TVRecordings) + !String.Contains(Control.GetLabel(7),*)">$LOCALIZE[19020] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ]</value>
 		<value condition="Window.IsActive(RadioRecordings) + String.Contains(Control.GetLabel(7),*)">$LOCALIZE[19021] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ] - $LOCALIZE[19179]</value>
-		<value>$LOCALIZE[19021] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ]</value>
+		<value>$LOCALIZE[19021] [COLOR accent_color][B][/COLOR]»[/B][/COLOR] $LOCALIZE[19017]$INFO[Control.GetLabel(30), / ]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRTimersVar">
-		<value condition="Window.IsActive(TVTimers)">$LOCALIZE[19020] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19040]</value>
-		<value condition="Window.IsActive(RadioTimers)">$LOCALIZE[19021] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19040]</value>
-		<value condition="Window.IsActive(TVTimerRules)">$LOCALIZE[19020] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19138]$INFO[Control.GetLabel(29), / ]</value>
-		<value>$LOCALIZE[19021] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[19138]$INFO[Control.GetLabel(29), / ]</value>
+		<value condition="Window.IsActive(TVTimers)">[COLOR unfocused_text]$LOCALIZE[19020][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[19040][/COLOR]</value>
+		<value condition="Window.IsActive(RadioTimers)">[COLOR unfocused_text]$LOCALIZE[19021][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[19040][/COLOR]</value>
+		<value condition="Window.IsActive(TVTimerRules)">[COLOR unfocused_text]$LOCALIZE[19020][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[19138]$INFO[Control.GetLabel(29), / ][/COLOR]</value>
+		<value>[COLOR unfocused_text]$LOCALIZE[19021][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[19138]$INFO[Control.GetLabel(29), / ][/COLOR]</value>
 	</variable>
+	<!-- <variable name="BreadcrumbsPVRSearchVar">
+    <value condition="Window.IsActive(TVSearch)">[COLOR unfocused_text]$LOCALIZE[19020][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[137][/COLOR] [B]»[/B] [COLOR unfocused_text]$INFO[Control.GetLabel(29)] $INFO[Control.GetLabel(30), ][/COLOR]</value>
+    <value>[COLOR unfocused_text]$LOCALIZE[19021][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[137]$INFO[Control.GetLabel(29)][/COLOR] [B]»[/B] [COLOR unfocused_text]$INFO[Control.GetLabel(30), ][/COLOR]</value>
+	</variable> -->
 	<variable name="BreadcrumbsPVRSearchVar">
-		<value condition="Window.IsActive(TVSearch)">$LOCALIZE[19020] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[137]$INFO[Control.GetLabel(29), [COLOR accent_color][B]»[/B][/COLOR] ]$INFO[Control.GetLabel(30), ]</value>
-		<value>$LOCALIZE[19021] [COLOR accent_color][B]»[/B][/COLOR] $LOCALIZE[137]$INFO[Control.GetLabel(29), [COLOR accent_color][B]»[/B][/COLOR] ]$INFO[Control.GetLabel(30), ]</value>
+		<value condition="Window.IsActive(TVSearch)">[COLOR unfocused_text]$LOCALIZE[19020][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[137]$INFO[Control.GetLabel(29), [B]»[/B] ]$INFO[Control.GetLabel(30), ][/COLOR]</value>
+		<value>$LOCALIZE[19021] [B]»[/B] $LOCALIZE[137]$INFO[Control.GetLabel(29), [B]»[/B] ]$INFO[Control.GetLabel(30), ]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRChannelsOSDVar">
-		<value condition="!Skin.HasSetting(Enable.BackgroundBlur)">$VAR[BreadcrumbsPVRChannelsOSD.NoBlur]</value>
+		<value condition="!Skin.HasSetting(Enable.Fanart)">$VAR[BreadcrumbsPVRChannelsOSD.NoBlur]</value>
 		<value>$VAR[BreadcrumbsPVRChannelsOSD.Blur]</value>
 	</variable>
 	<variable name="BreadcrumbsPVRChannelsOSD.NoBlur">
@@ -701,12 +692,12 @@
 		<value condition="!String.IsEmpty(ListItem.AddonNews)">$LOCALIZE[31136]</value>
 	</variable>
 	<variable name="UnfocusedPVRNextProgrammeLabel">
-		<value condition="!String.IsEmpty(ListItem.NextStartTime) + !String.IsEmpty(ListItem.NextTitle)">[COLOR grey]Up next:[/COLOR] $INFO[ListItem.NextStartTime]: $INFO[ListItem.NextTitle]</value>
-		<value condition="!String.IsEmpty(ListItem.NextTitle)">[COLOR grey]Up next:[/COLOR] $INFO[ListItem.NextTitle]</value>
+		<value condition="!String.IsEmpty(ListItem.NextStartTime) + !String.IsEmpty(ListItem.NextTitle)">[COLOR grey]$LOCALIZE[209]:[/COLOR] $INFO[ListItem.NextStartTime]: $INFO[ListItem.NextTitle]</value>
+		<value condition="!String.IsEmpty(ListItem.NextTitle)">[COLOR grey]$LOCALIZE[209]:[/COLOR] $INFO[ListItem.NextTitle]</value>
 	</variable>
 	<variable name="FocusedPVRNextProgrammeLabel">
-		<value condition="!String.IsEmpty(ListItem.NextStartTime) + !String.IsEmpty(ListItem.NextTitle)">Up next: $INFO[ListItem.NextStartTime]: $INFO[ListItem.NextTitle]</value>
-		<value condition="!String.IsEmpty(ListItem.NextTitle)">Up next: $INFO[ListItem.NextTitle]</value>
+		<value condition="!String.IsEmpty(ListItem.NextStartTime) + !String.IsEmpty(ListItem.NextTitle)">$LOCALIZE[209]: $INFO[ListItem.NextStartTime]: $INFO[ListItem.NextTitle]</value>
+		<value condition="!String.IsEmpty(ListItem.NextTitle)">$LOCALIZE[209]: $INFO[ListItem.NextTitle]</value>
 	</variable>
 	<variable name="PVRListItemSubLabel">
 		<value condition="ListItem.IsFolder">[COLOR grey]$INFO[ListItem.Timertype][/COLOR]</value>

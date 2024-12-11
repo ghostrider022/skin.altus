@@ -8,9 +8,9 @@
 	</variable>
 
 	<variable name="TrailerSourceSettingVar">
-		<value condition="String.IsEqual(Skin.String(TrailerSource),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(TrailerSource),0)">Kodi</value>
 		<value condition="String.IsEqual(Skin.String(TrailerSource),1)">MDbList</value>
-		<value>Default</value>
+		<value>Kodi</value>
 	</variable>
 
 	<variable name="AutoplayTrailerSource">

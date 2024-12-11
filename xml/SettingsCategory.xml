@@ -9,9 +9,9 @@
 			<control type="grouplist" id="5">
 				<description>control area</description>
 				<top>133</top>
-				<left>495</left>
+				<left>515</left>
 				<pagecontrol>60</pagecontrol>
-				<right>25</right>
+				<right>45</right>
 				<bottom>137</bottom>
 				<onleft>3</onleft>
 				<onright>60</onright>
@@ -19,16 +19,16 @@
 				<ondown>5</ondown>
 			</control>
 			<control type="image">
-				<left>495</left>
+				<left>515</left>
 				<top>130</top>
-				<right>25</right>
+				<right>45</right>
 				<height>2</height>
 				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
 			</control>
 			<control type="image">
-				<left>495</left>
+				<left>515</left>
 				<bottom>135</bottom>
-				<right>25</right>
+				<right>45</right>
 				<height>2</height>
 				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
 			</control>
@@ -81,7 +81,7 @@
 			</include> -->
 			<control type="grouplist" id="3">
 				<description>button area</description>
-				<left>0</left>
+				<left>10</left>
 				<top>130</top>
 				<width>470</width>
 				<height>810</height>
@@ -97,10 +97,10 @@
 				<height>85</height>
 				<width>445</width>
 				<textoffsetx>40</textoffsetx>
-				<textoffsety>16</textoffsety>
-				<aligny>left</aligny>
+				<aligny>center</aligny>
+				<align>center</align>
 				<font>font37</font>
-				<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/settingsmenu.png</texturefocus>
 				<texturenofocus />
 			</control>
 		</control>
@@ -135,16 +135,17 @@
 			<include>OpenClose_Left</include>
 			<control type="radiobutton" id="20">
 				<width>445</width>
-				<left>25</left>
+				<left>35</left>
 				<bottom>70</bottom>
 				<height>90</height>
 				<aligny>center</aligny>
+				<align>center</align>
 				<onclick>SettingsLevelChange</onclick>
-				<textoffsetx>100</textoffsetx>
+				<textoffsetx>0</textoffsetx>
 				<textoffsety>0</textoffsety>
-				<texturefocus colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texturefocus>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">focus/settingsmenu.png</texturefocus>
 				<texturenofocus />
-				<radioposx>40</radioposx>
+				<radioposx>202.5</radioposx>
 				<radioposy>0</radioposy>
 				<radiowidth>40</radiowidth>
 				<radioheight>40</radioheight>
@@ -153,22 +154,27 @@
 				<onup>3</onup>
 				<ondown>3</ondown>
 				<textcolor>unfocused_text</textcolor>
+				<font>font32</font>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
-				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">icons/settings.png</textureradioonfocus>
+				<!-- <textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">icons/settings.png</textureradioonfocus>
 				<textureradioonnofocus colordiffuse="unfocused_text">icons/settings.png</textureradioonnofocus>
 				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">icons/settings.png</textureradioofffocus>
-				<textureradiooffnofocus colordiffuse="unfocused_text">icons/settings.png</textureradiooffnofocus>
+				<textureradiooffnofocus colordiffuse="unfocused_text">icons/settings.png</textureradiooffnofocus> -->
+				<textureradioonfocus/>
+				<textureradioonnofocus/>
+				<textureradioofffocus/>
+				<textureradiooffnofocus/>
 			</control>
 		</control>
 		<control type="group">
 			<include>OpenClose_Right</include>
 			<control type="textbox" id="6">
 				<description>description area</description>
-				<left>510</left>
+				<left>520</left>
 				<bottom>27</bottom>
 				<right>60</right>
-				<height>90</height>
-				<width>1370</width>
+				<height>105</height>
+				<width>1350</width>
 				<font>font12</font>
 				<align>justify</align>
 				<textcolor>$VAR[FocusedColorVar]</textcolor>

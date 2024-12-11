@@ -5,45 +5,32 @@
 	<include>AltusSkinStringsInitialization</include>
 	<controls>
 		<include>DefaultBackground</include>
-		<control type="group">
+		<include>PlayerLogoProcessor</include>
+		<control type="image" id="100000">
+			<include>FullScreenDimensions</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>500</fadetime>
+			<include>ArtworkAnimations</include>
+			<texture background="true" diffuse="overlays/spotlightdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[HomeFanartVar]</texture>
+			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !Skin.HasSetting(Enable.AlternateSpotlight)</visible>
+		</control>
+		<control type="multiimage" id="100000">
+			<include>FullScreenDimensions</include>
+			<include>ArtworkAnimations</include>
+			<aspectratio>scale</aspectratio>
+			<fadetime>500</fadetime>
+			<imagepath background="true" colordiffuse="FF404040">$VAR[WeatherFanartVar]</imagepath>
+			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + Skin.HasSetting(Enable.Fanart) + [ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)]</visible>
+		</control>
+		<!-- <control type="group">
 			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))]</visible>
-			<include content="Visible_Right_Delayed">
-				<param name="id" value="weather"/>
-			</include>
-			<control type="image">
-				<include>FullScreenDimensions</include>
-				<aspectratio>stretch</aspectratio>
-				<fadetime>500</fadetime>
-				<!-- <include>ArtworkAnimations</include> -->
-				<texture colordiffuse="FFE4E4E4E4" background="true" diffuse="overlays/netflixfanartdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[HomeFanartVar]</texture>
-				<visible>!String.IsEmpty(Window(Home).Property(SpotLightWidget)) + !ControlGroup(15000).HasFocus</visible>
-			</control>
 			<control type="group">
-				<animation type="Conditional" condition="!ControlGroup(2000).HasFocus" reversible="true">
-					<effect type="slide" start="0,0" end="-200,50" time="500" tween="cubic" easing="inout" />
-				</animation>
-				<control type="multiimage">
-					<include>BigLandscapeScreenDimensions</include>
-					<fadetime>500</fadetime>
-					<timeperimage>10000</timeperimage>
-					<include>ArtworkAnimations</include>
-					<imagepath diffuse="masks/giant-landscape.png" background="true">$VAR[WeatherFanartVar]</imagepath>
-					<aspectratio scalediffuse="false">scale</aspectratio>
-					<visible>[ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)] + !$EXP[infodialog_active]</visible>
-				</control>
 				<control type="group">
 					<visible>!String.IsEmpty(Weather.Plugin) + Weather.IsFetched + String.IsEqual(Container(9000).ListItem.Property(id),weather) + !ControlGroup(2000).HasFocus</visible>
-					<control type="image">
-						<top>323</top>
-						<left>940</left>
-						<width>930</width>
-						<height>250</height>
-						<texture colordiffuse="A8FFFFFF" background="true">overlays/overlayfade-ls.png</texture>
-					</control>
 					<control type="label">
 						<animation effect="fade" time="300">Visible</animation>
-						<bottom>500</bottom>
-						<left>970</left>
+						<bottom>400</bottom>
+						<left>525</left>
 						<width>1000</width>
 						<aligny>center</aligny>
 						<height>98</height>
@@ -54,14 +41,14 @@
 					</control>
 				</control>
 			</control>
-		</control>
+		</control> -->
 		<control type="group">
 			<!-- <include>TrailerPlayingFade</include> -->
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<!-- WIDGETS GROUP -->
 			<control type="group" id="2000">
 				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + !ControlGroup(2000).HasFocus" reversible="true">
-					<effect type="fade" start="100" end="80" time="500" tween="sine" easing="inout" />
+					<!-- <effect type="fade" start="100" end="80" time="500" tween="sine" easing="inout" /> -->
 					<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="500" />
 				</animation>
 				<include>MainMenuAnimations</include>
@@ -530,7 +517,7 @@
 						<top>80</top>
 						<label>$VAR[HomescreenFlixCrumbs]</label>
 						<font>font27_title</font>
-						<textcolor>$VAR[MenuSelectorColor]</textcolor>
+						<textcolor>$VAR[FocusColorTheme]</textcolor>
 						<shadowcolor>text_shadow</shadowcolor>
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
@@ -559,10 +546,6 @@
 						<ondown>14100</ondown>
 						<preloaditems>2</preloaditems>
 						<movement>5</movement>
-						<onfocus>ClearProperty(altus_fanart_art)</onfocus>
-						<onfocus>ClearProperty(altus_fanart_prop)</onfocus>
-						<onfocus>ClearProperty(altus_landscape_art)</onfocus>
-						<onfocus>ClearProperty(altus_landscape_prop)</onfocus>
 						<scrolltime tween="cubic" easing="out">500</scrolltime>
 						<orientation>vertical</orientation>
 						<pagecontrol>14010</pagecontrol>
@@ -834,27 +817,31 @@
 			<!-- <control type="textbox" id="9999">
 				<include>MainMenuAnimations</include>
 				<left>50</left>
-				<top>200</top>
+				<top>600</top>
 				<width>1500</width>
 				<height>1000</height>
 				<font>font12</font>
 				<textcolor>FFFFFFFF</textcolor>
-				<label>Saved: $INFO[Window(Home).Property(altus_saved_list_id)][CR]Stacked: $INFO[Window(Home).Property(altus_stacked_saved_list_id)]</label>
+				<label>Spotlight Active: $INFO[Window(Home).Property(SpotlightWidget)]</label>
+				<visible>true</visible>
+				<label>Saved: $INFO[Window(Home).Property(altus_saved_list_id)][CR]Stacked: $INFO[Window(Home).Property(altus_stacked_saved_list_id)][CR]Linked: $INFO[Window(Home).Property(altus_linked_list_id)]</label>
 				<visible>true</visible>
 			</control> -->
 			<control type="group">
 				<depth>DepthContentPanel</depth>
 				<!-- <include>osd_darkenBG</include> -->
 				<control type="group">
-					<left>-540</left>
-					<animation type="Conditional" condition="!ControlGroup(2000).HasFocus" reversible="true">
+					<!-- <left>-540</left> -->
+					<!-- <animation type="Conditional" condition="!ControlGroup(2000).HasFocus" reversible="true">
 						<effect type="slide" start="0" end="540" time="500" tween="cubic" easing="inout" />
-					</animation>
+					</animation> -->
+					<animation effect="slide" time="500" start="-540,0" end="0,0" tween="cubic" easing="inout">VisibleChange</animation>
+					<visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus</visible>
 					<include>OpenClose_Left</include>
-					<include content="MenuContentPanel">
+					<!-- <include content="MenuContentPanel">
 						<param name="width" value="549"/>
-					</include>
-					<visible>true</visible>
+					</include> -->
+					<!-- <visible>true</visible> -->
 					<control type="fixedlist" id="9000">
 						<left>40</left>
 						<top>200</top>
@@ -863,6 +850,8 @@
 						<movement>9</movement>
 						<focusposition>0</focusposition>
 						<onfocus>ClearProperty(listposition,home)</onfocus>
+						<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+						<onfocus>ClearProperty(altus_saved_list_id,Home)</onfocus>
 						<onfocus>ClearProperty(CurrentDBType,Home)</onfocus>
 						<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
 						<onback>700</onback>

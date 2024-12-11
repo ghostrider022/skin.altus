@@ -14,10 +14,11 @@
 					<width>1815</width>
 					<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
 					<font>font32</font>
-					<textcolor>$VAR[MenuSelectorColor]</textcolor>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>center</align>
 					<visible>$EXP[isPlugin]</visible>
+					<!-- <visible>$EXP[isPlugin] + !Window.IsVisible(busydialog)</visible> -->
 				</control>
 				<control type="label">
 					<left>50</left>
@@ -25,10 +26,11 @@
 					<width>1815</width>
 					<label>$VAR[ClockCrumbs][COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]$VAR[VideoFlixCrumbsVar]</label>
 					<font>font32</font>
-					<textcolor>$VAR[MenuSelectorColor]</textcolor>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>center</align>
 					<visible>!$EXP[isPlugin]</visible>
+					<!-- <visible>!$EXP[isPlugin] + !Window.IsVisible(busydialog)</visible> -->
 				</control>
 				<!-- <control type="image">
 					<include>NetflixScreenDimensions</include>
@@ -41,7 +43,7 @@
 				<control type="panel" id="56">
 					<left>50</left>
 					<top>370</top>			
-					<bottom>70</bottom>
+					<bottom>81</bottom>
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<pagecontrol>531</pagecontrol>
 					<onright>56</onright>
@@ -86,10 +88,7 @@
 					<focusedlayout height="list_item_height" width="608" condition="Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos) | Container.Content(videos) | Container.Content(games) | Window.IsActive(videoplaylist) | Window.IsActive(musicplaylist)" infoupdate="30">
 						<include>SetDBTypeProperty</include>
 						<control type="image">
-							<left>0</left>
-							<right>0</right>
-							<bottom>0</bottom>
-							<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+							<texture colordiffuse="$VAR[FocusColorTheme]">focus/listinfo_3_column.png</texture>
 							<animation effect="fade" start="100" end="40" time="40" condition="!Control.HasFocus(56)">Conditional</animation>
 						</control>
 						<control type="image">
@@ -102,8 +101,7 @@
 						</control>
 						<control type="group">
 							<left>70</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<control type="label">
 								<right>30</right>
 								<aligny>center</aligny>
@@ -140,8 +138,7 @@
 						</control>
 						<control type="label">
 							<right>20</right>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<align>right</align>
 							<aligny>center</aligny>
 							<font>font27</font>
@@ -151,8 +148,7 @@
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 						<control type="label">
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<align>right</align>
 							<aligny>center</aligny>
@@ -166,8 +162,7 @@
 							<visible>$EXP[isTVShow]</visible>
 							<control type="label">
 								<width>260</width>
-								<top>-2</top>
-								<bottom>0</bottom>
+								<top>3</top>
 								<right>20</right>
 								<align>right</align>
 								<aligny>center</aligny>
@@ -189,8 +184,7 @@
 						</control>
 						<control type="group">
 							<left>70</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<control type="label">
 								<right>30</right>
 								<aligny>center</aligny>
@@ -220,8 +214,7 @@
 							</control>
 						</control>
 						<control type="label">
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<align>right</align>
 							<aligny>center</aligny>
@@ -232,8 +225,7 @@
 							<shadowcolor>text_shadow</shadowcolor>
 						</control>
 						<control type="label">
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<align>right</align>
 							<aligny>center</aligny>
@@ -247,8 +239,7 @@
 						<visible>$EXP[isTVShow]</visible>
 							<control type="label">
 								<width>260</width>
-								<top>-2</top>
-								<bottom>0</bottom>
+								<top>3</top>
 								<right>20</right>
 								<align>right</align>
 								<aligny>center</aligny>
@@ -261,10 +252,7 @@
 					</itemlayout>
 					<focusedlayout height="list_item_height" width="608" condition="!Container.Content(songs) + !Container.Content(addons) + !Container.Content(playlists) + !Container.Content() + !Container.Content(tvshows) + !Container.Content(seasons) + !Container.Content(episodes) + !Container.Content(movies) + !Container.Content(musicvideos) + !Container.Content(videos)+ !Container.Content(favourites)" infoupdate="300">
 						<control type="image">
-							<left>0</left>
-							<right>0</right>
-							<bottom>0</bottom>
-							<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texture>
+							<texture colordiffuse="$VAR[FocusColorTheme]">focus/listinfo_3_column.png</texture>
 							<animation effect="fade" start="100" end="40" time="40" condition="!Control.HasFocus(56)">Conditional</animation>
 						</control>
 						<control type="image">
@@ -277,8 +265,7 @@
 						</control>
 						<control type="label">
 							<left>70</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<aligny>center</aligny>
 							<scroll>true</scroll>
@@ -289,8 +276,7 @@
 						</control>
 						<control type="label">
 							<left>70</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<align>right</align>
 							<aligny>center</aligny>
@@ -311,8 +297,7 @@
 						</control>
 						<control type="label">
 							<left>70</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<aligny>center</aligny>
 							<font>font27</font>
@@ -322,8 +307,7 @@
 						</control>
 						<control type="label">
 							<left>70</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>20</right>
 							<align>right</align>
 							<aligny>center</aligny>
@@ -335,10 +319,7 @@
 					</itemlayout>
 					<focusedlayout height="list_item_height" width="608" condition="Container.Content(playlists) | Container.Content(favourites) | Container.Content()" infoupdate="300">
 						<control type="image">
-							<left>0</left>
-							<right>0</right>
-							<bottom>0</bottom>
-							<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+							<texture colordiffuse="$VAR[FocusColorTheme]">focus/listinfo_3_column.png</texture>
 							<animation effect="fade" start="100" end="40" time="40" condition="!Control.HasFocus(56)">Conditional</animation>
 						</control>
 						<control type="image">
@@ -348,12 +329,11 @@
 							<width>50</width>
 							<bottom>10</bottom>
 							<aspectratio>keep</aspectratio>
-							<texture colordiffuse="$VAR[FocusedTextColorVar]" diffuse="masks/addons.png">$INFO[ListItem.Icon]</texture>
+							<texture colordiffuse="$VAR[FocusedTextColorVar]" diffuse="focus/listinfo_3_column_img.png">$INFO[ListItem.Icon]</texture>
 						</control>
 						<control type="label">
 							<left>90</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>25</right>
 							<aligny>center</aligny>
 							<scroll>true</scroll>
@@ -372,12 +352,11 @@
 							<width>50</width>
 							<bottom>10</bottom>
 							<aspectratio>keep</aspectratio>
-							<texture diffuse="masks/addons.png" colordiffuse="unfocused_text">$INFO[ListItem.Icon]</texture>
+							<texture diffuse="focus/listinfo_3_column_img.png">$INFO[ListItem.Icon]</texture>
 						</control>
 						<control type="label">
 							<left>90</left>
-							<top>-2</top>
-							<bottom>0</bottom>
+							<top>3</top>
 							<right>25</right>
 							<aligny>center</aligny>
 							<textcolor>unfocused_text</textcolor>
@@ -395,8 +374,6 @@
 	<include name="SongsListLayout">
 		<focusedlayout height="list_item_height" condition="Container.Content(songs)">
 			<control type="image">
-				<left>0</left>
-				<right>0</right>
 				<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texture>
 				<animation effect="fade" start="100" end="40" time="40" condition="!Control.HasFocus(56)">Conditional</animation>
 			</control>
@@ -439,10 +416,7 @@
 	<include name="AddonsListLayout">
 		<focusedlayout height="list_item_height" width="913" condition="Container.Content(addons)" infoupdate="30">
 			<control type="image">
-				<left>0</left>
-				<right>0</right>
-				<bottom>0</bottom>
-				<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texture>
+				<texture colordiffuse="$VAR[FocusColorTheme]">focus/listinfo_2_column.png</texture>
 				<animation effect="fade" start="100" end="40" time="40" condition="!Control.HasFocus(56)">Conditional</animation>
 			</control>
 			<control type="image">
@@ -454,23 +428,23 @@
 				<animation effect="fade" start="30" end="100" time="300" reversible="false">Focus</animation>
 			</control>
 			<control type="label">
-				<top>-2</top>
+				<top>3</top>
 				<left>70</left>
 				<aligny>center</aligny>
-				<scroll>true</scroll>
-				<font>font27</font>
 				<label>$INFO[ListItem.Label]</label>
 				<textcolor>$VAR[FocusedTextColorVar]</textcolor>
+				<font>font27</font>
 			</control>
 			<control type="label">
-				<top>-2</top>
+				<top>3</top>
+				<left>75</left>
 				<right>70</right>
 				<align>right</align>
 				<aligny>center</aligny>
-				<font>font27</font>
 				<label>$VAR[AddonsLabel3Var]</label>
+				<font>font27</font>
 				<textcolor>$VAR[FocusedTextColorVar]</textcolor>
-				<scroll>true</scroll>
+				<shadowcolor>text_shadow</shadowcolor>
 			</control>
 			<control type="image">
 				<right>20</right>
@@ -491,7 +465,7 @@
 				<animation effect="fade" start="30" end="100" time="300" reversible="false">Focus</animation>
 			</control>
 			<control type="label">
-				<top>-2</top>
+				<top>3</top>
 				<left>70</left>
 				<aligny>center</aligny>
 				<label>$INFO[ListItem.Label]</label>
@@ -499,7 +473,7 @@
 				<font>font27</font>
 			</control>
 			<control type="label">
-				<top>-2</top>
+				<top>3</top>
 				<left>75</left>
 				<right>70</right>
 				<align>right</align>

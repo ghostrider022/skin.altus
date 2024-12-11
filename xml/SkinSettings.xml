@@ -3,15 +3,18 @@
 	<defaultcontrol>9000</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<onload>RunScript(script.altus.helper, mode=calculate_cache_size)</onload>
+	<onload>ClearProperty(SpotlightWidget,Home)</onload>
+	<onload>ClearProperty(altus_saved_list_id,Home)</onload>
+	<onload>ClearProperty(altus_stacked_saved_list_id,Home)</onload>
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group" id="10000">
-			<left>470</left>
+			<left>490</left>
 			<include>OpenClose_Right</include>
 			<control type="grouplist" id="610">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -201,7 +204,7 @@
 			<control type="grouplist" id="637">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -224,62 +227,33 @@
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[MenuCaseToggleVar]</onclick>
 				</control>
-				<!-- ACCENT COLOR THEME -->
-				<control type="button" id="63705">
-					<label>Accent color theme</label>
-					<label2>$VAR[MenuSelectorColorThemeSettingVar]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick>$VAR[MenuSelectorColorThemeToggleVar]</onclick>
-				</control>
 				<!-- FOCUS COLOR THEME -->
-				<control type="button" id="63706">
-					<label>Focus color theme</label>
+				<control type="button" id="63705">
+					<label>Color theme</label>
 					<label2>$VAR[FocusColorThemeSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[FocusColorThemeToggleVar]</onclick>
 				</control>
 				<!-- TRAILER SOURCE -->
-				<control type="button" id="63707">
+				<control type="button" id="63706">
 					<label>Trailer source</label>
 					<label2>$VAR[TrailerSourceSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[TrailerSourceToggleVar]</onclick>
 				</control>
-				<!-- MAIN MENU BACKGROUND PANEL -->
-				<control type="radiobutton" id="63708">
-					<label>Show main menu background panel</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.MenuBackgroundPanel)</selected>
-					<onclick>Skin.ToggleSetting(Disable.MenuBackgroundPanel)</onclick>
-				</control>
 				<!-- CLOCK -->
-				<control type="radiobutton" id="63709">
+				<control type="radiobutton" id="63707">
 					<label>Show current time in InfoLine</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(Enable.ClockCrumbs)</selected>
 					<onclick>Skin.ToggleSetting(Enable.ClockCrumbs)</onclick>
-				</control>
-				<!-- AUTO END PLAYBACK -->
-				<control type="radiobutton" id="63710">
-					<label>Enable auto ending of playback</label>
-					<include>DefaultSettingButton</include>
-					<selected>Skin.HasSetting(Enable.AutoEndPlayback)</selected>
-					<onclick>Skin.ToggleSetting(Enable.AutoEndPlayback)</onclick>
-				</control>
-				<!-- SET DELAY -->
-				<control type="button" id="63711">
-					<label>    - Set delay (minutes)</label>
-					<label2>$INFO[Skin.String(PlaybackDelayMins)]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick>RunScript(script.altus.helper, mode=set_autoendplaybackdelay)</onclick>
-					<visible>Skin.HasSetting(Enable.AutoEndPlayback)</visible>
 				</control>
 			</control>
 
 			<control type="grouplist" id="647">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -398,7 +372,7 @@
 			<control type="grouplist" id="648">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -479,7 +453,7 @@
 			<control type="grouplist" id="700">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -492,12 +466,12 @@
 					<selected>!Skin.HasSetting(no_slide_animations)</selected>
 					<onclick>Skin.ToggleSetting(no_slide_animations)</onclick>
 				</control>
-				<control type="radiobutton" id="703">
+				<!-- <control type="radiobutton" id="703">
 					<label>$LOCALIZE[20189]</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(autoscroll)</onclick>
-					<selected>Skin.HasSetting(autoscroll)</selected>
-				</control>
+					<selected>$PARAM[focused]</selected>
+				</control> -->
 				<control type="radiobutton" id="704">
 					<label>$LOCALIZE[31158]</label>
 					<include>DefaultSettingButton</include>
@@ -534,20 +508,21 @@
 			<control type="grouplist" id="600">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>600</onup>
 				<ondown>600</ondown>
 				<visible>Container(9000).HasFocus(6)</visible>
-				<!-- CLEARLOGO -->
+				<!-- FANART -->
 				<control type="radiobutton" id="6002">
-					<label>Enable clearlogo</label>
+					<label>$LOCALIZE[31002]</label>
 					<include>DefaultSettingButton</include>
-					<onclick>Skin.ToggleSetting(Enable.Clearlogo)</onclick>
-					<selected>Skin.HasSetting(Enable.Clearlogo)</selected>
+					<onclick>Skin.ToggleSetting(Enable.Fanart)</onclick>
+					<selected>Skin.HasSetting(Enable.Fanart)</selected>
 				</control>
+				<!-- DEFAULT BACKGROUND -->
 				<control type="button" id="6003">
 					<label>Choose default background</label>
 					<label2>$INFO[Skin.String(AltusCustomBackground)]</label2>
@@ -560,30 +535,14 @@
 					<onclick>Skin.Reset(AltusCustomBackground)</onclick>
 					<visible>!String.IsEmpty(Skin.String(AltusCustomBackground))</visible>
 				</control>
-				<!-- BACKGROUND BLUR -->
+				<!-- CLEARLOGO -->
 				<control type="radiobutton" id="6005">
-					<label>Enable background blur</label>
+					<label>Enable clearlogo (views)</label>
 					<include>DefaultSettingButton</include>
-					<onclick>Skin.ToggleSetting(Enable.BackgroundBlur)</onclick>
-					<selected>Skin.HasSetting(Enable.BackgroundBlur)</selected>
+					<onclick>Skin.ToggleSetting(Enable.Clearlogo)</onclick>
+					<selected>Skin.HasSetting(Enable.Clearlogo)</selected>
 				</control>
-				<!-- BLUR RADIUS -->
 				<control type="button" id="6006">
-					<label>    - Set blur radius</label>
-					<label2>$INFO[Skin.String(BlurRadius)]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick>RunScript(script.altus.helper, mode=set_blurradius)</onclick>
-					<visible>Skin.HasSetting(Enable.BackgroundBlur)</visible>
-				</control>
-				<!-- BLUR SATURATION -->
-				<control type="button" id="6007">
-					<label>    - Set blur saturation</label>
-					<label2>$INFO[Skin.String(BlurSaturation)]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick>RunScript(script.altus.helper, mode=set_blursaturation)</onclick>
-					<visible>Skin.HasSetting(Enable.BackgroundBlur)</visible>
-				</control>
-				<control type="button" id="6008">
 					<label>$LOCALIZE[31131]</label>
 					<label2>$INFO[Skin.String(HomeFanart.name)]</label2>
 					<include>DefaultSettingButton</include>
@@ -591,7 +550,7 @@
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 				</control>
-				<control type="button" id="6009">
+				<control type="button" id="6007">
 					<label>$LOCALIZE[31062]</label>
 					<label2>$INFO[Skin.String(WeatherFanart.name)]</label2>
 					<include>DefaultSettingButton</include>
@@ -599,7 +558,7 @@
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 				</control>
-				<control type="button" id="6010">
+				<control type="button" id="6008">
 					<label>$LOCALIZE[31149]</label>
 					<label2>$INFO[Skin.String(MovieGenreFanart.Name)]</label2>
 					<include>DefaultSettingButton</include>
@@ -607,7 +566,7 @@
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 				</control>
-				<control type="radiobutton" id="6011">
+				<control type="radiobutton" id="6009">
 					<label>$LOCALIZE[31168]</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(show_musicvideoposter)</onclick>
@@ -618,7 +577,7 @@
 			<control type="grouplist" id="622">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -626,159 +585,56 @@
 				<pagecontrol>60</pagecontrol>
 				<ondown>622</ondown>
 				<visible>Container(9000).HasFocus(7)</visible>
-				<control type="radiobutton" id="6220">
+				<control type="radiobutton" id="62200">
 					<label>$LOCALIZE[31172]</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(OSDAutoClose)</selected>
 					<onclick>Skin.ToggleSetting(OSDAutoClose)</onclick>
 				</control>
-				<control type="button" id="6221">
+				<control type="button" id="62201">
 					<label>- $LOCALIZE[31173]</label>
 					<label2>$VAR[SkinSettingOSDAutoCloseTime]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.SetNumeric(OSDAutoCloseTime)</onclick>
 					<enable>Skin.HasSetting(OSDAutoClose)</enable>
 				</control>
-				<control type="button" id="6222">
+				<control type="button" id="62202">
 					<label>Audio button action</label>
 					<label2>$VAR[OSDAudioButtonSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[OSDAudioButtonSettingToggleVar]</onclick>
 				</control>
-				<control type="button" id="6223">
+				<control type="button" id="62203">
 					<label>Subtitle button action</label>
 					<label2>$VAR[OSDSubtitleButtonSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[OSDSubtitleButtonSettingToggleVar]</onclick>
 				</control>
-				<control type="radiobutton" id="6224">
+				<control type="radiobutton" id="62204">
 					<label>Show OSD while paused</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.PauseOSD)</selected>
 					<onclick>Skin.ToggleSetting(Disable.PauseOSD)</onclick>
 				</control>
-				<control type="button" id="6225">
-					<label>OSD style</label>
-					<label2>$VAR[OSDStyleSettingVar]</label2>
-					<include>DefaultSettingButton</include>
-					<onclick>$VAR[OSDStyleToggleVar]</onclick>
-				</control>
-				<control type="button" id="6226">
-					<label>Show all OSD elements</label>
-					<include>DefaultSettingButton</include>
-					<onclick>Skin.Reset(Disable.OSDClearlogo)</onclick>
-					<onclick>Skin.Reset(Disable.OSDTitle)</onclick>
-					<onclick>Skin.Reset(Disable.OSDStudiologo)</onclick>
-					<onclick>Skin.Reset(Disable.OSDEpisodeInfo)</onclick>
-					<onclick>Skin.Reset(Disable.OSDEpisodePlot)</onclick>
-					<onclick>Skin.Reset(Disable.OSDMoviePlot)</onclick>
-					<onclick>Skin.Reset(Disable.OSDEndTime)</onclick>
-					<onclick>Skin.Reset(Disable.OSDRatings)</onclick>
-					<onclick>Skin.Reset(Disable.OSDVideoCodec)</onclick>
-					<onclick>Skin.Reset(Disable.OSDAudioCodec)</onclick>
-					<onclick>Skin.Reset(Disable.OSDAudioChannels)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="button" id="6227">
-					<label>Hide all OSD elements</label>
-					<include>DefaultSettingButton</include>
-					<onclick>Skin.SetBool(Disable.OSDClearlogo)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDTitle)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDStudiologo)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDEpisodeInfo)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDEpisodePlot)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDMoviePlot)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDEndTime)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDRatings)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDVideoCodec)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDAudioCodec)</onclick>
-					<onclick>Skin.SetBool(Disable.OSDAudioChannels)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6228">
-					<label>    - Clearlogo</label>
+				<control type="radiobutton" id="62205">
+					<label>Clearlogo</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.OSDClearlogo)</selected>
 					<onclick>Skin.ToggleSetting(Disable.OSDClearlogo)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
 				</control>
-				<control type="radiobutton" id="6229">
-					<label>        - Title label</label>
+				<control type="radiobutton" id="62206">
+					<label>    - Title label</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.OSDTitle)</selected>
 					<onclick>Skin.ToggleSetting(Disable.OSDTitle)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1) + Skin.HasSetting(Disable.OSDClearlogo)</visible>
-				</control>
-				<control type="radiobutton" id="6230">
-					<label>    - Studio logo</label>
-					<include>DefaultSettingButton</include>
-					<onclick condition="!System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
-					<selected>!Skin.HasSetting(Disable.OSDStudiologo)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDStudiologo)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6231">
-					<label>    - Episode info (SxE • Title)</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDEpisodeInfo)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDEpisodeInfo)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6232">
-					<label>    - Episode plot</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDEpisodePlot)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDEpisodePlot)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6233">
-					<label>    - Movie plot</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDMoviePlot)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDMoviePlot)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6234">
-					<label>    - End time</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDEndTime)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDEndTime)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6235">
-					<label>    - Ratings</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDRatings)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDRatings)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6236">
-					<label>    - Video codec</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDVideoCodec)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDVideoCodec)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6237">
-					<label>    - Audio codec</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDAudioCodec)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDAudioCodec)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
-				</control>
-				<control type="radiobutton" id="6238">
-					<label>    - Audio channels</label>
-					<include>DefaultSettingButton</include>
-					<selected>!Skin.HasSetting(Disable.OSDAudioChannels)</selected>
-					<onclick>Skin.ToggleSetting(Disable.OSDAudioChannels)</onclick>
-					<visible>String.IsEqual(Skin.String(OSDStyleSetting),1)</visible>
+					<visible>Skin.HasSetting(Disable.OSDClearlogo)</visible>
 				</control>
 			</control>
 
 			<control type="grouplist" id="640">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -800,8 +656,15 @@
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[OnLeftSettingToggleVar]</onclick>
 				</control>
+				<!--SPOTLIGHT -->
+				<control type="radiobutton" id="64003">
+					<label>Use alternate spotlight</label>
+					<include>DefaultSettingButton</include>
+					<selected>Skin.HasSetting(Enable.AlternateSpotlight)</selected>
+					<onclick>Skin.ToggleSetting(Enable.AlternateSpotlight)</onclick>
+				</control>
 				<!-- LANDSCAPE DISPLAY STYLE -->
-				<control type="button" id="64003">
+				<control type="button" id="64004">
 					<label>Landscape display style</label>
 					<label2>$VAR[HomeItemArtworkChoiceSettingVar]</label2>
 					<include>DefaultSettingButton</include>
@@ -809,7 +672,7 @@
 					<onclick condition="!Skin.HasSetting(Disable.LandscapeWidgetClearlogo)">Skin.SetBool(Disable.LandscapeWidgetClearlogo)</onclick>
 				</control>
 				<!-- LANDSCAPE DISPLAY STYLE -->
-				<control type="radiobutton" id="64004">
+				<control type="radiobutton" id="64005">
 					<label>    - Enable clearlogo</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.LandscapeWidgetClearlogo)</selected>
@@ -817,48 +680,48 @@
 					<visible>String.IsEqual(Skin.String(HomeItemArtworkChoice),1)</visible>
 				</control>
 				<!-- STACKED WIDGET DELAY -->
-				<control type="button" id="64005">
-					<label>Set stacked widget load delay in milliseconds (1000ms = 1 second)</label>
-					<label2>$INFO[Skin.String(altus_category_widget_delay),, milliseconds]</label2>
+				<control type="button" id="64006">
+					<label>Set stacked widget load delay (milliseconds)</label>
+					<label2>$INFO[Skin.String(altus_category_widget_delay)]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.SetNumeric(altus_category_widget_delay)</onclick>
 				</control>
 				<!-- COUNTDOWN TIMER -->
-				<!-- <control type="radiobutton" id="64006">
+				<control type="radiobutton" id="64007">
 					<label>Show countdown timer for stacked widget load delay</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(altus_category_widget_display_delay)</selected>
 					<onclick>Skin.ToggleSetting(altus_category_widget_display_delay)</onclick>
-				</control> -->
+				</control>
 				<!-- AUTO INFO -->
-				<control type="radiobutton" id="64006">
+				<control type="radiobutton" id="64008">
 					<label>Enable auto info</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetAutoInfo)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetAutoInfo)</onclick>
 				</control>
-				<control type="button" id="64007">
-					<label>    - Choose amount to fade unfocused items</label>
+				<control type="button" id="64009">
+					<label>    - Choose amount to dim unfocused items</label>
 					<label2>$VAR[AutoInfoFadeSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[AutoInfoFadeToggleVar]</onclick>
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
-				<control type="button" id="64008">
-					<label>    - Set delay (seconds)</label>
+				<control type="button" id="64010">
+					<label>    - Set info delay (milliseconds)</label>
 					<label2>$VAR[SkinSettingWidgetAutoInfoDelay]</label2>
 					<include>DefaultSettingButton</include>
-					<onclick>Skin.SetNumeric(WidgetAutoInfoDelay)</onclick>
+					<onclick>Skin.SetNumeric(altus_widget_autoinfo_delay)</onclick>
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
-				<control type="button" id="64009">
+				<control type="button" id="64011">
 					<label>    - Clearlogo</label>
 					<label2>$VAR[WidgetClearlogoSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[WidgetClearlogoToggleVar]</onclick>
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
-				<control type="radiobutton" id="64010">
+				<control type="radiobutton" id="64012">
 					<label>    - Studio logo</label>
 					<include>DefaultSettingButton</include>
 					<onclick condition="!System.HasAddon(resource.images.studios.white)">InstallAddon(resource.images.studios.white)</onclick>
@@ -867,20 +730,20 @@
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
 				<!-- ITEM TITLE -->
-				<control type="radiobutton" id="64011">
+				<control type="radiobutton" id="64013">
 					<label>Show item title in InfoLine</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetInfoLineTitle)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetInfoLineTitle)</onclick>
 				</control>
 				<!-- DIM WIDGETS -->
-				<control type="radiobutton" id="64012">
+				<control type="radiobutton" id="64014">
 					<label>Dim unfocused widgets</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetDimming)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetDimming)</onclick>
 				</control>
-				<control type="radiobutton" id="64013">
+				<control type="radiobutton" id="64015">
 					<label>Dim widgets on main menu focus</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(Enable.MainMenuWidgetDimming)</selected>
@@ -892,7 +755,7 @@
 			<control type="grouplist" id="641">
 				<top>133</top>
 				<left>25</left>
-				<right>0</right>
+				<right>20</right>
 				<bottom>140</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
@@ -943,10 +806,10 @@
 					<onclick>Notification(Views Unlocked,All forced views have been reset)</onclick>
 				</control>
 				<control type="button" id="64104">
-					<label>Clear blur cache</label>
+					<label>Clear cache (colors, cropped logos)</label>
 					<label2>$INFO[Skin.String(CacheSize)]</label2>
 					<include>DefaultSettingButton</include>
-					<onclick>RunScript(script.altus.helper, mode=clear_image_cache)</onclick>
+					<onclick>RunScript(script.altus.helper, mode=clear_cache)</onclick>
 				</control>
 				<control type="button" id="64105">
 					<label>Clear ratings cache</label>
@@ -964,7 +827,7 @@
 				<description>Dialog Header image</description>
 				<left>25</left>
 				<top>130</top>
-				<right>25</right>
+				<right>45</right>
 				<height>3</height>
 				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
 			</control>
@@ -972,7 +835,7 @@
 				<description>Dialog Header image</description>
 				<left>25</left>
 				<bottom>134</bottom>
-				<right>25</right>
+				<right>45</right>
 				<height>3</height>
 				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
 			</control>
@@ -986,7 +849,7 @@
 			</include> -->
 			<control type="list" id="9000">
 				<description>button area</description>
-				<left>0</left>
+				<left>10</left>
 				<top>130</top>
 				<width>470</width>
 				<height>900</height>
@@ -1003,8 +866,8 @@
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>unfocused_text</textcolor>
 						<font>font37</font>
-						<aligny>left</aligny>
-						<textoffsety>16</textoffsety>
+						<aligny>center</aligny>
+						<align>center</align>
 					</control>
 				</itemlayout>
 				<focusedlayout height="85" width="470" infoupdate="300">
@@ -1012,17 +875,17 @@
 						<left>25</left>
 						<width>445</width>
 						<height>85</height>
-						<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+						<texture colordiffuse="$VAR[FocusColorTheme]">focus/settingsmenu.png</texture>
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
 					</control>
 					<control type="label">
 						<left>25</left>
 						<textoffsetx>30</textoffsetx>
-						<textoffsety>16</textoffsety>
 						<width>445</width>
 						<height>85</height>
 						<font>font37</font>
-						<aligny>left</aligny>
+						<aligny>center</aligny>
+						<align>center</align>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 					</control>
@@ -1034,7 +897,7 @@
 					</item>
 					<item id="5">
 						<!-- <label>$LOCALIZE[128]</label> -->
-						<label>General configuration</label>
+						<label>General config</label>
 						<onclick>noop</onclick>
 					</item>
 					<item id="9">
@@ -1050,7 +913,7 @@
 						<onclick>noop</onclick>
 					</item>
 					<item id="4">
-						<label>Ratings management</label>
+						<label>Ratings config</label>
 						<onclick>noop</onclick>
 					</item>
 					<item id="3">
@@ -1098,10 +961,10 @@
 		<!-- <control type="textbox" id="6">
 			<include>OpenClose_Right</include>
 			<description>description area</description>
-			<left>510</left>
+			<left>520</left>
 			<bottom>27</bottom>
-			<width>1370</width>
-			<height>90</height>
+			<width>1360</width>
+			<height>105</height>
 			<font>font12</font>
 			<align>justify</align>
 			<textcolor>$VAR[FocusedColorVar]</textcolor>

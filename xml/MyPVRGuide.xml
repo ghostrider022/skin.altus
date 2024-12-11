@@ -6,7 +6,6 @@
 	<menucontrol>9000</menucontrol>
 	<controls>
 		<include>DefaultBackground</include>
-		<include>PVRBackground</include>
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<control type="group">
@@ -15,12 +14,24 @@
 				<include>OpenClose_Right</include>
 				<include>Visible_Right</include>
 				<include content="PVRInfoPanel">
-					<param name="top" value="15"/>
+					<param name="top" value="825"/>
 				</include>
+				<control type="label">
+					<top>60</top>
+					<height>60</height>
+					<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsPVRGuideVar]</label>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+					<shadowcolor>black</shadowcolor>
+					<align>center</align>
+					<aligny>center</aligny>
+					<wrapmultiline>true</wrapmultiline>
+					<font>font32</font>
+					<!-- <visible>![Window.IsVisible(Home) | Window.IsVisible(10702)]</visible> -->
+				</control>
 				<control type="group">
-					<height>810</height>
+					<height>1055</height>
 					<!-- 140 -->
-					<top>600</top>
+					<top>130</top>
 					<depth>DepthContentPanel</depth>
 					<!-- <control type="image">
 						<left>0</left>
@@ -115,8 +126,8 @@
 							<param name="progress_texture" value="windows/pvr/epg_progress_vertical.png"/>
 							<param name="has_rulerdate_layout" value="false"/>
 							<param name="ruler_width" value="1400"/>
-							<param name="ruler_label_width" value="365"/>
-							<param name="channel_width" value="350"/>
+							<param name="ruler_label_width" value="385"/>
+							<param name="channel_width" value="380"/>
 							<param name="scrollbar_top" value="110"/>
 						</include>
 						<!-- <include content="EpgGrid">
@@ -218,7 +229,7 @@
 						<align>justify</align>
 						<label>$INFO[ListItem.Plot]</label>
 						<textcolor>unfocused_text</textcolor>
-						<autoscroll delay="10000" time="3000" repeat="10000">Skin.HasSetting(AutoScroll)</autoscroll>
+						<autoscroll delay="10000" time="3000" repeat="10000">$PARAM[focused]</autoscroll>
 					</control>
 				</control> -->
 			</control>

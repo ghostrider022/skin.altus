@@ -8,7 +8,7 @@
 	<menucontrol>9000</menucontrol>
 	<controls>
 		<include>DefaultBackground</include>
-		<control type="group">
+		<!-- <control type="group">
 			<include>MediaMenuAnimations</include>
 			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))]</visible>
 			<animation effect="fade" start="0" end="100" time="500">WindowOpen</animation>
@@ -21,7 +21,7 @@
 				<texture background="true" diffuse="overlays/netflixfanartdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[AddonsFanartVar]</texture>
 				<visible>![Window.IsVisible(addoninformation) | Control.IsVisible(52) | Control.IsVisible(50)]</visible>
 			</control>
-		</control>
+		</control> -->
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<include>View_50_List</include>

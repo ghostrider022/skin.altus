@@ -8,34 +8,9 @@
 		<value condition="Player.Forwarding32x | Player.Rewinding32x">32x</value>
 	</variable>
 
-	
-	<variable name="DetailedOSDLogoVar">
-		<value condition="!VideoPlayer.Content(livetv) + [!String.IsEmpty(Player.Art(clearlogo)) + !Skin.HasSetting(Disable.OSDClearlogo)]">$VAR[PlayerClearLogoVar]</value>
-		<value condition="VideoPlayer.Content(livetv) + !Skin.HasSetting(Disable.OSDClearlogo)">$INFO[Player.Icon]</value>
-	</variable>
-
-	<variable name="DynamicContentInfo">
-    <value condition="VideoPlayer.Content(episodes) + !Skin.HasSetting(Disable.OSDEpisodeInfo) + !Skin.HasSetting(Disable.OSDEpisodePlot)">[B]$INFO[VideoPlayer.Season]x$INFO[VideoPlayer.Episode] • $INFO[VideoPlayer.Title][/B][CR]$INFO[VideoPlayer.Plot]</value>
-    <value condition="VideoPlayer.Content(episodes) + !Skin.HasSetting(Disable.OSDEpisodeInfo) + Skin.HasSetting(Disable.OSDEpisodePlot)">[B]$INFO[VideoPlayer.Season]x$INFO[VideoPlayer.Episode] • $INFO[VideoPlayer.Title][/B]</value>
-    <value condition="VideoPlayer.Content(episodes) + Skin.HasSetting(Disable.OSDEpisodeInfo) + !Skin.HasSetting(Disable.OSDEpisodePlot)">$INFO[VideoPlayer.Plot]</value>
-    <value condition="!VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv) + !Skin.HasSetting(Disable.OSDMoviePlot)">$INFO[VideoPlayer.Plot]</value>
-    <value condition="VideoPlayer.Content(livetv)">[B]$INFO[VideoPlayer.Title][/B][CR]$INFO[VideoPlayer.Plot]</value>
-    <value></value>
-	</variable>
-
 	<variable name="VideoPlayerSubtitleLanguage">
 		<value condition="VideoPlayer.SubtitlesEnabled">$INFO[VideoPlayer.SubtitlesLanguage]</value>
 		<value>$LOCALIZE[351]</value>
-	</variable>
-
-	<variable name="OSDTextureVar">
-		<value condition="String.IsEqual(Skin.String(OSDStyleSetting),0)">colors/white.png</value>
-		<value>osd/osdoverlay.png</value>
-	</variable>
-
-	<variable name="OSDTextureColorVar">
-		<value condition="String.IsEqual(Skin.String(OSDStyleSetting),0)">e0080808</value>
-		<value>ed080808</value>
 	</variable>
 	
 	<variable name="PlayerEndTimeVar">
@@ -82,43 +57,16 @@
 		<value></value>
 	</variable>
 
-	<variable name="NowPlayingLabelVar">
+	<variable name="MiniNowPlayingLabelVar">
+		<value condition="VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.Season]$INFO[VideoPlayer.Episode,x,] $VAR[Altus_Divider] $INFO[VideoPlayer.Title]</value>
+		<value condition="VideoPlayer.Content(livetv) + Skin.HasSetting(Disable.OSDClearlogo)">$INFO[VideoPlayer.ChannelName]</value>
+		<value condition="VideoPlayer.Content(livetv) + !Skin.HasSetting(Disable.OSDClearlogo)">$INFO[VideoPlayer.Title] $VAR[Altus_Divider] $INFO[VideoPlayer.ChannelName]</value>
+	</variable>
+
+	<variable name="MainNowPlayingLabelVar">
 		<value condition="!VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.Title]</value>
-		<value condition="VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.TVShowTitle] $VAR[Altus_Divider] $INFO[VideoPlayer.Season]$INFO[VideoPlayer.Episode,x,] $VAR[Altus_Divider] $INFO[VideoPlayer.Title]</value>
-		<value condition="VideoPlayer.Content(livetv)">$INFO[VideoPlayer.Title] $VAR[Altus_Divider] $INFO[VideoPlayer.ChannelName]</value>
-	</variable>
-
-	<variable name="GenreVarOSD">
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Action)">Action $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Adventure)">Adventure $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Animation)">Animation $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Comedy)">Comedy $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Crime)">Crime $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Documentary)">Documentary $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Drama)">Drama $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Family)">Family $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Fantasy)">Fantasy $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Kids)">Kids $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,History)">History $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Horror)">Horror $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Music)">Music $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Mystery)">Mystery $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,News)">News $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Reality)">Reality $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Romance)">Romance $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Science Fiction)">Sci-Fi $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Sci-Fi)">Sci-Fi $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Soap)">Soap $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,TV Movie)">TV Movie $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Thriller)">Thriller $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,War)">War $VAR[Altus_Divider]</value>
-		<value condition="!String.IsEmpty(VideoPlayer.Genre) + String.StartsWith(VideoPlayer.Genre,Western)">Western $VAR[Altus_Divider]</value>
-	</variable>
-
-	<variable name="OSDMediaType">
-		<value condition="!VideoPlayer.Content(episodes) + String.StartsWith(Player.FilenameAndPath,plugin://plugin.video.youtube)">content</value>
-		<value condition="!VideoPlayer.Content(episodes)">movie</value>
-		<value condition="VideoPlayer.Content(episodes)">episode</value>
+		<value condition="VideoPlayer.Content(episodes) + !VideoPlayer.Content(livetv)">$INFO[VideoPlayer.TVShowTitle]</value>
+		<value condition="VideoPlayer.Content(livetv) + Skin.HasSetting(Disable.OSDClearlogo) + !Skin.HasSetting(Disable.OSDTitle)">$INFO[VideoPlayer.Title]</value>
 	</variable>
 
 	<variable name="AudioChannels_Label">
@@ -135,40 +83,6 @@
 	</variable>
 
 	<variable name="AudioCodec_Label">
-		<value condition="String.IsEqual(VideoPlayer.AudioCodec,AC3)">Dolby Digital $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.IsEqual(VideoPlayer.AudioCodec,EAC3)">Dolby Digital Plus $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.IsEqual(VideoPlayer.AudioCodec,truehd)">Dolby TrueHD $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.IsEqual(VideoPlayer.AudioCodec,atmos)">Dolby Atmos $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd_ma)">DTS-HD Master Audio $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.IsEqual(VideoPlayer.AudioCodec,dtshd)">DTS-HD $VAR[Altus_Codec_Divider] </value>
-		<value condition="[String.IsEqual(VideoPlayer.AudioCodec,dts) | String.IsEqual(VideoPlayer.AudioCodec,dca)]">DTS $VAR[Altus_Codec_Divider] </value>
-		<value condition="!String.IsEmpty(VideoPlayer.AudioCodec)">[UPPERCASE]$INFO[VideoPlayer.AudioCodec][/UPPERCASE] $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.Contains(Player.FilenameAndPath,.DTS-HD.MA)">DTS-HD.MA $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.Contains(Player.FilenameAndPath,.EAC3)">EAC3 $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.Contains(Player.FilenameAndPath,.DD) | String.Contains(Player.FilenameAndPath,.AC3)">AC3 $VAR[Altus_Codec_Divider] </value>
-		<value condition="!String.IsEmpty(ListItem.AudioCodec)">[UPPERCASE]$INFO[ListItem.AudioCodec][/UPPERCASE] $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.Contains(ListItem.FilenameAndPath,.DTS-HD.MA)">DTS-HD.MA $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.Contains(ListItem.FilenameAndPath,.EAC3)">EAC3 $VAR[Altus_Codec_Divider] </value>
-		<value condition="String.Contains(ListItem.FilenameAndPath,.DD) | String.Contains(ListItem.FilenameAndPath,.AC3)">AC3 $VAR[Altus_Codec_Divider] </value>
-	</variable>
-
-	<variable name="Resolution_Label">
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,8K) | String.Contains(Player.FileNameAndPath,4320p)]">8K $VAR[Altus_Divider] </value>
-		<value condition="VideoPlayer.IsFullscreen + [String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,dolbyvision)">4K Dolby Vision $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hdr10)">4K HDR $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hlg)">4K HLG $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + [String.Contains(Player.FilenameAndPath,DV) | String.Contains(Player.FilenameAndPath,Dolby.Vision)]">4K Dolby Vision $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(Player.FilenameAndPath,HDR)">4K HDR $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)]">4K UHD $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,1080) | String.Contains(Player.FileNameAndPath,1080p)]">FHD $VAR[Altus_Divider] </value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,720) | String.Contains(Player.FileNameAndPath,720p)]">HD $VAR[Altus_Divider] </value>
-		<value condition="String.StartsWith(VideoPlayer.VideoResolution,576)">SD $VAR[Altus_Divider] </value>
-		<value condition="String.StartsWith(VideoPlayer.VideoResolution,540)">SD $VAR[Altus_Divider] </value>
-		<value condition="String.StartsWith(VideoPlayer.VideoResolution,480)">SD $VAR[Altus_Divider] </value>
-		<value condition="!String.IsEmpty(VideoPlayer.VideoResolution)">$INFO[VideoPlayer.VideoResolution] $VAR[Altus_Divider] </value>
-	</variable>
-
-	<variable name="DO_AudioCodec_Label">
 		<value condition="String.IsEqual(VideoPlayer.AudioCodec,AC3)">Dolby Digital</value>
 		<value condition="String.IsEqual(VideoPlayer.AudioCodec,EAC3)">Dolby Digital Plus</value>
 		<value condition="String.IsEqual(VideoPlayer.AudioCodec,truehd)">Dolby TrueHD</value>
@@ -186,20 +100,22 @@
 		<value condition="String.Contains(ListItem.FilenameAndPath,.DD) | String.Contains(ListItem.FilenameAndPath,.AC3)">AC3</value>
 	</variable>
 
-	<variable name="DO_Resolution_Label">
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,8K) | String.Contains(Player.FileNameAndPath,4320p)]">8K</value>
-		<value condition="VideoPlayer.IsFullscreen + [String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,dolbyvision)">4K Dolby Vision</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hdr10)">4K HDR</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hlg)">4K HLG</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + [String.Contains(Player.FilenameAndPath,DV) | String.Contains(Player.FilenameAndPath,Dolby.Vision)]">4K Dolby Vision</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(Player.FilenameAndPath,HDR)">4K HDR</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)]">4K UHD</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,1080) | String.Contains(Player.FileNameAndPath,1080p)]">FULL HD</value>
-		<value condition="[String.StartsWith(VideoPlayer.VideoResolution,720) | String.Contains(Player.FileNameAndPath,720p)]">HD</value>
-		<value condition="String.StartsWith(VideoPlayer.VideoResolution,576)">SD</value>
-		<value condition="String.StartsWith(VideoPlayer.VideoResolution,540)">SD</value>
-		<value condition="String.StartsWith(VideoPlayer.VideoResolution,480)">SD</value>
-		<value condition="!String.IsEmpty(VideoPlayer.VideoResolution)">$INFO[VideoPlayer.VideoResolution]</value>
+	<variable name="Resolution_Label">
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,8K) | String.Contains(Player.FileNameAndPath,4320p)]">8K</value>
+    <value condition="VideoPlayer.IsFullscreen + [String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,dolbyvision) + String.Contains(VideoPlayer.HDRType,hdr10)">4K HYBRID</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + [String.Contains(Player.FilenameAndPath,DV) | String.Contains(Player.FilenameAndPath,Dolby.Vision)] + String.Contains(Player.FilenameAndPath,HDR)">4K HYBRID</value>
+    <value condition="VideoPlayer.IsFullscreen + [String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,dolbyvision)">4K DV</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + [String.Contains(Player.FilenameAndPath,DV) | String.Contains(Player.FilenameAndPath,Dolby.Vision)]">4K DV</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hdr10)">4K HDR</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(Player.FilenameAndPath,HDR)">4K HDR</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)] + String.Contains(VideoPlayer.HDRType,hlg)">4K HLG</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,4K) | String.Contains(Player.FileNameAndPath,2160p)]">4K UHD</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,1080) | String.Contains(Player.FileNameAndPath,1080p)]">FHD</value>
+    <value condition="[String.StartsWith(VideoPlayer.VideoResolution,720) | String.Contains(Player.FileNameAndPath,720p)]">HD</value>
+    <value condition="String.StartsWith(VideoPlayer.VideoResolution,576)">SD</value>
+    <value condition="String.StartsWith(VideoPlayer.VideoResolution,540)">SD</value>
+    <value condition="String.StartsWith(VideoPlayer.VideoResolution,480)">SD</value>
+    <value condition="!String.IsEmpty(VideoPlayer.VideoResolution)">$INFO[VideoPlayer.VideoResolution]</value>
 	</variable>
 
 </includes>

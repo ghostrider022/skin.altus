@@ -24,7 +24,7 @@
 					<label>$LOCALIZE[31089]: [COLOR white]$INFO[Container(13).NumItems][/COLOR]</label>
 					<align>center</align>
 					<aligny>center</aligny>
-					<textcolor>darkgrey</textcolor>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
 				</control>
 				<control type="list" id="13">
 					<left>20</left>
@@ -44,7 +44,7 @@
 							<height>70</height>
 							<aligny>center</aligny>
 							<font>font27</font>
-							<textcolor>darkgrey</textcolor>
+							<textcolor>unfocused_text</textcolor>
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 						<control type="image">
@@ -52,19 +52,15 @@
 							<height>60</height>
 							<right>5</right>
 							<top>5</top>
-							<texture>$INFO[ListItem.Icon]</texture>
-							<bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
-							<bordersize>2</bordersize>
+							<texture diffuse="focus/listinfo_3_column_img.png">$INFO[ListItem.Icon]</texture>
+							
+							
 							<aspectratio>keep</aspectratio>
 						</control>
 					</itemlayout>
 					<focusedlayout width="400" height="71">
 						<control type="image">
-							<left>0</left>
-							<top>0</top>
-							<right>0</right>
-							<bottom>0</bottom>
-							<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+							<texture colordiffuse="$VAR[FocusColorTheme]">focus/pvravailablegroups.png</texture>
 							<!-- <visible>Control.HasFocus(13)</visible> -->
 							<animation effect="fade" start="100" end="60" time="0" condition="!Control.HasFocus(13)">conditional</animation>
 						</control>
@@ -83,9 +79,8 @@
 							<height>60</height>
 							<right>5</right>
 							<top>5</top>
-							<texture>$INFO[ListItem.Icon]</texture>
-							<bordertexture colordiffuse="border_alpha">colors/black.png</bordertexture>
-							<bordersize>2</bordersize>
+							<texture diffuse="focus/listinfo_3_column_img.png">$INFO[ListItem.Icon]</texture>
+							
 							<aspectratio>keep</aspectratio>
 						</control>
 					</focusedlayout>
@@ -94,7 +89,7 @@
 					<left>425</left>
 					<top>75</top>
 					<width>7</width>
-					<height>815</height>
+					<height>785</height>
 					<onleft>13</onleft>
 					<onright>11</onright>
 					<ondown>73</ondown>
@@ -131,7 +126,7 @@
 				<top>70</top>
 				<width>370</width>
 				<height>715</height>
-				<itemgap>-20</itemgap>
+				<itemgap>15</itemgap>
 				<align>center</align>
 				<orientation>vertical</orientation>
 				<onleft>12</onleft>
@@ -141,29 +136,29 @@
 				<control type="button" id="29">
 					<description>OK</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[186]</label>
 				</control>
 				<control type="button" id="26">
 					<description>Add Group</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[31044]</label>
 				</control>
 				<control type="button" id="27">
 					<description>Rename Group</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[31045]</label>
 				</control>
 				<control type="radiobutton" id="25">
 					<description>Hide Group</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[19289]</label>
 					<radiowidth>100</radiowidth>
 					<radioposy>13</radioposy>
@@ -171,22 +166,22 @@
 				<control type="button" id="28">
 					<description>Delete Group</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[31046]</label>
 				</control>
 				<control type="button" id="35">
 					<description>Regenerate Group Thumbnail</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[13315]</label>
 				</control>
 				<control type="togglebutton" id="34">
 					<description>TV/Radio toggle</description>
 					<width>370</width>
-					<include>SettingsItemCommon</include>
-					<font>font25_title</font>
+					<include>SettingsItemCommon1</include>
+					<font>font27_title</font>
 					<label>$LOCALIZE[19174]</label>
 					<altlabel>$LOCALIZE[19173]</altlabel>
 					<usealttexture>!String.IsEmpty(Window.Property(IsRadio))</usealttexture>

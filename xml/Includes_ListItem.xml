@@ -5,7 +5,7 @@
     <param name="height">75</param>
     <param name="home_layout_id">14</param>
     <definition>
-      <focusedlayout height="$PARAM[height]" infoupdate="300">
+      <focusedlayout height="$PARAM[height]" infoupdate="30">
         <control type="group">
           <animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
         </control>
@@ -87,7 +87,7 @@
     <!-- <param name="img_left">47</param> -->
     <param name="focused_font">font37</param>
     <param name="unfocused_font">font37</param>
-    <param name="img_texture">masks/focus_mainmenu.png</param>
+    <param name="img_texture">focus/mainmenu.png</param>
     <definition>
       <control type="group">
         <control type="image">
@@ -96,7 +96,7 @@
           <width>$PARAM[img_width]</width>
           <left>$PARAM[img_left]</left>
           <right>0</right>
-          <texture colordiffuse="$VAR[MenuSelectorColor]">$PARAM[img_texture]</texture>
+          <texture colordiffuse="$VAR[FocusColorTheme]">$PARAM[img_texture]</texture>
           <visible>Control.HasFocus($PARAM[id]) + $PARAM[focused]</visible>
           <include>Animation_FocusTextureFade</include>
         </control>
@@ -110,13 +110,13 @@
         <control type="group">
           <control type="label">
             <left>70</left>
-            <top>1</top>
+            <top>4</top>
             <height>70</height>
             <!-- <width>670</width> -->
             <width>$PARAM[list_width]</width>
             <aligny>center</aligny>
             <font>$PARAM[unfocused_font]</font>
-            <textcolor>darkgrey</textcolor>
+            <textcolor>unfocused_text</textcolor>
             <label>$VAR[MenuCaseVar]</label>
             <align>center</align>
             <shadowcolor>text_shadow</shadowcolor>
@@ -124,7 +124,7 @@
           </control>
           <control type="label">
             <left>70</left>
-            <top>1</top>
+            <top>4</top>
             <height>70</height>
             <!-- <width>670</width> -->
             <width>$PARAM[list_width]</width>
@@ -141,14 +141,14 @@
           </control>
           <control type="label">
             <left>70</left>
-            <top>1</top>
+            <top>4</top>
             <height>70</height>
             <!-- <width>670</width> -->
             <width>$PARAM[list_width]</width>
             <aligny>center</aligny>
             <font>$PARAM[unfocused_font]</font>
             <align>center</align>
-            <textcolor>darkgrey</textcolor>
+            <textcolor>unfocused_text</textcolor>
             <label>$VAR[MenuCaseVar]</label>
             <shadowcolor>text_shadow</shadowcolor>
             <visible>!Control.HasFocus($PARAM[id]) | !$PARAM[focused]</visible>
@@ -167,7 +167,7 @@
           <top>15</top>
           <bottom>10</bottom>
           <width>5</width>
-          <texture colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texture>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
         </control>
         <control type="group">
           <control type="label">
@@ -178,7 +178,7 @@
             <right>0</right>
             <aligny>top</aligny>
             <font>font32</font>
-            <textcolor>darkgrey</textcolor>
+            <textcolor>unfocused_text</textcolor>
             <label>$PARAM[MainLabel]</label>
           </control>
           <control type="label">
@@ -203,7 +203,7 @@
           <right>0</right>
           <aligny>top</aligny>
           <font>font27</font>
-          <textcolor>darkgrey</textcolor>
+          <textcolor>unfocused_text</textcolor>
           <label>$PARAM[SubLabel]</label>
           <visible>!Control.HasFocus($PARAM[id]) | !$PARAM[focused]</visible>
         </control>
@@ -215,7 +215,7 @@
           <right>0</right>
           <aligny>top</aligny>
           <font>font27</font>
-          <textcolor>darkgrey</textcolor>
+          <textcolor>unfocused_text</textcolor>
           <label>$PARAM[SubLabel]</label>
           <visible>Control.HasFocus($PARAM[id]) + $PARAM[focused]</visible>
           <scroll>true</scroll>

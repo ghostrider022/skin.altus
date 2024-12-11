@@ -250,7 +250,7 @@
           <width>100%</width>
           <label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoCrumbsVar]</label>
           <font>font32</font>
-          <textcolor>$VAR[MenuSelectorColor]</textcolor>
+          <textcolor>$VAR[FocusColorTheme]</textcolor>
           <shadowcolor>text_shadow</shadowcolor>
           <align>center</align>
         </control>
@@ -258,7 +258,7 @@
           <left>15</left>
           <top>913</top>
           <width>100%</width>
-          <label>$INFO[Container.CurrentItem] [COLOR $VAR[MenuSelectorColor]][B]/[/B][/COLOR] $INFO[Container.NumItems] total items</label>
+          <label>$INFO[Container.CurrentItem] [COLOR $VAR[FocusColorTheme]][B]/[/B][/COLOR] $INFO[Container.NumItems] total items</label>
           <font>font32</font>
           <textcolor>unfocused_text</textcolor>
           <shadowcolor>text_shadow</shadowcolor>
@@ -390,8 +390,8 @@
           <effect type="fade" start="100" end="0" time="0"/>
         </animation>
         <top>160</top>
-        <left>500</left>
-        <right>500</right>
+        <left>475</left>
+        <right>475</right>
         <bottom>160</bottom>
         <control type="grouplist">
           <left>0</left>
@@ -399,7 +399,7 @@
           <bottom>0</bottom>
           <orientation>vertical</orientation>
           <align>center</align>
-          <itemgap>15</itemgap>
+          <itemgap>10</itemgap>
           <control type="image">
             <!-- <width>780</width> -->
             <height>233</height>
@@ -414,7 +414,7 @@
             <align>center</align>
             <textcolor>unfocused_text</textcolor>
             <label>$VAR[SubstituteLabel]</label>
-            <autoscroll delay="2000" time="2000" repeat="3000">Skin.HasSetting(autoscroll)</autoscroll>
+            <autoscroll delay="2000" time="2000" repeat="3000">$PARAM[focused]</autoscroll>
             <visible>[String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(Enable.AutoInfoClearlogo)]</visible>
           </control>
           <control type="textbox">
@@ -461,8 +461,8 @@
             <align>center</align>
             <height>40</height>
             <label>$VAR[WidgetInfoPanelTop]</label>
-            <font>font32</font>
-            <textcolor>$VAR[MenuSelectorColor]</textcolor>
+            <font>font27</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
             <scroll>true</scroll>
             <scrollspeed>150</scrollspeed>
           </control>
@@ -472,11 +472,11 @@
           <control type="textbox">
             <visible>!String.IsEmpty(ListItem.Plot)</visible>
             <height max="370">auto</height>
-            <font>font32</font>
+            <font>font27</font>
             <textcolor>unfocused_text</textcolor>
             <align>center</align>
             <label>$INFO[ListItem.Plot]</label>
-            <autoscroll delay="10000" time="4700" repeat="10000">Skin.HasSetting(autoscroll)</autoscroll>
+            <autoscroll delay="10000" time="4700" repeat="10000">$PARAM[focused]</autoscroll>
           </control>
         </control>
       </control>

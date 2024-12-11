@@ -3,7 +3,7 @@
 	<include name="DefaultDialogSelectLayout">
 		<control type="group">
 			<centertop>47%</centertop>
-			<centerleft>50%</centerleft>
+			<centerleft>43%</centerleft>
 			<height>870</height>
 			<width>880</width>
 			<include content="DialogBackgroundCommons">
@@ -24,7 +24,7 @@
 				<include content="DefaultSimpleListLayout">
 					<param name="width" value="880" />
 					<param name="list_id" value="3" />
-					<param name="diffuse" value="masks/focus-long.png" />
+					<param name="diffuse" value="focus/dialogselect.png" />
 				</include>
 			</control>
 			<control type="list" id="6">
@@ -40,11 +40,11 @@
 				<scrolltime>200</scrolltime>
 				<itemlayout height="125" width="880">
 					<control type="image">
-						<left>37</left>
+						<left>35</left>
 						<top>7</top>
 						<width>110</width>
 						<height>110</height>
-						<texture diffuse="masks/addons.png">$VAR[FlixThumbVar]</texture>
+						<texture diffuse="focus/dialogselecttallimg.png">$VAR[FlixThumbVar]</texture>
 						<aspectratio>keep</aspectratio>
 						<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
 					</control>
@@ -94,16 +94,16 @@
 						<top>0</top>
 						<right>25</right>
 						<bottom>0</bottom>
-						<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus.png</texture>
+						<texture colordiffuse="$VAR[FocusColorTheme]">focus/dialogselecttall.png</texture>
 						<!-- <visible>Control.HasFocus(6)</visible> -->
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(6)">Conditional</animation>
 					</control>
 					<control type="image">
-						<left>37</left>
+						<left>35</left>
 						<top>7</top>
 						<width>110</width>
 						<height>110</height>
-						<texture diffuse="masks/addons.png">$VAR[FlixThumbVar]</texture>
+						<texture diffuse="focus/dialogselecttallimg.png">$VAR[FlixThumbVar]</texture>
 						<aspectratio>keep</aspectratio>
 						<visible>!ListItem.Property(PVR.IsRecordingTimer) + !ListItem.Property(PVR.IsRemindingTimer)</visible>
 					</control>
@@ -150,7 +150,7 @@
 				</focusedlayout>
 			</control>
 			<control type="scrollbar" id="61">
-				<left>872</left>
+				<left>888</left>
 				<top>100</top>
 				<width>12</width>
 				<bottom>20</bottom>
@@ -170,12 +170,12 @@
 				<height>35</height>
 				<font>font13</font>
 				<align>right</align>
-				<textcolor>darkgrey</textcolor>
+				<textcolor>$VAR[FocusColorTheme]</textcolor>
 				<label>$VAR[SelectLabel]</label>
 			</control>
 		</control>
 		<control type="grouplist" id="9001">
-			<left>1420</left>
+			<left>1320</left>
 			<top>172</top>
 			<onleft>61</onleft>
 			<itemgap>dialogbuttons_itemgap</itemgap>

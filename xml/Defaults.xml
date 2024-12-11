@@ -54,8 +54,8 @@
 		<font>font13</font>
 	</default>
 	<default type="progress">
-		<texturebg colordiffuse="$VAR[FocusColorTheme]" border="1">osd/Progress1.png</texturebg>
-		<midtexture colordiffuse="$VAR[FocusColorTheme]" border="1">osd/Progress.png</midtexture>
+		<texturebg colordiffuse="$VAR[FocusColorTheme]" border="3">progress/bars/progressback_pvr.png</texturebg>
+		<midtexture colordiffuse="$VAR[FocusColorTheme]" border="3">progress/bars/progress_pvr.png</midtexture>
 		<lefttexture></lefttexture>
 		<righttexture></righttexture>
 		<overlaytexture></overlaytexture>

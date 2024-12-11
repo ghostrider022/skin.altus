@@ -12,9 +12,6 @@
     <control type="group">
       <visible>!String.IsEmpty(Window(home).Property(LanguageNotification))</visible>
       <control type="label">
-        <animation condition="String.IsEqual(Skin.String(OSDStyleSetting),1)" reversible="true">
-          <effect type="slide" start="0,0" end="0,30" time="0" />
-        </animation>
         <top>909</top>
         <right>90</right>
         <width>816</width>
@@ -38,7 +35,7 @@
       </control>
       <control type="image">
         <width>5</width>
-        <texture colordiffuse="$VAR[MenuSelectorColor]">colors/white.png</texture>
+        <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
       </control>
       <control type="label" id="401">
         <top>2</top>

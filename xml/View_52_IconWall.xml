@@ -52,7 +52,7 @@
 							<width>360</width>
 							<height>210</height>
 							<texture colordiffuse="66000000">masks/landscape.png</texture>
-							<bordertexture colordiffuse="$VAR[MenuSelectorColor]" border="20" infill="false">masks/landscape-border.png</bordertexture>
+							<bordertexture colordiffuse="$VAR[FocusColorTheme]" border="20" infill="false">masks/landscape-border.png</bordertexture>
 							<bordersize>1</bordersize>
 						</control>
 						<!-- IMAGE CONTROL -->

@@ -6,7 +6,7 @@
 		<control type="group">
 		<centertop>50%</centertop>
 		<height>750</height>
-		<centerleft>50%</centerleft>
+		<centerleft>43%</centerleft>
 		<width>1200</width>
 		<include content="DialogBackgroundCommons">
 			<param name="header_label" value="$LOCALIZE[13406]" />
@@ -37,30 +37,25 @@
 			<scrolltime>200</scrolltime>
 			<itemlayout height="70" width="1140">
 				<control type="label">
-					<left>10</left>
-					<right>10</right>
-					<top>-5</top>
-					<bottom>0</bottom>
+					<left>30</left>
+					<right>30</right>
 					<aligny>center</aligny>
-					<textcolor>darkgrey</textcolor>
+					<align>center</align>
+					<textcolor>unfocused_text</textcolor>
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 			</itemlayout>
 			<focusedlayout height="70" width="1140">
 				<control type="image">
-					<left>0</left>
-					<top>0</top>
-					<bottom>0</bottom>
 					<right>25</right>
 					<visible>Control.HasFocus(10)</visible>
-					<texture colordiffuse="$VAR[FocusColorTheme]">masks/focus-long.png</texture>
+					<texture colordiffuse="$VAR[FocusColorTheme]">focus/mediasource.png</texture>
 				</control>
 				<control type="label">
-					<left>10</left>
-					<top>-5</top>
-					<bottom>0</bottom>
-					<right>10</right>
+					<left>30</left>
+					<right>30</right>
 					<aligny>center</aligny>
+					<align>center</align>
 					<label>$INFO[ListItem.Label]</label>
 					<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 				</control>
@@ -81,16 +76,18 @@
 		</control>
 		<control type="edit" id="12">
 			<description>Name Button</description>
-			<left>30</left>
-			<top>500</top>
-			<width>1140</width>
-			<height>90</height>
+			<left>45</left>
+			<top>510</top>
+			<width>1120</width>
+			<height>60</height>
 			<align>center</align>
-			<aligny>center</aligny>
+			<aligny>left</aligny>
+			<textoffsety>8</textoffsety>
 			<label></label>
 			<onup>10</onup>
 			<ondown>9001</ondown>
-			<!-- <colordiffuse>button_focus</colordiffuse> -->
+			<texturefocus  colordiffuse="$VAR[FocusColorTheme]">focus/mediasource.png</texturefocus>
+			<texturenofocus colordiffuse="$VAR[FocusColorTheme]">focus/mediasource-dark.png</texturenofocus>
 		</control>
 		<control type="grouplist" id="9001">
 			<left>0</left>
@@ -125,11 +122,11 @@
 			<orientation>vertical</orientation>
 		</control>
 		<control type="grouplist" id="9000">
-			<animation condition="Control.HasFocus(10) | Control.HasFocus(12) | ControlGroup(9001).HasFocus | Control.HasFocus(60)">
+			<!-- <animation condition="Control.HasFocus(10) | Control.HasFocus(12) | ControlGroup(9001).HasFocus | Control.HasFocus(60)">
 				<effect type="fade" start="100" end="0" time="300" tween="cubic" easing="in"/>
 				<effect type="slide" start="0,0" end="200,0" time="300" tween="cubic" easing="in" />
-			</animation>
-			<left>1580</left>
+			</animation> -->
+			<left>1430</left>
 			<top>325</top>
 			<orientation>vertical</orientation>
 			<onleft>10</onleft>
