@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
   <defaultcontrol>700</defaultcontrol>
-  <onload condition="!VideoPlayer.Content(livetv)">SetFocus(703)</onload>
-  <onload condition="VideoPlayer.Content(livetv)">SetFocus(704)</onload>
+  <onload condition="Control.IsVisible(703)">SetFocus(703)</onload>
+  <onload condition="!Control.IsVisible(703)">SetFocus(704)</onload>
+  <!-- <onload condition="VideoPlayer.Content(livetv)">SetFocus(704)</onload> -->
   <onunload>ClearProperty(LanguageNotification,home)</onunload>
   <controls>
     <control type="label">

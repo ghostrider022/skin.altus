@@ -110,8 +110,8 @@
         <control type="group">
           <control type="label">
             <left>70</left>
-            <top>4</top>
-            <height>70</height>
+            <top>5</top>
+            
             <!-- <width>670</width> -->
             <width>$PARAM[list_width]</width>
             <aligny>center</aligny>
@@ -124,8 +124,8 @@
           </control>
           <control type="label">
             <left>70</left>
-            <top>4</top>
-            <height>70</height>
+            <top>5</top>
+            
             <!-- <width>670</width> -->
             <width>$PARAM[list_width]</width>
             <aligny>center</aligny>
@@ -141,8 +141,8 @@
           </control>
           <control type="label">
             <left>70</left>
-            <top>4</top>
-            <height>70</height>
+            <top>5</top>
+            
             <!-- <width>670</width> -->
             <width>$PARAM[list_width]</width>
             <aligny>center</aligny>

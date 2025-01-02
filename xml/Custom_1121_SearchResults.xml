@@ -82,36 +82,42 @@
 							<param name="widget_header" value="TRAKT Lists"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27020"/>
+							<param name="child_id" value="270201"/>
 						</include>
 						<include content="WidgetListPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + [String.IsEqual(Skin.String(current_search_provider),0) | String.IsEqual(Skin.String(current_search_provider),1) | String.IsEqual(Skin.String(current_search_provider),3)]">
 							<param name="content_path" value="$INFO[Window(1121).Property(altus.27020.path)]"/>
 							<param name="widget_header" value="$INFO[Window(1121).Property(altus.27020.label)]"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="270201"/>
+							<param name="parent_id" value="27020"/>
 						</include>
 						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
 							<param name="content_path" value="$VAR[SearchProviderTRAKTListsMoviesVar]"/>
 							<param name="widget_header" value="TRAKT Lists (Movies)"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27021"/>
+							<param name="child_id" value="270211"/>
 						</include>
 						<include content="WidgetListPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
 							<param name="content_path" value="$INFO[Window(1121).Property(altus.27021.path)]"/>
 							<param name="widget_header" value="$INFO[Window(1121).Property(altus.27021.label)]"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="270211"/>
+							<param name="parent_id" value="27021"/>
 						</include>
 						<include content="WidgetListCategoryStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
 							<param name="content_path" value="$VAR[SearchProviderTRAKTListsTVShowsVar]"/>
 							<param name="widget_header" value="TRAKT Lists (TV Shows)"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="27022"/>
+							<param name="child_id" value="270221"/>
 						</include>
 						<include content="WidgetListPosterStacked" condition="!Skin.HasSetting(HideTraktResults) + String.IsEqual(Skin.String(current_search_provider),2)">
 							<param name="content_path" value="$INFO[Window(1121).Property(altus.27022.path)]"/>
 							<param name="widget_header" value="$INFO[Window(1121).Property(altus.27022.label)]"/>
 							<param name="widget_target" value="videos"/>
 							<param name="list_id" value="270221"/>
+							<param name="parent_id" value="27022"/>
 						</include>
 					</control>
 					<include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
@@ -165,7 +171,7 @@
 						<top>200</top>
 						<width>820</width>
 						<control type="label">
-							<left>110</left>
+							<left>135</left>
 							<aligny>center</aligny>
 							<height>98</height>
 							<font>font36_title</font>
@@ -174,7 +180,7 @@
 							<visible>String.IsEqual(Skin.String(MenuCaseSetting),0)</visible>
 						</control>
 						<control type="label">
-							<left>80</left>
+							<left>120</left>
 							<aligny>center</aligny>
 							<height>98</height>
 							<font>font36_title</font>
@@ -183,7 +189,7 @@
 							<visible>String.IsEqual(Skin.String(MenuCaseSetting),1)</visible>
 						</control>
 						<control type="label">
-							<left>115</left>
+							<left>140</left>
 							<aligny>center</aligny>
 							<height>98</height>
 							<font>font36_title</font>
@@ -192,7 +198,7 @@
 							<visible>String.IsEqual(Skin.String(MenuCaseSetting),2)</visible>
 						</control>
 						<control type="label">
-							<left>105</left>
+							<left>133</left>
 							<aligny>center</aligny>
 							<height>98</height>
 							<font>font36_title</font>
@@ -209,6 +215,10 @@
 						<movement>8</movement>
 						<focusposition>0</focusposition>
 						<onfocus>ClearProperty(listposition,home)</onfocus>
+						<onfocus>ClearProperty(altus_saved_list_id,Home)</onfocus>
+						<onfocus>ClearProperty(altus_stacked_linked_list_id,Home)</onfocus>
+						<onfocus>ClearProperty(CurrentDBType,Home)</onfocus>
+						<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
 						<onleft>9000</onleft>
 						<onright condition="!String.IsEmpty(Skin.String(SearchInput))">SetFocus(2000)</onright>
 						<onup>700</onup>

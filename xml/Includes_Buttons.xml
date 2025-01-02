@@ -164,7 +164,7 @@
 				<wrapmultiline>$PARAM[wrapmultiline]</wrapmultiline>
 				<align>center</align>
 				<aligny>left</aligny>
-				<textoffsety>13</textoffsety>
+				<textoffsety>15</textoffsety>
 				<textcolor>unfocused_text</textcolor>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 				<texturefocus colordiffuse="$VAR[FocusColorTheme]">$PARAM[texture]</texturefocus>

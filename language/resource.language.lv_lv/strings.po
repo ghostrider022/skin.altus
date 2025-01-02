@@ -375,7 +375,7 @@ msgid "PosterInfo"
 msgstr "InfoSiena"
 
 #. viewtype name
-msgctxt "#31102"
+msgctxt "#311022"
 msgid "Wall"
 msgstr "Siena"
 

@@ -17,7 +17,7 @@
 			</control>
 			<include>View_56_ListInfo</include>
 			<include>View_500_Wall</include>
-			<include>View_501_WallScape</include>
+			<include>View_501_LandscapeWall</include>
 			<include>CommonScrollbars</include>
 			<control type="group">
 				<include>OpenClose_Left</include>

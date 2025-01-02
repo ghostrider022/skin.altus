@@ -471,7 +471,7 @@
           </include>
           <control type="textbox">
             <visible>!String.IsEmpty(ListItem.Plot)</visible>
-            <height max="370">auto</height>
+            <height max="380">auto</height>
             <font>font27</font>
             <textcolor>unfocused_text</textcolor>
             <align>center</align>

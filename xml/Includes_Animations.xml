@@ -313,7 +313,7 @@
 
 	<include name="MediaMenuAnimations">
 		<animation condition="$EXP[sidebar_visible]" reversible="true">
-			<effect type="slide" start="0,0" end="515,0" time="500" tween="cubic" easing="inout" />
+			<effect type="slide" start="0,0" end="530,0" time="500" tween="cubic" easing="inout" />
 		</animation>
 	</include>
 
@@ -322,8 +322,25 @@
 	</include> -->
 
 	<include name="MainMenuAnimations">
-		<animation condition="!ControlGroup(2000).HasFocus" reversible="true">
-			<effect type="slide" start="0,0" end="469,0" time="500" tween="cubic" easing="inout" />
+		<animation condition="!ControlGroup(2000).HasFocus + !Control.IsVisible(20000) + !Control.IsVisible(20001)" reversible="true">
+			<effect type="slide" start="0,0" end="450,0" time="500" tween="cubic" easing="inout" />
+		</animation>
+	</include>
+
+	<include name="WidgetZoomAnimation">
+		<param name="c1">0</param>
+		<definition>
+			<animation condition="!Control.HasFocus($PARAM[list_id]) + ControlGroup(2000).HasFocus" reversible="true">
+				<effect type="zoom" center="$PARAM[c1],$PARAM[c2]" end="95,95" time="500" tween="cubic" easing="inout"  />
+			</animation>
+		</definition>
+	</include>
+
+	<animation effect="zoom" condition="">conditional</animation>
+
+	<include name="AddonsMenuAnimations">
+		<animation condition="!ControlGroup(400).HasFocus" reversible="true">
+			<effect type="slide" start="0,0" end="500,0" time="500" tween="cubic" easing="inout" />
 		</animation>
 	</include>
 
@@ -360,17 +377,17 @@
 	</include>
 
 	<include name="WidgetUnfocusedAnimations">
-		<animation condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + !Control.HasFocus($PARAM[list_id]) + ControlGroup(2000).HasFocus" reversible="true">
+    <animation condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + ![Control.HasFocus($PARAM[list_id]) | Control.HasFocus($PARAM[list_id]1) | String.IsEqual(Window(Home).Property(altus_child_id),$PARAM[list_id])] + ControlGroup(2000).HasFocus" reversible="true">
 			<!-- <effect type="fade" start="100" end="80" time="300" tween="sine" easing="inout" /> -->
 			<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="300" />
-		</animation>
+    </animation>
 	</include>
 
 	<include name="StackedWidgetAnimations">
-		<animation condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Window(Home).Property(StackedWidget)) + ControlGroup(2000).HasFocus" reversible="true">
+		<animation condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + ![Control.HasFocus($PARAM[list_id]) | Control.HasFocus($PARAM[list_id]1) | String.IsEqual(Window(Home).Property(altus_child_id),$PARAM[list_id])] + ControlGroup(2000).HasFocus" reversible="true">
 			<!-- <effect type="fade" start="100" end="80" time="300" tween="sine" easing="inout" /> -->
 			<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="300" />
-		</animation>
+    </animation>
 		<animation condition="Container($PARAM[list_id]).IsUpdating" reversible="true" pulse="true">
 			<effect type="fade" start="100" end="80" time="700" tween="sine" easing="inout" />
 			<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="700" />
@@ -397,17 +414,4 @@
 		<animation effect="fade" start="0" end="100" time="500" tween="cubic" easing="in" condition="[Skin.HasSetting(Enable.AlternateSpotlight) | String.IsEmpty(Window(Home).Property(SpotlightWidget)) | !Control.HasFocus($PARAM[list_id])]">Conditional</animation>
 	</include>
 
-
-
-	<!-- <include name="WidgetVisibilityAnimations">
-		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + [Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_saved_list_id)) | [Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id)) + Integer.IsGreater($PARAM[list_id],Window(Home).Property(altus_saved_list_id))] | Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id))]" reversible="false">
-				<effect type="fade" start="100" end="0" time="0" />
-		</animation>
-		<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_saved_list_id)) | [Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id)) + Integer.IsGreater($PARAM[list_id],Window(Home).Property(altus_saved_list_id))] | Integer.IsLess($PARAM[list_id],Window(Home).Property(altus_stacked_saved_list_id))]" reversible="false">
-				<effect type="fade" start="0" end="100" time="0" />
-		</animation>
-</include> -->
-
 </includes>
-
-<!-- If 22012 is less than  -->

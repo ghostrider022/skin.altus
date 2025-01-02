@@ -483,20 +483,20 @@ msgstr ""
 
 #. viewtype name
 #: /xml/View_55_LandscapeInfo.xml
-msgctxt "#311011"
+msgctxt "#311012"
 msgid "LandscapeInfo"
 msgstr ""
 
 #. viewtype name
 #: /xml/View_500_Wall.xml
-msgctxt "#31102"
+msgctxt "#311022"
 msgid "Wall"
 msgstr ""
 
 #. viewtype name
-#: /xml/View_501_WallScape.xml
-msgctxt "#311021"
-msgid "WallScape"
+#: /xml/View_501_LandscapeWall.xml
+msgctxt "#311023"
+msgid "LandscapeWall"
 msgstr ""
 
 #: /xml/SmartPlaylistRule.xml

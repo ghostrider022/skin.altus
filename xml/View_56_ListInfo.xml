@@ -10,7 +10,7 @@
 				<include>MediaMenuAnimations</include>
 				<control type="label">
 					<left>50</left>
-					<top>310</top>
+					<top>270</top>
 					<width>1815</width>
 					<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
 					<font>font32</font>
@@ -22,7 +22,7 @@
 				</control>
 				<control type="label">
 					<left>50</left>
-					<top>310</top>
+					<top>270</top>
 					<width>1815</width>
 					<label>$VAR[ClockCrumbs][COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]$VAR[VideoFlixCrumbsVar]</label>
 					<font>font32</font>
@@ -42,8 +42,8 @@
 				</control> -->
 				<control type="panel" id="56">
 					<left>50</left>
-					<top>370</top>			
-					<bottom>81</bottom>
+					<top>330</top>			
+					<bottom>60</bottom>
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<pagecontrol>531</pagecontrol>
 					<onright>56</onright>

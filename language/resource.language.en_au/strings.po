@@ -387,19 +387,19 @@ msgid "PosterInfo"
 msgstr "PosterInfo"
 
 #. viewtype name
-msgctxt "#311011"
+msgctxt "#311012"
 msgid "LandscapeInfo"
 msgstr "LandscapeInfo"
 
 #. viewtype name
-msgctxt "#31102"
+msgctxt "#311022"
 msgid "Wall"
 msgstr "Wall"
 
 #. viewtype name
-msgctxt "#311021"
-msgid "WallScape"
-msgstr "WallScape"
+msgctxt "#311023"
+msgid "LandscapeWall"
+msgstr "LandscapeWall"
 
 msgctxt "#31103"
 msgid "Enter text here..."

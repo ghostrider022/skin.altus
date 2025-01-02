@@ -204,6 +204,16 @@
 		<value condition="System.AddonIsEnabled(resource.images.studios.white)">$INFO[ListItem.Label,resource://resource.images.studios.white/,.png]</value>
 		<value>DefaultStudios.png</value>
 	</variable>
+	<variable name="AddonsListLabelVar">
+    <value condition="ListItem.Property(addon.downloading)">$INFO[ListItem.Property(addon.status)]</value>
+    <value condition="!Container.SortMethod(1)">$INFO[ListItem.Label2]</value>
+    <value condition="String.IsEqual(ListItem.Path,addons://all/) + !String.IsEmpty(ListItem.AddonOrigin) + !String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonOrigin] [B]»[/B] $INFO[ListItem.AddonVersion]</value>
+    <value condition="!String.IsEmpty(ListItem.AddonCreator) + !String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonCreator] [B]»[/B] $INFO[ListItem.AddonVersion]</value>
+    <value condition="!String.IsEmpty(ListItem.AddonOrigin)">$INFO[ListItem.AddonOrigin]</value>
+    <value condition="!String.IsEmpty(ListItem.AddonCreator)">$INFO[ListItem.AddonCreator]</value>
+    <value condition="!String.IsEmpty(ListItem.AddonVersion)">$INFO[ListItem.AddonVersion]</value>
+    <value></value>
+	</variable>
 	<variable name="AddonsLabel2Var">
     <value condition="ListItem.Property(addon.downloading)">[COLOR unfocused_text]$INFO[ListItem.Property(addon.status)][/COLOR]</value>
     <value condition="!Container.SortMethod(1)">$INFO[ListItem.Label2]</value>
@@ -363,6 +373,10 @@
     <value condition="!String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">$INFO[Skin.String(altus_widget_autoinfo_delay)]</value>
     <value condition="String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">750</value> <!-- Default 750ms -->
 	</variable>
+	<variable name="SkinSettingStackedLoadDelay">
+    <value condition="!String.IsEmpty(Skin.String(altus_category_widget_delay))">$INFO[Skin.String(altus_category_widget_delay)]</value>
+    <value condition="String.IsEmpty(Skin.String(altus_category_widget_delay))">750</value> <!-- Default 750ms -->
+	</variable>
 	<variable name="SkinSettingPosterFlowAutoInfoDelay">
 		<value condition="!String.IsEmpty(Skin.String(PosterFlowAutoInfoDelay))">$INFO[Skin.String(PosterFlowAutoInfoDelay)]</value>
 		<value condition="String.IsEmpty(Skin.String(PosterFlowAutoInfoDelay))">2</value> <!-- Default value -->
@@ -440,11 +454,11 @@
 		<value condition="!String.IsEmpty(Container.ListItem.Art(fanart))">$INFO[Container.ListItem.Art(fanart)]</value>
 	</variable> -->
 	<variable name="ListWatchedIconVar">
-    <value condition="String.IsEqual(Container.PluginName,plugin.video.pov) | String.IsEqual(Container.PluginName,plugin.video.umbrella)">$VAR[ListWatchedIconVar.POV]</value>
-    <value>$VAR[ListWatchedIconVar.All]</value>
+    <value condition="String.IsEqual(Container.PluginName,plugin.video.pov) | String.IsEqual(Container.PluginName,plugin.video.umbrella) | String.IsEqual(Container.PluginName,plugin.video.fen)">$VAR[ListWatchedIconVar.Fallback]</value>
+    <value>$VAR[ListWatchedIconVar.Main]</value>
 	</variable>
 
-	<variable name="ListWatchedIconVar.POV">
+	<variable name="ListWatchedIconVar.Fallback">
     <value condition="ListItem.IsRecording">windows/pvr/record.png</value>
     <value condition="ListItem.IsPlaying">overlays/watched/OverlayPlaying-List.png</value>
     <value condition="ListItem.IsCollection">overlays/set.png</value>
@@ -461,7 +475,7 @@
     <value condition="!String.IsEmpty(ListItem.Overlay)">$INFO[ListItem.Overlay]</value>
 	</variable>
 
-	<variable name="ListWatchedIconVar.All">
+	<variable name="ListWatchedIconVar.Main">
     <value condition="ListItem.IsRecording">windows/pvr/record.png</value>
     <value condition="ListItem.IsPlaying">overlays/watched/OverlayPlaying-List.png</value>
     <value condition="!Integer.IsEqual(Container.ListItem.Property(WatchedProgress),0)">progress/unwatched/$INFO[ListItem.Property(WatchedProgress),,.png]</value>

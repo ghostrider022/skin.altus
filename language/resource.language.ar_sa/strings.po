@@ -383,7 +383,7 @@ msgid "PosterInfo"
 msgstr "جدار ومعلومة"
 
 #. viewtype name
-msgctxt "#31102"
+msgctxt "#311022"
 msgid "Wall"
 msgstr "جدار"
 

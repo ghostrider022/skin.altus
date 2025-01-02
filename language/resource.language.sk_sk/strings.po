@@ -373,7 +373,7 @@ msgid "PosterInfo"
 msgstr "Info nástenka"
 
 #. viewtype name
-msgctxt "#31102"
+msgctxt "#311022"
 msgid "Wall"
 msgstr "Nástenka"
 

@@ -1,2 +1,1 @@
-Altus Helper: Latest: v0.0.1 | Installed: v$INFO[System.AddonVersion(script.altus.helper)]
-
+Altus Helper: Latest: v0.1.0 | Installed: v$INFO[System.AddonVersion(script.altus.helper)]

@@ -4,14 +4,28 @@
 	<backgroundcolor>background</backgroundcolor>
 	<include>AltusSkinStringsInitialization</include>
 	<controls>
+		<!-- <control type="button" id="20000">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus($INFO[Window(Home).Property(LastWidgetID)])</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20000)</visible>
+		</control>
+		<control type="button" id="20001">
+			<include>HiddenObject</include>
+			<animation effect="fade" time="300" start="100" end="0">Focus</animation>
+			<onfocus>SetFocus($INFO[Window(Home).Property(FirstWidgetID)])</onfocus>
+			<onclick>noop</onclick>
+			<visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
+		</control> -->
 		<include>DefaultBackground</include>
 		<include>PlayerLogoProcessor</include>
 		<control type="image" id="100000">
-			<include>FullScreenDimensions</include>
+			<include>FullScreenFanartDimensions</include>
 			<aspectratio>scale</aspectratio>
 			<fadetime>500</fadetime>
 			<include>ArtworkAnimations</include>
-			<texture background="true" diffuse="overlays/spotlightdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[HomeFanartVar]</texture>
+			<texture background="true" colordiffuse="FFE0E0E8" diffuse="overlays/spotlightdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[HomeFanartVar]</texture>
 			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !Skin.HasSetting(Enable.AlternateSpotlight)</visible>
 		</control>
 		<control type="multiimage" id="100000">
@@ -22,37 +36,24 @@
 			<imagepath background="true" colordiffuse="FF404040">$VAR[WeatherFanartVar]</imagepath>
 			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + Skin.HasSetting(Enable.Fanart) + [ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)]</visible>
 		</control>
-		<!-- <control type="group">
-			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))]</visible>
-			<control type="group">
-				<control type="group">
-					<visible>!String.IsEmpty(Weather.Plugin) + Weather.IsFetched + String.IsEqual(Container(9000).ListItem.Property(id),weather) + !ControlGroup(2000).HasFocus</visible>
-					<control type="label">
-						<animation effect="fade" time="300">Visible</animation>
-						<bottom>400</bottom>
-						<left>525</left>
-						<width>1000</width>
-						<aligny>center</aligny>
-						<height>98</height>
-						<font>font32_title</font>
-						<label>[COLOR grey][LIGHT]Current location: [/LIGHT][/COLOR][UPPERCASE]$INFO[Weather.Location][/UPPERCASE]</label>
-						<label>[UPPERCASE]$INFO[Weather.Location][/UPPERCASE]</label>
-						<textcolor>unfocused_text</textcolor>
-					</control>
-				</control>
-			</control>
-		</control> -->
 		<control type="group">
-			<!-- <include>TrailerPlayingFade</include> -->
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<!-- WIDGETS GROUP -->
 			<control type="group" id="2000">
+			<!-- <top>-20</top>
+			<width>200%</width> -->
 				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + !ControlGroup(2000).HasFocus" reversible="true">
-					<!-- <effect type="fade" start="100" end="80" time="500" tween="sine" easing="inout" /> -->
 					<effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="500" />
 				</animation>
+				<!-- <animation type="Conditional" condition="Control.IsVisible(20000)" reversible="false">
+					<effect type="slide" end="0,20" time="60" tween="sine" />
+					<effect type="slide" end="0,-20" time="180" tween="sine" delay="80" />
+				</animation>
+				<animation type="Conditional" condition="Control.IsVisible(20001)" reversible="false">
+					<effect type="slide" end="0,-20" time="60" tween="sine" />
+					<effect type="slide" end="0,20" time="180" tween="sine" delay="80" />
+				</animation> -->
 				<include>MainMenuAnimations</include>
-				<!-- <top>-33</top> -->
 				<include>OpenClose_Right</include>
 				<control type="group" id="27000">
 					<visible>false</visible>
@@ -823,193 +824,186 @@
 				<font>font12</font>
 				<textcolor>FFFFFFFF</textcolor>
 				<label>Spotlight Active: $INFO[Window(Home).Property(SpotlightWidget)]</label>
-				<visible>true</visible>
-				<label>Saved: $INFO[Window(Home).Property(altus_saved_list_id)][CR]Stacked: $INFO[Window(Home).Property(altus_stacked_saved_list_id)][CR]Linked: $INFO[Window(Home).Property(altus_linked_list_id)]</label>
+				<label>Saved: $INFO[Window(Home).Property(altus_saved_list_id)][CR]Stacked: $INFO[Window(Home).Property(altus_stacked_saved_list_id)][CR]Linked: $INFO[Window(Home).Property(altus_spotlight_linked_list_id)]</label>
+				<label>Current Focus: $INFO[System.CurrentControlID]</label>
+				<label>First: $INFO[Window(Home).Property(FirstWidgetID)] • Last: $INFO[Window(Home).Property(LastWidgetID)] • Current Focus: $INFO[System.CurrentControlID]</label>
 				<visible>true</visible>
 			</control> -->
 			<control type="group">
 				<depth>DepthContentPanel</depth>
-				<!-- <include>osd_darkenBG</include> -->
+				<visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus + !Control.HasFocus(20000) + !Control.HasFocus(20001)</visible>
+				<animation effect="slide" time="500" start="-540,0" end="0,0" tween="cubic" easing="inout">VisibleChange</animation>
+				<include>OpenClose_Left</include>
+				<control type="fixedlist" id="9000">
+					<left>40</left>
+					<top>180</top>
+					<width>825</width>
+					<height>757</height>
+					<movement>9</movement>
+					<focusposition>0</focusposition>
+					<onfocus>ClearProperty(listposition,home)</onfocus>
+					<!-- <onfocus>ClearProperty(FirstWidgetID,home)</onfocus>
+					<onfocus>ClearProperty(LastWidgetID,home)</onfocus> -->
+					<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+					<onfocus>ClearProperty(altus_saved_list_id,Home)</onfocus>
+					<onfocus>ClearProperty(altus_stacked_linked_list_id,Home)</onfocus>
+					<onfocus>ClearProperty(CurrentDBType,Home)</onfocus>
+					<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
+					<onback>700</onback>
+					<onup>700</onup>
+					<ondown>9000</ondown>
+					<scrolltime tween="cubic" easing="out">500</scrolltime>
+					<include content="List">
+						<param name="id" value="9000" />
+					</include>
+					<content>
+						<!-- MOVIES 19000 -->
+						<include content="MoviesMainMenu" condition="!Skin.HasSetting(HomeMenuNoMoviesButton)" />
+						<!-- TVSHOWS 22000 -->
+						<include content="TVShowsMainMenu" condition="!Skin.HasSetting(HomeMenuNoTVShowsButton)" />
+						<!-- CUSTOM 1 23000 -->
+						<include content="Custom1MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom1Button)" />
+						<!-- CUSTOM 2 24000 -->
+						<include content="Custom2MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom2Button)" />
+						<!-- CUSTOM 3 25000 -->
+						<include content="Custom3MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom3Button)" />
+						<item>
+							<label>$LOCALIZE[2]</label>
+							<onclick>ActivateWindow(Music,root,return)</onclick>
+							<property name="menu_id">$NUMBER[7000]</property>
+							<property name="id">music</property>
+							<visible>!Skin.HasSetting(HomeMenuNoMusicButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[427]</label>
+							<onclick>PlayDisc</onclick>
+							<property name="menu_id">$NUMBER[21000]</property>
+							<property name="id">disc</property>
+							<visible>System.HasMediaDVD</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[20389]</label>
+							<property name="menu_id">$NUMBER[16000]</property>
+							<onclick>ActivateWindow(Videos,musicvideos,return)</onclick>
+							<property name="id">musicvideos</property>
+							<visible>!Skin.HasSetting(HomeMenuNoMusicVideoButton)</visible>
+						</item>
+						<item>
+							<label>Live TV</label>
+							<property name="menu_id">$NUMBER[12000]</property>
+							<onclick>ActivateWindow(TVGuide)</onclick>
+							<property name="id">livetv</property>
+							<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[19021]</label>
+							<property name="menu_id">$NUMBER[13000]</property>
+							<onclick>ActivateWindow(RadioChannels)</onclick>
+							<property name="id">radio</property>
+							<visible>!Skin.HasSetting(HomeMenuNoRadioButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[15016]</label>
+							<property name="menu_id">$NUMBER[17000]</property>
+							<onclick>ActivateWindow(Games)</onclick>
+							<property name="id">games</property>
+							<visible>System.GetBool(gamesgeneral.enable) + !Skin.HasSetting(HomeMenuNoGamesButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[24001]</label>
+							<property name="menu_id">$NUMBER[8000]</property>
+							<onclick>ActivateWindow(1100)</onclick>
+							<property name="id">addons</property>
+							<visible>!Skin.HasSetting(HomeMenuNoProgramsButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[1]</label>
+							<onclick>ActivateWindow(Pictures)</onclick>
+							<property name="menu_id">$NUMBER[4000]</property>
+							<property name="id">pictures</property>
+							<visible>!Skin.HasSetting(HomeMenuNoPicturesButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[3]</label>
+							<onclick>ActivateWindow(Videos,root)</onclick>
+							<property name="menu_id">$NUMBER[11000]</property>
+							<property name="id">video</property>
+							<visible>!Skin.HasSetting(HomeMenuNoVideosButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[10134]</label>
+							<onclick>ActivateWindow(favouritesbrowser)</onclick>
+							<property name="menu_id">$NUMBER[14000]</property>
+							<property name="id">favorites</property>
+							<visible>!Skin.HasSetting(HomeMenuNoFavButton)</visible>
+						</item>
+						<item>
+							<label>$LOCALIZE[8]</label>
+							<!-- <onclick condition="!String.IsEmpty(Weather.Plugin) + String.IsEmpty(Window(Home).Property(weather_cycling))">Notification(Weather, Location cycling enabled, 2000)</onclick> -->
+							<onclick condition="!String.IsEmpty(Weather.Plugin) + String.IsEmpty(Window(Home).Property(weather_cycling))">SetProperty(weather_cycling,true,home)</onclick>
+							<onclick condition="!String.IsEmpty(Weather.Plugin) + String.IsEmpty(Window(Home).Property(weather_cycling))">ReplaceWindow(Weather)</onclick>
+							<onclick condition="!String.IsEmpty(Weather.Plugin)">Notification(Weather, Cycling to next location..., 2000)</onclick>
+							<onclick condition="!String.IsEmpty(Weather.Plugin)">Weather.LocationNext</onclick>
+							<onclick condition="String.IsEmpty(Weather.Plugin)">ReplaceWindow(servicesettings,weather)</onclick>
+							<property name="menu_id">$NUMBER[15000]</property>
+							<property name="id">weather</property>
+							<visible>!Skin.HasSetting(HomeMenuNoWeatherButton)</visible>
+						</item>
+					</content>
+				</control>
 				<control type="group">
-					<!-- <left>-540</left> -->
-					<!-- <animation type="Conditional" condition="!ControlGroup(2000).HasFocus" reversible="true">
-						<effect type="slide" start="0" end="540" time="500" tween="cubic" easing="inout" />
-					</animation> -->
-					<animation effect="slide" time="500" start="-540,0" end="0,0" tween="cubic" easing="inout">VisibleChange</animation>
-					<visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus</visible>
-					<include>OpenClose_Left</include>
-					<!-- <include content="MenuContentPanel">
-						<param name="width" value="549"/>
-					</include> -->
-					<!-- <visible>true</visible> -->
-					<control type="fixedlist" id="9000">
-						<left>40</left>
-						<top>200</top>
-            <width>825</width>
-						<height>757</height>
-						<movement>9</movement>
-						<focusposition>0</focusposition>
-						<onfocus>ClearProperty(listposition,home)</onfocus>
-						<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
-						<onfocus>ClearProperty(altus_saved_list_id,Home)</onfocus>
-						<onfocus>ClearProperty(CurrentDBType,Home)</onfocus>
-						<onright>SetFocus($INFO[Container(9000).ListItem.Property(menu_id)])</onright>
-						<onback>700</onback>
-						<onup>700</onup>
-						<ondown>9000</ondown>
-						<scrolltime tween="cubic" easing="out">500</scrolltime>
-						<include content="List">
-              <param name="id" value="9000" />
-            </include>
-						<content>
-							<!-- MOVIES 19000 -->
-							<include content="MoviesMainMenu" condition="!Skin.HasSetting(HomeMenuNoMoviesButton)" />
-							<!-- TVSHOWS 22000 -->
-							<include content="TVShowsMainMenu" condition="!Skin.HasSetting(HomeMenuNoTVShowsButton)" />
-							<!-- CUSTOM 1 23000 -->
-							<include content="Custom1MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom1Button)" />
-							<!-- CUSTOM 2 24000 -->
-							<include content="Custom2MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom2Button)" />
-							<!-- CUSTOM 3 25000 -->
-							<include content="Custom3MainMenu" condition="!Skin.HasSetting(HomeMenuNoCustom3Button)" />
-							<item>
-								<label>$LOCALIZE[2]</label>
-								<onclick>ActivateWindow(Music,root,return)</onclick>
-								<property name="menu_id">$NUMBER[7000]</property>
-								<property name="id">music</property>
-								<visible>!Skin.HasSetting(HomeMenuNoMusicButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[427]</label>
-								<onclick>PlayDisc</onclick>
-								<property name="menu_id">$NUMBER[21000]</property>
-								<property name="id">disc</property>
-								<visible>System.HasMediaDVD</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[20389]</label>
-								<property name="menu_id">$NUMBER[16000]</property>
-								<onclick>ActivateWindow(Videos,musicvideos,return)</onclick>
-								<property name="id">musicvideos</property>
-								<visible>!Skin.HasSetting(HomeMenuNoMusicVideoButton)</visible>
-							</item>
-							<item>
-								<label>Live TV</label>
-								<property name="menu_id">$NUMBER[12000]</property>
-								<onclick>ActivateWindow(TVGuide)</onclick>
-								<property name="id">livetv</property>
-								<visible>!Skin.HasSetting(HomeMenuNoTVButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[19021]</label>
-								<property name="menu_id">$NUMBER[13000]</property>
-								<onclick>ActivateWindow(RadioChannels)</onclick>
-								<property name="id">radio</property>
-								<visible>!Skin.HasSetting(HomeMenuNoRadioButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[15016]</label>
-								<property name="menu_id">$NUMBER[17000]</property>
-								<onclick>ActivateWindow(Games)</onclick>
-								<property name="id">games</property>
-								<visible>System.GetBool(gamesgeneral.enable) + !Skin.HasSetting(HomeMenuNoGamesButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[24001]</label>
-								<property name="menu_id">$NUMBER[8000]</property>
-								<onclick>ActivateWindow(1100)</onclick>
-								<property name="id">addons</property>
-								<visible>!Skin.HasSetting(HomeMenuNoProgramsButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[1]</label>
-								<onclick>ActivateWindow(Pictures)</onclick>
-								<property name="menu_id">$NUMBER[4000]</property>
-								<property name="id">pictures</property>
-								<visible>!Skin.HasSetting(HomeMenuNoPicturesButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[3]</label>
-								<onclick>ActivateWindow(Videos,root)</onclick>
-								<property name="menu_id">$NUMBER[11000]</property>
-								<property name="id">video</property>
-								<visible>!Skin.HasSetting(HomeMenuNoVideosButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[10134]</label>
-								<onclick>ActivateWindow(favouritesbrowser)</onclick>
-								<property name="menu_id">$NUMBER[14000]</property>
-								<property name="id">favorites</property>
-								<visible>!Skin.HasSetting(HomeMenuNoFavButton)</visible>
-							</item>
-							<item>
-								<label>$LOCALIZE[8]</label>
-								<!-- <onclick condition="!String.IsEmpty(Weather.Plugin) + String.IsEmpty(Window(Home).Property(weather_cycling))">Notification(Weather, Location cycling enabled, 2000)</onclick> -->
-								<onclick condition="!String.IsEmpty(Weather.Plugin) + String.IsEmpty(Window(Home).Property(weather_cycling))">SetProperty(weather_cycling,true,home)</onclick>
-								<onclick condition="!String.IsEmpty(Weather.Plugin) + String.IsEmpty(Window(Home).Property(weather_cycling))">ReplaceWindow(Weather)</onclick>
-								<onclick condition="!String.IsEmpty(Weather.Plugin)">Notification(Weather, Cycling to next location..., 2000)</onclick>
-								<onclick condition="!String.IsEmpty(Weather.Plugin)">Weather.LocationNext</onclick>
-								<onclick condition="String.IsEmpty(Weather.Plugin)">ReplaceWindow(servicesettings,weather)</onclick>
-								<property name="menu_id">$NUMBER[15000]</property>
-								<property name="id">weather</property>
-								<visible>!Skin.HasSetting(HomeMenuNoWeatherButton)</visible>
-							</item>
-						</content>
+					<left>65</left>
+					<top>70</top>
+					<width>343</width>
+					<height>140</height>
+					<control type="label">
+						<left>0</left>
+						<top>-30</top>
+						<width>340</width>
+						<height>30</height>
+						<font>font12</font>
+						<align>center</align>
+						<aligny>center</aligny>
+						<textcolor>grey</textcolor>
+						<label>$VAR[HomeSubmenuButtonLabelsVar]</label>
 					</control>
-					<control type="group">
-						<left>65</left>
-						<top>70</top>
+					<control type="grouplist" id="700">
+						<orientation>horizontal</orientation>
+						<itemgap>-19</itemgap>
 						<width>343</width>
-						<height>140</height>
-						<control type="grouplist" id="700">
-							<orientation>horizontal</orientation>
-							<itemgap>-19</itemgap>
-							<width>343</width>
-							<height>100</height>
-							<onup>SetFocus(9000,99,absolute)</onup>
-							<ondown>SetFocus(9000,0,absolute)</ondown>
-							<onright>2000</onright>
-							<onback>9000</onback>
-							<align>center</align>
-							<include content="IconButton">
-								<param name="control_id" value="801" />
-								<param name="onclick" value="$VAR[HomePowerButtonActionVar]" />
-								<param name="icon" value="icons/submenu/power.png" />
-							</include>
-							<include content="IconButton">
-								<param name="control_id" value="802" />
-								<param name="onclick" value="ActivateWindow(settings)" />
-								<param name="icon" value="icons/submenu/settings.png" />
-							</include>
-							<include content="IconButton">
-								<param name="control_id" value="803" />
-								<param name="onclick" value="$VAR[HomeSearchButtonActionVar]" />
-								<param name="icon" value="icons/submenu/search.png" />
-							</include>
-							<include content="IconButton">
-								<param name="control_id" value="804" />
-								<param name="onclick" value="ActivateWindow(addonbrowser,addons://outdated/,return)" />
-								<param name="icon" value="icons/submenu/updates.png" />
-								<param name="visible" value="Integer.IsGreater(System.AddonUpdateCount,0)" />
-							</include>
-							<include content="IconButton">
-								<param name="control_id" value="805" />
-								<param name="onclick" value="Fullscreen" />
-								<param name="icon" value="icons/submenu/fullscreen.png" />
-								<param name="visible" value="Player.HasMedia" />
-							</include>
-						</control>
-						<control type="label">
-							<left>0</left>
-							<top>-30</top>
-							<width>340</width>
-							<height>30</height>
-							<font>font12</font>
-							<align>center</align>
-							<aligny>center</aligny>
-							<textcolor>grey</textcolor>
-							<label>$VAR[HomeSubmenuButtonLabelsVar]</label>
-						</control>
+						<height>100</height>
+						<onup>SetFocus(9000,99,absolute)</onup>
+						<ondown>SetFocus(9000,0,absolute)</ondown>
+						<onright>2000</onright>
+						<onback>9000</onback>
+						<align>center</align>
+						<include content="IconButton">
+							<param name="control_id" value="801" />
+							<param name="onclick" value="$VAR[HomePowerButtonActionVar]" />
+							<param name="icon" value="icons/submenu/power.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="802" />
+							<param name="onclick" value="ActivateWindow(settings)" />
+							<param name="icon" value="icons/submenu/settings.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="803" />
+							<param name="onclick" value="$VAR[HomeSearchButtonActionVar]" />
+							<param name="icon" value="icons/submenu/search.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="804" />
+							<param name="onclick" value="ActivateWindow(addonbrowser,addons://outdated/,return)" />
+							<param name="icon" value="icons/submenu/updates.png" />
+							<param name="visible" value="Integer.IsGreater(System.AddonUpdateCount,0)" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="805" />
+							<param name="onclick" value="Fullscreen" />
+							<param name="icon" value="icons/submenu/fullscreen.png" />
+							<param name="visible" value="Player.HasMedia" />
+						</include>
 					</control>
 				</control>
 			</control>

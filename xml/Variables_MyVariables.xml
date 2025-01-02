@@ -162,8 +162,7 @@
 
 	<variable name="HomeFlixCrumbsVar">
 		<!-- Home/Search windows -->
-		<value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + $EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre) + !String.IsEqual(Window(Home).Property(LandscapeWidgetFocused),true)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
-		<value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + $EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre) + !String.IsEqual(Window(Home).Property(LandscapeWidgetFocused),true)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR]</value>
+		<!-- <value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + $EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre) + !String.IsEqual(Window(Home).Property(LandscapeWidgetFocused),true)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value> -->
 		<value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre) + !Skin.HasSetting(Disable.LandscapeWidgetClearlogo) + String.IsEqual(Window(Home).Property(LandscapeWidgetFocused),true)"> | [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value>
 		<value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre) + !String.IsEqual(Window(Home).Property(LandscapeWidgetFocused),true)"> | [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value>
 		<value condition="!Skin.HasSetting(Disable.WidgetInfoLineTitle) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + $EXP[isSeason] + !String.IsEmpty(ListItem.Genre) + String.IsEqual(Skin.String(HomeItemArtworkChoice),0)"> | [COLOR unfocused_text]Season $INFO[Container($PARAM[list_id]).ListItem.Season][/COLOR]</value>
@@ -174,20 +173,7 @@
 		<!-- Other windows -->
 		<value condition="$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
 		<value condition="$EXP[isEpisode] + Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR]</value>
-		<value condition="$EXP[isEpisode] + String.IsEqual(Skin.String(LandscapeSizeSetting),0) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
-		<value condition="!$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
-		<value condition="$EXP[isSeason] + !Control.IsVisible(56) + !String.IsEmpty(ListItem.Genre) + String.IsEqual(Skin.String(ItemFanartChoice.seasons),0)"> [B]|[/B] [COLOR unfocused_text]Season $INFO[Container($PARAM[list_id]).ListItem.Season][/COLOR]</value>
-		<value condition=" 
-			!Control.IsVisible(56) + !String.IsEmpty(ListItem.Genre) + 
-			[
-			[$EXP[isMovie] + String.IsEqual(Skin.String(ItemFanartChoice.movies),1) + String.IsEqual(Skin.String(ItemClearlogoChoice.movies),1)] | 
-			[$EXP[isTVShow] + String.IsEqual(Skin.String(ItemFanartChoice.tvshows),1) + String.IsEqual(Skin.String(ItemClearlogoChoice.tvshows),1)] | 
-					[
-							[$EXP[isMovie] + String.IsEqual(Skin.String(ItemFanartChoice.movies),0)] |
-							[$EXP[isTVShow] + String.IsEqual(Skin.String(ItemFanartChoice.tvshows),0)]
-					]
-			]
-			"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<value condition="![Skin.HasSetting(Enable.PosterTitles) | Skin.HasSetting(Enable.LandscapeTitles)] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
 	</variable>
 
 	<variable name="FlixCategory">
@@ -205,6 +191,11 @@
 	<variable name="DialogInfoTitle">
 		<value condition="$EXP[isEpisode]">$INFO[ListItem.TVShowTitle,,[CR]][LIGHT]$INFO[ListItem.Season,S,: ]$INFO[ListItem.Episode,E, ]$INFO[ListItem.Title][/LIGHT]</value>
 		<value>$INFO[ListItem.Title]</value>
+	</variable>
+
+	<variable name="LandscapeTextureVar">
+		<value condition="!Window.IsVisible(Home)">$VAR[SmallLandscapeVar]</value>
+		<value>$VAR[FlixScapeVar]</value>
 	</variable>
 
 	<variable name="HomescreenFlixCrumbs">
@@ -372,17 +363,6 @@
 		<value condition="String.IsEqual(Skin.String(PosterSizeSetting),0)">Skin.SetString(PosterSizeSetting,1)</value>
 		<value condition="String.IsEqual(Skin.String(PosterSizeSetting),1)">Skin.SetString(PosterSizeSetting,0)</value>
 		<value>Skin.SetString(PosterSizeSetting,0)</value>
-	</variable>
-
-	<variable name="LandscapeSizeSettingVar">
-    <value condition="String.IsEqual(Skin.String(LandscapeSizeSetting),0)">Default</value>
-    <value condition="String.IsEqual(Skin.String(LandscapeSizeSetting),1)">Large</value>
-	</variable>
-
-	<variable name="LandscapeSizeToggleVar">
-		<value condition="String.IsEqual(Skin.String(LandscapeSizeSetting),0)">Skin.SetString(LandscapeSizeSetting,1)</value>
-		<value condition="String.IsEqual(Skin.String(LandscapeSizeSetting),1)">Skin.SetString(LandscapeSizeSetting,0)</value>
-		<value>Skin.SetString(LandscapeSizeSetting,0)</value>
 	</variable>
 
 	<variable name="AutoInfoFadeSettingVar">
@@ -556,9 +536,10 @@
 	<!-- ADDON LAUNCHER SUBMENU BUTTON LABELS -->
 	<variable name="AddonLauncherSubmenuButtonLabelsVar">
 		<value condition="Control.HasFocus(801)">Open addon browser</value>
-		<value condition="Control.HasFocus(802) + Integer.IsEqual(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available update</value>
-		<value condition="Control.HasFocus(802) + Integer.IsGreater(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available updates</value>
-		<value condition="Control.HasFocus(803)">Open system addon settings</value>
+		<value condition="Control.HasFocus(802)">Install from zip</value>
+		<value condition="Control.HasFocus(803)">Search addons</value>
+		<value condition="Control.HasFocus(804) + Integer.IsEqual(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available update</value>
+		<value condition="Control.HasFocus(804) + Integer.IsGreater(System.AddonUpdateCount,1)">$INFO[System.AddonUpdateCount] available updates</value>
 	</variable>
 
 	<!-- SEARCH WINDOW SUBMENU BUTTON LABELS -->

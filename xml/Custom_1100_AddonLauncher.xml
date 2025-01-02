@@ -7,59 +7,64 @@
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<control type="group" id="400">
+			<include>AddonsMenuAnimations</include>
+				<control type="label">
+					<top>920</top>
+					<left>80</left>
+					<aligny>center</aligny>
+					<width>1440</width>
+					<font>font27</font>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+					<label>[COLOR unfocused_text]$INFO[ListItem.AddonVersion][/COLOR] • [COLOR unfocused_text]$INFO[ListItem.AddonCreator][/COLOR]</label>
+					<visible>ControlGroup(400).HasFocus + !ControlGroup(507).HasFocus + ![String.StartsWith(ListItem.Property(Addon.ID),repository) | ListItem.IsFolder]</visible>
+					<animation effect="fade" time="200" tween="cubic" easing="out">VisibleChange</animation>
+				</control>
 				<include>OpenClose_Right</include>
-				<include content="AddonLauncherPanel">
-					<param name="group_id" value="500" />
-					<param name="id" value="video" />
-					<param name="container_path" value="addons://sources/video/" />
-					<param name="container_target" value="videos" />
-					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://all/xbmc.addon.video,return)" />
-				</include>
-				<include content="AddonLauncherPanel">
+				<include content="TieredAddonLauncherList">
 					<param name="group_id" value="501" />
-					<param name="id" value="music" />
-					<param name="container_path" value="addons://sources/audio/" />
-					<param name="container_target" value="music" />
-					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://all/xbmc.addon.audio,return)" />
+					<param name="id" value="Manage add-ons" />
+					<param name="container_path" value="addons://user" />
+					<param name="container_target" value="addonbrowser" />
 				</include>
-				<include content="AddonLauncherPanel">
-					<param name="group_id" value="509" />
-					<param name="id" value="game" />
-					<param name="container_path" value="addons://sources/game/" />
-					<param name="container_target" value="games" />
-					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://all/category.standalonegames,return)" />
-				</include>
-				<include content="AddonLauncherPanel">
+				<include content="AddonLauncherList">
 					<param name="group_id" value="502" />
-					<param name="id" value="addons" />
-					<param name="container_path" value="addons://sources/executable/" />
-					<param name="container_target" value="programs" />
-					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://all/xbmc.addon.executable,return)" />
+					<param name="id" value="Recently updated" />
+					<param name="container_path" value="addons://recently_updated/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://recently_updated/,return)" />
 				</include>
-				<include content="AddonLauncherPanel" condition="System.Platform.Android">
-					<param name="group_id" value="506" />
-					<param name="id" value="android" />
-					<param name="container_path" value="androidapp://sources/apps/" />
-					<param name="container_target" value="programs" />
-				</include>
-				<include content="AddonLauncherPanel">
+				<include content="TieredAddonLauncherList">
 					<param name="group_id" value="503" />
-					<param name="id" value="pictures" />
-					<param name="container_path" value="addons://sources/image/" />
-					<param name="container_target" value="pictures" />
-					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://all/xbmc.addon.image,return)" />
+					<param name="id" value="Repositories" />
+					<param name="container_path" value="addons://repos/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://repos/,return)" />
 				</include>
-				<include content="AddonLauncherPanel">
-					<param name="group_id" value="507" />
-					<param name="id" value="download" />
+				<include content="AddonLauncherList">
+					<param name="group_id" value="504" />
+					<param name="id" value="Manage dependencies" />
+					<param name="container_path" value="addons://dependencies/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://dependencies/,return)" />
+				</include>
+				<include content="AddonLauncherList">
+					<param name="group_id" value="505" />
+					<param name="id" value="Running add-ons" />
+					<param name="container_path" value="addons://running/" />
+					<param name="container_target" value="addonbrowser" />
+					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://running/,return)" />
+				</include>
+				<include content="TieredAddonLauncherList">
+					<param name="group_id" value="506" />
+					<param name="id" value="Download" />
 					<param name="container_path" value="addons://all/" />
 					<param name="container_target" value="addonbrowser" />
 				</include>
-				<include content="AddonLauncherPanel">
-					<param name="group_id" value="508" />
-					<param name="id" value="manage" />
-					<param name="container_path" value="addons://user" />
-					<param name="container_target" value="addonbrowser" />
+				<include content="AddonLauncherList" condition="System.Platform.Android">
+					<param name="group_id" value="507" />
+					<param name="id" value="Android" />
+					<param name="container_path" value="androidapp://sources/apps/" />
+					<param name="container_target" value="programs" />
 				</include>
 			</control>
 			<control type="group">
@@ -67,8 +72,10 @@
 				<!-- <include content="MenuContentPanel">
 					<param name="width" value="530" />
 				</include> -->
+				<animation effect="slide" time="500" start="-540,0" end="0,0" tween="cubic" easing="inout">VisibleChange</animation>
+				<visible allowhiddenfocus="true">!ControlGroup(400).HasFocus</visible>
 				<control type="fixedlist" id="9000">
-					<left>40</left>
+					<left>33</left>
 					<top>250</top>
 					<width>462</width>
 					<height>757</height>
@@ -81,71 +88,65 @@
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<include content="List">
 						<param name="id" value="9000" />
-						<!-- <param name="list_width" value="310" /> -->
+						<param name="list_width" value="340" />
+						<param name="img_width" value="385" />
+						<param name="img_texture" value="focus/addonlaunchermenu.png" />
 					</include>
 					<content>
 						<item id="1">
-							<label>$LOCALIZE[157]</label>
-							<onclick>ActivateWindow(videos,addons://sources/video/,return)</onclick>
-							<property name="id">video</property>
-							<property name="path">addons://sources/video/</property>
-							<property name="menu_id">$NUMBER[500]</property>
-						</item>
-						<item id="2">
-							<label>$LOCALIZE[249]</label>
-							<onclick>ActivateWindow(music,addons://sources/audio/,return)</onclick>
-							<property name="id">music</property>
-							<property name="path">addons://sources/audio/</property>
-							<property name="menu_id">$NUMBER[501]</property>
-						</item>
-						<item id="8">
-							<label>game</label>
-							<visible>System.GetBool(gamesgeneral.enable)</visible>
-							<onclick>ActivateWindow(games,addons://sources/game/,return)</onclick>
-							<property name="id">game</property>
-							<property name="path">addons://sources/game/</property>
-							<property name="menu_id">$NUMBER[509]</property>
-						</item>
-						<item id="3">
-							<label>program</label>
-							<onclick>ActivateWindow(programs,addons://sources/executable/,return)</onclick>
-							<property name="id">addons</property>
-							<property name="path">addons://sources/executable/</property>
-							<property name="menu_id">$NUMBER[502]</property>
-						</item>
-						<item id="4">
-							<label>android</label>
-							<onclick>ActivateWindow(programs,androidapp://sources/apps/,return)</onclick>
-							<property name="id">android</property>
-							<property name="path">androidapp://sources/apps/</property>
-							<property name="menu_id">$NUMBER[506]</property>
-							<visible>System.Platform.Android</visible>
-						</item>
-						<item id="5">
-							<label>picture</label>
-							<onclick>ActivateWindow(pictures,addons://sources/image/,return)</onclick>
-							<property name="id">pictures</property>
-							<property name="path">addons://sources/image/</property>
-							<property name="menu_id">$NUMBER[503]</property>
-						</item>
-						<item id="7">
 							<label>$LOCALIZE[24998]</label>
 							<onclick>ActivateWindow(addonbrowser,addons://user/,return)</onclick>
-							<property name="id">manage</property>
+							<property name="id">Manage add-ons</property>
 							<property name="path">addons://user/</property>
-							<property name="menu_id">$NUMBER[508]</property>
+							<property name="menu_id">$NUMBER[501]</property>
+						</item>
+						<item id="2">
+							<label>$LOCALIZE[24004]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://recently_updated/,return)</onclick>
+							<property name="id">Recently updated</property>
+							<property name="path">addons://recently_updated/</property>
+							<property name="menu_id">$NUMBER[502]</property>
+						</item>
+						<item id="3">
+							<label>repositories</label>
+							<onclick>ActivateWindow(addonbrowser,addons://repos/,return)</onclick>
+							<property name="id">Repositories</property>
+							<property name="path">addons://repos/</property>
+							<property name="menu_id">$NUMBER[503]</property>
+						</item>
+						<item id="4">
+							<label>$LOCALIZE[39024]</label>
+							<onclick>ActivateWindow(addonbrowser,addons://dependencies/,return)</onclick>
+							<property name="id">Manage dependencies</property>
+							<property name="path">addons://dependencies/</property>
+							<property name="menu_id">$NUMBER[504]</property>
+						</item>
+						<item id="5">
+							<label>$LOCALIZE[23054]</label>
+							<onclick>ActivateWindow(videos,addons://running/,return)</onclick>
+							<property name="id">Running add-ons</property>
+							<property name="path">addons://running/</property>
+							<property name="menu_id">$NUMBER[505]</property>
 						</item>
 						<item id="6">
 							<label>$LOCALIZE[33003]</label>
 							<onclick>ActivateWindow(addonbrowser,addons://all/,return)</onclick>
-							<property name="id">download</property>
+							<property name="id">Download</property>
 							<property name="path">addons://all/</property>
+							<property name="menu_id">$NUMBER[506]</property>
+						</item>
+						<item id="7">
+							<label>$LOCALIZE[20244]</label>
+							<onclick>ActivateWindow(programs,androidapp://sources/apps/,return)</onclick>
+							<property name="id">Android</property>
+							<property name="path">androidapp://sources/apps/</property>
 							<property name="menu_id">$NUMBER[507]</property>
+							<visible>System.Platform.Android</visible>
 						</item>
 					</content>
 				</control>
 				<control type="group">
-					<left>70</left>
+					<left>105</left>
 					<top>130</top>
 					<width>343</width>
 					<height>140</height>
@@ -166,14 +167,19 @@
 						</include>
 						<include content="IconButton">
 							<param name="control_id" value="802" />
-							<param name="onclick" value="ActivateWindow(addonbrowser,addons://outdated/,return)" />
-							<param name="icon" value="icons/submenu/updates.png" />
-							<param name="visible" value="Integer.IsGreater(System.AddonUpdateCount,0)" />
+							<param name="onclick" value="InstallFromZip" />
+							<param name="icon" value="icons/submenu/installfromzip.png" />
 						</include>
 						<include content="IconButton">
 							<param name="control_id" value="803" />
-							<param name="onclick" value="ActivateWindow(systemsettings,addons)" />
-							<param name="icon" value="icons/submenu/settings.png" />
+							<param name="onclick" value="ActivateWindow(addonbrowser,addons://search/,return)" />
+							<param name="icon" value="icons/submenu/search.png" />
+						</include>
+						<include content="IconButton">
+							<param name="control_id" value="804" />
+							<param name="onclick" value="ActivateWindow(addonbrowser,addons://outdated/,return)" />
+							<param name="icon" value="icons/submenu/updates.png" />
+							<param name="visible" value="Integer.IsGreater(System.AddonUpdateCount,0)" />
 						</include>
 					</control>
 					<control type="label">
@@ -201,6 +207,13 @@
 					<param name="width" value="1" />
 					<param name="list_id" value="8000" />
 					<param name="item_label" value="" />
+				</include>
+				<include content="InfoList">
+					<param name="bottom" value="108" />
+					<param name="width" value="540" />
+					<param name="sortby" value="year" />
+					<param name="sortorder" value="ascending" />
+					<param name="font" value="font13" />
 				</include>
 			</control>
 		</control>

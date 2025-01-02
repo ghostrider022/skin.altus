@@ -382,7 +382,7 @@ msgid "PosterInfo"
 msgstr "Dinding info"
 
 #. viewtype name
-msgctxt "#31102"
+msgctxt "#311022"
 msgid "Wall"
 msgstr "Dinding"
 

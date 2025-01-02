@@ -5,7 +5,9 @@
 		<orientation>vertical</orientation>
 		<height>100%</height>
 		<itemgap>-180</itemgap>
-		<scrolltime tween="cubic" easing="out">500</scrolltime>
+		<scrolltime tween="cubic" easing="out">700</scrolltime>
+		<!-- <onup>20000</onup>
+		<ondown>20001</ondown> -->
 		<usecontrolcoords>true</usecontrolcoords>
 	</include>
 
@@ -25,7 +27,7 @@
 			<scroll>true</scroll>
 			<scrollspeed>100</scrollspeed>
 			<visible>$PARAM[visible]</visible>
-			<animation effect="fade" time="100">Visible</animation>
+			<!-- <animation effect="fade" time="100">Visible</animation> -->
 		</control>
 	</include>
 
@@ -46,7 +48,12 @@
 		<param name="label_focus">$VAR[HomeFlixCrumbsVar]</param>
 		<definition>
 			<control type="group" id="$PARAM[list_id]665">
-				<animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + !Control.HasFocus($PARAM[list_id]) + ControlGroup(2000).HasFocus">Conditional</animation>
+				<animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + ![Control.HasFocus($PARAM[list_id]) | Control.HasFocus($PARAM[list_id]1) | String.IsEqual(Window(Home).Property(altus_child_id),$PARAM[list_id])] + ControlGroup(2000).HasFocus">Conditional</animation>
+				<!-- <include content="WidgetZoomAnimation">
+					<param name="list_id" value="$PARAM[list_id]" />
+					<param name="c1" value="57" />
+					<param name="c2" value="225" />
+				</include> -->
 				<left>57</left>
 				<top>80</top>
 				<height>50</height>
@@ -78,7 +85,7 @@
 		<param name="label_focus">$VAR[HomeFlixCrumbsVar]</param>
 		<definition>
 			<control type="group" id="$PARAM[list_id]665">
-				<animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Window(Home).Property(StackedWidget)) + !Control.HasFocus($PARAM[list_id]) + ControlGroup(2000).HasFocus">Conditional</animation>
+				<animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + ![Control.HasFocus($PARAM[list_id]) | Control.HasFocus($PARAM[list_id]1) | String.IsEqual(Window(Home).Property(altus_child_id),$PARAM[list_id])] + ControlGroup(2000).HasFocus">Conditional</animation>
 				<!-- <animation effect="slide" end="7,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation> -->
 				<left>57</left>
 				<top>80</top>
@@ -112,12 +119,12 @@
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]667"/>
 						<param name="label" value="[COLOR unfocused_text]$INFO[Container(9000).ListItem.Label][/COLOR] » [COLOR unfocused_text]$PARAM[label][/COLOR] » [COLOR unfocused_text]$INFO[Window(Home).Property(altus.$PARAM[list_id].Label)][/COLOR]$PARAM[label_focus]"/>
-						<param name="visible" value="Control.HasFocus($PARAM[list_id]1) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus_linked_list_id))"/>
+						<param name="visible" value="Control.HasFocus($PARAM[list_id]1) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus_spotlight_linked_list_id))"/>
 					</include>
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]667"/>
 						<param name="label" value="[COLOR unfocused_text]$INFO[Container(9000).ListItem.Label][/COLOR] » [COLOR unfocused_text]$PARAM[label][/COLOR] » [COLOR unfocused_text]$INFO[Window(Home).Property(altus.$PARAM[list_id].Label)][/COLOR]"/>
-						<param name="visible" value="Control.HasFocus($PARAM[list_id]1) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !String.IsEmpty(Window(Home).Property(altus_linked_list_id))"/>
+						<param name="visible" value="Control.HasFocus($PARAM[list_id]1) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !String.IsEmpty(Window(Home).Property(altus_spotlight_linked_list_id))"/>
 					</include>
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]667"/>
@@ -126,13 +133,18 @@
 					</include>
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]668"/>
-						<param name="label" value="$VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$PARAM[label][/COLOR]$PARAM[label_focus] » [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]"/>
-						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + String.IsEmpty(Window(Home).Property(altus_linked_list_id))"/>
+						<param name="label" value="$VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$PARAM[label][/COLOR]$PARAM[label_focus] » [COLOR unfocused_text]$INFO[Window(Home).Property(altus.$PARAM[list_id].Label)][/COLOR]"/>
+						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + String.IsEmpty(Window(Home).Property(altus_spotlight_linked_list_id))"/>
 					</include>
+					<!-- <include content="FocusedCategoryLabel">
+						<param name="id" value="PARAM[list_id]668"/>
+						<param name="label" value="$VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$PARAM[label][/COLOR]$PARAM[label_focus] » [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]"/>
+						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + String.IsEmpty(Window(Home).Property(altus_spotlight_linked_list_id))"/>
+					</include> -->
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]668"/>
 						<param name="label" value="$VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$PARAM[label][/COLOR]$PARAM[label_focus]"/>
-						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + !String.IsEmpty(Window(Home).Property(altus_linked_list_id))"/>
+						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(SpotlightWidget)) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + !String.IsEmpty(Window(Home).Property(altus_spotlight_linked_list_id))"/>
 					</include>
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]668"/>
@@ -159,9 +171,14 @@
 					</include>
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]668"/>
-						<param name="label" value="[COLOR unfocused_text]$PARAM[label][/COLOR] » $VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]$PARAM[label_focus]"/>
+						<param name="label" value="[COLOR unfocused_text]$PARAM[label][/COLOR]"/>
 						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + String.IsEmpty(Window(1121).Property(altus.$PARAM[list_id].Label))"/>
 					</include>
+					<!-- <include content="FocusedCategoryLabel">
+						<param name="id" value="PARAM[list_id]668"/>
+						<param name="label" value="[COLOR unfocused_text]$PARAM[label][/COLOR] » $VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]$PARAM[label_focus]"/>
+						<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(altus.countdown_active)) + String.IsEmpty(Window(1121).Property(altus.$PARAM[list_id].Label))"/>
+					</include> -->
 					<include content="FocusedCategoryLabel">
 						<param name="id" value="PARAM[list_id]668"/>
 						<param name="label" value="$VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$PARAM[label][/COLOR]$PARAM[label_focus] » [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]"/>
@@ -178,7 +195,7 @@
 		<param name="left">$PARAM[left]</param>
 		<param name="top">$PARAM[top]</param>
 		<param name="img_top">$PARAM[img_top]</param>
-		<param name="img_left">985</param>
+		<param name="img_left">995</param>
 		<definition>
 			<control type="group" id="$PARAM[list_id]669">
 				<!-- <animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Control.HasFocus($PARAM[list_id]) + !Control.HasFocus(9000)">Conditional</animation> -->
@@ -192,6 +209,8 @@
 					<aligny>center</aligny>
 					<visible>$PARAM[visible]</visible>
 					<include content="WidgetInfoPanel">
+						<param name="align" value="$PARAM[align]"/>
+						<param name="bottom" value="$PARAM[bottom]"/>
 						<param name="substitute_label_vis_cond" value="$PARAM[substitute_label_vis_cond]"/>
 						<param name="tagline_vis_cond" value="$PARAM[tagline_vis_cond]"/>
 						<param name="clearlogo_vis_cond" value="$PARAM[clearlogo_vis_cond]"/>
@@ -375,17 +394,20 @@
 				<top>107</top>
 				<right>0</right>
 				<left>37</left>
-				<height>970</height>
+				<height>973</height>
 				<!-- <height>970</height> -->
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
-				<onfocus>SetProperty(altus_linked_list_id,$PARAM[linked_id],home)</onfocus>
+				<onfocus>SetProperty(altus_spotlight_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<include content="SpotlightAnimations_Fade">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
+				<onfocus condition="!Skin.HasSetting(Enable.AlternateSpotlight)">SetProperty(SpotlightWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(LandscapeWidgetFocused,true,Home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -411,9 +433,6 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 						<include>SetDBTypeProperty</include>
-						<include>SetSpotlightProperties</include>
-						<include>SetLandscapeArtworkProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -423,18 +442,20 @@
 				<param name="visible" value="!Skin.HasSetting(Enable.AlternateSpotlight) + Control.HasFocus($PARAM[list_id])"/>
 				<param name="left" value="10"/>
 				<param name="top" value="-225"/>
+				<param name="bottom" value="160"/>
 				<param name="img_top" value="410"/>
 				<param name="img_left" value="1620"/>
-				<param name="clearlogo_vis_cond" value="!String.IsEmpty(Window(Home).Property(listitem_clearlogo_cropped)) + String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
-				<param name="substitute_label_vis_cond" value="String.IsEmpty(Window(Home).Property(listitem_clearlogo_cropped)) | !String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
+				<param name="clearlogo_vis_cond" value="!String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
+				<param name="substitute_label_vis_cond" value="String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
+				<param name="align" value="right"/>
 				<param name="clearlogo_width" value="700"/>
 				<param name="clearlogo_height" value="175"/>
-				<param name="textbox_height_1" value="155"/>
-				<param name="textbox_height_2" value="155"/>
-				<param name="textbox_height_3" value="155"/>
-				<param name="textbox_height_4" value="155"/>
-				<param name="textbox_height_5" value="155"/>
-				<param name="textbox_height_6" value="155"/>
+				<param name="textbox_height_1" value="170"/>
+				<param name="textbox_height_2" value="170"/>
+				<param name="textbox_height_3" value="170"/>
+				<param name="textbox_height_4" value="170"/>
+				<param name="textbox_height_5" value="170"/>
+				<param name="textbox_height_6" value="170"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
@@ -449,27 +470,33 @@
 			<include content="CategoryLabelWidget">
 				<param name="label">$PARAM[widget_header]</param>
 				<param name="list_id" value="$PARAM[list_id]"/>
-				<!-- <param name="visible" value="String.IsEmpty(Window(Home).Property(SpotlightWidget))"/> -->
+				<param name="visible" value="false"/>
 				<!-- <param name="visible" value="!ControlGroup(2000).HasFocus | [!Control.HasFocus($PARAM[list_id]) + !String.IsEmpty(Window(Home).Property(SpotlightWidget))] | [String.IsEmpty(Window(Home).Property(SpotlightWidget)) + Skin.HasSetting(Enable.AlternateSpotlight)]"/> -->
 			</include>
 			<include content="BusyListWidgetLabel">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="label" value="stacked spotlight"/>
-				<param name="posy" value="330"/>
+				<param name="posy" value="380"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
-				<top>107</top>
+				<top>57</top>
 				<right>0</right>
 				<left>37</left>
-				<height>970</height>
+				<!-- 153 difference -->
+				<height>1023</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<onfocus condition="!Skin.HasSetting(Enable.AlternateSpotlight)">SetProperty(SpotlightWidget,true,Home)</onfocus>
 				<!-- <include content="SpotlightAnimations_Fade">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include> -->
 				<include>SpotlightAnimations_Stacked</include>
+				<onfocus>SetProperty(LandscapeWidgetFocused,true,Home)</onfocus>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(altus_spotlight_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>SetProperty(altus_stacked_linked_list_id,$PARAM[parent_id],home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -495,12 +522,6 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 						<include>SetDBTypeProperty</include>
-						<include>SetSpotlightProperties</include>
-						<include>SetLandscapeArtworkProperties</include>
-						<include>SetStackedProperties</include>
-						<include content="SaveLinkedListID">
-							<param name="linked_id" value="$PARAM[linked_id]"/>
-						</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -510,22 +531,24 @@
 				<param name="visible" value="!Skin.HasSetting(Enable.AlternateSpotlight) + Control.HasFocus($PARAM[list_id])"/>
 				<param name="left" value="10"/>
 				<param name="top" value="-225"/>
+				<param name="bottom" value="160"/>
 				<param name="img_top" value="410"/>
 				<param name="img_left" value="1620"/>
-				<param name="clearlogo_vis_cond" value="!String.IsEmpty(Window(Home).Property(listitem_clearlogo_cropped)) + String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
-				<param name="substitute_label_vis_cond" value="String.IsEmpty(Window(Home).Property(listitem_clearlogo_cropped)) | !String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
+				<param name="clearlogo_vis_cond" value="!String.IsEmpty(ListItem.Art(clearlogo)) + String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
+				<param name="substitute_label_vis_cond" value="String.IsEmpty(ListItem.Art(clearlogo)) | !String.IsEqual(Skin.String(WidgetClearlogoSetting),0)"/>
+				<param name="align" value="right"/>
 				<param name="clearlogo_width" value="700"/>
 				<param name="clearlogo_height" value="175"/>
-				<param name="textbox_height_1" value="155"/>
-				<param name="textbox_height_2" value="155"/>
-				<param name="textbox_height_3" value="155"/>
-				<param name="textbox_height_4" value="155"/>
-				<param name="textbox_height_5" value="155"/>
-				<param name="textbox_height_6" value="155"/>
+				<param name="textbox_height_1" value="170"/>
+				<param name="textbox_height_2" value="170"/>
+				<param name="textbox_height_3" value="170"/>
+				<param name="textbox_height_4" value="170"/>
+				<param name="textbox_height_5" value="170"/>
+				<param name="textbox_height_6" value="170"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
-				<param name="posy" value="-76" />
+				<param name="posy" value="-126" />
 			</include>
 		</definition>
 	</include>
@@ -551,7 +574,10 @@
 				<orientation>horizontal</orientation>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="9,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -580,9 +606,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -612,18 +635,23 @@
 			<include content="BusyListWidgetLabel">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="label" value="stacked poster"/>
-				<param name="posy" value="235"/>
+				<param name="posy" value="285"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
-				<top>2</top>
+				<top>57</top>
 				<left>37</left>
 				<right>0</right>
 				<height>595</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="8,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="9,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<include>SpotlightAnimations_Stacked</include>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(altus_stacked_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_spotlight_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -652,10 +680,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearLinkedListID</include>
-						<include>SetStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -695,7 +719,10 @@
 				<orientation>horizontal</orientation>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="9,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -724,9 +751,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -735,13 +759,13 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="255"/>
-				<param name="top" value="-25"/>
-				<param name="img_top" value="115"/>
+				<param name="top" value="-15"/>
+				<param name="img_top" value="105"/>
 				<param name="clearlogo_vis_cond" value="false"/>
 				<param name="substitute_label_vis_cond" value="false"/>
-				<param name="textbox_height_1" value="155"/>
-				<param name="textbox_height_2" value="155"/>
-				<param name="textbox_height_3" value="155"/>
+				<param name="textbox_height_1" value="210"/>
+				<param name="textbox_height_2" value="210"/>
+				<param name="textbox_height_3" value="210"/>
 				<param name="textbox_height_4" value="230"/>
 				<param name="textbox_height_5" value="230"/>
 				<param name="textbox_height_6" value="230"/>
@@ -764,18 +788,23 @@
 			<include content="BusyListWidgetLabel">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="label" value="stacked small poster"/>
-				<param name="posy" value="205"/>
+				<param name="posy" value="255"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
-				<top>2</top>
+				<top>57</top>
 				<right>0</right>
 				<left>35</left>
-				<height>541</height>
+				<height>549</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="9,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<include>SpotlightAnimations_Stacked</include>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(altus_stacked_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_spotlight_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -804,10 +833,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearLinkedListID</include>
-						<include>SetStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -816,13 +841,13 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="255"/>
-				<param name="top" value="-25"/>
-				<param name="img_top" value="115"/>
+				<param name="top" value="-15"/>
+				<param name="img_top" value="105"/>
 				<param name="clearlogo_vis_cond" value="false"/>
 				<param name="substitute_label_vis_cond" value="false"/>
-				<param name="textbox_height_1" value="190"/>
-				<param name="textbox_height_2" value="190"/>
-				<param name="textbox_height_3" value="190"/>
+				<param name="textbox_height_1" value="210"/>
+				<param name="textbox_height_2" value="210"/>
+				<param name="textbox_height_3" value="210"/>
 				<param name="textbox_height_4" value="230"/>
 				<param name="textbox_height_5" value="230"/>
 				<param name="textbox_height_6" value="230"/>
@@ -855,7 +880,10 @@
 				<orientation>horizontal</orientation>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="9,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -884,9 +912,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -895,17 +920,17 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="495"/>
-				<param name="top" value="-370"/>
-				<param name="img_top" value="315"/>
+				<param name="top" value="-350"/>
+				<param name="img_top" value="295"/>
 				<param name="substitute_label_vis_cond" value="false"/>
 				<param name="clearlogo_vis_cond" value="false"/>
 				<param name="tagline_vis_cond" value="!String.IsEmpty(ListItem.Tagline)"/>
-				<param name="textbox_height_1" value="490"/>
-				<param name="textbox_height_2" value="490"/>
-				<param name="textbox_height_3" value="490"/>
-				<param name="textbox_height_4" value="490"/>
-				<param name="textbox_height_5" value="490"/>
-				<param name="textbox_height_6" value="490"/>
+				<param name="textbox_height_1" value="505"/>
+				<param name="textbox_height_2" value="505"/>
+				<param name="textbox_height_3" value="505"/>
+				<param name="textbox_height_4" value="505"/>
+				<param name="textbox_height_5" value="505"/>
+				<param name="textbox_height_6" value="505"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
@@ -926,18 +951,23 @@
 			<include content="BusyListWidgetLabel">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="label" value="stacked feature poster"/>
-				<param name="posy" value="370"/>
+				<param name="posy" value="420"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
-				<top>2</top>
+				<top>57</top>
 				<left>37</left>
 				<right>0</right>
 				<height>875</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="8,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="9,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<include>SpotlightAnimations_Stacked</include>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(altus_stacked_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_spotlight_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -966,10 +996,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearLinkedListID</include>
-						<include>SetStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -981,17 +1007,17 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="495"/>
-				<param name="top" value="-370"/>
-				<param name="img_top" value="315"/>
+				<param name="top" value="-350"/>
+				<param name="img_top" value="295"/>
 				<param name="substitute_label_vis_cond" value="false"/>
 				<param name="clearlogo_vis_cond" value="false"/>
 				<param name="tagline_vis_cond" value="!String.IsEmpty(ListItem.Tagline)"/>
-				<param name="textbox_height_1" value="490"/>
-				<param name="textbox_height_2" value="490"/>
-				<param name="textbox_height_3" value="490"/>
-				<param name="textbox_height_4" value="490"/>
-				<param name="textbox_height_5" value="490"/>
-				<param name="textbox_height_6" value="490"/>
+				<param name="textbox_height_1" value="505"/>
+				<param name="textbox_height_2" value="505"/>
+				<param name="textbox_height_3" value="505"/>
+				<param name="textbox_height_4" value="505"/>
+				<param name="textbox_height_5" value="505"/>
+				<param name="textbox_height_6" value="505"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
@@ -1022,7 +1048,10 @@
 				<orientation>horizontal</orientation>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<onfocus>SetProperty(LandscapeWidgetFocused,true,Home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -1051,9 +1080,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>SetLandscapeArtworkProperties</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -1062,12 +1088,12 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="640"/>
-				<param name="top" value="-55"/>
-				<param name="img_top" value="130"/>
+				<param name="top" value="-45"/>
+				<param name="img_top" value="125"/>
+				<param name="textbox_height_1" value="130"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
-				<!-- 12 -->
 				<param name="posy" value="125" />
 			</include>
 		</definition>
@@ -1084,18 +1110,23 @@
 			<include content="BusyListWidgetLabel">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="label" value="stacked landscape"/>
-				<param name="posy" value="225"/>
+				<param name="posy" value="275"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
-				<top>2</top>
+				<top>57</top>
 				<right>0</right>
 				<left>37</left>
 				<height>570</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<include>SpotlightAnimations_Stacked</include>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(LandscapeWidgetFocused,true,Home)</onfocus>
+				<onfocus>SetProperty(altus_stacked_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(altus_spotlight_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -1124,10 +1155,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLinkedListID</include>
-						<include>SetLandscapeArtworkProperties</include>
-						<include>SetStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -1136,8 +1163,9 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="640"/>
-				<param name="top" value="-55"/>
-				<param name="img_top" value="130"/>
+				<param name="top" value="-45"/>
+				<param name="img_top" value="125"/>
+				<param name="textbox_height_1" value="130"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
@@ -1168,7 +1196,10 @@
 				<orientation>horizontal</orientation>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -1197,9 +1228,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeArtworkProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -1209,12 +1237,12 @@
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="clearlogo_vis_cond" value="false"/>
 				<param name="substitute_label_vis_cond" value="false"/>
-				<param name="textbox_height_1" value="155"/>
-				<param name="textbox_height_2" value="155"/>
-				<param name="textbox_height_3" value="155"/>
-				<param name="textbox_height_4" value="195"/>
-				<param name="textbox_height_5" value="195"/>
-				<param name="textbox_height_6" value="195"/>
+				<param name="textbox_height_1" value="170"/>
+				<param name="textbox_height_2" value="170"/>
+				<param name="textbox_height_3" value="170"/>
+				<param name="textbox_height_4" value="205"/>
+				<param name="textbox_height_5" value="205"/>
+				<param name="textbox_height_6" value="205"/>
 				<param name="left" value="485"/>
 				<param name="top" value="35"/>
 				<param name="img_top" value="95"/>
@@ -1238,18 +1266,23 @@
 			<include content="BusyListWidgetLabel">
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="label" value="stacked small landscape"/>
-				<param name="posy" value="180"/>
+				<param name="posy" value="230"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
-				<top>2</top>
+				<top>57</top>
 				<right>0</right>
 				<left>37</left>
 				<height>481</height>
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
 				<onclick condition="$PARAM[onclick_condition]">$PARAM[onclick_action]</onclick>
-				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<animation effect="slide" end="6,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<include>SpotlightAnimations_Stacked</include>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>SetProperty(altus_stacked_linked_list_id,$PARAM[parent_id],home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_spotlight_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
@@ -1278,10 +1311,6 @@
 						<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeArtworkProperties</include>
-						<include>ClearLinkedListID</include>
-						<include>SetStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -1290,16 +1319,16 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !Skin.HasSetting(Disable.WidgetAutoInfo) + !$EXP[dialog_visible] + String.IsEmpty(Skin.String(TrailerPlaying)) + !Container($PARAM[list_id]).IsUpdating + !String.IsEmpty(Window.Property(WidgetInfo.Timer.Complete.$PARAM[list_id]))"/>
 				<param name="left" value="485"/>
-				<param name="top" value="35"/>
-				<param name="img_top" value="95"/>
+				<param name="top" value="40"/>
+				<param name="img_top" value="90"/>
 				<param name="clearlogo_vis_cond" value="false"/>
 				<param name="substitute_label_vis_cond" value="false"/>
-				<param name="textbox_height_1" value="155"/>
-				<param name="textbox_height_2" value="155"/>
-				<param name="textbox_height_3" value="155"/>
-				<param name="textbox_height_4" value="195"/>
-				<param name="textbox_height_5" value="195"/>
-				<param name="textbox_height_6" value="195"/>
+				<param name="textbox_height_1" value="170"/>
+				<param name="textbox_height_2" value="170"/>
+				<param name="textbox_height_3" value="170"/>
+				<param name="textbox_height_4" value="205"/>
+				<param name="textbox_height_5" value="205"/>
+				<param name="textbox_height_6" value="205"/>
 			</include>
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
@@ -1369,11 +1398,8 @@
 					</control>
 					<include>SetDBTypeProperty</include>
 					<include content="WidgetAutoInfoTimer">
-							<param name="list_id" value="$PARAM[list_id]" />
-						</include>
-					<include>ClearSpotlightProperties</include>
-					<include>ClearLandscapeProperties</include>
-					<include>ClearStackedProperties</include>
+						<param name="list_id" value="$PARAM[list_id]" />
+					</include>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
 				<include>$PARAM[content_include]</include>
@@ -1385,9 +1411,9 @@
 				<param name="top" value="-50"/>
 				<param name="img_top" value="135"/>
 				<param name="clearlogo_vis_cond" value="false"/>
-				<param name="textbox_height_1" value="155"/>
-				<param name="textbox_height_2" value="155"/>
-				<param name="textbox_height_3" value="155"/>
+				<param name="textbox_height_1" value="170"/>
+				<param name="textbox_height_2" value="170"/>
+				<param name="textbox_height_3" value="170"/>
 				<param name="textbox_height_4" value="215"/>
 				<param name="textbox_height_5" value="215"/>
 				<param name="textbox_height_6" value="215"/>
@@ -1427,6 +1453,7 @@
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
 				<animation effect="slide" end="10,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
 				<visible>$PARAM[visible]</visible>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
@@ -1462,8 +1489,6 @@
 					<include content="WidgetAutoInfoTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
-					<include>ClearLandscapeProperties</include>
-					<include>ClearStackedProperties</include>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
 				<include>$PARAM[content_include]</include>
@@ -1545,9 +1570,6 @@
 						</include>
 					</control>
 					<include>SetDBTypeProperty</include>
-					<include>ClearSpotlightProperties</include>
-					<include>ClearLandscapeProperties</include>
-					<include>ClearStackedProperties</include>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
 				<include>$PARAM[content_include]</include>
@@ -1584,10 +1606,17 @@
 				<height>350</height>
 				<onright>$PARAM[list_id]</onright>
 				<movement>5</movement>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommon">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
 				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<!-- <include content="WidgetZoomAnimation">
+					<param name="list_id" value="$PARAM[list_id]" />
+					<param name="c2" value="282" />
+				</include> -->
 				<visible>$PARAM[visible]</visible>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
 				<itemlayout width="307.3" height="393">
@@ -1608,9 +1637,6 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content target="$PARAM[widget_target]" sortby="$PARAM[list_id]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1633,56 +1659,50 @@
 				<param name="list_id" value="$PARAM[list_id]"/>
 				<param name="visible" value="$PARAM[visible]"/>
 				<param name="label" value="stacked control"/>
-				<param name="posy" value="235"/>
+				<param name="posy" value="214"/>
 			</include>
 			<control type="fixedlist" id="$PARAM[list_id]">
 				<top>107</top>
 				<right>0</right>
 				<left>50</left>
 				<!-- 350 -->
-				<height>350</height>
+				<height>247</height>
 				<onright>$PARAM[list_id]</onright>
-				<movement>10</movement>
+				<movement>6</movement>
 				<onfocus>SetProperty(altus_saved_list_id,$PARAM[list_id],home)</onfocus>
+				<onfocus>SetProperty(altus_child_id,$PARAM[child_id],home)</onfocus>
+				<onfocus>SetProperty(StackedWidget,true,Home)</onfocus>
+				<onfocus>ClearProperty(SpotlightWidget,Home)</onfocus>
+				<onfocus>ClearProperty(LandscapeWidgetFocused,Home)</onfocus>
+				<onfocus>ClearProperty(altus_spotlight_linked_list_id,home)</onfocus>
+				<onfocus>ClearProperty(altus_stacked_linked_list_id,home)</onfocus>
 				<include content="WidgetListCommonStacked">
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
 				<animation effect="slide" end="7,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
-				<animation condition="!String.IsEmpty(Window(Home).Property(SpotlightWidget)) + Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_linked_list_id))" reversible="false">
+				<animation condition="!Skin.HasSetting(Enable.StackedSpotlightControl) + !String.IsEmpty(Window(Home).Property(SpotlightWidget)) + Integer.IsEqual($PARAM[list_id],Window(Home).Property(altus_spotlight_linked_list_id))" reversible="false">
 					<effect type="fade" start="100" end="0" time="400" />
 				</animation>
 				<visible>$PARAM[visible]</visible>
 				<!-- <visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible> -->
-				<itemlayout width="167" height="393">
+				<itemlayout width="260" height="393" infoupdate="30">
 					<control type="group">
 						<left>0</left>
 						<top>55</top>
-						<animation condition="Window.IsVisible(Home) + Control.HasFocus($PARAM[list_id]1) + !String.IsEqual(Window(Home).Property(altus.$PARAM[list_id].Label),ListItem.Label)" reversible="true">
-							<!-- <effect type="fade" start="100" end="60" time="300" tween="sine" easing="inout" /> -->
-							<effect type="fadediffuse" start="FFE9E9E9" end="FF4C4C4C" time="300" />
-						</animation>
 						<include content="WidgetListCategoryStackedLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="167" height="393" infoupdate="30">
+				<focusedlayout width="260" height="393" infoupdate="30">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>0</left>
 						<top>55</top>
-						<animation condition="Window.IsVisible(Home) + Control.HasFocus($PARAM[list_id]1) + !String.IsEqual(Window(Home).Property(altus.$PARAM[list_id].Label),ListItem.Label)" reversible="true">
-							<!-- <effect type="fade" start="100" end="60" time="300" tween="sine" easing="inout" /> -->
-							<effect type="fadediffuse" start="FFE9E9E9" end="FF4C4C4C" time="300" />
-						</animation>
 						<include content="WidgetListCategoryStackedLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
-						<include>ClearSpotlightProperties</include>
-						<include>ClearLandscapeProperties</include>
-						<include>ClearLinkedListID</include>
-						<include>SetStackedProperties</include>
 					</control>
 				</focusedlayout>
 				<content target="$PARAM[widget_target]" sortby="$PARAM[list_id]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1690,7 +1710,7 @@
 			<include content="WidgetLeftRightArrows">
 				<param name="list_id" value="$PARAM[list_id]" />
 				<!-- 191 -->
-				<param name="posy" value="240" />
+				<param name="posy" value="318" />
 			</include>
 		</definition>
 	</include>
@@ -1804,6 +1824,10 @@
 					<param name="list_id" value="$PARAM[list_id]"/>
 				</include>
 				<animation effect="slide" end="5,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation>
+				<!-- <include content="WidgetZoomAnimation">
+					<param name="list_id" value="$PARAM[list_id]" />
+					<param name="c2" value="303" />
+				</include> -->
 				<visible>$PARAM[visible]</visible>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,$PARAM[item_treshold]) | [Container($PARAM[list_id]).IsUpdating + Integer.IsEqual(Container($PARAM[list_id]).NumItems,0)]</visible>
 				<itemlayout width="460.3" height="393">
@@ -1828,6 +1852,10 @@
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
 			</control>
+			<include content="WidgetLeftRightArrows">
+				<param name="list_id" value="$PARAM[list_id]" />
+				<param name="posy" value="165" />
+			</include>
 		</definition>
 	</include>
 
@@ -2158,7 +2186,9 @@
 		<scrolltime tween="cubic" easing="out">500</scrolltime>
 		<orientation>horizontal</orientation>
 		<onfocus>SetProperty(altus_saved_list_id,$PARAM[list_id],home)</onfocus>
+		<!-- <onfocus condition="String.IsEmpty(Window(Home).Property(FirstWidgetID)) + String.IsEmpty(Window(Home).Property(LastWidgetID))">RunScript(script.altus.helper,mode=set_widget_boundaries,$PARAM[list_id])</onfocus> -->
 		<onunfocus>SetProperty(Widget_$PARAM[list_id]_Position,$INFO[Container($PARAM[list_id]).Position],home)</onunfocus>
+		<onfocus>ClearProperty(altus_child_id,home)</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],-$INFO[Container($PARAM[list_id]).Position])</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],$INFO[Window(home).Property(Widget_$PARAM[list_id]_Position)])</onfocus>
 		<onleft condition="String.IsEqual(Skin.String(onLeftSetting),0)">9000</onleft>
@@ -2179,6 +2209,7 @@
 		<scrolltime tween="cubic" easing="out">500</scrolltime>
 		<orientation>horizontal</orientation>
 		<onfocus>RunScript(script.altus.helper,mode=widget_monitor&amp;list_id=$PARAM[list_id])</onfocus>
+		<!-- <onfocus condition="String.IsEmpty(Window(Home).Property(FirstWidgetID)) + String.IsEmpty(Window(Home).Property(LastWidgetID))">RunScript(script.altus.helper,mode=set_widget_boundaries,$PARAM[list_id])</onfocus> -->
 		<onunfocus>SetProperty(Widget_$PARAM[list_id]_Position,$INFO[Container($PARAM[list_id]).Position],home)</onunfocus>
 		<onfocus>Control.Move($PARAM[list_id],-$INFO[Container($PARAM[list_id]).Position])</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],$INFO[Window(home).Property(Widget_$PARAM[list_id]_Position)])</onfocus>
@@ -2291,7 +2322,6 @@
 
 		<onload condition="String.IsEmpty(Skin.String(WidgetClearlogoSetting))">Skin.SetString(WidgetClearlogoSetting,1)</onload>
 		<onload condition="String.IsEmpty(Skin.String(PosterSizeSetting))">Skin.SetString(PosterSizeSetting,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(LandscapeSizeSetting))">Skin.SetString(LandscapeSizeSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(AutoInfoFadeSetting))">Skin.SetString(AutoInfoFadeSetting,2)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OSDSubtitleButtonSetting))">Skin.SetString(OSDSubtitleButtonSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(MenuCaseSetting))">Skin.SetString(MenuCaseSetting,0)</onload>
@@ -2315,12 +2345,6 @@
 		<onload condition="String.IsEmpty(Skin.String(ListLandscape.tvshows))">Skin.SetString(ListLandscape.tvshows,1)</onload>
 		<onload condition="String.IsEmpty(Skin.String(ListLandscape.seasons))">Skin.SetString(ListLandscape.seasons,1)</onload>
 		<onload condition="String.IsEmpty(Skin.String(ListLandscape.episodes))">Skin.SetString(ListLandscape.episodes,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(ItemFanartChoice.movies))">Skin.SetString(ItemFanartChoice.movies,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(ItemFanartChoice.tvshows))">Skin.SetString(ItemFanartChoice.tvshows,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(ItemFanartChoice.seasons))">Skin.SetString(ItemFanartChoice.seasons,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(ItemClearlogoChoice.movies))">Skin.SetString(ItemClearlogoChoice.movies,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(ItemClearlogoChoice.tvshows))">Skin.SetString(ItemClearlogoChoice.tvshows,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(ItemClearlogoChoice.seasons))">Skin.SetString(ItemClearlogoChoice.seasons,0)</onload>
 		<onload condition="!String.IsEmpty(Skin.String(mdblist_api_key)) + String.IsEmpty(Skin.String(valid_api_key))">RunScript(script.altus.helper, mode=check_api_key_on_load)</onload>
 	</include>
 

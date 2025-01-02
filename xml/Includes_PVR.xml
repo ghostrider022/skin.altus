@@ -340,8 +340,8 @@
 						<control type="textbox">
 							<left>172</left>
 							<right>45</right>
-							<top>80</top>
-							<height>117</height>
+							<top>75</top>
+							<height>127</height>
 							<aligny>center</aligny>
 							<font>font27</font>
 							<textcolor>unfocused_text</textcolor>
@@ -830,7 +830,7 @@
 				<top>50</top>
 				<left>0</left>
 				<!-- <width>785</width> -->
-				<control type="grouplist">
+				<!-- <control type="grouplist">
 					<top>0</top>
 					<height>500</height>
 					<left>345</left>
@@ -846,13 +846,16 @@
 						<param name="visible" value="true"/>
 						<param name="flixlabel" value="[COLOR unfocused_text]$INFO[ListItem.StartTime][/COLOR] - [COLOR unfocused_text]$INFO[ListItem.EndTime][/COLOR]"/>
 					</include>
-				</control>
-				<!-- <control type="label">
-					<top>60</top>
-					<height>200</height>
-					<label>$VAR[PVRInfoPanelDateDurationLabel]</label>
-					<textcolor>unfocused_text</textcolor>
 				</control> -->
+				<control type="label">
+					<top>-5</top>
+					<left>355</left>
+					<right>30</right>
+					<height>500</height>
+					<label>$VAR[PVRInfoHeader]</label>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+					<font>font40_title</font>
+				</control>
 				<!-- <control type="progress">
 					<top>200</top>
 					<height>12</height>
@@ -912,7 +915,7 @@
 				<top>100</top>
 				<left>355</left>
 				<right>50</right>
-				<height>120</height>
+				<height>130</height>
 				<!-- <bottom>625</bottom> -->
 				<label>$INFO[ListItem.Plot]</label>
 				<font>font27</font>

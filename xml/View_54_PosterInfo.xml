@@ -193,12 +193,12 @@
 			<control type="group">
 				<visible>!String.IsEmpty(ListItem.Art(fanart)) | !String.IsEmpty(ListItem.Art(poster))</visible>
 				<control type="image">
-					<left>20</left>
-					<top>11</top>
-					<width>236</width>
-					<height>354</height>
+					<left>14</left>
+					<top>5</top>
+					<width>248</width>
+					<height>366</height>
 					<texture colordiffuse="$VAR[FocusColorTheme]">masks/poster.png</texture>
-					<bordersize>-5</bordersize>
+					<!-- <bordersize>-5</bordersize> -->
 					<visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]]</visible>
 					<!-- <visible>!Container($PARAM[list_id]).IsUpdating</visible> -->
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
@@ -211,7 +211,7 @@
 					<texture diffuse="masks/poster.png" background="true">$VAR[FlixPosterVar]</texture>
 					<bordersize>1</bordersize>
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<!-- <bordertexture colordiffuse="$VAR[BorderColorVar]" border="20" infill="false">masks/poster-border.png</bordertexture> -->
+					<bordertexture colordiffuse="$VAR[BorderColorVar]" border="20" infill="false">masks/poster-border.png</bordertexture>
 					<!-- <animation condition="Container($PARAM[list_id]).IsUpdating + String.IsEmpty(Skin.String(TrailerPlaying))" effect="fade" time="700" start="50" end="100" pulse="true">Conditional</animation> -->
 				</control>
 				<control type="image">
@@ -235,7 +235,7 @@
 					<top>317</top>
 					<width>234</width>
 					<height>47</height>
-					<texture colordiffuse="B3FFFFFF">overlays/overlayfade8.png</texture>
+					<texture colordiffuse="E6FFFFFF">overlays/overlayfade8.png</texture>
 					<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
 					<visible>
 						[
@@ -316,6 +316,20 @@
 					<param name="cornerdiffuse">overlays/overlaybg3.png</param>
 				</include>
 			</control> -->
+			<control type="label">
+				<left>20</left>
+				<top>388</top>
+				<right>10</right>
+				<!-- <width>390</width> -->
+				<label>[LIGHT]$INFO[Container($PARAM[list_id]).ListItem.Title][/LIGHT]</label>
+				<font>font25_title</font>
+				<shadowcolor>text_shadow</shadowcolor>
+				<textcolor>unfocused_text</textcolor>
+				<align>center</align>
+				<scroll>[[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]]</scroll>
+				<scrollspeed>100</scrollspeed>
+				<visible>![Window.IsVisible(Home) | Window.IsVisible(1121)] + Skin.HasSetting(Enable.WallTitles)</visible>
+			</control>
 			<include content="ProgressBar">
 				<param name="left" value="30"/>
 				<param name="top" value="373"/>
@@ -331,7 +345,7 @@
 			<include>OpenClose_Right</include>
 			<include>MediaMenuAnimations</include>
 			<left>0</left>
-			<top>370</top>
+			<top>300</top>
 			<visible>Control.IsVisible(54)</visible>
 			<control type="label">
 				<left>50</left>
@@ -347,13 +361,13 @@
 				<left>0</left>
 				<right>0</right>
 				<height>100%</height>
-				<onright>5199</onright>
-				<onleft>9000</onleft>
+				<onright>54</onright>
+				<onleft>531</onleft>
 				<orientation>vertical</orientation>
 				<movement>6</movement>
 				<viewtype label="31101">icon</viewtype>
 				<preloaditems>2</preloaditems>
-				<pagecontrol>5199</pagecontrol>
+				<pagecontrol>531</pagecontrol>
 				<scrolltime tween="cubic" easing="out">500</scrolltime>
 				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
 				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
@@ -372,8 +386,6 @@
 					
 					[Container.Content(seasons) + [String.IsEqual(Skin.String(Skin.ForcedView.seasons),$LOCALIZE[31101]) | String.IsEmpty(Skin.String(Skin.ForcedView.seasons))]] | 
 					
-					[Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season) + [String.IsEqual(Skin.String(Skin.ForcedView.episodes.outside),$LOCALIZE[31101]) | String.IsEmpty(Skin.String(Skin.ForcedView.episodes.outside))]] | 
-					
 					[Container.Content(musicvideos) + [String.IsEqual(Skin.String(Skin.ForcedView.musicvideos),$LOCALIZE[31101]) | String.IsEmpty(Skin.String(Skin.ForcedView.musicvideos))]] | 
 					
 					[Container.Content(images) + [String.IsEqual(Skin.String(Skin.ForcedView.images),$LOCALIZE[31101]) | String.IsEmpty(Skin.String(Skin.ForcedView.images))]] | 
@@ -382,14 +394,15 @@
 					
 					[Container.Content(games) + [String.IsEqual(Skin.String(Skin.ForcedView.games),$LOCALIZE[31101]) | String.IsEmpty(Skin.String(Skin.ForcedView.games))]]
 				</visible>
-				<itemlayout width="230" height="337" condition="String.IsEqual(Skin.String(PosterSizeSetting),0) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+				<itemlayout width="230" height="380" condition="Skin.HasSetting(Enable.PosterTitles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
 					<control type="group">
+						<animation effect="fadediffuse" end="FF9C9C9C" start="FFFFFFFF" time="0" condition="Skin.HasSetting(Enable.UnfocusedPosterDim)">Conditional</animation>
 						<left>33</left>
 						<top>0</top>
 						<include>SmallPosterLayout</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="230" height="337" condition="String.IsEqual(Skin.String(PosterSizeSetting),0) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+				<focusedlayout width="230" height="380" condition="Skin.HasSetting(Enable.PosterTitles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>33</left>
@@ -400,14 +413,33 @@
 						<include>SetDBTypeProperty</include>
 					</control>
 				</focusedlayout>
-				<itemlayout width="263" height="390" condition="String.IsEqual(Skin.String(PosterSizeSetting),1) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+				<itemlayout width="230" height="333" condition="!Skin.HasSetting(Enable.PosterTitles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<animation effect="fadediffuse" end="FF9C9C9C" start="FFFFFFFF" time="0" condition="Skin.HasSetting(Enable.UnfocusedPosterDim)">Conditional</animation>
+						<left>33</left>
+						<top>0</top>
+						<include>SmallPosterLayout</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="230" height="333" condition="!Skin.HasSetting(Enable.PosterTitles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<left>33</left>
+						<top>0</top>
+						<include content="SmallPosterLayout">
+							<param name="focused" value="true" />
+						</include>
+						<include>SetDBTypeProperty</include>
+					</control>
+				</focusedlayout>
+				<!-- <itemlayout width="263" height="390" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
 					<control type="group">
 						<left>33</left>
 						<top>0</top>
 						<include>PosterLayout</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="263" height="390" condition="String.IsEqual(Skin.String(PosterSizeSetting),1) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+				<focusedlayout width="263" height="390" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>33</left>
@@ -417,7 +449,7 @@
 						</include>
 						<include>SetDBTypeProperty</include>
 					</control>
-				</focusedlayout>
+				</focusedlayout> -->
 				<!-- <itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
 					<control type="group">
 						<top>150</top>

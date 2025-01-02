@@ -18,7 +18,7 @@
 			<include>FullScreenDimensions</include>
 			<control type="image">
 				<fadetime>500</fadetime>
-				<texture background="true" colordiffuse="FFE9E9E9" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
+				<texture background="true" colordiffuse="FFE0E0E8" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
 				<aspectratio>scale</aspectratio>
 				<include>ArtworkAnimations</include>
 			</control>
@@ -1160,7 +1160,7 @@
 					<focusedlayout condition="[Container.Content(movies) + !String.StartsWith(Container.PluginName,plugin.video.the-loop)] | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(musicvideos) | Container.Content(games) | Window.IsActive(videoplaylist) | Window.IsActive(musicplaylist)" height="210" width="610" infoupdate="30">
 						<control type="image">
 							<top>-4</top>
-							<bottom>7</bottom>
+							<bottom>12</bottom>
 							<width>5</width>
 							<left>10</left>
 							<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1234,7 +1234,7 @@
 							<top>89</top>
 							<left>33</left>
 							<width>810</width>
-							<bottom>10</bottom>
+							<bottom>15</bottom>
 							<aligny>center</aligny>
 							<font>font23</font>
 							<label>$VAR[RI_Plot]</label>
@@ -1244,10 +1244,10 @@
 							<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool)</visible>
 						</control>
 						<control type="textbox">
-							<top>65</top>
+							<top>55</top>
 							<left>33</left>
 							<width>810</width>
-							<bottom>13</bottom>
+							<bottom>10</bottom>
 							<aligny>center</aligny>
 							<font>font23</font>
 							<label>$VAR[RI_Plot]</label>
@@ -1392,7 +1392,7 @@
 						<focusedlayout condition="String.IsEqual(Window(Home).Property(CurrentFolder),addons) | [Container.Content(addons) + !String.StartsWith(Container.PluginName,plugin.video)]" height="210" width="610" infoupdate="30">
 						<control type="image">
 							<top>-4</top>
-							<bottom>7</bottom>
+							<bottom>12</bottom>
 							<width>5</width>
 							<left>10</left>
 							<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1451,7 +1451,7 @@
 							<top>89</top>
 							<left>33</left>
 							<width>810</width>
-							<bottom>10</bottom>
+							<bottom>15</bottom>
 							<aligny>center</aligny>
 							<font>font23</font>
 							<label>$VAR[ListBoxInfoVar]</label>
@@ -1544,10 +1544,10 @@
 				<include content="FlixPanel"/>
 				<!-- image control -->
 				<control type="image">
-					<left>835</left>
+					<left>855</left>
 					<top>30</top>
-					<width>250</width>
-					<height>250</height>
+					<width>210</width>
+					<height>210</height>
 					<aspectratio aligny="center" align="center">keep</aspectratio>
 					<fadetime>300</fadetime>
 					<texture diffuse="focus/listthumb_img.png" fallback="$PARAM[fallback_image]" background="true">$INFO[ListItem.Icon]</texture>
