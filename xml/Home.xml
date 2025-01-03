@@ -98,7 +98,7 @@
 						<param name="scrollbar_id" value="19099"/>
 					</include>
 				</control>
-				<!-- TV SHOWS -->
+				<!-- TV SHOWS 
 				<control type="group" id="22000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),tvshows)</visible>
 					<include content="Visible_Right_Delayed">
@@ -113,7 +113,7 @@
 						<param name="scrollbar_id" value="22099"/>
 					</include>
 				</control>
-				<!-- CUSTOM 1 -->
+				<!-- CUSTOM 1 --
 				<control type="group" id="23000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),custom1)</visible>
 					<include content="Visible_Right_Delayed">
@@ -128,7 +128,7 @@
 						<param name="scrollbar_id" value="23099"/>
 					</include>
 				</control>
-				<!-- CUSTOM 2 -->
+				<!-- CUSTOM 2 --
 				<control type="group" id="24000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),custom2)</visible>
 					<include content="Visible_Right_Delayed">
@@ -143,7 +143,7 @@
 						<param name="scrollbar_id" value="24099"/>
 					</include>
 				</control>
-				<!-- CUSTOM 3 -->
+				<!-- CUSTOM 3 --
 				<control type="group" id="25000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),custom3)</visible>
 					<include content="Visible_Right_Delayed">
@@ -370,7 +370,7 @@
 					</include>
 					<!-- <include content="PVRInfoPanel">
 						<param name="top" value="-510"/>
-					</include> -->
+					</include> --
 					<control type="grouplist" id="12001">
 						<include>WidgetGroupListCommon</include>
 						<pagecontrol>12010</pagecontrol>
@@ -414,7 +414,7 @@
 							<param name="widget_header" value="$LOCALIZE[19173]"/>
 							<param name="widget_target" value="tvguide"/>
 							<param name="list_id" value="12500"/>
-							<!-- <param name="item_treshold" value="1"/> -->
+							<!-- <param name="item_treshold" value="1"/> --
 						</include>
 						<include content="WidgetListSquareNoInfo" condition="System.HasPVRAddon">
 							<param name="content_path" value="pvr://search/tv/savedsearches"/>
@@ -507,13 +507,13 @@
 					<include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
 						<param name="scrollbar_id" value="13010"/>
 					</include>
-				</control>
+				</control>--
 				<control type="group" id="14000">
 					<visible>String.IsEqual(Container(9000).ListItem.Property(id),favorites)</visible>
 					<include content="Visible_Right_Delayed">
 						<param name="id" value="favorites"/>
 					</include>
-					<!-- <control type="label">
+					 <control type="label">
 						<left>50</left>
 						<top>80</top>
 						<label>$VAR[HomescreenFlixCrumbs]</label>
@@ -534,7 +534,7 @@
 						<scroll>true</scroll>
 						<scrollspeed>100</scrollspeed>
 						<visible>!Control.HasFocus(14100)</visible>
-					</control> -->
+					</control>
 					<control type="panel" id="14100">
 						<left>0</left>
 						<top>-45</top>
@@ -614,7 +614,7 @@
 							<param name="widget_header" value="$LOCALIZE[33036]"/>
 							<param name="visible" value="!String.IsEmpty(Window(weather).Property(Hourly.IsFetched))" />
 						</include>
-						<!-- <include content="WeatherMapItem">
+						-- <include content="WeatherMapItem">
 							<param name="item_id" value="1" />
 							<param name="onup_id" value="15200" />
 							<param name="ondown_id" value="70020" />
@@ -638,7 +638,7 @@
 							<param name="item_id" value="5" />
 							<param name="onup_id" value="70040" />
 							<param name="ondown_id" value="20001" />
-						</include> -->
+						</include> --
 					</control>
 					<include content="ImageWidget" condition="String.IsEmpty(Weather.plugin)">
 						<param name="text_label" value="$LOCALIZE[31120]" />
@@ -729,7 +729,7 @@
 							<param name="widget_target" value="music"/>
 							<param name="list_id" value="16600"/>
 							<param name="icon" value="$VAR[WidgetStudioIconVar]"/>
-							<!-- <param name="icon_height" value="70"/> -->
+							!-- <param name="icon_height" value="70"/> --
 						</include>
 					</control>
 					<include content="ImageWidget" condition="!Library.HasContent(musicvideos)">
@@ -756,7 +756,7 @@
 							<param name="widget_header" value="$LOCALIZE[20094]"/>
 							<param name="widget_target" value="pictures"/>
 							<param name="list_id" value="4100"/>
-							<!-- <param name="icon_height" value="110"/> -->
+							!-- <param name="icon_height" value="110"/> --
 						</include>
 					</control>
 				</control>
@@ -810,7 +810,7 @@
 						<param name="visible_3" value="System.HasMediaAudioCD"/>
 					</include>
 				</control>
-			</control>
+			</control>-->
 			<include content="TopBar">
 				<param name="breadcrumbs_label" value="" />
 			</include>
