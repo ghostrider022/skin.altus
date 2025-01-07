@@ -374,7 +374,7 @@ msgstr ""
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "Stórt"
 
 #. viewtype name

@@ -31,6 +31,8 @@
 					<param name="id" value="Recently updated" />
 					<param name="container_path" value="addons://recently_updated/" />
 					<param name="container_target" value="addonbrowser" />
+					<param name="sortby" value="lastupdate" />
+					<param name="sortorder" value="descending" />
 					<param name="imagewidget_onclick" value="ActivateWindow(addonbrowser,addons://recently_updated/,return)" />
 				</include>
 				<include content="TieredAddonLauncherList">

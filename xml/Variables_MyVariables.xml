@@ -174,6 +174,7 @@
 		<value condition="$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
 		<value condition="$EXP[isEpisode] + Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR]</value>
 		<value condition="![Skin.HasSetting(Enable.PosterTitles) | Skin.HasSetting(Enable.LandscapeTitles)] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<!-- <value condition="$EXP[isContent]"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value> -->
 	</variable>
 
 	<variable name="FlixCategory">
@@ -266,13 +267,6 @@
     <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + !Skin.HasSetting(Enable.Fanart)">button_focus</value>
     <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + Skin.HasSetting(Enable.Fanart) + !String.IsEmpty(Window(home).Property(listitem_color)) + !Player.HasVideo">$INFO[Window(home).Property(listitem_color)]</value>
     <value>unfocused_text</value>
-	</variable>
-
-	<variable name="PosterFlowColorVar">
-    <value condition="$EXP[sidebar_visible] | Control.HasFocus(5199)">$INFO[Container(51).ListItem.Art(poster)]</value>
-    <value condition="!Skin.HasSetting(Disable.PosterFlowAutoInfo) + !Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),2)">$INFO[Container(51).ListItem.Art(poster)]</value>
-    <value condition="!Skin.HasSetting(Disable.PosterFlowAutoInfo) + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),2)">$INFO[Container(51).ListItem.Art(fanart)]</value>
-    <value condition="Skin.HasSetting(Disable.PosterFlowAutoInfo)">$INFO[Container(51).ListItem.Art(poster)]</value>
 	</variable>
 
 	<variable name="MediaMenuDiffuse">
@@ -426,25 +420,27 @@
 		<!-- <value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1)">Wall</value> -->
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1)">Play trailer</value>
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">Information</value>
+		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">Show fanart</value>
 	</variable>
 
 	<variable name="PosterFlowOnDownSettingVar.Other">
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">Scrollbar</value>
 		<!-- <value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Wall</value> -->
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Information</value>
+		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">Show fanart</value>
 	</variable>
 
 	<variable name="PosterFlowOnDownToggleVar.MovieTV">
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),0)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,1)</value>
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,2)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,0)</value>
-		<!-- <value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,0)</value> -->
+		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,3)</value>
+		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,0)</value>
 	</variable>
 
 	<variable name="PosterFlowOnDownToggleVar.Other">
 		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">Skin.SetString(PosterFlowOnDownSetting.Other,1)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Skin.SetString(PosterFlowOnDownSetting.Other,0)</value>
-		<!-- <value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">Skin.SetString(PosterFlowOnDownSetting.Other,0)</value> -->
+		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Skin.SetString(PosterFlowOnDownSetting.Other,2)</value>
+		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">Skin.SetString(PosterFlowOnDownSetting.Other,0)</value>
 	</variable>
 
 	<variable name="OnRightSettingVar.MovieTV">
@@ -570,6 +566,11 @@
     <value condition="!Container.Content()"> for $INFO[Container.Content]</value>
     <value condition="Container.Content()"> for menus</value>
     <value>$LOCALIZE[14018]</value>
+	</variable>
+
+	<variable name="SeasonLabel">
+		<value condition="Integer.IsGreater(ListItem.Property(WatchedEpisodes),0) + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + !String.IsEqual(ListItem.Property(UnWatchedEpisodes),-1)">$INFO[ListItem.Property(UnwatchedEpisodes),, remaining]</value>
+		<value>$INFO[ListItem.Property(TotalEpisodes)] episodes</value>
 	</variable>
 
 	<variable name="ForcedViewLabel">

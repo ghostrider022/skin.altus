@@ -364,7 +364,7 @@ msgstr "Ikoonisein"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "Riba"
 
 #. viewtype name

@@ -7,16 +7,16 @@
 			<control type="group">
 			<visible>String.IsEmpty(ListItem.Art(fanart)) + String.IsEmpty(ListItem.Art(poster))</visible>
 				<control type="image">
-					<width>720</width>
-          <height>1080</height>
+					<width>472</width>
+          <height>710</height>
 					<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
           <visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]</visible>
 					<!-- <visible>!Container($PARAM[list_id]).IsUpdating</visible> -->
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 				<control type="image">
-					<width>720</width>
-          <height>1080</height>
+					<width>472</width>
+          <height>710</height>
 					<texture colordiffuse="FF333333">colors/dark.png</texture>
           <visible>![$PARAM[focused] + Control.HasFocus($PARAM[list_id])]</visible>
           <visible>![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]</visible>
@@ -73,28 +73,23 @@
 				<visible>!String.IsEmpty(ListItem.Art(fanart)) | !String.IsEmpty(ListItem.Art(poster))</visible>
         <control type="group">
           <animation type="UnFocus" condition="Container(51).OnNext" reversible="false">
-            <effect type="slide" start="200,0" end="0,0" time="1159" tween="quadratic"/>
+            <effect type="slide" start="200,0" end="0,0" time="500" tween="quadratic"/>
           </animation>
           <animation type="UnFocus" condition="Container(51).OnPrevious" reversible="false">
-            <effect type="slide" start="-200,0" end="0,0" time="1159" tween="quadratic"/>
+            <effect type="slide" start="-200,0" end="0,0" time="500" tween="quadratic"/>
           </animation>
           <control type="image">
-            <animation condition="!Skin.HasSetting(Disable.PosterFlowAutoInfo) + !Control.HasFocus(5199) + !$EXP[sidebar_visible] + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
-              <effect type="fade" start="100" end="0" time="300" tween="cubic" easing="out" reversible="true" />
-            </animation>
-            <width>720</width>
-            <height>1080</height>
-            <texture>$VAR[FlixPosterVar]</texture>
+            <!-- 720 -->
+            <width>472</width>
+            <height>710</height>
+            <texture fallback="DefaultMovies.png">$VAR[FlixPosterVar]</texture>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]</visible>
           </control>
           <control type="image">
-            <animation condition="!Skin.HasSetting(Disable.PosterFlowAutoInfo) + !Control.HasFocus(5199) + !$EXP[sidebar_visible] + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
-              <effect type="fade" start="100" end="0" time="300" tween="cubic" easing="out" reversible="true" />
-            </animation>
-            <width>720</width>
-            <height>1080</height>
-            <texture colordiffuse="$VAR[PosterFlowArtworkDiffuse]">$VAR[FlixPosterVar]</texture>
+            <width>472</width>
+            <height>710</height>
+            <texture fallback="DefaultMovies.png" colordiffuse="$VAR[PosterFlowArtworkDiffuse]">$VAR[FlixPosterVar]</texture>
             <aspectratio scalediffuse="false">scale</aspectratio>
             <visible>![$PARAM[focused] + Control.HasFocus($PARAM[list_id])]</visible>
             <visible>![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]</visible>
@@ -103,13 +98,13 @@
           <control type="group">
             <width>387</width>
             <height>150</height>
-            <centertop>67%</centertop>
+            <centertop>40%</centertop>
             <centerleft>50%</centerleft>
             <animation effect="rotate" center="auto" end="90" time="0" condition="true">Conditional</animation>
             <control type="image">
               <animation effect="fade" start="0" end="100" time="1000" >Visible</animation>
-              <width>387</width>
-              <height>150</height>
+              <width>258</width>
+              <height>100</height>
               <left>150</left>
               <centertop>50%</centertop>
               <texture background="true">$VAR[ClearlogoVar]</texture>
@@ -120,10 +115,10 @@
             </control>
           </control>
           <control type="image">
-            <left>-4</left>
-            <bottom>-8</bottom>
-            <width>250</width>
-            <height>250</height>
+            <left>0</left>
+            <top>540</top>
+            <width>170</width>
+            <height>170</height>
             <texture>overlays/overlaybg-big-poster.png</texture>
             <visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] | Skin.HasSetting(Disable.PosterFlowArtworkDimming)</visible>
             <visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0) | !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
@@ -139,9 +134,9 @@
           </control>
           <control type="image">
             <left>0</left>
-            <bottom>-1</bottom>
-            <width>720</width>
-            <height>125</height>
+            <top>621</top>
+            <width>472</width>
+            <height>90</height>
             <texture colordiffuse="B3FFFFFF">overlays/overlayfade8-big-poster.png</texture>
             <visible>!String.IsEmpty(ListItem.Art(poster))</visible>
             <visible>
@@ -163,11 +158,13 @@
             <include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
           </control>
           <control type="label">
-            <right>33</right>
-            <top>1005</top>
+            <right>20</right>
+            <top>650</top>
             <width>280</width>
+            <font>font32_title</font>
+            <shadowcolor>text_shadow</shadowcolor>
+            <align>right</align>
             <label>$INFO[ListItem.Property(WatchedProgress)]% watched</label>
-            <font>font36_title</font>
             <shadowcolor>text_shadow</shadowcolor>
             <textcolor>unfocused_text</textcolor>
             <align>right</align>
@@ -175,12 +172,11 @@
             <include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
           </control>
           <control type="label">
-            <right>33</right>
-            <top>1005</top>
+            <right>20</right>
+            <top>650</top>
             <width>280</width>
-            <font>font36_title</font>
+            <font>font32_title</font>
             <shadowcolor>text_shadow</shadowcolor>
-            <textcolor>unfocused_text</textcolor>
             <align>right</align>
             <label>$INFO[ListItem.Property(UnwatchedEpisodes),, remaining]</label>
             <visible>$EXP[isTVShow] | $EXP[isSeason]</visible>
@@ -194,12 +190,12 @@
           </control>
           <control type="image">
             <animation condition="!Skin.HasSetting(Disable.PosterFlowArtworkDimming) + ![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]" reversible="true">
-              <effect type="slide" start="0,0" end="45,0" time="0" tween="cubic" easing="inout" />
+              <effect type="slide" start="0,0" end="30,0" time="0" tween="cubic" easing="inout" />
             </animation>
-            <left>33</left>
-            <bottom>27</bottom>
-            <width>45</width>
-            <height>45</height>
+            <left>28</left>
+            <top>650</top>
+            <width>35</width>
+            <height>35</height>
             <texture colordiffuse="unfocused_text">$VAR[WallWatchedIconVar]</texture>
             <align>left</align>
           </control>
@@ -238,32 +234,22 @@
 			<top>0</top>
 			<visible>Control.IsVisible(51)</visible>
       <control type="group">
-        <animation condition="!Skin.HasSetting(Disable.PosterFlowAutoInfo) + !Control.HasFocus(5199) + !$EXP[sidebar_visible] + Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
+        <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
           <effect type="fade" start="100" end="0" time="300" tween="cubic" reversible="true" />
         </animation>
         <animation type="Hidden">
           <effect type="fade" start="100" end="0" time="500" delay="500" tween="cubic" easing="out"/>
         </animation>
-        <!-- <control type="label">
-          <left>15</left>
-          <top>48</top>
-          <width>100%</width>
-          <label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoCrumbsVar]</label>
-          <font>font32</font>
-          <textcolor>$VAR[FocusColorTheme]</textcolor>
-          <shadowcolor>text_shadow</shadowcolor>
-          <align>center</align>
+        <control type="image">
+          <height>367</height>
+          <bottom>0</bottom>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/darkest.png</texture>
         </control>
-        <control type="label">
-          <left>15</left>
-          <top>913</top>
-          <width>100%</width>
-          <label>$INFO[Container.CurrentItem] [COLOR $VAR[FocusColorTheme]][B]/[/B][/COLOR] $INFO[Container.NumItems] total items</label>
-          <font>font32</font>
-          <textcolor>unfocused_text</textcolor>
-          <shadowcolor>text_shadow</shadowcolor>
-          <align>center</align>
-        </control> -->
+        <control type="image">
+          <height>3</height>
+          <bottom>367</bottom>
+          <texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
+        </control>
       </control>
 			<control type="wraplist" id="51">
         <!-- -171 -->
@@ -274,20 +260,27 @@
         <width>2230</width>
 				<onleft>51</onleft>
 				<orientation>horizontal</orientation>
-        <focusposition>3</focusposition>
+        <focusposition>5</focusposition>
 				<onup>9000</onup>
+        <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
+          <effect type="fade" start="100" end="0" time="300" tween="cubic" reversible="true" />
+        </animation>
 				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),0)">5199</ondown>
 				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + String.IsEmpty(Skin.String(TrailerPlaying))">Skin.SetString(TrailerPlaying, true)</ondown>
 				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + !Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))">$VAR[AutoplayTrailerSource]</ondown>
 				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</ondown>
 				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</ondown>
 				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">info</ondown>
-				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">5199</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">SetProperty(FanartVisible,true,Home)</ondown>
+        <ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">99</ondown>
 				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">info</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">SetProperty(FanartVisible,true,Home)</ondown>
+        <ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
 				<viewtype label="310981">icon</viewtype>
 				<preloaditems>2</preloaditems>
 				<pagecontrol>5199</pagecontrol>
-				<scrolltime tween="quadratic">1159</scrolltime>
+				<scrolltime tween="quadratic">500</scrolltime>
 				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
 				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
 				<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
@@ -317,14 +310,14 @@
 				</visible>
         <!-- 245 -->
         <!-- 120 -->
-				<itemlayout width="200" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
+				<itemlayout width="145" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
 						<left>0</left>
 						<!-- <top>120</top> -->
 						<include>PosterFlowLayout</include>
 					</control>
 				</itemlayout>
-				<focusedlayout width="720" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]" infoupdate="30">
+				<focusedlayout width="472" condition="Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]" infoupdate="30">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
 						<left>0</left>
@@ -333,7 +326,7 @@
 							<param name="focused" value="true" />
 						</include>
 						<include>SetDBTypeProperty</include>
-            <include>PosterFlowScrollTimer</include>
+            <include>ResetFanartVisible</include>
 					</control>
 				</focusedlayout>
 				<!-- <itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
@@ -355,44 +348,36 @@
 				</focusedlayout> -->
 			</control>
       <control type="image">
-        <visible>!Skin.HasSetting(Disable.PosterFlowAutoInfo) + !Control.HasFocus(5199) + !$EXP[sidebar_visible]</visible>
-        <animation type="Visible">
-          <effect type="fade" start="0" end="100" time="300" delay="500" tween="cubic" easing="out"/>
-        </animation>
-        <!-- <animation type="Conditional" condition="Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
+        <!-- <visible>false</visible> -->
+        <visible>String.IsEqual(Window(Home).Property(FanartVisible),true) + !Control.HasFocus(5199) + !$EXP[sidebar_visible]</visible>
+        <!-- <animation type="Visible">
           <effect type="fade" start="0" end="100" time="300" tween="cubic" easing="out"/>
-        </animation> -->
-        <animation type="Conditional" condition="!Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
-          <effect type="fade" start="100" end="0" time="0"/>
         </animation>
-				<!-- <include>FullScreenDimensions</include> -->
-				<left>0</left>
+        <animation type="Conditional" condition="String.IsEqual(Window(Home).Property(FanartVisible),true)">
+          <effect type="fade" start="0" end="100" time="300" tween="cubic" easing="out"/>
+        </animation>
+        <animation type="Conditional" condition="String.IsEmpty(Window(Home).Property(FanartVisible))">
+          <effect type="fade" start="100" end="0" time="0"/>
+        </animation> -->
+        <!-- <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
+          <effect type="fade" start="0" end="100" time="300" tween="cubic" reversible="true" />
+        </animation> -->
+        <animation effect="fade" time="300" tween="cubic">VisibleChange</animation>
+				<include>FullScreenDimensions</include>
+				<!-- <left>0</left>
 				<top>0</top>
 				<width>101%</width>
-				<height>101%</height>
+				<height>101%</height> -->
 				<fadetime>500</fadetime>
-				<texture colordiffuse="FF4C4C4C" background="true" fallback="$VAR[AltusCustomBackgroundImage]">$INFO[Container(51).ListItem.Art(fanart)]</texture>
+				<texture diffuse="overlays/posterflow-fanartdiffuse.png" background="true" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[MediaFanartVar]</texture>
 				<aspectratio>stretch</aspectratio>
 				<include>ArtworkAnimations</include>
 			</control>
       <control type="group">
-        <visible>!Skin.HasSetting(Disable.PosterFlowAutoInfo) + !Control.HasFocus(5199) + !$EXP[sidebar_visible]</visible>
-        <animation type="Visible">
-          <effect type="fade" start="0" end="100" time="300" delay="500" tween="cubic" easing="out"/>
-        </animation>
-        <!-- <animation type="Hidden">
-          <effect type="fade" start="100" end="0" time="0"/>
-        </animation> -->
-        <animation type="Conditional" condition="Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
-          <effect type="fade" start="0" end="100" time="300" tween="cubic" easing="out"/>
-        </animation>
-        <animation type="Conditional" condition="!Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))">
-          <effect type="fade" start="100" end="0" time="0"/>
-        </animation>
-        <top>160</top>
-        <left>475</left>
-        <right>475</right>
-        <bottom>160</bottom>
+        <top>710</top>
+        <left>77</left>
+        <right>77</right>
+        <!-- <bottom>160</bottom> -->
         <control type="grouplist">
           <left>0</left>
           <top>0</top>
@@ -400,83 +385,43 @@
           <orientation>vertical</orientation>
           <align>center</align>
           <itemgap>10</itemgap>
-          <control type="image">
-            <!-- <width>780</width> -->
-            <height>233</height>
-            <texture background="true">$VAR[ClearlogoVar]</texture>
-            <aspectratio align="center" aligny="bottom">keep</aspectratio>
-            <visible>[!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(Enable.AutoInfoClearlogo)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | $EXP[isEpisode] | Container.Content(addons)]</visible>
-          </control>
-          <control type="textbox">
-            <height>233</height>
-            <aligny>center</aligny>
-            <font>font52_title</font>
+          <control type="label">
             <align>center</align>
-            <textcolor>unfocused_text</textcolor>
-            <label>$VAR[SubstituteLabel]</label>
-            <autoscroll delay="2000" time="2000" repeat="3000">$PARAM[focused]</autoscroll>
-            <visible>[String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(Enable.AutoInfoClearlogo)]</visible>
-          </control>
-          <control type="textbox">
-            <top>0</top>
-            <left>0</left>
-            <right>0</right>
-            <height>10</height>
-            <align>center</align>
-            <aligny>center</aligny>
-            <label></label>
-            <!-- <visible>[String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(Enable.Clearlogo)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | $EXP[isEpisode]</visible> -->
-          </control>
-          <control type="textbox">
-            <top>0</top>
-            <left>0</left>
-            <right>0</right>
-            <height>auto</height>
-            <font>font_MainMenu</font>
-            <textcolor>unfocused_text</textcolor>
-            <align>center</align>
-            <aligny>center</aligny>
-            <label>[B]$VAR[DialogInfoTitle][/B]</label>
-            <visible>[String.IsEmpty(ListItem.Art(clearlogo)) | !Skin.HasSetting(Enable.Clearlogo)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | $EXP[isEpisode]</visible>
-          </control>
-          <!-- <control type="textbox">
-            <visible>!String.IsEmpty(ListItem.TagLine)</visible>
-            <height max="180">auto</height>
+            <height>60</height>
+            <label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
             <font>font32</font>
-            <textcolor>darkgrey</textcolor>
-            <align>center</align>
-            <aligny>center</aligny>
-            <label>$INFO[ListItem.TagLine]</label>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <shadowcolor>text_shadow</shadowcolor>
           </control>
-          <control type="label">
-            <visible>!String.IsEmpty(ListItem.Genre)</visible>
-            <height>50</height>
-            <font>Font30</font>
-            <textcolor>grey</textcolor>
+          <!-- <control type="label">
+            <left>15</left>
+            <top>913</top>
+            <width>100%</width>
+            <label>$INFO[Container.CurrentItem] [COLOR $VAR[FocusColorTheme]][B]/[/B][/COLOR] $INFO[Container.NumItems] total items</label>
+            <font>font32</font>
+            <textcolor>unfocused_text</textcolor>
+            <shadowcolor>text_shadow</shadowcolor>
             <align>center</align>
-            <aligny>center</aligny>
-            <label>[I]$INFO[ListItem.Genre][/I]</label>
           </control> -->
+          <include condition="!String.IsEmpty(Skin.String(valid_api_key))" content="HorizontalRatings">
+            <param name="align" value="center"/>
+          </include>
           <control type="label">
             <align>center</align>
-            <height>40</height>
-            <label>$VAR[WidgetInfoPanelTop]</label>
+            <height>35</height>
+            <label>$VAR[VideoInfoPanelTop]</label>
             <font>font27</font>
             <textcolor>$VAR[FocusColorTheme]</textcolor>
             <scroll>true</scroll>
             <scrollspeed>150</scrollspeed>
           </control>
-          <include condition="!String.IsEmpty(Skin.String(valid_api_key))" content="HorizontalRatings">
-            <param name="align" value="center"/>
-          </include>
           <control type="textbox">
-            <visible>!String.IsEmpty(ListItem.Plot)</visible>
-            <height max="380">auto</height>
+            <height max="130">auto</height>
             <font>font27</font>
             <textcolor>unfocused_text</textcolor>
             <align>center</align>
-            <label>$INFO[ListItem.Plot]</label>
-            <autoscroll delay="10000" time="4700" repeat="10000">$PARAM[focused]</autoscroll>
+            <label>$VAR[RI_Plot]</label>
+            <autoscroll delay="12000" time="5000" repeat="12000">$PARAM[focused]</autoscroll>
           </control>
         </control>
       </control>

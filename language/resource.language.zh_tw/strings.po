@@ -364,7 +364,7 @@ msgstr "圖示牆"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "橫列海報"
 
 #. viewtype name

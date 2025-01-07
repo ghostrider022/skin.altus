@@ -364,7 +364,7 @@ msgstr "Stěna ikon"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "Posun"
 
 #. viewtype name

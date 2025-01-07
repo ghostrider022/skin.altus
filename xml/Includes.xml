@@ -29,9 +29,11 @@
 	<include file="View_50_List.xml" />
 	<include file="View_51_PosterFlow.xml" />
 	<include file="View_52_IconWall.xml" />
+	<include file="View_53_Slide.xml" />
 	<include file="View_54_PosterInfo.xml" />
 	<include file="View_55_LandscapeInfo.xml" />
 	<include file="View_56_ListInfo.xml" />
+	<include file="View_57_Season.xml" />
 	<include file="View_503_NowPlaying.xml" />
 	<include file="View_500_Wall.xml" />
 	<include file="View_501_LandscapeWall.xml" />
@@ -104,9 +106,9 @@
 						<orientation>vertical</orientation>
 						<texturesliderbackground />
 						<animation effect="zoom" end="50,100" time="300" tween="sine" center="35,0" easing="inout" condition="![Container.Scrolling | Control.HasFocus(531)]">conditional</animation>
-						<visible>Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56)</visible>
+						<visible>Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(501)</visible>
 					</control>
-					<control type="scrollbar" id="532">
+					<!-- <control type="scrollbar" id="532">
 						<left>35</left>
 						<top>-542</top>
 						<bottom>155</bottom>
@@ -121,7 +123,7 @@
 						<texturesliderbackground />
 						<animation effect="zoom" end="50,100" time="300" tween="sine" center="35,0" easing="inout" condition="![Container.Scrolling | Control.HasFocus(532)]">conditional</animation>
 						<visible>Control.IsVisible(500) | Control.IsVisible(501)</visible>
-					</control>
+					</control> -->
 				</control>
 				<control type="group">
 					<left>0</left>
@@ -138,10 +140,12 @@
 						<onup>50</onup>
 						<texturesliderbar colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbar>
 						<texturesliderbarfocus colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texturesliderbarfocus>
-						<ondown condition="Control.IsVisible(51) | Control.IsVisible(54)">Container.SetViewMode(500)</ondown>
-						<ondown condition="Control.IsVisible(55)">Container.SetViewMode(501)</ondown>
+						<ondown condition="Control.IsVisible(51)">51</ondown>
+						<ondown condition="Control.IsVisible(53)">53</ondown>
+						<!-- <ondown condition="Control.IsVisible(51) | Control.IsVisible(54)">Container.SetViewMode(500)</ondown>
+						<ondown condition="Control.IsVisible(55)">Container.SetViewMode(501)</ondown> -->
 						<orientation>horizontal</orientation>
-						<visible>Control.IsVisible(51)</visible>
+						<visible>Control.IsVisible(51) | Control.IsVisible(53) | Control.IsVisible(57)</visible>
 						<animation effect="slide" end="0,6" time="300" tween="sine" easing="inout" condition="![Control.HasFocus(5199) | Container.Scrolling]">conditional</animation>
 						<animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
 						<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
@@ -666,6 +670,8 @@
 
 	<include name="AddonLauncherList">
     <param name="fallback_image">DefaultFolder.png</param>
+    <param name="sortby">label</param>
+    <param name="sortorder">ascending</param>
     <definition>
 			<control type="group" id="$PARAM[group_id]">
 				<left>-10</left>
@@ -733,7 +739,7 @@
               <param name="focused_id" value="$PARAM[group_id]50"/>
             </include>
 					</focusedlayout>
-					<content sortby="label" sortorder="ascending" target="$PARAM[container_target]">$PARAM[container_path]</content>
+					<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[container_target]">$PARAM[container_path]</content>
 				</control>
 				<include content="AddonsListScrollBar">
           <param name="scrollbar_panel_id" value="$PARAM[group_id]30"/>
@@ -1434,7 +1440,7 @@
 				<depth>DepthBars</depth>
 				<!-- <animation effect="fade" start="0" end="100" time="300" condition="!Container.Scrolling">Conditional</animation> -->
 				<animation effect="fade" start="0" end="100" time="300" condition="[Window.Previous(fullscreenvideo) | Window.Previous(startup)] + !Window.IsVisible(1109)">WindowOpen</animation>
-				<visible>String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(51) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56)] | Window.IsVisible(extendedprogressdialog)</visible>
+				<visible>String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(51) | Control.IsVisible(53) | Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(50) | Control.IsVisible(56)] | Window.IsVisible(extendedprogressdialog)</visible>
 				<control type="image">
 					<!-- <visible>Window.IsVisible(extendedprogressdialog)</visible> -->
 					<left>0</left>
@@ -1831,7 +1837,7 @@
 				<depth>DepthBars</depth>
 				<animation effect="fade" start="100" end="0" time="300" condition="Window.Next(visualisation) | Window.Next(screencalibration)">WindowClose</animation>
 				<animation effect="fade" start="0" end="100" time="300" condition="Window.Previous(fullscreenvideo) | Window.Previous(startup) | Window.Previous(visualisation)">WindowOpen</animation>
-				<visible>String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(54) | Control.IsVisible(56) | Window.IsVisible(1100) | [Control.IsVisible(55) + Container.Content(episodes)]]</visible>
+				<visible>String.IsEmpty(Window(Home).Property(SpotlightWidget)) + ![ControlGroup(15000).HasFocus | Control.IsVisible(50) | Control.IsVisible(51) | Control.IsVisible(53) | Control.IsVisible(56) | Window.IsVisible(1100) | [Control.IsVisible(55) + Container.Content(episodes)]]</visible>
 				<animation effect="fade" time="500" tween="cubic" easing="out">VisibleChange</animation>
 				<bottom>0</bottom>
 				<control type="image">
@@ -2323,10 +2329,10 @@
 		</control>
 	</include>
 
-	<include name="PosterFlowScrollTimer">
+	<include name="ResetFanartVisible">
 		<control type="button">
 			<visible>false</visible>
-			<onfocus>Skin.TimerStart(posterflow_scroll_timer)</onfocus>
+			<onfocus condition="String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</onfocus>
 		</control>
 	</include>
 

@@ -364,7 +364,7 @@ msgstr "Fundal de iconițe"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "Schimbare"
 
 #. viewtype name

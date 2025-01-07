@@ -364,7 +364,7 @@ msgstr "Mural de íconos"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "Mayús"
 
 #. viewtype name

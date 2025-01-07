@@ -374,7 +374,7 @@ msgstr "جدار و أيقونة"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "مناوبة"
 
 #. viewtype name

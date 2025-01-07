@@ -470,9 +470,9 @@ msgid "IconWall"
 msgstr ""
 
 #. viewtype name
-#: /xml/View_53_Shift.xml
+#: /xml/View_53_Slide.xml
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr ""
 
 #. viewtype name
@@ -497,6 +497,12 @@ msgstr ""
 #: /xml/View_501_LandscapeWall.xml
 msgctxt "#311023"
 msgid "LandscapeWall"
+msgstr ""
+
+#. viewtype name
+#: /xml/View_57_Season.xml
+msgctxt "#311024"
+msgid "Season"
 msgstr ""
 
 #: /xml/SmartPlaylistRule.xml

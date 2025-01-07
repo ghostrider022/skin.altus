@@ -373,7 +373,7 @@ msgstr "دیوار نقشک"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "جابه‌جایی"
 
 #. viewtype name

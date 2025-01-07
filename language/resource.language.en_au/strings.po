@@ -378,8 +378,8 @@ msgstr ""
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
-msgstr "Shift"
+msgid "Slide"
+msgstr "Slide"
 
 #. viewtype name
 msgctxt "#31101"
@@ -400,6 +400,11 @@ msgstr "Wall"
 msgctxt "#311023"
 msgid "LandscapeWall"
 msgstr "LandscapeWall"
+
+#. viewtype name
+msgctxt "#311024"
+msgid "Season"
+msgstr "Season"
 
 msgctxt "#31103"
 msgid "Enter text here..."

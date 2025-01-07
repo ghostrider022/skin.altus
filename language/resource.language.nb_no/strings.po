@@ -364,8 +364,8 @@ msgstr "IkonVegg"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
-msgstr "Shift"
+msgid "Slide"
+msgstr "Slide"
 
 #. viewtype name
 msgctxt "#31101"

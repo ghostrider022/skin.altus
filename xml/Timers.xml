@@ -14,14 +14,6 @@
         <stop>!Player.Paused | Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(1110_topbaroverlay),5)</stop>
     </timer> -->
     <timer>
-        <name>posterflow_scroll_timer</name>
-        <description>Timer to automatically display information on PosterFlow view after scrolling</description>
-        <start reset="true">Control.HasFocus($PARAM[list_id])</start>
-        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterflow_scroll_timer),Skin.Numeric(PosterFlowAutoInfoDelay))</stop>
-        <!-- <onstart>Notification(postertimer, Poster scroll timer started, 1000)</onstart>
-        <onstop>Notification(postertimer, Poster scroll timer stopped, 1000)</onstop> -->
-    </timer>
-    <timer>
         <name>autolock_view_timer</name>
         <start reset="true">Control.HasFocus($PARAM[list_id])</start>
         <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(autolock_view_timer),1)</stop>

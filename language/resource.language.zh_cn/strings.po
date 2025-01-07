@@ -364,7 +364,7 @@ msgstr "图标墙"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "平移"
 
 #. viewtype name

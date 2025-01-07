@@ -364,7 +364,7 @@ msgstr "קיר סמלילים"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "הזזה"
 
 #. viewtype name

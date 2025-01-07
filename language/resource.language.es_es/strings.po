@@ -364,7 +364,7 @@ msgstr "Muro de Iconos"
 
 #. viewtype name
 msgctxt "#31100"
-msgid "Shift"
+msgid "Slide"
 msgstr "Mays."
 
 #. viewtype name
