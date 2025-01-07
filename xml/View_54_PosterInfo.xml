@@ -197,7 +197,7 @@
 					<top>5</top>
 					<width>248</width>
 					<height>366</height>
-					<texture colordiffuse="$VAR[FocusColorTheme]">masks/poster.png</texture>
+					<texture border="20" colordiffuse="$VAR[FocusColorTheme]" infill="false">masks/poster.png</texture>
 					<!-- <bordersize>-5</bordersize> -->
 					<visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]]</visible>
 					<!-- <visible>!Container($PARAM[list_id]).IsUpdating</visible> -->
@@ -236,22 +236,23 @@
 					<width>234</width>
 					<height>47</height>
 					<texture colordiffuse="E6FFFFFF">overlays/overlayfade8.png</texture>
-					<visible>!String.IsEmpty(ListItem.Art(poster))</visible>
 					<visible>
-						[
-							[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | 
-							$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]
-						] + 
-						[
-							[[$EXP[isTVShow] | $EXP[isSeason]] +
-							Integer.IsGreater(ListItem.Property(WatchedEpisodes), 0) + 
-							!String.IsEqual(ListItem.Property(WatchedEpisodes), ListItem.Property(TotalEpisodes)) + 
-							!Integer.IsLess(ListItem.Property(UnWatchedEpisodes),0)
-						] | 
-							[[$EXP[isMovie] | $EXP[isEpisode]] + 
-							!Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress), 0)
-							]
-						]
+						[Control.IsVisible(53) + [
+								[[$EXP[isTVShow] | $EXP[isSeason]] + 
+								Integer.IsGreater(ListItem.Property(WatchedEpisodes), 0) + 
+								!String.IsEqual(ListItem.Property(WatchedEpisodes), ListItem.Property(TotalEpisodes)) + 
+								!Integer.IsLess(ListItem.Property(UnWatchedEpisodes),0)] | 
+								[[$EXP[isMovie] | $EXP[isEpisode]] + 
+								!Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress), 0)]
+						]] | 
+						[[[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | 
+						$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]] + 
+						[[[$EXP[isTVShow] | $EXP[isSeason]] +
+						Integer.IsGreater(ListItem.Property(WatchedEpisodes), 0) + 
+						!String.IsEqual(ListItem.Property(WatchedEpisodes), ListItem.Property(TotalEpisodes)) + 
+						!Integer.IsLess(ListItem.Property(UnWatchedEpisodes),0)] | 
+						[[$EXP[isMovie] | $EXP[isEpisode]] + 
+						!Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress), 0)]]]
 					</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
@@ -263,7 +264,7 @@
 					<font>font18_title</font>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>right</align>
-					<visible>[[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]] + [$EXP[isMovie] | $EXP[isEpisode]] + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
+					<visible>[Control.IsVisible(53) + [$EXP[isMovie] | $EXP[isEpisode]] + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)] | [[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]] + [$EXP[isMovie] | $EXP[isEpisode]] + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
 			</control>
@@ -278,7 +279,7 @@
 					<font>font18_title</font>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>right</align>
-					<visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]]</visible>
+					<visible>Control.IsVisible(53) | [$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(54) | Control.IsVisible(500)]]</visible>
 					<visible>
 						Integer.IsGreater(ListItem.Property(WatchedEpisodes),0) + 
 						!String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + 

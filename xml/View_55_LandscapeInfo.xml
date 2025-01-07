@@ -69,7 +69,7 @@
 					<top>5</top>
 					<width>594</width>
 					<height>339</height>
-					<texture colordiffuse="$VAR[FocusColorTheme]">masks/flixscape.png</texture>
+					<texture border="20" colordiffuse="$VAR[FocusColorTheme]" infill="false">masks/flixscape.png</texture>
 					<!-- <bordersize>-5</bordersize> -->
 					<visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(55) | Control.IsVisible(501)]]</visible>
 					<!-- <visible>!Container($PARAM[list_id]).IsUpdating</visible> -->
@@ -403,7 +403,6 @@
 						<include content="LandscapeLayout">
 							<param name="focused" value="true" />
 						</include>
-						<include>SetDBTypeProperty</include>
 					</control>
 				</focusedlayout>
 				<!-- <itemlayout width="623" height="373">

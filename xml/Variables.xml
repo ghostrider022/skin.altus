@@ -377,10 +377,6 @@
     <value condition="!String.IsEmpty(Skin.String(altus_category_widget_delay))">$INFO[Skin.String(altus_category_widget_delay)]</value>
     <value condition="String.IsEmpty(Skin.String(altus_category_widget_delay))">750</value> <!-- Default 750ms -->
 	</variable>
-	<variable name="SkinSettingPosterFlowAutoInfoDelay">
-		<value condition="!String.IsEmpty(Skin.String(PosterFlowAutoInfoDelay))">$INFO[Skin.String(PosterFlowAutoInfoDelay)]</value>
-		<value condition="String.IsEmpty(Skin.String(PosterFlowAutoInfoDelay))">2</value> <!-- Default value -->
-	</variable>
 	<variable name="VolumeIconVar">
 		<value condition="Player.Muted">dialogs/volume/mute.png</value>
 		<value condition="Integer.IsGreater(Player.Volume,66)">dialogs/volume/volume.png</value>

@@ -7,7 +7,6 @@
     <!-- <value condition="Window.IsVisible(Home) + [ControlGroup(15000).HasFocus | String.IsEqual(Container(9000).ListItem.Property(id),weather)]">$VAR[WeatherFanartVar]</value> -->
     <value condition="![Window.IsVisible(Home) | Window.IsVisible(1121)]">$VAR[MediaFanartVar]</value>
     <!-- <value condition="Control.IsVisible(50)">$VAR[ListArtworkVar]</value>
-    <value condition="Control.IsVisible(51)">$VAR[PosterFlowColorVar]</value>
     <value condition="Control.IsVisible(54) | Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(500) | Control.IsVisible(501)">$VAR[MediaFanartVar]</value> -->
 	</variable>
 

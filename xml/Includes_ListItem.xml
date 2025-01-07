@@ -3,7 +3,6 @@
 
   <include name="List">
     <param name="height">75</param>
-    <param name="home_layout_id">14</param>
     <definition>
       <focusedlayout height="$PARAM[height]" infoupdate="30">
         <control type="group">

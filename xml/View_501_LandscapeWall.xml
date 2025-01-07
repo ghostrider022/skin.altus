@@ -13,14 +13,14 @@
 			</animation> -->
 			<control type="panel" id="501">
 				<height>100%</height>
-				<onleft>532</onleft>
-				<onright>532</onright>
+				<onleft>531</onleft>
+				<onright>531</onright>
 				<onup condition="Integer.IsGreater(Container.NumPages,1)">501</onup>
 				<onup condition="!Integer.IsGreater(Container.NumPages,1)">9000</onup>
 				<ondown>501</ondown>
 				<viewtype label="311023">icon</viewtype>
 				<preloaditems>2</preloaditems>
-				<pagecontrol>532</pagecontrol>
+				<pagecontrol>531</pagecontrol>
 				<scrolltime tween="cubic" easing="out">500</scrolltime>
 				<!-- <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists) | Container.Content(albums) | Container.Content(musicvideos) | Container.Content(images) | Container.Content(videos) | Container.Content(games)</visible> -->
 				<visible>
@@ -65,6 +65,7 @@
 							<param name="focused" value="true" />
 						</include>
 						<!-- <include>WallTimer</include> -->
+						<include>SetDBTypeProperty</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="420" width="617" condition="Skin.HasSetting(Enable.WallScapeTitles) + [Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
@@ -84,6 +85,7 @@
 							<param name="focused" value="true" />
 						</include>
 						<!-- <include>WallTimer</include> -->
+						<include>SetDBTypeProperty</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="365" width="617" condition="Container.Content(episodes) | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
@@ -178,7 +180,7 @@
 					</control>
 				</focusedlayout> -->
 			</control>
-			<control type="image">
+			<!-- <control type="image">
 				<left>-50</left>
 				<bottom>0</bottom>
 				<width>110%</width>
@@ -186,7 +188,7 @@
 				<texture flipy="true">frame/InfoBar.png</texture>
 				<visible>!$EXP[sidebar_visible]</visible>
 				<animation effect="fade" start="0" end="100" time="500">VisibleChange</animation>
-			</control>
+			</control> -->
 		</control>
 	</include>
 </includes>
