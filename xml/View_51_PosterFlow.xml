@@ -73,10 +73,10 @@
 				<visible>!String.IsEmpty(ListItem.Art(fanart)) | !String.IsEmpty(ListItem.Art(poster))</visible>
         <control type="group">
           <animation type="UnFocus" condition="Container(51).OnNext" reversible="false">
-            <effect type="slide" start="200,0" end="0,0" time="500" tween="quadratic"/>
+            <effect type="slide" start="200,0" end="0,0" time="700" tween="quadratic"/>
           </animation>
           <animation type="UnFocus" condition="Container(51).OnPrevious" reversible="false">
-            <effect type="slide" start="-200,0" end="0,0" time="500" tween="quadratic"/>
+            <effect type="slide" start="-200,0" end="0,0" time="700" tween="quadratic"/>
           </animation>
           <control type="image">
             <!-- 720 -->
@@ -111,7 +111,7 @@
               <aspectratio align="center" aligny="center">keep</aspectratio>
               <visible>![$PARAM[focused] + Control.HasFocus($PARAM[list_id])] + String.IsEmpty(Skin.String(TrailerPlaying))</visible>
               <visible>![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] + String.IsEmpty(Skin.String(TrailerPlaying))</visible>
-              <visible>[!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(Enable.SpineClearlogo) + !Skin.HasSetting(Disable.PosterFlowArtworkDimming)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isEpisode] | Container.Content(addons)] + !$EXP[sidebar_visible]</visible>
+              <visible>[!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(Enable.SpineClearlogo) + !Skin.HasSetting(Disable.51Dim)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isEpisode] | Container.Content(addons)] + !$EXP[sidebar_visible]</visible>
             </control>
           </control>
           <control type="image">
@@ -120,7 +120,7 @@
             <width>170</width>
             <height>170</height>
             <texture>overlays/overlaybg-big-poster.png</texture>
-            <visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] | Skin.HasSetting(Disable.PosterFlowArtworkDimming)</visible>
+            <visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] | Skin.HasSetting(Disable.51Dim)</visible>
             <visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0) | !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
             <animation condition="
               [[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] + 
@@ -164,11 +164,11 @@
             <font>font32_title</font>
             <shadowcolor>text_shadow</shadowcolor>
             <align>right</align>
-            <label>$INFO[ListItem.Property(WatchedProgress)]% watched</label>
+            <label>$VAR[Item_WatchedProgress]</label>
             <shadowcolor>text_shadow</shadowcolor>
             <textcolor>unfocused_text</textcolor>
             <align>right</align>
-            <visible>[[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] + [$EXP[isMovie] | $EXP[isEpisode]] + !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
+            <visible>[[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] + [$EXP[isMovie] | $EXP[isEpisode]]</visible>
             <include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
           </control>
           <control type="label">
@@ -189,7 +189,7 @@
             <include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
           </control>
           <control type="image">
-            <animation condition="!Skin.HasSetting(Disable.PosterFlowArtworkDimming) + ![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]" reversible="true">
+            <animation condition="!Skin.HasSetting(Disable.51Dim) + ![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]]" reversible="true">
               <effect type="slide" start="0,0" end="30,0" time="0" tween="cubic" easing="inout" />
             </animation>
             <left>28</left>
@@ -265,25 +265,28 @@
         <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
           <effect type="fade" start="100" end="0" time="300" tween="cubic" reversible="true" />
         </animation>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),0)">5199</ondown>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + String.IsEmpty(Skin.String(TrailerPlaying))">Skin.SetString(TrailerPlaying, true)</ondown>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + !Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))">$VAR[AutoplayTrailerSource]</ondown>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</ondown>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</ondown>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">info</ondown>
-				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">SetProperty(FanartVisible,true,Home)</ondown>
-        <ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
-				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">99</ondown>
-				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">info</ondown>
-				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">SetProperty(FanartVisible,true,Home)</ondown>
-        <ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
-				<viewtype label="310981">icon</viewtype>
-				<preloaditems>2</preloaditems>
-				<pagecontrol>5199</pagecontrol>
-				<scrolltime tween="quadratic">500</scrolltime>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),0)">5199</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1)">Container.SetViewMode(500)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)">Container.SetViewMode(501)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3) + String.IsEmpty(Skin.String(TrailerPlaying))">Skin.SetString(TrailerPlaying, true)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3) + !Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))">$VAR[AutoplayTrailerSource]</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),4)">info</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),5)">SetProperty(FanartVisible,true,Home)</ondown>
+        <ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.MovieTV),5) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),0)">5199</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),1)">Container.SetViewMode(501)</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),2)">info</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),3)">SetProperty(FanartVisible,true,Home)</ondown>
+        <ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(51OnDownSetting.Other),3) + String.IsEqual(Window(Home).Property(FanartVisible),true)">ClearProperty(FanartVisible,Home)</ondown>
 				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
 				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
 				<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
+				<viewtype label="310981">icon</viewtype>
+				<preloaditems>2</preloaditems>
+				<pagecontrol>5199</pagecontrol>
+				<scrolltime tween="cubic" easing="out">700</scrolltime>
 				<!-- <visible>Container.Content(artists) | Container.Content(albums) | Container.Content(sets) | Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | Container.Content(musicvideos) | Container.Content(images) | Container.Content(videos) | Container.Content(games)</visible> -->
 				<visible>
 					[Container.Content(artists) + [String.IsEqual(Skin.String(Skin.ForcedView.artists),$LOCALIZE[310981]) | String.IsEmpty(Skin.String(Skin.ForcedView.artists))]] | 
@@ -327,6 +330,7 @@
 						</include>
 						<include>SetDBTypeProperty</include>
             <include>ResetFanartVisible</include>
+            <include>ReturntoView</include>
 					</control>
 				</focusedlayout>
 				<!-- <itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
@@ -348,26 +352,9 @@
 				</focusedlayout> -->
 			</control>
       <control type="image">
-        <!-- <visible>false</visible> -->
         <visible>String.IsEqual(Window(Home).Property(FanartVisible),true) + !Control.HasFocus(5199) + !$EXP[sidebar_visible]</visible>
-        <!-- <animation type="Visible">
-          <effect type="fade" start="0" end="100" time="300" tween="cubic" easing="out"/>
-        </animation>
-        <animation type="Conditional" condition="String.IsEqual(Window(Home).Property(FanartVisible),true)">
-          <effect type="fade" start="0" end="100" time="300" tween="cubic" easing="out"/>
-        </animation>
-        <animation type="Conditional" condition="String.IsEmpty(Window(Home).Property(FanartVisible))">
-          <effect type="fade" start="100" end="0" time="0"/>
-        </animation> -->
-        <!-- <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
-          <effect type="fade" start="0" end="100" time="300" tween="cubic" reversible="true" />
-        </animation> -->
         <animation effect="fade" time="300" tween="cubic">VisibleChange</animation>
 				<include>FullScreenDimensions</include>
-				<!-- <left>0</left>
-				<top>0</top>
-				<width>101%</width>
-				<height>101%</height> -->
 				<fadetime>500</fadetime>
 				<texture diffuse="overlays/posterflow-fanartdiffuse.png" background="true" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[MediaFanartVar]</texture>
 				<aspectratio>stretch</aspectratio>
@@ -409,6 +396,7 @@
           <control type="label">
             <align>center</align>
             <height>35</height>
+            <!-- <label>$INFO[Window(Home).Property(Returnto51)]</label> -->
             <label>$VAR[VideoInfoPanelTop]</label>
             <font>font27</font>
             <textcolor>$VAR[FocusColorTheme]</textcolor>
@@ -422,6 +410,15 @@
             <align>center</align>
             <label>$VAR[RI_Plot]</label>
             <autoscroll delay="12000" time="5000" repeat="12000">$PARAM[focused]</autoscroll>
+            <visible>Control.HasFocus(51)</visible>
+          </control>
+          <control type="textbox">
+            <height max="130">auto</height>
+            <font>font27</font>
+            <textcolor>unfocused_text</textcolor>
+            <align>center</align>
+            <label>$VAR[RI_Plot]</label>
+            <visible>$EXP[sidebar_visible] | Control.HasFocus(5199)</visible>
           </control>
         </control>
       </control>

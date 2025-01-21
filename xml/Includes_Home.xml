@@ -229,8 +229,8 @@
 						<width>300</width>
 						<height>140</height>
 						<aspectratio align="left" aligny="center">keep</aspectratio>
-						<texture colordiffuse="$VAR[FocusColorTheme]">$INFO[$PARAM[infolabel_prefix]ListItem.Studio,resource://resource.images.studios.white/,.png]</texture>
-						<visible>Skin.HasSetting(Enable.WidgetStudioLogos) + !String.IsEmpty($PARAM[infolabel_prefix]ListItem.Studio)</visible>
+						<texture colordiffuse="$VAR[StudioColorDiffuseVar]">$VAR[StudioLogoPathVar]</texture>
+						<visible>Skin.HasSetting(Enable.WidgetStudioLogos) + !String.IsEmpty(ListItem.Studio)</visible>
 					</control>
 					<animation effect="fade" time="300">Visible</animation>
 				</control>
@@ -421,6 +421,7 @@
 						<include content="SpotlightLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="1318" infoupdate="30">
@@ -433,6 +434,9 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 						<include>SetDBTypeProperty</include>
+						<include content="AutoScrollSpotlightTimer">
+							<param name="list_id" value="$PARAM[list_id]" />
+						</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -510,6 +514,7 @@
 						<include content="SpotlightLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="1318" infoupdate="30">
@@ -522,6 +527,9 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 						<include>SetDBTypeProperty</include>
+						<include content="AutoScrollSpotlightTimer">
+							<param name="list_id" value="$PARAM[list_id]" />
+						</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -591,6 +599,7 @@
 						<include content="PosterLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="263" infoupdate="30">
@@ -665,6 +674,7 @@
 						<include content="PosterLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="263" infoupdate="30">
@@ -736,6 +746,7 @@
 						<include content="SmallPosterLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="230.5" height="393" infoupdate="30">
@@ -818,6 +829,7 @@
 						<include content="SmallPosterLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="230.5" height="393" infoupdate="30">
@@ -897,6 +909,7 @@
 						<include content="FeaturePosterLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="455" infoupdate="30">
@@ -981,6 +994,7 @@
 						<include content="FeaturePosterLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="455" infoupdate="30">
@@ -1065,6 +1079,7 @@
 						<include content="LandscapeLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="613" infoupdate="30">
@@ -1140,6 +1155,7 @@
 						<include content="LandscapeLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="613" infoupdate="30">
@@ -1213,6 +1229,7 @@
 						<include content="SmallLandscapeLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="459.5" height="393" infoupdate="30">
@@ -1296,6 +1313,7 @@
 						<include content="SmallLandscapeLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="459.5" height="393" infoupdate="30">
@@ -1381,6 +1399,7 @@
 							<param name="sub_label" value="$PARAM[sub_label]" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="307.3" height="393" infoupdate="30">
@@ -1554,6 +1573,7 @@
 							<param name="sub_label" value="$PARAM[sub_label]" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="262" height="393" infoupdate="30">
@@ -1692,6 +1712,7 @@
 						<include content="WidgetListCategoryStackedLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>altus.PreloadFanart</include>
 					</control>
 				</itemlayout>
 				<focusedlayout width="260" height="393" infoupdate="30">
@@ -2306,9 +2327,12 @@
 		<onload condition="String.IsEmpty(Skin.String(onLeftSetting))">Skin.SetString(onLeftSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(altus_category_widget_delay))">Skin.SetString(altus_category_widget_delay,750)</onload>
 		<onload condition="String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">Skin.SetString(altus_widget_autoinfo_delay,750)</onload>
+		<onload condition="String.IsEmpty(Skin.String(altus_spotlight_delay))">Skin.SetString(altus_spotlight_delay,10)</onload>
+		<onload condition="String.IsEmpty(Skin.String(altus_revert_from_wall_delay))">Skin.SetString(altus_revert_from_wall_delay,2)</onload>
 		<onload condition="String.IsEmpty(Skin.String(TrailerSource))">Skin.SetString(TrailerSource,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(current_search_provider))">Skin.SetString(current_search_provider,1)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OSDAudioButtonSetting))">Skin.SetString(OSDAudioButtonSetting,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(altus_digital_release_window))">Skin.SetString(altus_digital_release_window,3)</onload>
 
 		<!-- Initialize rating slots -->
 		<onload condition="String.IsEmpty(Skin.String(RatingSlot1))">Skin.SetString(RatingSlot1,none)</onload>
@@ -2324,11 +2348,20 @@
 		<onload condition="String.IsEmpty(Skin.String(AutoInfoFadeSetting))">Skin.SetString(AutoInfoFadeSetting,2)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OSDSubtitleButtonSetting))">Skin.SetString(OSDSubtitleButtonSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(MenuCaseSetting))">Skin.SetString(MenuCaseSetting,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(PosterFlowOnDownSetting.MovieTV))">Skin.SetString(PosterFlowOnDownSetting.MovieTV,0)</onload>
-		<onload condition="String.IsEmpty(Skin.String(PosterFlowOnDownSetting.Other))">Skin.SetString(PosterFlowOnDownSetting.Other,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(51OnDownSetting.MovieTV))">Skin.SetString(51OnDownSetting.MovieTV,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(51OnDownSetting.Other))">Skin.SetString(51OnDownSetting.Other,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(53OnDownSetting.MovieTV))">Skin.SetString(53OnDownSetting.MovieTV,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(53OnDownSetting.Other))">Skin.SetString(53OnDownSetting.Other,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(StudioLogoSetting))">Skin.SetString(StudioLogoSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OnRightSetting.MovieTV))">Skin.SetString(OnRightSetting.MovieTV,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OnRightSetting.Other))">Skin.SetString(OnRightSetting.Other,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OnRightSetting))">Skin.SetString(OnRightSetting,0)</onload>
+
+		<onload condition="String.IsEmpty(Skin.String(ArtworkSize54Setting))">Skin.SetString(ArtworkSize54Setting,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(ArtworkSize55Setting))">Skin.SetString(ArtworkSize55Setting,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(ArtworkSize500Setting))">Skin.SetString(ArtworkSize500Setting,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(ArtworkSize501Setting))">Skin.SetString(ArtworkSize501Setting,0)</onload>
+
 		<onload condition="String.IsEmpty(Skin.String(FocusColorThemeSetting))">Skin.SetString(FocusColorThemeSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(HomeItemArtworkChoice))">Skin.SetString(HomeItemArtworkChoice,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(ListArtworkChoice.movies))">Skin.SetString(ListArtworkChoice.movies,0)</onload>

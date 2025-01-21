@@ -45,7 +45,7 @@
       <control type="fadelabel" id="401">
         <top>6.5</top>
         <left>97</left>
-        <right>0</right>
+        <right>40</right>
         <height>34</height>
         <textcolor>osd_light</textcolor>
         <font>Font30</font>
@@ -56,7 +56,7 @@
       <control type="fadelabel" id="402">
         <bottom>14.5</bottom>
         <left>97</left>
-        <right>0</right>
+        <right>40</right>
         <height>34</height>
         <textcolor>darkgrey</textcolor>
         <font>Font24</font>

@@ -10,10 +10,11 @@
 				<include>MediaMenuAnimations</include>
 				<control type="label">
 					<left>50</left>
-					<top>270</top>
-					<width>1815</width>
+					<right>50</right>
+					<top>23</top>
+					<!-- <width>1815</width> -->
 					<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
-					<font>font32</font>
+					<font>font37</font>
 					<textcolor>$VAR[FocusColorTheme]</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>center</align>
@@ -22,15 +23,28 @@
 				</control>
 				<control type="label">
 					<left>50</left>
-					<top>270</top>
-					<width>1815</width>
+					<right>50</right>
+					<top>23</top>
+					<!-- <width>1815</width> -->
 					<label>$VAR[ClockCrumbs][COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]$VAR[VideoFlixCrumbsVar]</label>
-					<font>font32</font>
+					<font>font37</font>
 					<textcolor>$VAR[FocusColorTheme]</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>center</align>
 					<visible>!$EXP[isPlugin]</visible>
 					<!-- <visible>!$EXP[isPlugin] + !Window.IsVisible(busydialog)</visible> -->
+				</control>
+				<control type="label">
+					<left>50</left>
+					<right>50</right>
+					<top>23</top>
+					<!-- <width>1815</width> -->
+					<label>$LOCALIZE[1036]</label>
+					<font>font37</font>
+					<textcolor>unfocused_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>center</align>
+					<visible>Container.Content(favourites)</visible>
 				</control>
 				<!-- <control type="image">
 					<include>NetflixScreenDimensions</include>
@@ -42,8 +56,8 @@
 				</control> -->
 				<control type="panel" id="56">
 					<left>50</left>
-					<top>330</top>			
-					<bottom>60</bottom>
+					<top>103.5</top>			
+					<bottom>217.5</bottom>
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<pagecontrol>531</pagecontrol>
 					<onright>56</onright>
@@ -174,6 +188,7 @@
 						</control>
 					</focusedlayout>
 					<itemlayout height="list_item_height" width="608" condition="Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(movies) | Container.Content(musicvideos) | Container.Content(videos) | Container.Content(games) | Window.IsActive(videoplaylist) | Window.IsActive(musicplaylist)">
+						<include>altus.PreloadFanart</include>
 						<control type="image">
 							<left>25</left>
 							<top>24</top>
@@ -368,6 +383,15 @@
 					<include condition="Window.IsActive(music)">SongsListLayout</include>
 					<include>AddonsListLayout</include>
 				</control>
+				<control type="image">
+					<bottom>0</bottom>
+					<left>-530</left>
+					<width>2450</width>
+					<height>350</height>
+					<texture colordiffuse="black">overlays/bottombarinfo.png</texture>
+					<visible>$EXP[isContent]</visible>
+					<animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
+				</control>
 			</control>
 		</definition>
 	</include>
@@ -456,6 +480,7 @@
 			</control>
 		</focusedlayout>
 		<itemlayout height="list_item_height" width="913" condition="Container.Content(addons)">
+			<include>altus.PreloadFanart</include>
 			<control type="image">
 				<left>20</left>
 				<top>18</top>

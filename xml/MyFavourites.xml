@@ -9,6 +9,7 @@
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">
+			<visible>String.IsEmpty(Window(home).Property(ViewTransitioning))</visible>
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<include>View_50_List</include>
 			<include>View_52_IconWall</include>
@@ -25,9 +26,9 @@
 			<include content="TopBar">
 				<param name="breadcrumbs_label" value="[COLOR unfocused_text]$LOCALIZE[1036][/COLOR]" />
 			</include>
-			<include content="BottomBar">
+			<!-- <include content="BottomBar">
 				<param name="info_visible" value="true" />
-			</include>
+			</include> -->
 			<include>CommonScrollbars</include>
 			<include>MediaMenuMouseOverlay</include>
 			<control type="group">

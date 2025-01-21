@@ -173,7 +173,8 @@
 		<!-- Other windows -->
 		<value condition="$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
 		<value condition="$EXP[isEpisode] + Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR]</value>
-		<value condition="![Skin.HasSetting(Enable.PosterTitles) | Skin.HasSetting(Enable.LandscapeTitles)] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<value condition="[[Control.IsVisible(54) + !Skin.HasSetting(Enable.54Titles)] | [Control.IsVisible(55) + !Skin.HasSetting(Enable.55Titles)] | ![Control.IsVisible(54) | Control.IsVisible(55)]] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<!-- <value condition="![Control.IsVisible(54) | Control.IsVisible(55)] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value> -->
 		<!-- <value condition="$EXP[isContent]"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value> -->
 	</variable>
 
@@ -199,6 +200,12 @@
 		<value>$VAR[FlixScapeVar]</value>
 	</variable>
 
+	<variable name="ViewSelectorTexture">
+		<value condition="!String.IsEmpty(Container.Content)">previews/$INFO[Container.Content]/$INFO[Container(3000).ListItem.Label]_$INFO[Container.Content]_preview.jpg</value>
+		<value>previews/menus/$INFO[Container(3000).ListItem.Label]_menu_preview.jpg</value>
+	</variable>
+	
+
 	<variable name="HomescreenFlixCrumbs">
     <value condition="Window.IsActive(Home) + !Control.HasFocus(14100)">[COLOR unfocused_text]$INFO[Container(9000).ListItem.Label][/COLOR] » </value>
 		<value condition="Window.IsActive(Home) + Control.HasFocus(14100)">[COLOR unfocused_text]$INFO[Container(9000).ListItem.Label][/COLOR]</value>
@@ -215,6 +222,7 @@
 	</variable>
 
 	<variable name="ListLandscapeHeaderVar">
+    <value condition="Container.Content(favourites)">[COLOR unfocused_text]$LOCALIZE[1036][/COLOR]</value>
     <value condition="$EXP[isPlugin]">$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]</value>
     <value condition="!$EXP[isPlugin]">$VAR[ClockCrumbs][COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]</value>
 	</variable>
@@ -307,7 +315,7 @@
 	</variable>
 
 	<variable name="PosterFlowArtworkDiffuse">
-    <value condition="Skin.HasSetting(Disable.PosterFlowArtworkDimming)">FFE9E9E9</value>
+    <value condition="Skin.HasSetting(Disable.51Dim)">FFE9E9E9</value>
     <value condition="Skin.HasSetting(Enable.SpineClearlogo)">FF4C4C4C</value>
     <value>FF777777</value>
 	</variable>
@@ -317,6 +325,11 @@
 		<value condition="!Skin.HasSetting(Enable.Fanart)">FF2E2E2E</value> -->
 		<value>FF2E2E2E</value>
 		<!-- <value>FF252525</value> -->
+	</variable>
+
+	<variable name="RevertBackLabel">
+		<value condition="String.IsEqual(Skin.String(altus_revert_from_wall_delay),1)">second</value>
+		<value>seconds</value>
 	</variable>
 
 	<variable name="EditMainMenusVar">
@@ -415,33 +428,91 @@
     <value condition="String.IsEqual(Skin.String(OSDSubtitleButtonSetting),1)">Skin.SetString(OSDSubtitleButtonSetting,0)</value>
 	</variable>
 
-	<variable name="PosterFlowOnDownSettingVar.MovieTV">
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),0)">Scrollbar</value>
-		<!-- <value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1)">Wall</value> -->
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1)">Play trailer</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">Information</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">Show fanart</value>
+	<!-- POSTERFLOW TOGGLES -->
+	<variable name="51OnDownSettingVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1)">PosterWall</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)">LandscapeWall</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),4)">Information</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),5)">Show fanart</value>
 	</variable>
 
-	<variable name="PosterFlowOnDownSettingVar.Other">
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">Scrollbar</value>
-		<!-- <value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Wall</value> -->
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Information</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">Show fanart</value>
+	<variable name="51OnDownSettingVar.Other">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),1)">LandscapeWall</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),2)">Information</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),3)">Show fanart</value>
 	</variable>
 
-	<variable name="PosterFlowOnDownToggleVar.MovieTV">
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),0)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,1)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),1)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,2)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),2)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,3)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.MovieTV),3)">Skin.SetString(PosterFlowOnDownSetting.MovieTV,0)</value>
+	<variable name="51OnDownToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),0)">Skin.SetString(51OnDownSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1)">Skin.SetString(51OnDownSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)">Skin.SetString(51OnDownSetting.MovieTV,3)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),3)">Skin.SetString(51OnDownSetting.MovieTV,4)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),4)">Skin.SetString(51OnDownSetting.MovieTV,5)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.MovieTV),5)">Skin.SetString(51OnDownSetting.MovieTV,0)</value>
 	</variable>
 
-	<variable name="PosterFlowOnDownToggleVar.Other">
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),0)">Skin.SetString(PosterFlowOnDownSetting.Other,1)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),1)">Skin.SetString(PosterFlowOnDownSetting.Other,2)</value>
-		<value condition="String.IsEqual(Skin.String(PosterFlowOnDownSetting.Other),2)">Skin.SetString(PosterFlowOnDownSetting.Other,0)</value>
+	<variable name="51OnDownToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),0)">Skin.SetString(51OnDownSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),1)">Skin.SetString(51OnDownSetting.Other,2)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),2)">Skin.SetString(51OnDownSetting.Other,3)</value>
+		<value condition="String.IsEqual(Skin.String(51OnDownSetting.Other),3)">Skin.SetString(51OnDownSetting.Other,0)</value>
 	</variable>
+
+	<!-- SLIDE TOGGLES -->
+	<variable name="53OnDownSettingVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),1)">PosterWall</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),2)">LandscapeWall</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),3)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),4)">Information</value>
+	</variable>
+
+	<variable name="53OnDownSettingVar.Other">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),1)">LandscapeWall</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),2)">Information</value>
+	</variable>
+
+	<variable name="53OnDownToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),0)">Skin.SetString(53OnDownSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),1)">Skin.SetString(53OnDownSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),2)">Skin.SetString(53OnDownSetting.MovieTV,3)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),3)">Skin.SetString(53OnDownSetting.MovieTV,4)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.MovieTV),4)">Skin.SetString(53OnDownSetting.MovieTV,0)</value>
+	</variable>
+
+	<variable name="53OnDownToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),0)">Skin.SetString(53OnDownSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),1)">Skin.SetString(53OnDownSetting.Other,2)</value>
+		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),2)">Skin.SetString(53OnDownSetting.Other,0)</value>
+	</variable>
+
+	<variable name="StudioLogoSettingVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),0)">Monochrome</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),1)">Adaptive</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),2)">Color</value>
+	</variable>
+
+	<variable name="StudioLogoToggleVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),0)">Skin.SetString(StudioLogoSetting,1)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),1)">Skin.SetString(StudioLogoSetting,2)</value>
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),2)">Skin.SetString(StudioLogoSetting,0)</value>
+	</variable>
+
+	<variable name="StudioLogoPathVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),2)">$INFO[ListItem.Studio,resource://resource.images.studios.coloured/,.png]</value>
+		<value>$INFO[ListItem.Studio,resource://resource.images.studios.white/,.png]</value>
+	</variable>
+
+	<variable name="StudioColorDiffuseVar">
+		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),1)">$VAR[FocusColorTheme]</value>
+		<value></value>
+	</variable>
+
+
 
 	<variable name="OnRightSettingVar.MovieTV">
 		<value condition="String.IsEmpty(Skin.String(OnRightSetting.MovieTV)) | String.IsEqual(Skin.String(OnRightSetting.MovieTV),0)">Scrollbar</value>
@@ -502,6 +573,52 @@
 		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),1)">[UPPERCASE]Recent searches[/UPPERCASE]</value>
 		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),2)">[LOWERCASE]Recent searches[/LOWERCASE]</value>
 		<value condition="String.IsEqual(Skin.String(MenuCaseSetting),3)">[CAPITALIZE]Recent searches[/CAPITALIZE]</value>
+	</variable>
+
+	<variable name="ArtworkSize54ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),0)">Skin.SetString(ArtworkSize54Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1)">Skin.SetString(ArtworkSize54Setting,0)</value>
+	</variable>
+
+	<variable name="ArtworkSize54SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize54Setting),1)">Large</value>
+	</variable>
+
+	<variable name="ArtworkSize55ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),0)">Skin.SetString(ArtworkSize55Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),1)">Skin.SetString(ArtworkSize55Setting,0)</value>
+	</variable>
+
+	<variable name="ArtworkSize55SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize55Setting),1)">Large</value>
+	</variable>
+
+	<variable name="ArtworkSize500ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),0)">Skin.SetString(ArtworkSize500Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),1)">Skin.SetString(ArtworkSize500Setting,0)</value>
+	</variable>
+
+	<variable name="MainFanartDiffuse">
+		<value condition="!Window.IsVisible(videos) | [Control.IsVisible(53) | Control.IsVisible(56)]">66FFFFFF</value>
+		<!-- <value condition="">66FFFFFF</value> -->
+		<value>33FFFFFF</value>
+	</variable>
+
+	<variable name="ArtworkSize500SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize500Setting),1)">Large</value>
+	</variable>
+
+	<variable name="ArtworkSize501ToggleVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),0)">Skin.SetString(ArtworkSize501Setting,1)</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),1)">Skin.SetString(ArtworkSize501Setting,0)</value>
+	</variable>
+
+	<variable name="ArtworkSize501SettingVar">
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),0)">Default</value>
+		<value condition="String.IsEqual(Skin.String(ArtworkSize501Setting),1)">Large</value>
 	</variable>
 
 	<!-- MAIN MENU SUBMENU BUTTONS -->

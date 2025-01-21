@@ -37,7 +37,7 @@
 
 	<variable name="MediaFanartVar">
     <value condition="Window.IsActive(musicinformation) | Window.IsActive(movieinformation) | Window.IsActive(addoninformation) | Window.IsActive(pvrguideinfo) | Window.IsActive(pvrrecordinginfo) | Window.IsActive(pictureinfo)">$INFO[Window(home).Property(infobackground)]</value>
-		<value condition="!String.IsEmpty(ListItem.Thumb) + $EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(501)]">$INFO[ListItem.Thumb]</value>
+		<value condition="!String.IsEmpty(ListItem.Thumb) + $EXP[isEpisode] + ![Control.IsVisible(51) | Control.IsVisible(53) | Control.IsVisible(55) | Control.IsVisible(501)] + ![Control.IsVisible(50) + [Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)]]">$INFO[ListItem.Thumb]</value>
 		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
 		<value condition="!String.IsEmpty(Container.Art(tvshow.fanart))">$INFO[Container.Art(tvshow.fanart)]</value>
 		<value condition="!String.IsEmpty(Container.Art(artist.fanart))">$INFO[Container.Art(artist.fanart)]</value>
@@ -68,6 +68,7 @@
 	</variable>
 
 	<variable name="FlixPosterVar">
+    <value condition="$EXP[isSeason] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
     <value condition="!$EXP[isEpisode] + !String.IsEmpty(ListItem.Art(poster))">$INFO[ListItem.Art(poster)]</value>
     <value condition="$EXP[isEpisode] + !String.IsEmpty(ListItem.Art(season.poster))">$INFO[ListItem.Art(season.poster)]</value>
     <value condition="!String.IsEmpty(ListItem.Art(thumb))">$INFO[ListItem.Art(thumb)]</value>
@@ -140,6 +141,7 @@
 
   <variable name="SmallLandscapeVar">
     <value condition="$EXP[isEpisode] + !String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Thumb]</value>
+    <value condition="$EXP[isSeason] + !String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Thumb]</value>
     <value condition="!$EXP[isEpisode] + !String.IsEmpty(ListItem.Art(landscape))">$INFO[ListItem.Art(landscape)]</value>
     <value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + $EXP[isEpisode] + !String.IsEmpty(ListItem.Art(Thumb))">$INFO[ListItem.Thumb]</value>
     <!-- Fallbacks/Universes (mixed content) -->
@@ -217,5 +219,112 @@
     <value condition="!String.IsEmpty(ListItem.Label) + String.IsEmpty(ListItem.StartTime) + String.IsEmpty(ListItem.EndTime)">[COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value>
     <value>[COLOR unfocused_text]No information[/COLOR]</value>
   </variable>	
+
+  <include name="altus.HiddenArtwork">
+		<left>-3000</left>
+		<top>-3000</top>
+		<width>1</width>
+		<height>1</height>
+	</include>
+
+	<include name="altus.PreloadPoster">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture background="true">$VAR[FlixPosterVar]</texture>
+		</control>
+	</include>
+
+	<include name="altus.PreloadPoster_ListSetting1">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture background="true">$VAR[FlixPosterVar]</texture>
+      <visible>!Player.HasMedia + 
+      [
+        [Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),1)] | 
+        [Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),1)] | 
+        [Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),1)] | 
+        [Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)]
+      ] + 
+      [!Container.Content(addons) | String.StartsWith(Container.PluginName,plugin.video.otaku)]</visible>
+		</control>
+	</include>
+
+	<include name="altus.PreloadLandscape_ListSetting0">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture background="true">$VAR[ListLandscapeVar]</texture>
+      <visible>
+      [
+          [Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0)] | 
+          [Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),0)] | 
+          [Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),0)] | 
+          [Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),0)] | 
+          [Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),0)] | 
+          [Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),0)] |
+          [Container.Content(addons) + String.StartsWith(Container.PluginName,plugin.video.otaku) + String.IsEqual(Skin.String(ListArtworkChoice.addons),0)]
+      ]
+      </visible>
+		</control>
+	</include>
+
+	<include name="altus.PreloadFanart">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture background="true">$VAR[ImageTextureSourceVar]</texture>
+		</control>
+	</include>
+
+	<include name="altus.PreloadClearlogo">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture background="true">$VAR[ClearlogoVar]</texture>
+		</control>
+	</include>
+
+	<include name="altus.PreloadClearlogo_ListSetting0">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture>$VAR[ClearlogoVar]</texture>
+      <visible>Skin.HasSetting(Enable.LandscapeClearlogo)</visible>
+		</control>
+	</include>
+
+	<include name="altus.PreloadClearlogo_ListSetting2">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture>$VAR[ClearlogoVar]</texture>
+      <visible>Skin.HasSetting(Enable.FanartClearlogo)</visible>
+		</control>
+	</include>
+
+	<include name="altus.PreloadIcon">
+		<control type="image">
+			<include>altus.HiddenArtwork</include>
+			<texture>$INFO[ListItem.Icon]</texture>
+      <visible>!Player.HasMedia + 
+      Container.Content(addons) + 
+      !String.StartsWith(Container.PluginName,plugin.video.otaku) + 
+      !String.IsEqual(Skin.String(ListArtworkChoice.addons),2)</visible>
+		</control>
+	</include>
+
+	<include name="altus.Preload50_ListSetting0or1">
+		<include>altus.PreloadFanart</include>
+		<include>altus.PreloadLandscape_ListSetting0</include>
+		<include>altus.PreloadClearlogo_ListSetting0</include>
+    <include>altus.PreloadPoster_ListSetting1</include>
+	</include>
+
+	<include name="altus.Preload50_ListSetting2">
+		<include>altus.PreloadFanart</include>
+		<include>altus.PreloadPoster</include>
+		<include>altus.PreloadClearlogo_ListSetting2</include>
+	</include>
+
+	<include name="altus.Preload50_Addons">
+		<include>altus.PreloadFanart</include>
+		<include>altus.PreloadIcon</include>
+	</include>
+
 
 </includes>

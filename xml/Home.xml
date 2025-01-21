@@ -25,7 +25,7 @@
 			<aspectratio>scale</aspectratio>
 			<fadetime>500</fadetime>
 			<include>ArtworkAnimations</include>
-			<texture background="true" colordiffuse="FFE0E0E8" diffuse="overlays/spotlightdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[HomeFanartVar]</texture>
+			<texture background="true" colordiffuse="B3FFFFFF" diffuse="overlays/spotlightdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[HomeFanartVar]</texture>
 			<visible>[![Player.HasVideo | [Player.HasAudio + Visualisation.Enabled + !String.IsEmpty(Visualisation.Name)]] | !String.IsEmpty(Window(Videos).Property(PlayingBackgroundMedia))] + !String.IsEmpty(Window(Home).Property(SpotlightWidget)) + !Skin.HasSetting(Enable.AlternateSpotlight)</visible>
 		</control>
 		<control type="multiimage" id="100000">

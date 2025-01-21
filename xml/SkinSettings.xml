@@ -241,12 +241,35 @@
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[TrailerSourceToggleVar]</onclick>
 				</control>
+				<!-- DIGITAL RELEASE -->
+				<control type="radiobutton" id="64707">
+					<label>Enable smart status (movies)</label>
+					<include>DefaultSettingButton</include>
+					<selected>Skin.HasSetting(Enable.SmartStatus)</selected>
+					<onclick>Skin.ToggleSetting(Enable.SmartStatus)</onclick>
+					<visible>!String.IsEmpty(Skin.String(valid_api_key))</visible>
+				</control>
+				<control type="button" id="63708">
+					<label>    - Recent window (days)</label>
+					<label2>$VAR[SkinSettingDigitalReleaseWindow]</label2>
+					<include>DefaultSettingButton</include>
+					<onclick>Skin.SetNumeric(altus_digital_release_window)</onclick>
+					<visible>Skin.HasSetting(Enable.SmartStatus)</visible>
+				</control>
 				<!-- CLOCK -->
-				<control type="radiobutton" id="63707">
+				<control type="radiobutton" id="63709">
 					<label>Show current time in InfoLine</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(Enable.ClockCrumbs)</selected>
 					<onclick>Skin.ToggleSetting(Enable.ClockCrumbs)</onclick>
+				</control>
+				<!-- STUDIO LOGO -->
+				<control type="button" id="63710">
+					<label>Studio logos</label>
+					<label2>$VAR[StudioLogoSettingVar]</label2>
+					<include>DefaultSettingButton</include>
+					<onclick>$VAR[StudioLogoToggleVar]</onclick>
+					<onclick condition="String.IsEqual(Skin.String(StudioLogoSetting),2) + !System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
 				</control>
 			</control>
 
@@ -644,14 +667,14 @@
 				<visible>Container(9000).HasFocus(9)</visible>
 				<!-- HOMESCREEN ON BACK -->
 				<control type="button" id="64001">
-					<label>Home screen widget on back action</label>
+					<label>On back action</label>
 					<label2>$VAR[OnBackSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[OnBackSettingToggleVar]</onclick>
 				</control>
 				<!-- HOMESCREEN ON LEFT -->
 				<control type="button" id="64002">
-					<label>Home screen widget on left action</label>
+					<label>On left action</label>
 					<label2>$VAR[OnLeftSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[OnLeftSettingToggleVar]</onclick>
@@ -670,8 +693,22 @@
 					<selected>Skin.HasSetting(Enable.StackedSpotlightControl)</selected>
 					<onclick>Skin.ToggleSetting(Enable.StackedSpotlightControl)</onclick>
 				</control>
+				<!--AUTOSCROLL SPOTLIGHT -->
+				<control type="radiobutton" id="64005">
+					<label>Autoscroll spotlight widgets</label>
+					<include>DefaultSettingButton</include>
+					<selected>Skin.HasSetting(Enable.AutoScrollSpotlight)</selected>
+					<onclick>Skin.ToggleSetting(Enable.AutoScrollSpotlight)</onclick>
+				</control>
+				<control type="button" id="64006">
+					<label>    - Delay (milliseconds)</label>
+					<label2>$VAR[SkinSettingAutoScrollSpotlightDelay]</label2>
+					<include>DefaultSettingButton</include>
+					<onclick>Skin.SetNumeric(altus_spotlight_delay)</onclick>
+					<visible>Skin.HasSetting(Enable.AutoScrollSpotlight)</visible>
+				</control>
 				<!-- LANDSCAPE DISPLAY STYLE -->
-				<control type="button" id="64005">
+				<control type="button" id="64007">
 					<label>Landscape display style</label>
 					<label2>$VAR[HomeItemArtworkChoiceSettingVar]</label2>
 					<include>DefaultSettingButton</include>
@@ -679,7 +716,7 @@
 					<onclick condition="!Skin.HasSetting(Disable.LandscapeWidgetClearlogo)">Skin.SetBool(Disable.LandscapeWidgetClearlogo)</onclick>
 				</control>
 				<!-- LANDSCAPE DISPLAY STYLE -->
-				<control type="radiobutton" id="64006">
+				<control type="radiobutton" id="64008">
 					<label>    - Enable clearlogo</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.LandscapeWidgetClearlogo)</selected>
@@ -687,48 +724,55 @@
 					<visible>String.IsEqual(Skin.String(HomeItemArtworkChoice),1)</visible>
 				</control>
 				<!-- STACKED WIDGET DELAY -->
-				<control type="button" id="64007">
-					<label>Set stacked widget load delay (milliseconds)</label>
+				<control type="button" id="64009">
+					<label>Set stacked load delay (milliseconds)</label>
 					<label2>$VAR[SkinSettingStackedLoadDelay]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.SetNumeric(altus_category_widget_delay)</onclick>
 				</control>
 				<!-- COUNTDOWN TIMER -->
-				<control type="radiobutton" id="64008">
-					<label>Show countdown timer for stacked widget load delay</label>
+				<control type="radiobutton" id="64010">
+					<label>Show countdown timer</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(altus_category_widget_display_delay)</selected>
 					<onclick>Skin.ToggleSetting(altus_category_widget_display_delay)</onclick>
 				</control>
 				<!-- AUTO INFO -->
-				<control type="radiobutton" id="64009">
+				<control type="radiobutton" id="64011">
 					<label>Enable auto info</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetAutoInfo)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetAutoInfo)</onclick>
 				</control>
-				<control type="button" id="64010">
+				<control type="button" id="64012">
 					<label>    - Choose amount to dim unfocused items</label>
 					<label2>$VAR[AutoInfoFadeSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[AutoInfoFadeToggleVar]</onclick>
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
-				<control type="button" id="64011">
-					<label>    - Set info delay (milliseconds)</label>
+				<control type="button" id="64013">
+					<label>    - Delay (milliseconds)</label>
 					<label2>$VAR[SkinSettingWidgetAutoInfoDelay]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.SetNumeric(altus_widget_autoinfo_delay)</onclick>
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
-				<control type="button" id="64012">
+				<control type="button" id="64014">
 					<label>    - Clearlogo</label>
 					<label2>$VAR[WidgetClearlogoSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[WidgetClearlogoToggleVar]</onclick>
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
-				<control type="radiobutton" id="64013">
+				<control type="radiobutton" id="64015">
+					<label>    - Ratings</label>
+					<include>DefaultSettingButton</include>
+					<onclick>Skin.ToggleSetting(Disable.AutoInfoRatings)</onclick>
+					<selected>!Skin.HasSetting(Disable.AutoInfoRatings)</selected>
+					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
+				</control>
+				<control type="radiobutton" id="64016">
 					<label>    - Studio logo</label>
 					<include>DefaultSettingButton</include>
 					<onclick condition="!System.HasAddon(resource.images.studios.white)">InstallAddon(resource.images.studios.white)</onclick>
@@ -737,20 +781,20 @@
 					<visible>!Skin.HasSetting(Disable.WidgetAutoInfo)</visible>
 				</control>
 				<!-- ITEM TITLE -->
-				<control type="radiobutton" id="64014">
+				<control type="radiobutton" id="64017">
 					<label>Show item title in InfoLine</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetInfoLineTitle)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetInfoLineTitle)</onclick>
 				</control>
 				<!-- DIM WIDGETS -->
-				<control type="radiobutton" id="64015">
+				<control type="radiobutton" id="64018">
 					<label>Dim unfocused widgets</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetDimming)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetDimming)</onclick>
 				</control>
-				<control type="radiobutton" id="64016">
+				<control type="radiobutton" id="64019">
 					<label>Dim widgets on main menu focus</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(Enable.MainMenuWidgetDimming)</selected>

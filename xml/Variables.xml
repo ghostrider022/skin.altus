@@ -373,9 +373,21 @@
     <value condition="!String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">$INFO[Skin.String(altus_widget_autoinfo_delay)]</value>
     <value condition="String.IsEmpty(Skin.String(altus_widget_autoinfo_delay))">750</value> <!-- Default 750ms -->
 	</variable>
+	<variable name="SkinSettingAutoScrollSpotlightDelay">
+    <value condition="!String.IsEmpty(Skin.String(altus_spotlight_delay))">$INFO[Skin.String(altus_spotlight_delay)]</value>
+    <value condition="String.IsEmpty(Skin.String(altus_spotlight_delay))">10</value> <!-- Default 750ms -->
+	</variable>
 	<variable name="SkinSettingStackedLoadDelay">
     <value condition="!String.IsEmpty(Skin.String(altus_category_widget_delay))">$INFO[Skin.String(altus_category_widget_delay)]</value>
     <value condition="String.IsEmpty(Skin.String(altus_category_widget_delay))">750</value> <!-- Default 750ms -->
+	</variable>
+	<variable name="SkinSettingDigitalReleaseWindow">
+		<value condition="!String.IsEmpty(Skin.String(altus_digital_release_window))">$INFO[Skin.String(altus_digital_release_window)]</value>
+		<value condition="String.IsEmpty(Skin.String(altus_digital_release_window))">3</value> <!-- Default value -->
+	</variable>
+	<variable name="SkinSettingRevertFromWallDelay">
+		<value condition="!String.IsEmpty(Skin.String(altus_revert_from_wall_delay))">$INFO[Skin.String(altus_revert_from_wall_delay)]</value>
+		<value condition="String.IsEmpty(Skin.String(altus_revert_from_wall_delay))">2</value> <!-- Default value -->
 	</variable>
 	<variable name="VolumeIconVar">
 		<value condition="Player.Muted">dialogs/volume/mute.png</value>
@@ -530,6 +542,7 @@
 		<value condition="Container.Content(episodes)">[COLOR unfocused_text]TV Shows[/COLOR]</value>
 		<value>[COLOR unfocused_text]$LOCALIZE[3][/COLOR]</value>
 	</variable>
+	
 	<!-- <variable name="BreadcrumbsPVRChannelsVar">
 		<value condition="!Skin.HasSetting(Enable.Fanart)">$VAR[BreadcrumbsPVRChannels.NoBlur]</value>
 		<value>$VAR[BreadcrumbsPVRChannels.Blur]</value>
