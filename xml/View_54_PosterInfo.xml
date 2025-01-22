@@ -304,7 +304,7 @@
 				<height>23</height>
 				<texture>$VAR[WallWatchedIconVar]</texture>
 			</control>
-			<!-- <control type="group">
+			<control type="group">
 				<left>188</left>
 				<top>-8</top>
 				<include content="RatingCircle" condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">
@@ -316,7 +316,7 @@
 					<param name="label-top">25</param>
 					<param name="cornerdiffuse">overlays/overlaybg3.png</param>
 				</include>
-			</control> -->
+			</control>
 			<control type="label">
 				<left>25</left>
 				<top>374</top>
