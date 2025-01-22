@@ -33,9 +33,9 @@
 						<onclick>ReloadSkin()</onclick>
 					</item>
 					<item>
-						<label>Skin settings</label>
+						<label>Settings</label>
 						<onclick>Dialog.Close(all)</onclick>
-						<onclick>ActivateWindow(SkinSettings.xml)</onclick>
+						<onclick>ActivateWindow(Settings.xml)</onclick>
 					</item>
 					<item>
 						<label>Toggle debugging</label>
