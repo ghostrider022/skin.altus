@@ -7,7 +7,6 @@
 				<include>OpenClose_Right</include>
 				<visible>Control.IsVisible(56)</visible>
 				<include>Visible_Right</include>
-				<include>MediaMenuAnimations</include>
 				<control type="label">
 					<left>50</left>
 					<right>50</right>
