@@ -26,7 +26,6 @@
 	<include file="script-altus-widget_custom1.xml" />
 	<include file="script-altus-widget_custom2.xml" />
 	<include file="script-altus-widget_custom3.xml" />
-	<include file="script-altus-search_history.xml" />
 	<include file="View_50_Includes.xml" />
 	<include file="View_50_List.xml" />
 	<include file="View_51_PosterFlow.xml" />
