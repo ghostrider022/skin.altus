@@ -254,17 +254,6 @@
 			<size>50</size>
 		</font>
 		<font>
-			<name>font_title_eng</name>
-			<filename>Engebrechtre.ttf</filename>
-			<!-- <size>78</size> -->
-			<size>90</size>
-		</font>
-		<font>
-			<name>font_title_west</name>
-			<filename>Westmeath.ttf</filename>
-			<size>68</size>
-		</font>
-		<font>
 			<name>font_MainMenu</name>
 			<filename>NotoSans-SemiBold.ttf</filename>
 			<size>58</size>
@@ -529,17 +518,6 @@
 			<style>bold</style>
 		</font>
 		<font>
-			<name>font_title_eng</name>
-			<filename>Engebrechtre.ttf</filename>
-			<!-- <size>78</size> -->
-			<size>90</size>
-		</font>
-		<font>
-			<name>font_title_west</name>
-			<filename>Westmeath.ttf</filename>
-			<size>68</size>
-		</font>
-		<font>
 			<name>font_MainMenu</name>
 			<filename>NotoSans-Regular.ttf</filename>
 			<size>58</size>
@@ -802,17 +780,6 @@
 			<filename>NotoSans-SemiBold.ttf</filename>
 			<size>50</size>
 			<style>bold</style>
-		</font>
-		<font>
-			<name>font_title_eng</name>
-			<filename>Engebrechtre.ttf</filename>
-			<!-- <size>78</size> -->
-			<size>90</size>
-		</font>
-		<font>
-			<name>font_title_west</name>
-			<filename>Westmeath.ttf</filename>
-			<size>68</size>
 		</font>
 		<font>
 			<name>font_MainMenu</name>
