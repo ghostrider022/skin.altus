@@ -433,6 +433,7 @@
 						<param name="align" value="center"/>
 						<param name="top" value="249.5"/>
 						<param name="left" value="-925"/>
+						<!-- <param name="left" value="-942.5"/> -->
 					</include>
 				</control>
 
