@@ -1,25 +1,32 @@
-# Makefile for syncing Kodi skin from Shield and managing Git repo
+# Makefile for syncing Kodi skin TO a local Git repo and managing Git
+# --- !!! IMPORTANT !!! ---
+# This Makefile is intended to be run FROM the Kodi addon directory
+# on the Shield (e.g., /Volumes/internal/.../skin.altus/)
+# after it has been placed there (likely via addon installation/update).
+# It syncs files FROM the current directory TO the specified Mac Git repo.
+# Git commands are executed ON the Mac Git repo.
 
 # --- Configuration ---
-# Source: Path to the skin folder on the *mounted* Shield network share.
-# IMPORTANT: Ensure this path is correct and the share is mounted before running make.
-#            Add a trailing slash!
-SOURCE_DIR := /Volumes/internal/Android/data/org.xbmc.kodi/files/.kodi/addons/skin.altus/
+# Source: The current directory where this Makefile is run from.
+#         This should be the addon dir on the mounted Shield share.
+#         Add a trailing slash!
+SOURCE_DIR := ./
 
-# Destination: The current directory where this Makefile resides.
-#              Represents your local Git repository. Add a trailing slash!
-DEST_DIR := ./
+# Destination: Path to your stable local Git repository clone on your Mac.
+#              Uses the HOME environment variable for portability across machines.
+#              Assumes the repo is at '~/DEV/skin.altus/'. Add a trailing slash!
+DEST_DIR := $(HOME)/DEV/skin.altus/
 
 # rsync options:
 # -a: archive mode (recursive, preserves permissions, times, symlinks, etc.)
 # -v: verbose (show files being transferred)
 # -h: human-readable file sizes
-# --delete: delete files in DEST_DIR that no longer exist in SOURCE_DIR
-#           Use with caution! Ensures local repo is an exact mirror.
-#           Remove if you want to keep locally deleted files temporarily.
+# --delete: delete files in DEST_DIR that no longer exist in SOURCE_DIR (current dir)
+#           Use with caution! Ensures Mac repo mirrors the Shield dir state.
 # --exclude: patterns for files/dirs to ignore during sync
 RSYNC_OPTS := -avh --delete
-EXCLUDE_OPTS := --exclude='.git/' --exclude='.DS_Store' --exclude='*.pyo' --exclude='*.pyc' --exclude='cache/' --exclude='Thumbs.db' --exclude='Makefile'
+# Exclude the Makefile itself, .git dir (just in case), and common transient files
+EXCLUDE_OPTS := --exclude='.git/' --exclude='Makefile' --exclude='.DS_Store' --exclude='*.pyo' --exclude='*.pyc' --exclude='cache/' --exclude='Thumbs.db'
 
 # Git commit message variable (used like: make commit m="Your message")
 m ?= ""
@@ -29,84 +36,95 @@ SHELL := /bin/bash
 # --- End Configuration ---
 
 # Use .PHONY for targets that don't represent actual files
-.PHONY: all sync test_sync status add commit push clean help check_dirs
+.PHONY: all sync test_sync status add commit push clean help check_dest
 
 # Default target (if you just run 'make')
 all: help
 
 help:
-	@echo "Available targets:"
-	@echo "  make check_dirs - Verify source directory exists (Shield mounted?)."
-	@echo "  make sync       - Sync changes from Shield ($(SOURCE_DIR)) to here ($(DEST_DIR))."
+	@echo "--- Makefile executed from: $(shell pwd) ---"
+	@echo "Available targets (run from Shield addon dir):"
+	@echo "  make check_dest - Verify destination Git repo ($(DEST_DIR)) exists."
+	@echo "  make sync       - Sync changes FROM here TO the Mac Git repo ($(DEST_DIR))."
 	@echo "  make test_sync  - Perform a DRY RUN of the sync process (shows changes without applying)."
-	@echo "  make status     - Run 'git status' in the local repository."
-	@echo "  make add        - Run 'git add .' to stage all changes."
-	@echo "  make commit m=\"Your message\" - Commit staged changes with a message."
-	@echo "  make push       - Run 'git push' to push committed changes."
-	@echo "  make clean      - (Caution!) Removes untracked files/dirs from local repo (git clean -fdx)."
+	@echo "  --- Git commands executed on Mac Repo ($(DEST_DIR)) ---"
+	@echo "  make status     - Run 'git status' in the Mac repository."
+	@echo "  make add        - Run 'git add .' in the Mac repository."
+	@echo "  make commit m=\"Message\" - Commit staged changes in the Mac repository."
+	@echo "  make push       - Run 'git push' from the Mac repository."
+	@echo "  make clean      - (Caution!) Run 'git clean -fdx' in the Mac repository."
 	@echo "  make help       - Show this help message."
 
-# Target to check if the source directory is accessible
-check_dirs:
-	@echo "Checking source directory..."
-	@if [ ! -d "$(SOURCE_DIR)" ]; then \
-		echo "ERROR: Source directory not found or Shield not mounted: $(SOURCE_DIR)"; \
-		echo "Please ensure the Shield network share ('internal'?) is mounted at /Volumes/"; \
+# Target to check if the destination directory is accessible
+check_dest:
+	@echo "Checking destination directory..."
+	@# Attempt to expand ~ within the shell command for a more robust check
+	DEST_DIR_EXPANDED=`eval echo $(DEST_DIR)` ; \
+	echo "Checking expanded path: $$DEST_DIR_EXPANDED" ; \
+	if [ ! -d "$$DEST_DIR_EXPANDED" ]; then \
+		echo "ERROR: Destination Git repository not found: $(DEST_DIR) (Expanded: $$DEST_DIR_EXPANDED)"; \
+		echo "Please ensure the path is correct ('~/DEV/skin.altus/' exists) and the directory exists."; \
 		exit 1; \
+	elif [ ! -d "$$DEST_DIR_EXPANDED.git" ]; then \
+	    echo "ERROR: Destination directory exists, but does not appear to be a Git repository: $$DEST_DIR_EXPANDED"; \
+	    echo "       (.git directory not found)"; \
+	    exit 1; \
 	else \
-		echo "Source directory ($(SOURCE_DIR)) found."; \
+		echo "Destination Git repository ($(DEST_DIR)) found."; \
 	fi
-	@echo "Destination directory is the current directory: $(shell pwd)"
 
-# Target to sync files from Shield to local repo
-sync: check_dirs
-	@echo "Syncing changes from Shield -> Local Git Repo..."
-	@echo "Source:      $(SOURCE_DIR)"
+
+# Target to sync files FROM current dir TO the Mac Git repo
+sync: check_dest
+	@echo "Syncing changes FROM '$(shell pwd)' TO Mac Git Repo..."
+	@echo "Source:      $(SOURCE_DIR) (Current Directory)"
 	@echo "Destination: $(DEST_DIR)"
 	@echo "Running: rsync $(RSYNC_OPTS) $(EXCLUDE_OPTS) \"$(SOURCE_DIR)\" \"$(DEST_DIR)\""
 	@rsync $(RSYNC_OPTS) $(EXCLUDE_OPTS) "$(SOURCE_DIR)" "$(DEST_DIR)"
-	@echo "Sync complete. Check 'make status' for changes."
+	@echo "Sync complete. Run 'make status' to check Git status in Mac Repo."
 
 # Target to perform a dry run sync
-test_sync: check_dirs
-	@echo "Performing DRY RUN sync from Shield -> Local Git Repo..."
-	@echo "Source:      $(SOURCE_DIR)"
+test_sync: check_dest
+	@echo "Performing DRY RUN sync FROM '$(shell pwd)' TO Mac Git Repo..."
+	@echo "Source:      $(SOURCE_DIR) (Current Directory)"
 	@echo "Destination: $(DEST_DIR)"
 	@echo "Running: rsync $(RSYNC_OPTS) --dry-run $(EXCLUDE_OPTS) \"$(SOURCE_DIR)\" \"$(DEST_DIR)\""
 	@rsync $(RSYNC_OPTS) --dry-run $(EXCLUDE_OPTS) "$(SOURCE_DIR)" "$(DEST_DIR)"
 	@echo "Dry run complete. No files were changed. Review the output above."
 
-# --- Git Targets ---
+# --- Git Targets (executed on DEST_DIR) ---
 
-status:
-	@echo "Running 'git status'..."
-	@git status
+status: check_dest
+	@echo "Running 'git status' in Mac Repo ($(DEST_DIR))..."
+	@git -C "$(DEST_DIR)" status
 
-add:
-	@echo "Running 'git add .' to stage all changes..."
-	@git add .
-	@echo "Use 'make status' to see staged changes."
+add: check_dest
+	@echo "Running 'git add .' in Mac Repo ($(DEST_DIR))..."
+	@git -C "$(DEST_DIR)" add .
+	@echo "Use 'make status' to see staged changes in Mac Repo."
 
-commit:
-	@echo "Attempting commit..."
+commit: check_dest
+	@echo "Attempting commit in Mac Repo ($(DEST_DIR))..."
 	@if [ -z "$(m)" ]; then \
 		echo "ERROR: Commit message required."; \
 		echo "Usage: make commit m=\"Your commit message\""; \
 		exit 1; \
 	fi
-	@echo "Running 'git commit -m \"$(m)\"'..."
-	@git commit -m "$(m)"
-	@echo "Commit successful."
+	@echo "Running 'git -C \"$(DEST_DIR)\" commit -m \"$(m)\"'..."
+	@git -C "$(DEST_DIR)" commit -m "$(m)"
+	@echo "Commit successful in Mac Repo."
 
-push:
-	@echo "Running 'git push'..."
-	@git push
-	@echo "Push attempted. Check output for status."
+push: check_dest
+	@echo "Running 'git push' from Mac Repo ($(DEST_DIR))..."
+	@git -C "$(DEST_DIR)" push
+	@echo "Push attempted from Mac Repo. Check output for status."
 
-clean:
+clean: check_dest
 	@echo "WARNING: This will remove all untracked files and directories"
-	@echo "         from your local repository ($(shell pwd))."
-	@read -p "Are you sure? (y/N): " confirm && [[ $$confirm == [yY] || $$confirm == [yY][eE][sS] ]] || exit 1
-	@echo "Running 'git clean -fdx'..."
-	@git clean -fdx
-	@echo "Untracked files removed."
+	@echo "         from your Mac Git repository ($(DEST_DIR))."
+	@# Adding an extra check to ensure the user understands *where* clean runs
+	DEST_DIR_EXPANDED=`eval echo $(DEST_DIR)` ; \
+	read -p "Clean untracked files in Mac Repo '$$DEST_DIR_EXPANDED'? (y/N): " confirm && [[ $$confirm == [yY] || $$confirm == [yY][eE][sS] ]] || exit 1
+	@echo "Running 'git clean -fdx' in Mac Repo ($(DEST_DIR))..."
+	@git -C "$(DEST_DIR)" clean -fdx
+	@echo "Untracked files removed from Mac Repo."
