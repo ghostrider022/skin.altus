@@ -25,8 +25,8 @@ DEST_DIR := $(HOME)/DEV/skin.altus/
 #           Use with caution! Ensures Mac repo mirrors the Shield dir state.
 # --exclude: patterns for files/dirs to ignore during sync
 RSYNC_OPTS := -avh --delete
-# Exclude the Makefile itself, .git dir (just in case), and common transient files
-EXCLUDE_OPTS := --exclude='.git/' --exclude='Makefile' --exclude='.DS_Store' --exclude='*.pyo' --exclude='*.pyc' --exclude='cache/' --exclude='Thumbs.db'
+# Exclude Git files (.git/, .gitignore), Makefile, and common transient files
+EXCLUDE_OPTS := --exclude='.git/' --exclude='.gitignore' --exclude='Makefile' --exclude='.DS_Store' --exclude='*.pyo' --exclude='*.pyc' --exclude='cache/' --exclude='Thumbs.db'
 
 # Git commit message variable (used like: make commit m="Your message")
 m ?= ""
