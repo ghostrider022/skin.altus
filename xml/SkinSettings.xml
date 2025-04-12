@@ -22,7 +22,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>610</onup>
@@ -212,7 +212,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>637</onup>
@@ -277,13 +277,27 @@
 					<onclick>$VAR[StudioLogoColorToggleVar]</onclick>
 					<onclick condition="String.IsEqual(Skin.String(StudioLogoColorSetting),2) + !System.HasAddon(resource.images.studios.coloured)">InstallAddon(resource.images.studios.coloured)</onclick>
 				</control>
+				<!-- FOCUS ANIMATIONS -->
+				<control type="radiobutton" id="63709">
+					<label>Enable focus animations</label>
+					<include>DefaultSettingButton</include>
+					<selected>!Skin.HasSetting(Disable.FocusAnimations)</selected>
+					<onclick>Skin.ToggleSetting(Disable.FocusAnimations)</onclick>
+				</control>
+				<!-- PVR ANIMATIONS -->
+				<control type="radiobutton" id="63710">
+					<label>Enable PVR animations</label>
+					<include>DefaultSettingButton</include>
+					<selected>!Skin.HasSetting(Disable.PVRAnimations)</selected>
+					<onclick>Skin.ToggleSetting(Disable.PVRAnimations)</onclick>
+				</control>
 			</control>
 
 			<control type="grouplist" id="647">
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>647</onup>
@@ -394,7 +408,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>648</onup>
@@ -503,7 +517,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>700</onup>
@@ -558,17 +572,24 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>600</onup>
 				<ondown>600</ondown>
 				<visible>Container(9000).HasFocus(6)</visible>
-				<control type="button" id="6002">
+				<control type="button" id="6001">
 					<label>Background style</label>
 					<label2>$VAR[BackgroundSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[BackgroundToggleVar]</onclick>
+				</control>
+				<control type="button" id="6002">
+					<label>    - Main blur texture</label>
+					<label2>$VAR[MainBlurTextureSettingVar]</label2>
+					<include>DefaultSettingButton</include>
+					<onclick>$VAR[MainBlurTextureToggleVar]</onclick>
+					<visible>String.IsEqual(Skin.String(BackgroundSetting),2)</visible>
 				</control>
 				<!-- FANART -->
 				<!-- <control type="radiobutton" id="6002">
@@ -579,7 +600,7 @@
 				</control> -->
 				<!-- DEFAULT BACKGROUND -->
 				<control type="button" id="6003">
-					<label>Choose default background</label>
+					<label>    - Choose default background</label>
 					<label2>$INFO[Skin.String(AltusCustomBackground)]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>RunScript(script.altus.helper, mode=set_image)</onclick>
@@ -590,7 +611,7 @@
 					<label2>$INFO[Skin.String(BlurRadius)]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>RunScript(script.altus.helper, mode=set_blurradius)</onclick>
-					<visible>String.IsEqual(Skin.String(BackgroundSetting),2)</visible>
+					<visible>String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)</visible>
 				</control>
 				<!-- BLUR SATURATION -->
 				<control type="button" id="6005">
@@ -598,7 +619,7 @@
 					<label2>$INFO[Skin.String(BlurSaturation)]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>RunScript(script.altus.helper, mode=set_blursaturation)</onclick>
-					<visible>String.IsEqual(Skin.String(BackgroundSetting),2)</visible>
+					<visible>String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)</visible>
 				</control>
 				<control type="button" id="6006">
 					<label>   - Restore default background</label>
@@ -621,15 +642,22 @@
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 				</control>
-				<control type="button" id="6009">
-					<label>$LOCALIZE[31062]</label>
+				<control type="radiobutton" id="6009">
+					<label>Enable weather fanart</label>
+					<include>DefaultSettingButton</include>
+					<onclick>Skin.ToggleSetting(Enable.WeatherFanart)</onclick>
+					<selected>Skin.HasSetting(Enable.WeatherFanart)</selected>
+				</control>
+				<control type="button" id="6010">
+					<label>    - $LOCALIZE[31062]</label>
 					<label2>$INFO[Skin.String(WeatherFanart.name)]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick condition="System.AddonIsEnabled(script.image.resource.select)">RunScript(script.image.resource.select,property=WeatherFanart&amp;type=resource.images.weatherfanart)</onclick>
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
+					<visible>Skin.HasSetting(Enable.WeatherFanart)</visible>
 				</control>
-				<control type="button" id="6010">
+				<control type="button" id="6011">
 					<label>$LOCALIZE[31149]</label>
 					<label2>$INFO[Skin.String(MovieGenreFanart.Name)]</label2>
 					<include>DefaultSettingButton</include>
@@ -637,7 +665,7 @@
 					<onclick condition="System.HasAddon(script.image.resource.select) + !System.AddonIsEnabled(script.image.resource.select)">EnableAddon(script.image.resource.select)</onclick>
 					<onclick condition="!System.HasAddon(script.image.resource.select)">InstallAddon(script.image.resource.select)</onclick>
 				</control>
-				<control type="radiobutton" id="6011">
+				<control type="radiobutton" id="6012">
 					<label>$LOCALIZE[31168]</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(show_musicvideoposter)</onclick>
@@ -649,7 +677,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>622</onup>
@@ -706,7 +734,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>640</onup>
@@ -714,20 +742,20 @@
 				<ondown>640</ondown>
 				<visible>Container(9000).HasFocus(9)</visible>
 				<!-- SPOTLIGHT CLEARLOGO -->
-				<control type="radiobutton" id="64004">
+				<control type="radiobutton" id="64001">
 					<label>Enable spotlight clearlogo</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.SpotlightClearlogo)</selected>
 					<onclick>Skin.ToggleSetting(Disable.SpotlightClearlogo)</onclick>
 				</control>
 				<!--AUTOSCROLL SPOTLIGHT -->
-				<control type="radiobutton" id="64005">
+				<control type="radiobutton" id="64002">
 					<label>Autoscroll spotlight widgets</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(Enable.AutoScrollSpotlight)</selected>
 					<onclick>Skin.ToggleSetting(Enable.AutoScrollSpotlight)</onclick>
 				</control>
-				<control type="button" id="64006">
+				<control type="button" id="64003">
 					<label>    - Delay (seconds)</label>
 					<label2>$VAR[SkinSettingAutoScrollSpotlightDelay]</label2>
 					<include>DefaultSettingButton</include>
@@ -735,14 +763,14 @@
 					<visible>Skin.HasSetting(Enable.AutoScrollSpotlight)</visible>
 				</control>
 				<!-- LANDSCAPE DISPLAY STYLE -->
-				<control type="button" id="64007">
+				<control type="button" id="64004">
 					<label>Feature landscape display style</label>
 					<label2>$VAR[HomeItemArtworkChoiceSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[HomeItemArtworkChoiceToggleVar]</onclick>
 					<onclick condition="!Skin.HasSetting(Disable.LandscapeWidgetClearlogo)">Skin.SetBool(Disable.LandscapeWidgetClearlogo)</onclick>
 				</control>
-				<control type="radiobutton" id="64008">
+				<control type="radiobutton" id="64005">
 					<label>    - Enable clearlogo</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.LandscapeWidgetClearlogo)</selected>
@@ -750,32 +778,38 @@
 					<visible>String.IsEqual(Skin.String(HomeItemArtworkChoice),1)</visible>
 				</control>
 				<!-- STACKED WIDGET DELAY -->
-				<control type="button" id="64009">
+				<control type="button" id="64006">
 					<label>Set stacked load delay (milliseconds)</label>
 					<label2>$VAR[SkinSettingStackedLoadDelay]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.SetNumeric(altus_category_widget_delay)</onclick>
 				</control>
 				<!-- COUNTDOWN TIMER -->
-				<control type="radiobutton" id="64010">
+				<control type="radiobutton" id="64007">
 					<label>Show countdown timer</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(altus_category_widget_display_delay)</selected>
 					<onclick>Skin.ToggleSetting(altus_category_widget_display_delay)</onclick>
 				</control>
-				<control type="button" id="64011">
+				<control type="radiobutton" id="64008">
+					<label>Reset stacked widgets when returning home</label>
+					<include>DefaultSettingButton</include>
+					<selected>!Skin.HasSetting(Disable.ResetStacked)</selected>
+					<onclick>Skin.ToggleSetting(Disable.ResetStacked)</onclick>
+				</control>
+				<control type="button" id="64009">
 					<label>Header</label>
 					<label2>$VAR[WidgetClearlogoSettingVar]</label2>
 					<include>DefaultSettingButton</include>
 					<onclick>$VAR[WidgetClearlogoToggleVar]</onclick>
 				</control>
-				<control type="radiobutton" id="64012">
+				<control type="radiobutton" id="64010">
 					<label>Ratings</label>
 					<include>DefaultSettingButton</include>
 					<onclick>Skin.ToggleSetting(Disable.HomePanelRatings)</onclick>
 					<selected>!Skin.HasSetting(Disable.HomePanelRatings)</selected>
 				</control>
-				<control type="button" id="64013">
+				<control type="button" id="64011">
 					<label>Footer (Studio logo)</label>
 					<label2>$VAR[StudioLogoSettingVar]</label2>
 					<include>DefaultSettingButton</include>
@@ -783,13 +817,13 @@
 					<onclick>$VAR[StudioLogoToggleVar]</onclick>
 				</control>
 				<!-- DIM/FADE WIDGETS -->
-				<control type="radiobutton" id="64014">
+				<control type="radiobutton" id="64012">
 					<label>$VAR[Capitalize_DimorFadeLabel] unfocused widgets</label>
 					<include>DefaultSettingButton</include>
 					<selected>!Skin.HasSetting(Disable.WidgetDimming)</selected>
 					<onclick>Skin.ToggleSetting(Disable.WidgetDimming)</onclick>
 				</control>
-				<control type="radiobutton" id="64015">
+				<control type="radiobutton" id="64013">
 					<label>$VAR[Capitalize_DimorFadeLabel] widgets on main menu focus</label>
 					<include>DefaultSettingButton</include>
 					<selected>Skin.HasSetting(Enable.MainMenuWidgetDimming)</selected>
@@ -801,7 +835,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>641</onup>
@@ -892,7 +926,7 @@
 				<top>133</top>
 				<left>0</left>
 				<right>470</right>
-				<bottom>70</bottom>
+				<bottom>37</bottom>
 				<onleft>9000</onleft>
 				<onright>60</onright>
 				<onup>642</onup>
@@ -935,16 +969,16 @@
 				<top>130</top>
 				<right>470</right>
 				<height>3</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
+				<texture colordiffuse="$VAR[FocusColorTheme]" border="3">dialogs/separator-grey.png</texture>
 			</control>
-			<control type="image">
+			<!-- <control type="image">
 				<description>Dialog Header image</description>
 				<left>0</left>
-				<bottom>64</bottom>
+				<bottom>31</bottom>
 				<right>470</right>
 				<height>3</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
-			</control>
+				<texture colordiffuse="$VAR[FocusColorTheme]" border="3">dialogs/separator-grey.png</texture>
+			</control> -->
 		</control>
 		<control type="group">
 			<depth>DepthContentPanel</depth>
@@ -973,14 +1007,14 @@
 				<ondown>9000</ondown>
 				<itemlayout height="85" width="470">
 					<control type="label">
-						<textoffsetx>30</textoffsetx>
+						<textoffsetx>50</textoffsetx>
 						<width>470</width>
 						<height>85</height>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>unfocused_text</textcolor>
 						<font>font37</font>
 						<aligny>center</aligny>
-						<align>center</align>
+						<align>left</align>
 					</control>
 				</itemlayout>
 				<focusedlayout height="85" width="470" infoupdate="300">
@@ -991,12 +1025,12 @@
 						<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(9000)">Conditional</animation>
 					</control>
 					<control type="label">
-						<textoffsetx>30</textoffsetx>
+						<textoffsetx>50</textoffsetx>
 						<width>470</width>
 						<height>85</height>
 						<font>font37</font>
 						<aligny>center</aligny>
-						<align>center</align>
+						<align>left</align>
 						<label>$INFO[ListItem.Label]</label>
 						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 					</control>
@@ -1072,21 +1106,20 @@
 		<include content="TopBar">
 			<param name="breadcrumbs_label" value="[COLOR unfocused_text]$LOCALIZE[5][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[20077][/COLOR]" />
 		</include>
-		<include>BottomBar</include>
-		<!-- <control type="textbox" id="6">
+		<!-- <include>BottomBar</include> -->
+		<control type="textbox" id="6">
 			<include>OpenClose_Right</include>
 			<description>description area</description>
-			<left>1480</left>
-			<top>130</top>
-			<right>30</right>
-			<height>890</height>
+			<left>1510</left>
+			<top>105</top>
+			<right>60</right>
+			<height>940</height>
 			<font>font27</font>
-			<align>center</align>
+			<align>left</align>
 			<aligny>center</aligny>
-			<textcolor>$VAR[FocusedColorVar]</textcolor>
-			<label>Bacon ipsum dolor amet sausage picanha pancetta rump, bresaola meatball kielbasa. Turkey strip steak t-bone landjaeger beef ribs pork belly boudin chuck sirloin chislic fatback kevin kielbasa. Turducken hamburger jerky meatloaf, t-bone tenderloin ground round tail brisket pig bacon. Chislic tail sausage tenderloin. Leberkas doner ground round fatback, sirloin sausage filet mignon t-bone cupim capicola tenderloin pork andouille turkey chuck. Kielbasa pork chop ham hock bacon. Landjaeger spare ribs ham drumstick, capicola tenderloin hamburger turducken ribeye tail salami beef. Corned beef pastrami turkey meatball rump alcatra capicola, hamburger andouille sausage landjaeger pork cupim beef ribs kielbasa. Ribeye ball tip strip steak boudin sausage, t-bone chicken leberkas pork loin. Ham hock turducken shank biltong salami. Drumstick buffalo shank, ribeye swine ham chicken meatloaf. Hamburger rump ham tail. Chuck strip steak bresaola prosciutto kevin. Fatback drumstick pancetta, andouille chislic burgdoggen flank pork chop ham buffalo ham hock porchetta. Pork loin buffalo ball tip tongue leberkas. Rump burgdoggen kevin, landjaeger pork pastrami frankfurter. Drumstick sausage pork, prosciutto kielbasa ground round pork chop. Fatback kevin tri-tip cow, meatloaf filet mignon ground round andouille shoulder pastrami. Capicola meatloaf sausage shankle ribeye swine. Pork swine beef, andouille salami cupim turducken fatback landjaeger. Bacon meatloaf ham hock rump tail turducken tri-tip flank pork loin shoulder drumstick pork cow beef ribs. Beef pastrami t-bone frankfurter pork loin sausage. Strip steak beef corned beef spare ribs.</label>
+			<textcolor>unfocused_text</textcolor>
 			<label>$VAR[SkinSettingsHelpTextVar]</label>
 			<autoscroll time="3000" delay="5000" repeat="5000">true</autoscroll>
-		</control> -->
+		</control>
 	</controls>
 </window>

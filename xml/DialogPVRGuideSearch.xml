@@ -5,30 +5,41 @@
 	<controls>
 		<control type="group">
 			<centertop>50%</centertop>
-			<height>890</height>
+			<height>860</height>
 			<centerleft>50%</centerleft>
-			<width>1780</width>
+			<width>1730</width>
 			<include content="DialogBackgroundCommons">
 				<param name="header_label" value="$LOCALIZE[19142]" />
 				<param name="header_id" value="2" />
+				<param name="width" value="1730" />
+				<param name="divider_left" value="1420" />
+				<param name="shade_right" value="310" />
 			</include>
+			<control type="image">
+				<left>710</left>
+				<top>238</top>
+				<width>1</width>
+				<bottom>0</bottom>
+				<texture colordiffuse="$VAR[FocusColorTheme]">masks/mainmenupanel_divider.png</texture>
+			</control>
 			<control type="edit" id="9">
-				<left>10</left>
-				<top>80</top>
-				<width>1460</width>
-				<height>100</height>
-				<textoffsetx>60</textoffsetx>
+				<left>0</left>
+				<top>105</top>
+				<width>1420</width>
+				<height>65</height>
+				<textoffsetx>40</textoffsetx>
 				<shadowcolor>black</shadowcolor>
 				<hinttext>$LOCALIZE[137]...</hinttext>
 				<onleft>9000</onleft>
 				<onright>9000</onright>
 				<onup>24</onup>
 				<ondown>10</ondown>
-				<colordiffuse>$VAR[FocusColorTheme]</colordiffuse>
+				<texturefocus colordiffuse="$VAR[FocusColorTheme]">colors/grey.png</texturefocus>
+				<texturenofocus colordiffuse="80000000">colors/dark.png</texturenofocus>
 			</control>
 			<control type="textbox">
 				<description>Search help</description>
-				<left>30</left>
+				<left>40</left>
 				<top>175</top>
 				<width>1440</width>
 				<height>68</height>
@@ -37,7 +48,7 @@
 				<label>$LOCALIZE[19001] $LOCALIZE[19002]</label>
 			</control>
 			<control type="grouplist" id="5000">
-				<left>30</left>
+				<left>0</left>
 				<top>230</top>
 				<onright>6000</onright>
 				<onleft>9000</onleft>
@@ -109,7 +120,7 @@
 				</control>
 			</control>
 			<control type="grouplist" id="6000">
-				<left>740</left>
+				<left>710</left>
 				<top>230</top>
 				<onright>9000</onright>
 				<onleft>5000</onleft>
@@ -181,8 +192,8 @@
 				</control>
 			</control>
 			<control type="grouplist" id="9000">
-				<top>100</top>
-				<left>1480</left>
+				<top>105</top>
+				<left>1470</left>
 				<onup>9000</onup>
 				<ondown>9000</ondown>
 				<onleft>6000</onleft>

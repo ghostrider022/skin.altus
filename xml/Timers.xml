@@ -13,26 +13,6 @@
         <description>A timer that is activated when the topbaroverlay is loaded and stops automatically after 5 seconds (or playback is resumed)</description>
         <stop>!Player.Paused | Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(1110_topbaroverlay),5)</stop>
     </timer> -->
-    <timer>
-        <name>posterwall_scroll_timer</name>
-        <description>Timer to automatically return to PosterWall view</description>
-        <start reset="true">Control.HasFocus(500)</start>
-        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(posterwall_scroll_timer),Skin.Numeric(altus_revert_from_wall_delay))</stop>
-        <onstop condition="Control.HasFocus(500) + !String.IsEmpty(Window(Home).Property(Returnto51))">Container.SetViewMode(51)</onstop>
-        <onstop condition="Control.HasFocus(500) + !String.IsEmpty(Window(Home).Property(Returnto53))">Container.SetViewMode(53)</onstop>
-        <!-- <onstart>Notification(skintimer, Wall scroll timer started, 1000)</onstart>
-        <onstop>Notification(skintimer, Wall scroll timer stopped, 1000)</onstop> -->
-    </timer>
-    <timer>
-        <name>landscapewall_scroll_timer</name>
-        <description>Timer to automatically return to LandscapeWall view</description>
-        <start reset="true">Control.HasFocus(501)</start>
-        <stop>Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(landscapewall_scroll_timer),Skin.Numeric(altus_revert_from_wall_delay))</stop>
-        <onstop condition="Control.HasFocus(501) + !String.IsEmpty(Window(Home).Property(Returnto51))">Container.SetViewMode(51)</onstop>
-        <onstop condition="Control.HasFocus(501) + !String.IsEmpty(Window(Home).Property(Returnto53))">Container.SetViewMode(53)</onstop>
-        <!-- <onstart>Notification(skintimer, Wall scroll timer started, 1000)</onstart>
-        <onstop>Notification(skintimer, Wall scroll timer stopped, 1000)</onstop> -->
-    </timer>
     <!-- <timer>
         <name>autolock_view_timer</name>
         <start reset="true">Control.HasFocus($PARAM[list_id])</start>

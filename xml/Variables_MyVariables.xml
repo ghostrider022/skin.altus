@@ -167,17 +167,52 @@
 
 	<variable name="VideoFlixCrumbsVar">
 		<!-- Other windows -->
-		<value condition="$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
-		<value condition="$EXP[isEpisode] + Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] [B]|[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR]</value>
-		<value condition="[[Control.IsVisible(54) + !Skin.HasSetting(Enable.54Titles)] | [Control.IsVisible(55) + !Skin.HasSetting(Enable.55Titles)] | ![Control.IsVisible(54) | Control.IsVisible(55)]] + !$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
+		<value condition="$EXP[isEpisode] + ![Control.IsVisible(55) | Control.IsVisible(56) | Control.IsVisible(501)] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR]</value>
+		<value condition="$EXP[isEpisode] + Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR]</value>
+		<value condition="
+			[
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[31101]) + !Skin.HasSetting(Enable.54Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[311012]) + !Skin.HasSetting(Enable.55Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[31107]) + !Skin.HasSetting(Enable.56Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[311022]) + !Skin.HasSetting(Enable.500Titles)] | 
+				[String.IsEqual(Container.ViewMode,$LOCALIZE[311023]) + !Skin.HasSetting(Enable.501Titles)] | 
+				!
+					[
+						String.IsEqual(Container.ViewMode,$LOCALIZE[31101]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[311012]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[31107]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[311022]) | 
+						String.IsEqual(Container.ViewMode,$LOCALIZE[311023])
+					]
+			] + 
+			!$EXP[isEpisode] + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)
+		"> | [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value>
 		<!-- <value condition="![Control.IsVisible(54) | Control.IsVisible(55)] + !$EXP[isEpisode] + !Control.IsVisible(56) + !String.StartsWith(Container.PluginCategory,Season) + !String.IsEmpty(ListItem.Genre)"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Title][/COLOR]</value> -->
 		<!-- <value condition="$EXP[isContent]"> [B]|[/B] [COLOR unfocused_text]$INFO[ListItem.Label][/COLOR]</value> -->
 	</variable>
 
 	<variable name="FlixCategory">
-    <value condition="!String.IsEmpty(Container.PluginCategory) + [!String.StartsWith(Container.PluginCategory,Season)]"> [B]»[/B] [COLOR unfocused_text]$INFO[Container.PluginCategory][/COLOR]</value>
-    <value condition="!String.IsEmpty(Container.PluginCategory) + String.StartsWith(Container.PluginCategory,Season) + $EXP[isEpisode]"> [B]»[/B] [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR]</value>
+    <value condition="!String.IsEmpty(Container.PluginCategory) + [!String.StartsWith(Container.PluginCategory,Season)]"> » [COLOR unfocused_text]$INFO[Container.PluginCategory][/COLOR]</value>
+    <value condition="!String.IsEmpty(Container.PluginCategory) + String.StartsWith(Container.PluginCategory,Season) + $EXP[isEpisode]"> » [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.TVShowTitle][/COLOR]</value>
     <value></value>
+	</variable>
+
+	<variable name="LeftVideoHeader">
+    <value>$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</value>
+	</variable>
+
+	<variable name="RightVideoHeader">
+    <value>$VAR[FilterLabel][COLOR unfocused_text]$INFO[Container.CurrentItem][/COLOR] / [COLOR unfocused_text]$INFO[Container.NumItems][/COLOR]$VAR[ClockCrumbs]</value>
+
+		<!-- <value>[COLOR unfocused_text]$INFO[Control.GetLabel(10)][/COLOR] • [COLOR unfocused_text]$INFO[Container.CurrentItem][/COLOR] / [COLOR unfocused_text]$INFO[Container.NumItems][/COLOR] • [COLOR unfocused_text]$INFO[System.Time][/COLOR]</value> -->
+	</variable>
+
+	<variable name="FilterLabel">
+    <value condition="Window.IsVisible(videos)">[COLOR unfocused_text]$INFO[Control.GetLabel(10)][/COLOR] • </value>
+	</variable>
+
+	<variable name="ClockCrumbs">
+    <value condition="Skin.HasSetting(Enable.ClockCrumbs)"> • [COLOR unfocused_text]$INFO[System.Time][/COLOR]</value>
 	</variable>
 
 	<variable name="SubstituteLabel">
@@ -201,9 +236,16 @@
 		<value>$VAR[FlixScapeVar]</value>
 	</variable>
 
+	<!-- <variable name="ViewSelectorTexture">
+		<value condition="!String.IsEmpty(Container.Content)">special://skin/resources/previews/$INFO[Container.Content]/$INFO[Container(3000).ListItem.Label]_$INFO[Container.Content].png</value>
+		<value>special://skin/resources/previews/menus/$INFO[Container(3000).ListItem.Label]_menu.png</value>
+	</variable> -->
+
 	<variable name="ViewSelectorTexture">
-		<value condition="!String.IsEmpty(Container.Content)">previews/$INFO[Container.Content]/$INFO[Container(3000).ListItem.Label]_$INFO[Container.Content]_preview.jpg</value>
-		<value>previews/menus/$INFO[Container(3000).ListItem.Label]_menu_preview.jpg</value>
+    <value condition="Container.Content(episodes) + String.StartsWith(Container.PluginCategory,Season)">special://skin/resources/previews/episodes/$INFO[Container(3000).ListItem.Label]_episodes.png</value>
+    <value condition="Container.Content(episodes)">special://skin/resources/previews/episode_lists/$INFO[Container(3000).ListItem.Label]_episode_lists.png</value>
+    <value condition="!String.IsEmpty(Container.Content)">special://skin/resources/previews/$INFO[Container.Content]/$INFO[Container(3000).ListItem.Label]_$INFO[Container.Content].png</value>
+    <value>special://skin/resources/previews/menus/$INFO[Container(3000).ListItem.Label]_menu.png</value>
 	</variable>
 	
 
@@ -217,15 +259,10 @@
     <value>[COLOR grey]Click OK to activate location cycling[/COLOR]</value>
 	</variable> -->
 
-	<variable name="ClockCrumbs">
-    <value condition="Skin.HasSetting(Enable.ClockCrumbs) + !Container.Content(favourites)">[COLOR unfocused_text]$INFO[System.Time][/COLOR] • </value>
-    <value condition="Skin.HasSetting(Enable.ClockCrumbs) + Container.Content(favourites)">[COLOR unfocused_text]$INFO[System.Time][/COLOR] • [COLOR unfocused_text]Favorites[/COLOR]</value>
-	</variable>
-
 	<variable name="ListLandscapeHeaderVar">
     <value condition="Container.Content(favourites)">[COLOR unfocused_text]$LOCALIZE[1036][/COLOR]</value>
-    <value condition="$EXP[isPlugin]">$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]</value>
-    <value condition="!$EXP[isPlugin]">$VAR[ClockCrumbs][COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]</value>
+    <value condition="$EXP[isPlugin]">$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]</value>
+    <value condition="!$EXP[isPlugin]">[COLOR unfocused_text]$INFO[Container.FolderName][/COLOR]</value>
 	</variable>
 
 	<variable name="DefaultSearchWindowBehaviorVar">
@@ -262,12 +299,11 @@
 	</variable>
 
 	<variable name="FocusedTextColorVar">
-    <value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">$INFO[Window(Home).Property(listitem_logo_text_color_video)]</value>
-		<value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141515</value>
+    <value condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(listitem_logo_color_alt_video)) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">FF141515</value>
+    <value condition="Player.HasVideo + !String.IsEmpty(Window(Home).Property(listitem_logo_text_color_video)) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),0)">$INFO[Window(Home).Property(listitem_logo_text_color_video)]</value>
+    <!-- Rest of your conditions remain the same -->
+    <value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141515</value>
     <value condition="Player.HasVideo + String.IsEqual(Skin.String(BackgroundSetting),0)">focused_text</value>
-    <!-- <value condition="Player.HasVideo + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141515</value> -->
-    <!-- <value condition="Player.HasVideo + String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141415</value> -->
-    <!-- <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),1)">FF141415</value> -->
     <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + String.IsEqual(Skin.String(BackgroundSetting),0)">focused_text</value>
     <value condition="String.IsEqual(Skin.String(FocusColorThemeSetting),0) + [String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),2)] + !String.IsEmpty(Window(home).Property(listitem_color)) + !Player.HasVideo">$INFO[Window(home).Property(listitem_textcolor)]</value>
     <value>FF141515</value>
@@ -339,11 +375,16 @@
 
 	<variable name="BorderColorVar">
 		<value>FF2E2E2E</value>
-		<!-- <value condition="String.IsEqual(Skin.String(BackgroundSetting),0) | 
-		String.IsEqual(Skin.String(BackgroundSetting),1) | 
-		[String.IsEqual(Skin.String(BackgroundSetting),2) + Control.IsVisible(50)] ">FF2E2E2E</value>
-		<value>00FFFFFF</value> -->
-		<!-- <value>FF252525</value> -->
+	</variable>
+
+	<variable name="CategoryBorderColorVar">
+		<value condition="[String.IsEqual(Skin.String(BackgroundSetting),2) + String.IsEqual(Skin.String(MainBlurTexture),0)] | String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),0)">$VAR[FocusColorTheme]</value>
+		<value>FFFFFFFF</value>
+	</variable>
+
+	<variable name="BorderTextureVar">
+		<value condition="[String.IsEqual(Skin.String(BackgroundSetting),2) + String.IsEqual(Skin.String(MainBlurTexture),0)] | String.IsEqual(Skin.String(BackgroundSetting),1) | String.IsEqual(Skin.String(BackgroundSetting),0)">masks/bordertexture2.png</value>
+		<value>masks/bordertexture.png</value>
 	</variable>
 
 	<variable name="Capitalize_DimorFadeLabel">
@@ -506,6 +547,35 @@
 		<value condition="String.IsEqual(Skin.String(53OnDownSetting.Other),2)">Skin.SetString(53OnDownSetting.Other,0)</value>
 	</variable>
 
+	<!-- FLIXINFO TOGGLES -->
+	<variable name="56OnDownSettingVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1)">PosterWall</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)">LandscapeWall</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),3)">Play trailer</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),4)">Information</value>
+	</variable>
+
+	<variable name="56OnDownSettingVar.Other">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),0)">Scrollbar</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),1)">LandscapeWall</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),2)">Information</value>
+	</variable>
+
+	<variable name="56OnDownToggleVar.MovieTV">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),0)">Skin.SetString(56OnDownSetting.MovieTV,1)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1)">Skin.SetString(56OnDownSetting.MovieTV,2)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)">Skin.SetString(56OnDownSetting.MovieTV,3)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),3)">Skin.SetString(56OnDownSetting.MovieTV,4)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.MovieTV),4)">Skin.SetString(56OnDownSetting.MovieTV,0)</value>
+	</variable>
+
+	<variable name="56OnDownToggleVar.Other">
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),0)">Skin.SetString(56OnDownSetting.Other,1)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),1)">Skin.SetString(56OnDownSetting.Other,2)</value>
+		<value condition="String.IsEqual(Skin.String(56OnDownSetting.Other),2)">Skin.SetString(56OnDownSetting.Other,0)</value>
+	</variable>
+
 	<variable name="StudioLogoSettingVar">
 		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),0)">Off</value>
 		<value condition="String.IsEqual(Skin.String(StudioLogoSetting),1)">Movies</value>
@@ -631,7 +701,8 @@
 	</variable>
 
 	<variable name="MainFanartDiffuse">
-		<value condition="!Window.IsVisible(videos) | [Control.IsVisible(50) | Control.IsVisible(53) | Control.IsVisible(56)]">66FFFFFF</value>
+		<value condition="!String.IsEmpty(Window(home).Property(ViewTransitioning))">66FFFFFF</value>
+		<value condition="!Window.IsVisible(videos) | [String.IsEqual(Container.ViewMode,$LOCALIZE[535]) | String.IsEqual(Container.ViewMode,$LOCALIZE[31100]) | String.IsEqual(Container.ViewMode,$LOCALIZE[31107])]">66FFFFFF</value>
 		<value>33FFFFFF</value>
 	</variable>
 
@@ -665,43 +736,69 @@
 	</variable> -->
 
 	<variable name="MainBlurDiffuse">
-	<value condition="$EXP[infodialog_active]">4DFFFFFF</value>
-		<value condition="Control.IsVisible(53) | Control.IsVisible(56)">66FFFFFF</value>
-		<value condition="Control.IsVisible(50) + 
+		<value condition="!String.IsEqual(Skin.String(MainBlurTexture),0)"></value>
+		<value condition="!String.IsEmpty(Window(home).Property(ViewTransitioning))">33FFFFFF</value>
+		<value condition="$EXP[infodialog_active]">4DFFFFFF</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31100])">66FFFFFF</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[31101]) | String.IsEqual(Container.ViewMode,$LOCALIZE[311012]) | String.IsEqual(Container.ViewMode,$LOCALIZE[31107]) | String.IsEqual(Container.ViewMode,$LOCALIZE[311022]) | String.IsEqual(Container.ViewMode,$LOCALIZE[311023])">26FFFFFF</value>
+
+		<value condition="Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) + 
 		[
 			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
 			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
 			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
-			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | 
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
 			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] | 
 			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
 			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
-		]">4DFFFFFF</value>
-		<value condition="[Control.IsVisible(50) + 
+		]">73FFFFFF</value>
+		<value condition="[Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) + 
 		[
 			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0)] | 
 			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),0)] | 
 			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),0)] | 
-			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),0)] | 
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)] | 
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),0)] | 
 			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),0)] | 
 			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),0)] |
 			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),0)]
-		]] + !Window.IsVisible(systeminfo)">33FFFFFF</value>
-		<value condition="[Control.IsVisible(50) + 
+		]] + !Window.IsVisible(systeminfo)">26FFFFFF</value>
+		<value condition="[Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) + 
 		[
 			[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),1)] | 
 			[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),1)] | 
 			[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),1)] | 
-			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),1)] | 
+			[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)] | 
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),1)] | 
 			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),1)] | 
 			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),1)] |
 			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),1)]
 		]] + !Window.IsVisible(systeminfo)">26FFFFFF</value>
-		<value condition="Control.IsVisible(51)">4DFFFFFF</value>
-		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + String.IsEmpty(Window(Home).Property(SpotlightWidget))">4DFFFFFF</value>
-		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + !String.IsEmpty(Window(Home).Property(SpotlightWidget))">66FFFFFF</value>
-		<value condition="$EXP[dialog_visible]">$INFO[Window(home).Property(LastMainBlurDiffuse)]</value>
-		<value>4DFFFFFF</value>
+		<value condition="!Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) + 
+		!
+			[
+				Window.IsVisible(tvguide) | Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)
+			] + 
+		[
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | 
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] | 
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)]
+		]">73FFFFFF</value>
+		<value condition="!Window.IsVisible(videos) + String.IsEqual(Container.ViewMode,$LOCALIZE[535]) + 
+		[
+			[Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),0)] | 
+			[Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),0)] | 
+			[Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),0)] |
+			[Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),0)]
+		]">26FFFFFF</value>
+		<value condition="Window.IsVisible(tvguide)">73FFFFFF</value>
+		<value condition="Window.IsVisible(tvchannels) | Window.IsVisible(tvtimers) | Window.IsVisible(tvsearch)">26FFFFFF</value>
+		<value condition="String.IsEqual(Container.ViewMode,$LOCALIZE[310981])">73FFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + String.IsEmpty(Window(Home).Property(SpotlightWidget))">33FFFFFF</value>
+		<value condition="[Window.IsVisible(Home) | Window.IsVisible(1121)] + !String.IsEmpty(Window(Home).Property(SpotlightWidget))">73FFFFFF</value>
+		<value>33FFFFFF</value>
 	</variable>
 
 	<!-- <variable name="WatchedStripVar">
@@ -728,7 +825,7 @@
 
 	<variable name="BackgroundSettingVar">
 		<value condition="String.IsEqual(Skin.String(BackgroundSetting),0)">Default</value>
-		<value condition="String.IsEqual(Skin.String(BackgroundSetting),1)">Fanart</value>
+		<value condition="String.IsEqual(Skin.String(BackgroundSetting),1)">Combined</value>
 		<value condition="String.IsEqual(Skin.String(BackgroundSetting),2)">Blur</value>
 	</variable>
 
@@ -813,11 +910,6 @@
 	<variable name="SeasonLabel">
 		<value condition="Integer.IsGreater(ListItem.Property(WatchedEpisodes),0) + !String.IsEqual(ListItem.Property(WatchedEpisodes),ListItem.Property(TotalEpisodes)) + !String.IsEqual(ListItem.Property(UnWatchedEpisodes),-1)">$INFO[ListItem.Property(UnwatchedEpisodes),, remaining]</value>
 		<value>$INFO[ListItem.Property(TotalEpisodes)] episodes</value>
-	</variable>
-
-	<variable name="WidgetLoadingLabel">
-		<value condition="String.IsEqual(Window(Home).Property(altus.widgets_load_state),processing)">Loading stacked content...</value>
-		<value condition="String.IsEqual(Window(Home).Property(altus.widgets_load_state),finished)">Finished loading in $INFO[Window(Home).Property(altus.widgets_load_time)] seconds</value>
 	</variable>
 
 	<variable name="ForcedViewLabel">

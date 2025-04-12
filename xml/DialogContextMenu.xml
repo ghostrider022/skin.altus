@@ -45,9 +45,9 @@
 				<control type="button" id="8001">
 					<height>65</height>
 					<align>left</align>
+					<aligny>center</aligny>
 					<textoffsetx>45</textoffsetx>
-					<textoffsety>9</textoffsety>
-					<label>[B]Play Trailer (Altus)[/B]</label>
+					<label>[I][B]Play Trailer (Altus)[/B][/I]</label>
 					<font>font32</font>
 					<textcolor>unfocused_text</textcolor>
 					<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
@@ -64,9 +64,8 @@
 				<width>498</width>
 				<height>65</height>
 				<align>left</align>
-				<aligny>left</aligny>
+				<aligny>center</aligny>
 				<textoffsetx>45</textoffsetx>
-				<textoffsety>9</textoffsety>
 				<font>font32</font>
 				<textcolor>unfocused_text</textcolor>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>

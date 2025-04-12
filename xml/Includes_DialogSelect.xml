@@ -72,7 +72,7 @@
 					</control>
 					<control type="label">
 						<left>165</left>
-						<top>13</top>
+						<top>9</top>
 						<right>20</right>
 						<height>60</height>
 						<font>font14</font>
@@ -81,13 +81,14 @@
 						<textcolor>unfocused_text</textcolor>
 						<selectedcolor>unfocused_text</selectedcolor>
 					</control>
-					<control type="textbox">
+					<control type="label">
 						<left>165</left>
-						<top>63</top>
+						<top>59</top>
 						<right>20</right>
 						<height>67</height>
 						<font>font12</font>
 						<textcolor>unfocused_text</textcolor>
+						<selectedcolor>unfocused_text</selectedcolor>
 						<label>$INFO[ListItem.Label2]</label>
 					</control>
 					<control type="image">
@@ -141,7 +142,7 @@
 					</control>
 					<control type="label">
 						<left>165</left>
-						<top>13</top>
+						<top>9</top>
 						<right>20</right>
 						<height>60</height>
 						<font>font14</font>
@@ -151,14 +152,17 @@
 						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 						<selectedcolor>$VAR[FocusedTextColorVar]</selectedcolor>
 					</control>
-					<control type="textbox">
+					<control type="label">
 						<left>165</left>
-						<top>63</top>
+						<top>59</top>
 						<right>20</right>
 						<height>67</height>
 						<font>font12</font>
 						<textcolor>$VAR[FocusedTextColorVar]</textcolor>
+						<selectedcolor>$VAR[FocusedTextColorVar]</selectedcolor>
 						<label>$INFO[ListItem.Label2]</label>
+						<scroll>true</scroll>
+						<scrollspeed>150</scrollspeed>
 					</control>
 					<control type="image">
 						<left>20</left>
@@ -187,7 +191,7 @@
 			</control>
 			<control type="label">
 				<left>990</left>
-				<bottom>30</bottom>
+				<bottom>38</bottom>
 				<width>275</width>
 				<height>35</height>
 				<font>font13</font>

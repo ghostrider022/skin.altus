@@ -110,8 +110,6 @@
         </control> -->
         <control type="group">
           <control type="label">
-            <!-- <centerleft>50%</centerleft> -->
-            <top>5</top>
             <left>$PARAM[left_right_text]</left>
             <right>$PARAM[left_right_text]</right>
             <aligny>center</aligny>
@@ -123,8 +121,6 @@
             <visible>!Control.HasFocus($PARAM[id]) | !$PARAM[focused]</visible>
           </control>
           <control type="label">
-            <!-- <centerleft>50%</centerleft> -->
-            <top>5</top>
             <left>$PARAM[left_right_text]</left>
             <right>$PARAM[left_right_text]</right>
             <aligny>center</aligny>
@@ -139,8 +135,6 @@
             <scroll>$PARAM[focused]</scroll>
           </control>
           <control type="label">
-            <!-- <centerleft>50%</centerleft> -->
-            <top>5</top>
             <left>$PARAM[left_right_text]</left>
             <right>$PARAM[left_right_text]</right>
             <aligny>center</aligny>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <includes>
 
-  <include name="SeasonLayout">
+  <!-- <include name="SeasonLayout">
 		<param name="focused">false</param>
 		<definition>
 			<control type="group">
@@ -12,9 +12,9 @@
 					<width>430</width>
 					<height>242</height>
 					<texture colordiffuse="artwork_dim" background="true">$VAR[LandscapeTextureVar]</texture>
-					<!-- <bordersize>1</bordersize> -->
 					<aspectratio scalediffuse="false">scale</aspectratio>
-					<!-- <bordertexture colordiffuse="$VAR[BorderColorVar]" infill="false">masks/bordertexture.png</bordertexture> -->
+          <bordersize>border_size</bordersize>
+					<bordertexture colordiffuse="$VAR[BorderColorVar]" border="border_size" infill="false">masks/bordertexture.png</bordertexture>
 				</control>
         <control type="image">
 					<left>20</left>
@@ -54,54 +54,7 @@
 					<visible>[$PARAM[focused] + Control.IsVisible(5057)] + !Integer.IsEqual(Container(5057).ListItem.Property(WatchedProgress),0)</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
-        <control type="group">
-          <left>480</left>
-          <top>65</top>
-          <height>140</height>
-          <orientation>vertical</orientation>
-          <align>left</align>
-          <control type="textbox">
-            <right>355</right>
-            <align>left</align>
-            <label>[COLOR unfocused_text]$VAR[RI_Plot][/COLOR]</label>
-            <font>font27</font>
-            <textcolor>$VAR[FocusColorTheme]</textcolor>
-            <aligny>center</aligny>
-            <autoscroll delay="6000" time="2000" repeat="8000">$PARAM[focused]</autoscroll>
-            <visible>[Window.IsVisible(10106) + ![Container(5057).OnNext | Container(5057).OnPrevious]] | [[$PARAM[focused] + Control.HasFocus(5057)] + ![Container(5057).OnNext | Container(5057).OnPrevious]] | Window.IsVisible(busydialog)</visible>
-          </control>
-          <control type="textbox">
-            <right>355</right>
-            <align>left</align>
-            <label>[COLOR unfocused_text]$VAR[RI_Plot][/COLOR]</label>
-            <font>font27</font>
-            <textcolor>$VAR[FocusColorTheme]</textcolor>
-            <aligny>center</aligny>
-            <visible>[Window.IsVisible(10106) + [Container(5057).OnNext | Container(5057).OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [Container(5057).OnNext | Container(5057).OnPrevious]]</visible>
-          </control>
-        </control>
-        <control type="label">
-          <left>480</left>
-          <right>355</right>
-          <top>26</top>
-          <align>left</align>
-          <label>[UPPERCASE][COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR][/UPPERCASE]</label>
-          <font>font32_title</font>
-          <textcolor>$VAR[FocusColorTheme]</textcolor>
-          <visible>true</visible>
-          <!-- <visible>[Window.IsVisible(10106) + [Container(5057).OnNext | Container(5057).OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [Container(5057).OnNext | Container(5057).OnPrevious]]</visible> -->
-        </control>
-        <control type="label">
-          <left>480</left>
-          <top>166</top>
-          <align>left</align>
-          <label>$VAR[SeasonInfoPanelTop]</label>
-          <font>font25</font>
-          <textcolor>$VAR[FocusColorTheme]</textcolor>
-          <aligny>center</aligny>
-          <visible>true</visible>
-          <!-- <visible>[Window.IsVisible(10106) + [Container(5057).OnNext | Container(5057).OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [Container(5057).OnNext | Container(5057).OnPrevious]]</visible> -->
-        </control>
+        
         <control type="image">
           <left>39</left>
           <top>214</top>
@@ -113,9 +66,9 @@
         <control type="group">
           <visible>![$PARAM[focused] + Control.HasFocus(5057)]</visible>
           <include content="ProgressBar">
-            <param name="left" value="20"/>
-            <param name="top" value="248.5"/>
-            <param name="width" value="430"/>
+            <param name="left" value="21"/>
+            <param name="top" value="249"/>
+            <param name="width" value="428"/>
             <param name="height" value="4"/>
           </include>
         </control>
@@ -124,22 +77,13 @@
           <top>11</top>
           <width>430</width>
           <height>242</height>
-          <texture border="6" colordiffuse="$VAR[FocusColorTheme]" infill="false">colors/white.png</texture>
+          <texture border="focus_border_size" colordiffuse="$VAR[FocusColorTheme]" infill="false">colors/white.png</texture>
           <visible>$PARAM[focused] + Control.HasFocus(5057)</visible>
-          <!-- <include condition="$PARAM[focused]">Animation_FocusTextureFade</include> -->
-        </control>
-        <control type="image">
-          <left>20</left>
-          <top>11</top>
-          <width>430</width>
-          <height>242</height>
-          <texture border="border_size" colordiffuse="$VAR[BorderColorVar]" infill="false">masks/bordertexture.png</texture>
-          <visible>![$PARAM[focused] + Control.HasFocus(5057)]</visible>
-          <!-- <include condition="$PARAM[focused]">Animation_FocusTextureFade</include> -->
+          <include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
         </control>
       </control>
 		</definition>
-	</include>
+	</include> -->
 
   <include name="View_57_Season">
     <control type="group">
@@ -147,7 +91,7 @@
       <visible>Control.IsVisible(57)</visible>
       <!-- Season Control List -->
       <control type="group">
-        <!-- <include>Visible_Left</include> -->
+        <include>Visible_Left</include>
         <include>OpenClose_Left</include>
         <include content="MenuContentPanel">
           <param name="width" value="355"/>
@@ -185,7 +129,7 @@
               <control type="label">
                 <left>97</left>
                 <right>40</right>
-                <top>5</top>
+                <top>-3</top>
                 <aligny>center</aligny>
                 <font>font37</font>
                 <textcolor>unfocused_text</textcolor>
@@ -213,7 +157,7 @@
               <control type="label">
                 <left>97</left>
                 <right>40</right>
-                <top>-32</top>
+                <top>-40</top>
                 <aligny>center</aligny>
                 <font>font37</font>
                 <textcolor>$VAR[FocusedTextColorVar]</textcolor>
@@ -227,7 +171,7 @@
               <control type="label">
                 <left>97</left>
                 <right>40</right>
-                <top>42</top>
+                <top>34</top>
                 <aligny>center</aligny>
                 <font>font27</font>
                 <textcolor>$VAR[FocusedTextColorVar]</textcolor>
@@ -244,43 +188,34 @@
       </control>
       <!-- Main Episode List -->
       <control type="group">
-        <!-- <include>Visible_Right</include> -->
+        <include>Visible_Right</include>
         <include>OpenClose_Right</include>
-        <control type="fixedlist" id="5057">
-          <top>220</top>
-          <!-- <top>0</top> -->
+        <control type="panel" id="5057">
+          <top>210</top>
           <width>1800</width>
-          <left>400</left>
-          <height>100%</height>
-          <movement>2</movement>
+          <left>356</left>
+          <height>594</height> <!-- Adjusted height for 2 rows -->
           <onleft>SetFocus(5057,0,absolute),57</onleft>
           <onleft>57</onleft>
           <onback>SetFocus(5057,0,absolute),57</onback>
           <onback>57</onback>
-          <onright>5157</onright>
+          <onright>5057</onright>
           <onup>5057</onup>
-          <ondown>5057</ondown>
-          <onup condition="Integer.IsGreater(Container.NumPages,1)">5057</onup>
-          <onup condition="!Integer.IsGreater(Container.NumPages,1)">9000</onup>
-          <ondown>5057</ondown>
+          <ondown>5157</ondown>
           <preloaditems>2</preloaditems>
           <pagecontrol>5157</pagecontrol>
-          <orientation>vertical</orientation>
-          <!-- <animation condition="!Control.HasFocus(57) + !$EXP[sidebar_visible]" reversible="true">
-            <effect type="slide" start="0,0" end="-360,0" time="500" tween="cubic" easing="inout" />
-          </animation> -->
-          <scrolltime tween="sine" easing="inout">500</scrolltime>
-          <itemlayout height="275" condition="Container.Content(episodes)">
+          <orientation>horizontal</orientation>
+          <scrolltime tween="cubic" easing="inout">400</scrolltime>
+          <itemlayout width="485" height="297">
             <control type="group">
               <include content="ViewUnfocusedAnimations">
                 <param name="id" value="57"/>
               </include>
-              <left>20</left>
-              <!-- <top>227</top> -->
-              <include>SeasonLayout</include>
+              <left>60</left>
+              <include>LandscapeLayout</include>
             </control>
           </itemlayout>
-          <focusedlayout height="275" condition="Container.Content(episodes)" infoupdate="30">
+          <focusedlayout width="485" height="297" infoupdate="30">
             <control type="group">
               <animation condition="Skin.HasSetting(Enable.57Dim) + String.IsEqual(Skin.String(BackgroundSetting),1) + [Control.HasFocus(57) | $EXP[sidebar_visible] | Control.HasFocus(5157)]" reversible="true">
                 <effect type="fadediffuse" start="FFE9E9E9" end="FF777777" time="0" />
@@ -289,11 +224,11 @@
                 <effect type="fade" start="100" end="50" time="0" tween="sine" easing="inout" />
               </animation>
               <depth>DepthContentPopout</depth>
-              <left>20</left>
-              <!-- <top>227</top> -->
-              <include content="SeasonLayout">
-                  <param name="focused" value="true" />
+              <left>60</left>
+              <include content="LandscapeLayout">
+                <param name="focused" value="true" />
               </include>
+              <include>FocusBounce</include>
             </control>
           </focusedlayout>
           <content>$INFO[Container(57).ListItem.FolderPath]</content>
@@ -304,10 +239,11 @@
           </animation> -->
           <top>40</top>
           <control type="image">
+            <top>17</top>
             <!-- <left>770</left> -->
             <left>434</left>
-            <width>700</width>
-            <height>150</height>
+            <width>500</width>
+            <height>107</height>
             <fadetime>200</fadetime>
             <texture background="true">$INFO[Window(Home).Property(listitem_clearlogo_cropped)]</texture>
             <aspectratio align="left" aligny="center">keep</aspectratio>
@@ -316,7 +252,7 @@
             <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
           </control>
           <control type="label">
-            <top>40</top>
+            <top>50</top>
             <left>431</left>
             <width>700</width>
             <height>150</height>
@@ -327,27 +263,84 @@
             <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
           </control>
         </control>
+        <control type="group" >
+          <left>440</left>
+          <top>850</top>
+          <height>120</height>
+          <orientation>vertical</orientation>
+          <align>left</align>
+          <control type="textbox">
+            <right>75</right>
+            <align>left</align>
+            <label>[COLOR unfocused_text]$INFO[Container(5057).ListItem.Plot][/COLOR]</label>
+            <font>font27</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <aligny>center</aligny>
+            <autoscroll delay="8000" time="2000" repeat="8000">Control.HasFocus(5057)</autoscroll>
+            <!-- <visible>[Window.IsVisible(10106) + ![Container(5057).OnNext | Container(5057).OnPrevious]] | [[$PARAM[focused] + Control.HasFocus(5057)] + ![Container(5057).OnNext | Container(5057).OnPrevious]] | Window.IsVisible(busydialog)</visible> -->
+          </control>
+          <!-- <control type="textbox">
+            <right>355</right>
+            <align>left</align>
+            <label>[COLOR unfocused_text]$VAR[RI_Plot][/COLOR]</label>
+            <font>font27</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <aligny>center</aligny>
+            <visible>[Window.IsVisible(10106) + [Container(5057).OnNext | Container(5057).OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [Container(5057).OnNext | Container(5057).OnPrevious]]</visible>
+          </control> -->
+          <control type="label">
+            <right>video_header_right</right>
+            <top>-49</top>
+            <align>left</align>
+            <label>[UPPERCASE][COLOR unfocused_text]$INFO[Container(5057).ListItem.Title][/COLOR][/UPPERCASE]</label>
+            <!-- <label>[UPPERCASE][COLOR unfocused_text]$INFO[Container(5057).ListItem.Season]$INFO[Container(5057).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container(5057).ListItem.Title][/COLOR][/UPPERCASE]</label> -->
+            <font>font32_title</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <visible>true</visible>
+            <!-- <visible>[Window.IsVisible(10106) + [OnNext | OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [OnNext | OnPrevious]]</visible> -->
+          </control>
+          <control type="label">
+            <right>83</right>
+            <top>-49</top>
+            <align>right</align>
+            <label>[UPPERCASE]$VAR[FilterLabel][COLOR unfocused_text]$INFO[Container(5057).CurrentItem][/COLOR] / [COLOR unfocused_text]$INFO[Container(5057).NumItems][/COLOR]$VAR[ClockCrumbs][/UPPERCASE]</label>
+            <font>font32_title</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <visible>true</visible>
+            <!-- <visible>[Window.IsVisible(10106) + [OnNext | OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [OnNext | OnPrevious]]</visible> -->
+          </control>
+          <control type="label">
+            <top>146</top>
+            <align>left</align>
+            <label>$VAR[SeasonInfoPanelTop]</label>
+            <font>font25</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <aligny>center</aligny>
+            <visible>true</visible>
+            <!-- <visible>[Window.IsVisible(10106) + [Container(5057).OnNext | Container(5057).OnPrevious]] | [[[!$PARAM[focused] + Control.HasFocus(5057)] | Control.HasFocus(5157) | Control.HasFocus(57) | $EXP[sidebar_visible]] | [Container(5057).OnNext | Container(5057).OnPrevious]]</visible> -->
+          </control>
+        </control>
         <control type="image">
-          <left>1585</left>
-          <top>50</top>
-          <width>300</width>
-          <height>140</height>
-          <aspectratio align="center" aligny="center">keep</aspectratio>
+          <left>1630</left>
+          <top>60</top>
+          <width>213</width>
+          <height>99</height>
+          <aspectratio align="right" aligny="center">keep</aspectratio>
           <texture colordiffuse="$VAR[StudioColorDiffuseVar]">$VAR[StudioLogoPathVar]</texture>
           <visible>!Skin.HasSetting(Disable.57StudioLogo) + !String.IsEmpty(ListItem.Studio)</visible>
           <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
         </control>
       </control>
       <control type="scrollbar" id="5157">
-        <right>-6</right>
-        <height>100%</height>
-        <width>12</width>
-        <height>1000</height>
-        <orientation>vertical</orientation>
+        <left>355</left>
+        <bottom>-6</bottom>
+        <height>12</height>
+        <width>1565</width>
+        <orientation>horizontal</orientation>
         <texturesliderbackground />
-        <animation effect="slide" end="6,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(5157)">conditional</animation>
-        <onright>57</onright>
-        <onleft>5057</onleft>
+        <animation effect="slide" end="0,6" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(5157)">conditional</animation>
+        <onup>5057</onup>
+        <ondown>5057</ondown>
       </control>
       <!-- <control type="image">
         <top>0</top>
@@ -358,7 +351,7 @@
         <visible>!Skin.HasSetting(Enable.57Dim) + !String.IsEqual(Container(5057).CurrentItem,1)</visible>
         <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
       </control> -->
-      <control type="image">
+      <!-- <control type="image">
         <bottom>0</bottom>
         <left>-530</left>
         <width>2500</width>
@@ -366,7 +359,7 @@
         <texture flipy="true">frame/InfoBar.png</texture>
         <visible>!Skin.HasSetting(Enable.57Dim)</visible>
         <animation effect="fade" start="0" end="100" time="300">VisibleChange</animation>
-      </control>
+      </control> -->
     </control>
   </include>
 

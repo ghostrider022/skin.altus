@@ -11,7 +11,7 @@
 			<control type="image">
 				<texture>colors/black.png</texture>
 				<include>FullScreenDimensions</include>
-				<animation effect="fade" start="100" end="70" time="0" condition="true">Conditional</animation>
+				<animation effect="fade" start="100" end="45" time="0" condition="true">Conditional</animation>
 				<animation effect="fade" start="100" end="0" time="0" condition="Window.IsVisible(fullscreenvideo) | Window.IsVisible(FullscreenGame)">Conditional</animation>
 			</control>
 			<control type="group">
@@ -23,20 +23,10 @@
 				<control type="image">
 					<centerleft>50%</centerleft>
 					<centertop>50%</centertop>
-					<width>70</width>
-					<height>70</height>
+					<width>175</width>
+					<height>175</height>
 					<aspectratio>keep</aspectratio>
-					<animation effect="rotate" end="-45" center="auto" time="200" delay="600" loop="true" reversible="false" condition="true">Conditional</animation>
-					<texture colordiffuse="$VAR[FocusColorTheme]">spinner.png</texture>
-				</control>
-				<control type="image">
-					<centerleft>50%</centerleft>
-					<centertop>50%</centertop>
-					<width>44</width>
-					<height>44</height>
-					<aspectratio>keep</aspectratio>
-					<animation effect="rotate" end="45" center="auto" time="200" delay="600" loop="true" reversible="false" condition="true">Conditional</animation>
-					<texture flipx="true" colordiffuse="$VAR[FocusColorTheme]">spinner.png</texture>
+					<texture>special://skin/resources/loading.gif</texture>
 				</control>
 				<control type="image">
 					<centerleft>50%</centerleft>

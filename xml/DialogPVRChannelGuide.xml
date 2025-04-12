@@ -37,7 +37,7 @@
 				</control>
 				<control type="fixedlist" id="11">
 					<left>0</left>
-					<top>70</top>
+					<top>105</top>
 					<width>945</width>
 					<bottom>0</bottom>
 					<onleft>60</onleft>
@@ -48,24 +48,24 @@
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<movement>4</movement>
 					<focusposition>4</focusposition>
-					<itemlayout height="86" width="945">
+					<itemlayout height="80" width="945">
 						<control type="label">
-							<height>86</height>
-							<left>30</left>
+							<height>80</height>
+							<left>22</left>
 							<width>130</width>
-							<top>2</top>
-							<aligny>left</aligny>
+							
+							<aligny>center</aligny>
 							<textoffsety>20</textoffsety>
 							<textcolor>lightgrey</textcolor>
 							<label>$INFO[ListItem.StartTime]</label>
 						</control>
 						<control type="label">
-							<height>86</height>
+							<height>80</height>
 							<right>30</right>
 							<width>725</width>
-							<top>2</top>
+							
 							<align>right</align>
-							<aligny>left</aligny>
+							<aligny>center</aligny>
 							<textoffsety>20</textoffsety>
 							<label>$VAR[PVRListItemSubLabelFocused]</label>
 							<textcolor>unfocused_text</textcolor>
@@ -78,7 +78,7 @@
 							<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(11)">Conditional</animation>
 						</control>
 						<control type="image">
-							<height>86</height>
+							<height>80</height>
 							<texture colordiffuse="$VAR[FocusColorTheme]">colors/grey.png</texture>
 							<animation effect="fade" start="100" end="50" time="40" condition="!Control.HasFocus(11)">Conditional</animation>
 						</control>
@@ -88,22 +88,22 @@
 							<texture colordiffuse="$VAR[FocusColorTheme]">masks/posterflowdivider.png</texture>
 						</control>
 						<control type="label">
-							<height>86</height>
+							<height>80</height>
 							<left>30</left>
 							<width>130</width>
-							<top>2</top>
-							<aligny>left</aligny>
+							
+							<aligny>center</aligny>
 							<textoffsety>20</textoffsety>
 							<label>$INFO[ListItem.StartTime]</label>
 							<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 						</control>
 						<control type="label">
-							<height>86</height>
+							<height>80</height>
 							<right>30</right>
 							<width>725</width>
-							<top>2</top>
+							
 							<align>right</align>
-							<aligny>left</aligny>
+							<aligny>center</aligny>
 							<textoffsety>20</textoffsety>
 							<label>$VAR[PVRListItemSubLabelFocused]</label>
 							<textcolor>$VAR[FocusedTextColorVar]</textcolor>
@@ -113,9 +113,10 @@
 							<left>30</left>
 							<top>105</top>
 							<right>30</right>
-							<height>193</height>
+							<height>185</height>
+							<font>font27</font>
 							<label>$INFO[ListItem.Plot]</label>
-							<autoscroll time="3000" delay="4000" repeat="5000">$PARAM[focused]</autoscroll>
+							<autoscroll time="3000" delay="4000" repeat="5000">Skin.HasSetting(autoscroll)</autoscroll>
 							<visible>!String.IsEmpty(ListItem.Plot)</visible>
 						</control>
 					</focusedlayout>
@@ -136,6 +137,7 @@
 			</control>
 			<control type="group">
 				<include>Animation_TopSlide</include>
+				<top>15</top>
 				<control type="label" id="2">
 					<description>header label</description>
 					<textoffsetx>40</textoffsetx>

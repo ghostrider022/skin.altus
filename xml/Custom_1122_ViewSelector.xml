@@ -47,7 +47,7 @@
         <top>97</top>
         <left>0</left>
         <width>490</width>
-        <height>600</height>
+        <height>675</height>
         <scrolltime>200</scrolltime>
         <include content="List">
           <param name="id" value="3000" />

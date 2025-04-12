@@ -11,13 +11,13 @@
 				<top>130</top>
 				<right>0</right>
 				<height>3</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
+				<texture colordiffuse="$VAR[FocusColorTheme]" border="3">dialogs/separator-grey.png</texture>
 			</control>
 			<control type="image">
 				<bottom>134</bottom>
 				<right>0</right>
 				<height>3</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
+				<texture colordiffuse="$VAR[FocusColorTheme]" border="3">dialogs/separator-grey.png</texture>
 			</control>
 			<control type="panel" id="2">
 				<top>148</top>
@@ -142,6 +142,7 @@
 							<textcolor>$VAR[FocusedTextColorVar]</textcolor>
 							<visible>!String.Contains(Listitem.Label,$LOCALIZE[20058])</visible>
 						</control>
+						<include>FocusBounce</include>
 					</control>
 				</focusedlayout>
 			</control>

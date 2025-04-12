@@ -10,12 +10,12 @@
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<include>View_50_List</include>
 			<include>View_52_IconWall</include>
-			<control type="group">
+			<!-- <control type="group">
 				<left>50</left>
 				<include>View_51_PosterFlow</include>
 				<include>View_54_PosterInfo</include>
-			</control>
-			<include>View_56_ListInfo</include>
+			</control> -->
+			<!-- <include>View_56_ListInfo</include> -->
 			<include>View_500_Wall</include>
 			<include>View_501_LandscapeWall</include>
 			<include>CommonScrollbars</include>

@@ -5,32 +5,31 @@
 	<controls>
 		<include>DefaultBackground</include>
 		<control type="group">
+			<left>470</left>
 			<include>OpenClose_Right</include>
+			<include content="MenuContentPanel">
+				<param name="bg_left" value="980" />
+				<param name="width" value="470" />
+				<param name="dividerleft" value="980" />
+				<!-- <param name="color" value="4D000000" /> -->
+			</include>
 			<control type="grouplist" id="5">
 				<description>control area</description>
 				<top>133</top>
-				<left>470</left>
+				<left>0</left>
+				<right>470</right>
+				<bottom>37</bottom>
 				<pagecontrol>60</pagecontrol>
-				<right>0</right>
-				<bottom>137</bottom>
 				<onleft>3</onleft>
 				<onright>60</onright>
 				<onup>5</onup>
 				<ondown>5</ondown>
 			</control>
 			<control type="image">
-				<left>470</left>
 				<top>130</top>
-				<right>0</right>
-				<height>2</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
-			</control>
-			<control type="image">
-				<left>470</left>
-				<bottom>135</bottom>
-				<right>0</right>
-				<height>2</height>
-				<texture colordiffuse="$VAR[FocusColorTheme]" border="2">dialogs/separator-grey.png</texture>
+				<right>470</right>
+				<height>3</height>
+				<texture colordiffuse="$VAR[FocusColorTheme]" border="3">dialogs/separator-grey.png</texture>
 			</control>
 		</control>
 		<control type="button" id="7">
@@ -99,9 +98,9 @@
 				<left>0</left>
 				<height>85</height>
 				<width>470</width>
-				<textoffsetx>40</textoffsetx>
+				<textoffsetx>50</textoffsetx>
 				<aligny>center</aligny>
-				<align>center</align>
+				<align>left</align>
 				<font>font37</font>
 				<texturefocus colordiffuse="$VAR[FocusColorTheme]">colors/grey.png</texturefocus>
 				<texturenofocus />
@@ -110,7 +109,7 @@
 		<control type="group">
 			<right>0</right>
 			<top>133</top>
-			<bottom>137</bottom>
+			<bottom>0</bottom>
 			<width>60</width>
 			<control type="scrollbar" id="60">
 				<right>0</right>
@@ -132,7 +131,7 @@
 		<include content="TopBar">
 			<param name="breadcrumbs_label" value="[COLOR unfocused_text]$INFO[Control.GetLabel(2)][/COLOR] [B]»[/B] [COLOR unfocused_text]$LOCALIZE[5][/COLOR]" />
 		</include>
-		<include>BottomBar</include>
+		<!-- <include>BottomBar</include> -->
 		<control type="group">
 			<depth>DepthContentPanel</depth>
 			<include>OpenClose_Left</include>
@@ -172,14 +171,14 @@
 			<include>OpenClose_Right</include>
 			<control type="textbox" id="6">
 				<description>description area</description>
-				<left>510</left>
-				<bottom>27</bottom>
+				<left>1510</left>
+				<top>105</top>
 				<right>60</right>
-				<height>105</height>
-				<width>1350</width>
-				<font>font12</font>
-				<align>justify</align>
-				<textcolor>$VAR[FocusedColorVar]</textcolor>
+				<height>940</height>
+				<font>font27</font>
+				<align>left</align>
+				<aligny>center</aligny>
+				<textcolor>unfocused_text</textcolor>
 				<autoscroll time="3000" delay="5000" repeat="5000">true</autoscroll>
 			</control>
 		</control>

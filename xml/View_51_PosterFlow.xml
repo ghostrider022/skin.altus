@@ -111,7 +111,7 @@
               <aspectratio align="center" aligny="center">keep</aspectratio>
               <visible>![$PARAM[focused] + Control.HasFocus($PARAM[list_id])] + String.IsEmpty(Skin.String(TrailerPlaying))</visible>
               <visible>![$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] + String.IsEmpty(Skin.String(TrailerPlaying))</visible>
-              <visible>[!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(Enable.SpineClearlogo) + !Skin.HasSetting(Disable.51Dim)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isEpisode] | Container.Content(addons)]</visible>
+              <visible>[!String.IsEmpty(ListItem.Art(clearlogo)) + Skin.HasSetting(Enable.SpineClearlogo) + !$EXP[sidebar_visible] + !$EXP[dialog_visible] + !Skin.HasSetting(Disable.51Dim)] + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isEpisode] | Container.Content(addons)]</visible>
             </control>
           </control>
           <control type="image">
@@ -121,7 +121,7 @@
             <height>170</height>
             <texture colordiffuse="overlay_fade_color">overlays/overlay_bg.png</texture>
             <visible>[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | [$PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] | Skin.HasSetting(Disable.51Dim)</visible>
-            <visible>Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0) | !Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0)</visible>
+            <visible>[Listitem.IsCollection | ListItem.IsPlaying | Integer.IsGreater(ListItem.Playcount,0) | [!Integer.IsEqual(Container($PARAM[id]).ListItem.Property(WatchedProgress),0) + [$PARAM[focused] | Integer.IsGreater(ListItem.Playcount,0)]]]</visible>
             <animation condition="
               [[$PARAM[focused] + Control.HasFocus($PARAM[list_id])] | $PARAM[focused] + [Control.IsVisible(51) | Control.IsVisible(500)]] + 
               [
@@ -135,7 +135,7 @@
           <control type="image">
             <left>0</left>
             <top>620.5</top>
-            <width>472</width>
+            <width>473</width>
             <height>90</height>
             <texture colordiffuse="overlay_fade_color">overlays/overlay_bg_long.png</texture>
             <visible>!String.IsEmpty(ListItem.Art(poster))</visible>
@@ -159,7 +159,7 @@
           </control>
           <control type="label">
             <right>20</right>
-            <top>650</top>
+            <top>642</top>
             <width>280</width>
             <font>font32_title</font>
             <shadowcolor>text_shadow</shadowcolor>
@@ -173,7 +173,7 @@
           </control>
           <control type="label">
             <right>20</right>
-            <top>650</top>
+            <top>642</top>
             <width>280</width>
             <font>font32_title</font>
             <shadowcolor>text_shadow</shadowcolor>
@@ -216,9 +216,10 @@
 	<include name="View_51_PosterFlow">
 		<control type="group">
 			<include>OpenClose_Right</include>
+			<include>Visible_Right</include>
+			<visible>Control.IsVisible(51)</visible>
 			<left>0</left>
 			<top>0</top>
-			<visible>Control.IsVisible(51)</visible>
       <control type="group">
         <animation condition="!Control.HasFocus(5199) + !$EXP[sidebar_visible] + String.IsEqual(Window(Home).Property(FanartVisible),true)">
           <effect type="fade" start="100" end="0" time="300" tween="cubic" reversible="true" />
@@ -226,12 +227,12 @@
         <animation type="Hidden">
           <effect type="fade" start="100" end="0" time="500" delay="500" tween="cubic" easing="out"/>
         </animation>
-        <control type="image">
+        <!-- <control type="image">
           <height>367</height>
           <bottom>0</bottom>
           <texture colordiffuse="$VAR[FocusColorTheme]">colors/darkest.png</texture>
           <visible>String.IsEqual(Skin.String(BackgroundSetting),1)</visible>
-        </control>
+        </control> -->
         <control type="image">
           <height>3</height>
           <bottom>367</bottom>
@@ -316,7 +317,7 @@
 							<param name="focused" value="true" />
 						</include>
             <include>ResetFanartVisible</include>
-            <include>ReturntoView</include>
+            <include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<!-- <itemlayout height="410" width="310" condition="Container.Content(artists) | Container.Content(albums)">
@@ -347,7 +348,7 @@
 				<include>ArtworkAnimations</include>
 			</control>
       <control type="group">
-        <top>710</top>
+        <top>702</top>
         <left>77</left>
         <right>77</right>
         <!-- <bottom>160</bottom> -->
@@ -361,28 +362,18 @@
           <control type="label">
             <align>center</align>
             <height>60</height>
-            <label>$VAR[ClockCrumbs]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar]</label>
-            <font>font32</font>
+            <label>$VAR[LeftVideoHeader]</label>
+            <font>font32_title_uppercase</font>
             <textcolor>$VAR[FocusColorTheme]</textcolor>
             <shadowcolor>text_shadow</shadowcolor>
+            <!-- <visible>!Window.IsVisible(busydialog)</visible> -->
           </control>
-          <!-- <control type="label">
-            <left>15</left>
-            <top>913</top>
-            <width>100%</width>
-            <label>$INFO[Container.CurrentItem] [COLOR $VAR[FocusColorTheme]][B]/[/B][/COLOR] $INFO[Container.NumItems] total items</label>
-            <font>font32</font>
-            <textcolor>unfocused_text</textcolor>
-            <shadowcolor>text_shadow</shadowcolor>
-            <align>center</align>
-          </control> -->
           <include condition="!String.IsEmpty(Skin.String(valid_api_key))" content="HorizontalRatings">
             <param name="align" value="center"/>
           </include>
           <control type="label">
             <align>center</align>
             <height>35</height>
-            <!-- <label>$INFO[Window(Home).Property(Returnto51)]</label> -->
             <label>$VAR[VideoInfoPanelTop]</label>
             <font>font27</font>
             <textcolor>$VAR[FocusColorTheme]</textcolor>
@@ -390,21 +381,22 @@
             <scrollspeed>150</scrollspeed>
           </control>
           <control type="textbox">
-            <height max="130">auto</height>
+            <height max="113">auto</height>
             <font>font27</font>
             <textcolor>unfocused_text</textcolor>
             <align>center</align>
             <label>$VAR[RI_Plot]</label>
-            <autoscroll delay="12000" time="5000" repeat="12000">$PARAM[focused]</autoscroll>
-            <visible>Control.HasFocus(51)</visible>
+            <autoscroll delay="12000" time="5000" repeat="12000">Skin.HasSetting(autoscroll)</autoscroll>
+            <visible>String.IsEqual(Container.Viewmode,$LOCALIZE[310981])</visible>
           </control>
-          <control type="textbox">
-            <height max="130">auto</height>
-            <font>font27</font>
-            <textcolor>unfocused_text</textcolor>
+          <control type="label">
             <align>center</align>
-            <label>$VAR[RI_Plot]</label>
-            <visible>$EXP[sidebar_visible] | Control.HasFocus(5199)</visible>
+            <height>50</height>
+            <label>$VAR[RightVideoHeader]</label>
+            <font>font32_title_uppercase</font>
+            <textcolor>$VAR[FocusColorTheme]</textcolor>
+            <shadowcolor>text_shadow</shadowcolor>
+            <!-- <visible>!Window.IsVisible(busydialog)</visible> -->
           </control>
         </control>
       </control>

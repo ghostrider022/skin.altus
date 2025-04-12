@@ -96,15 +96,6 @@
 					]
 				</visible>
 				<include>FullScreenDimensions</include>
-				<!-- <control type="image">
-					<fadetime>500</fadetime>
-					<texture background="true" colordiffuse="FFE0E0E8" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
-					<aspectratio>scale</aspectratio>
-					<include>ArtworkAnimations</include>
-				</control>
-				<control type="image">
-					<texture colordiffuse="BF000000">overlays/fanart-diffuse.png</texture>
-				</control> -->
 				<control type="image">
 					<fadetime>500</fadetime>
 					<texture background="true" colordiffuse="80FFFFFF" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
@@ -129,24 +120,12 @@
 					]
 				</visible>
 				<include>FullScreenDimensions</include>
-				<!-- <control type="image">
+				<control type="image">
 					<fadetime>500</fadetime>
-					<texture background="true" colordiffuse="FFE0E0E8" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
+					<texture background="true" colordiffuse="artwork_dim" diffuse="overlays/fanart-diffuse_setting2.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
 					<aspectratio>scale</aspectratio>
 					<include>ArtworkAnimations</include>
 				</control>
-				<control type="image">
-					<texture colordiffuse="BF000000">overlays/fanart-diffuse.png</texture>
-				</control> -->
-				<control type="image">
-					<fadetime>500</fadetime>
-					<texture background="true" colordiffuse="artwork_dim" diffuse="overlays/fanart-diffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
-					<aspectratio>scale</aspectratio>
-					<include>ArtworkAnimations</include>
-				</control>
-				<!-- <control type="image">
-					<texture colordiffuse="99000000">overlays/fanart-diffuse.png</texture>
-				</control> -->
 			</control>
 			<control type="group">
 				<include>OpenClose_Left</include>
@@ -154,27 +133,6 @@
 				<top>0</top>
 				<visible>Control.IsVisible(50)</visible>
 				<include>Visible_Left</include>
-				<!-- <control type="label">
-					<left>300</left>
-					<top>100</top>
-					<width>700</width>
-					<height>80</height>
-					<label>$INFO[Container.Content]</label>
-				</control> -->
-				<!-- <control type="label">
-					<left>300</left>
-					<top>150</top>
-					<width>700</width>
-					<height>80</height>
-					<label>Last Focused Color: $INFO[Window(home).Property(LastFocusedColor)]</label>
-				</control>
-				<control type="label">
-					<left>300</left>
-					<top>200</top>
-					<width>700</width>
-					<height>80</height>
-					<label>Current Color: $INFO[Window(home).Property(listitem_color)]</label>
-				</control> -->
 				<control type="group">
 					<visible>
 					![
@@ -239,13 +197,10 @@
 					<fadetime>500</fadetime>
 					<texture colordiffuse="artwork_dim" background="true" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[ListLandscapeVar]</texture>
 					<bordersize>border_size</bordersize>
-					<!-- <aspectratio scalediffuse="false">scale</aspectratio> -->
+					<aspectratio scalediffuse="false">scale</aspectratio>
 					<!-- <include>ArtworkAnimations</include> -->
 					<include>ListLandscapeArtworkSlide</include>
 					<bordertexture border="border_size" colordiffuse="$VAR[BorderColorVar]" infill="false">masks/bordertexture.png</bordertexture>
-					<!-- <visible>
-						false
-					</visible> -->
 					<visible>
 						Control.IsVisible(50) + !Player.HasMedia + 
 						[
@@ -273,7 +228,7 @@
 					<include>ListLandscapeArtworkSlide</include>
 					<include content="ProgressBar">
 						<param name="left" value="35"/>
-						<param name="top" value="839.5"/>
+						<param name="top" value="840"/>
 						<param name="width" value="930"/>
 						<param name="visible1" value="true"/>
 						<param name="visible2" value="true"/>
@@ -649,7 +604,7 @@
 						<top>600</top>
 						<width>540</width>
 						<bottom>70</bottom>
-						<autoscroll time="3000" delay="7000" repeat="5000">!System.HasModalDialog + $PARAM[focused]</autoscroll>
+						<autoscroll time="3000" delay="7000" repeat="5000">!System.HasModalDialog + Skin.HasSetting(autoscroll)</autoscroll>
 						<label>[COLOR button_focus][B]$LOCALIZE[31000]: [/COLOR]$INFO[musicplayer.Playlistposition,]$INFO[musicplayer.Playlistlength,/][/B][CR]$VAR[NowPlayingInfoVar]</label>
 					</control>
 					<control type="textbox" id="15599">
@@ -658,7 +613,7 @@
 						<top>640</top>
 						<width>540</width>
 						<bottom>70</bottom>
-						<autoscroll time="3000" delay="7000" repeat="5000">!System.HasModalDialog + $PARAM[focused]</autoscroll>
+						<autoscroll time="3000" delay="7000" repeat="5000">!System.HasModalDialog + Skin.HasSetting(autoscroll)</autoscroll>
 						<label>[COLOR button_focus][B]$LOCALIZE[31000]: [/COLOR]$LOCALIZE[36623][/B]</label>
 					</control>
 				</control>
@@ -671,6 +626,7 @@
 		<param name="right">0</param>
 		<definition>
 			<control type="group">
+				<top>-8</top>
 				<left>$PARAM[left]</left>
 				<right>$PARAM[right]</right>
 				<animation effect="slide" start="0,0" end="-75,0" tween="cubic" easing="in" time="500" 
@@ -734,22 +690,35 @@
 					<effect type="slide" start="0,0" end="-120,0" time="0" tween="cubic" easing="inout" />
 				</animation>
 				<control type="label">
-					<include>ListLandscapeSlideAnimations</include>
+					<include>ListLandscapeSlideDownAnimations</include>
 					<left>30</left>
-					<top>80</top>
+					<top>55</top>
 					<width>810</width>
 					<label>$VAR[ListLandscapeHeaderVar]</label>
-					<font>font32</font>
+					<font>font32_title_uppercase</font>
 					<textcolor>$VAR[FocusColorTheme]</textcolor>
 					<shadowcolor>text_shadow</shadowcolor>
 					<align>left</align>
+					<visible>!Window.IsVisible(busydialog)</visible>
+				</control>
+				<control type="label">
+					<include>ListLandscapeSlideUpAnimations</include>
+					<left>30</left>
+					<top>982</top>
+					<width>810</width>
+					<label>$VAR[RightVideoHeader]</label>
+					<font>font32_title_uppercase</font>
+					<textcolor>$VAR[FocusColorTheme]</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<align>left</align>
+					<visible>!Window.IsVisible(busydialog)</visible>
 				</control>
 				<control type="fixedlist" id="$PARAM[list_id]">
 					<left>-40</left>
-					<top>135</top>
-					<bottom>75</bottom>
+					<top>110</top>
+					<bottom>100</bottom>
 					<movement>6</movement>
-					<focusposition>5</focusposition>
+					<focusposition>6</focusposition>
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<orientation>vertical</orientation>
 					<pagecontrol>50600</pagecontrol>
@@ -770,6 +739,9 @@
 					<onleft condition="[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | [Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | [Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | [Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)] | [Container.Content(videos) + String.IsEqual(Skin.String(ListArtworkChoice.videos),2)] | [Container.Content(addons) + String.IsEqual(Skin.String(ListArtworkChoice.addons),2)] | [Container.Content(files) + String.IsEqual(Skin.String(ListArtworkChoice.files),2)] | [Container.Content(favourites) + String.IsEqual(Skin.String(ListArtworkChoice.favourites),2)] | [Container.Content() + String.IsEqual(Skin.String(ListArtworkChoice.),2)]">50600</onleft>
 					<onup>$PARAM[list_id]</onup>
 					<ondown>$PARAM[list_id]</ondown>
+					<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
+					<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
+					<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
 					<width>1950</width>
 					<viewtype label="$PARAM[viewtype_label]">list</viewtype>
 					<visible>
@@ -802,6 +774,8 @@
 						[Container.Content() + [String.IsEqual(Skin.String(Skin.ForcedView.),$PARAM[viewtype_label]) | String.IsEmpty(Skin.String(Skin.ForcedView.))]] | 
 						
 						[Container.Content(songs) + [String.IsEqual(Skin.String(Skin.ForcedView.songs),$PARAM[viewtype_label]) | String.IsEmpty(Skin.String(Skin.ForcedView.songs))]] | 
+
+						[Container.Content(images) + [String.IsEqual(Skin.String(Skin.ForcedView.images),$PARAM[viewtype_label]) | String.IsEmpty(Skin.String(Skin.ForcedView.images))]] | 
 						
 						[Container.Content(addons) + [String.IsEqual(Skin.String(Skin.ForcedView.addons),$PARAM[viewtype_label]) | String.IsEmpty(Skin.String(Skin.ForcedView.addons))]] | 
 						
@@ -817,18 +791,19 @@
 					Window.IsActive(videoplaylist) | 
 					Window.IsActive(musicplaylist)" height="210" width="610" infoupdate="30">
 						<control type="group">
+							<include>VideoTrailerControl</include>
 							<left>190</left>
-							<top>5</top>
+							<top>7</top>
 							<control type="image">
 								<left>-115</left>
-								<top>3</top>
+								<top>4</top>
 								<!-- 236 -->
 								<width>127</width>
 								<!-- 354 -->
 								<height>190</height>
 								<texture background="true">$VAR[FlixPosterVar]</texture>
 								<bordersize>4</bordersize>
-								<!-- <aspectratio scalediffuse="false">scale</aspectratio> -->
+								<aspectratio scalediffuse="false">scale</aspectratio>
 								<bordertexture border="4" colordiffuse="$VAR[FocuscolorTheme]" infill="false">colors/white.png</bordertexture>
 								<!-- <animation condition="Container($PARAM[list_id]).IsUpdating + String.IsEmpty(Skin.String(TrailerPlaying))" effect="fade" time="700" start="50" end="100" pulse="true">Conditional</animation> -->
 							</control>
@@ -871,7 +846,7 @@
 							<control type="label">
 								<left>70</left>
 								<width>810</width>
-								<centertop>13%</centertop>
+								<centertop>12%</centertop>
 								<bottom>0</bottom>
 								<aligny>center</aligny>
 								<scroll>$PARAM[focused]</scroll>
@@ -894,7 +869,7 @@
 							<control type="label">
 								<left>33</left>
 								<width>810</width>
-								<centertop>33%</centertop>
+								<centertop>32%</centertop>
 								<bottom>0</bottom>
 								<aligny>center</aligny>
 								<scroll>$PARAM[focused]</scroll>
@@ -905,56 +880,55 @@
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="textbox">
-								<top>89</top>
+								<top>80</top>
 								<left>33</left>
 								<width>810</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">true</autoscroll>
-								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
+								<autoscroll delay="6000" time="2500" repeat="6000">true</autoscroll>
+								<visible>![Container.OnNext | Container.OnPrevious]</visible>
 							</control>
-							<control type="textbox">
-								<top>89</top>
+							<!-- <control type="textbox">
+								<top>80</top>
 								<left>33</left>
 								<width>810</width>
-								<bottom>10</bottom>
+								<bottom>12</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + [Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])</visible>
-							</control>
-							<control type="textbox">
-								<top>55</top>
+							</control> -->
+							<!-- <control type="textbox">
+								<top>46</top>
 								<left>33</left>
 								<width>810</width>
-								<bottom>5</bottom>
+								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+								<autoscroll delay="6000" time="2500" repeat="6000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>46</top>
 								<left>33</left>
 								<width>810</width>
-								<bottom>5</bottom>
+								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + [[Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])]</visible>
-							</control>
+							</control> -->
 							<control type="image">
 								<left>33</left>
 								<top>14</top>
@@ -962,7 +936,7 @@
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 							</control>
-							<control type="image">
+							<!-- <control type="image">
 								<left>33</left>
 								<top>14</top>
 								<width>21</width>
@@ -970,7 +944,7 @@
 								<texture>$VAR[ListWatchedIconVar]</texture>
 								<animation effect="fade" time="150">VisibleChange</animation>
 								<visible>Control.HasFocus($PARAM[list_id])</visible>
-							</control>
+							</control> -->
 						</control>
 					</focusedlayout>
 					<itemlayout condition="[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2) + !String.StartsWith(Container.PluginName,plugin.video.the-loop)] | 
@@ -981,7 +955,7 @@
 					Container.Content(musicvideos) | 
 					Container.Content(games) | 
 					Window.IsActive(videoplaylist) | 
-					Window.IsActive(musicplaylist)" height="67" width="610">
+					Window.IsActive(musicplaylist)" height="55" width="610">
 						<control type="group">
 							<left>40</left>
 							<include>altus.PreloadPoster</include>
@@ -993,12 +967,12 @@
 								<aligny>center</aligny>
 								<font>font32</font>
 								<textcolor>lightgrey</textcolor>
-								<label>$VAR[ListLabelVar]</label>
+								<label>$VAR[ListLabelVar]$VAR[RI_EpisodeType]</label>
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="image">
 								<left>33</left>
-								<centertop>49%</centertop>
+								<centertop>52%</centertop>
 								<width>21</width>
 								<height>21</height>
 								<texture colordiffuse="lightgrey">$VAR[ListWatchedIconVar]</texture>
@@ -1015,10 +989,11 @@
 					Window.IsActive(videoplaylist) | 
 					Window.IsActive(musicplaylist)" height="210" width="610" infoupdate="30">
 						<control type="group">
+							<include>VideoTrailerControl</include>
 							<left>40</left>
 							<control type="image">
-								<top>-4</top>
-								<bottom>12</bottom>
+								<top>8</top>
+								<bottom>8</bottom>
 								<width>5</width>
 								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1026,10 +1001,10 @@
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
 							</control>
 							<control type="image">
-								<top>-4</top>
-								<height>61</height>
+								<top>-1</top>
+								<height>62</height>
 								<width>4</width>
-								<left>11</left>
+								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
 								<visible>String.IsEmpty(ListItem.Plot) + Control.HasFocus($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
@@ -1089,45 +1064,45 @@
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="textbox">
-								<top>89</top>
+								<top>85</top>
 								<left>33</left>
 								<width>830</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">true</autoscroll>
-								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
+								<autoscroll delay="6000" time="2500" repeat="6000">true</autoscroll>
+								<visible>![Container.OnNext | Container.OnPrevious]</visible>
 							</control>
-							<control type="textbox">
-								<top>89</top>
+							<!-- <control type="textbox">
+								<top>85</top>
 								<left>33</left>
 								<width>830</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + [Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>51</top>
 								<left>33</left>
 								<width>830</width>
 								<bottom>5</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+								<autoscroll ddelay="6000" time="2500" repeat="6000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>51</top>
 								<left>33</left>
 								<width>830</width>
 								<bottom>5</bottom>
@@ -1136,25 +1111,25 @@
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+								<autoscroll delay="6000" time="2500" repeat="6000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + [[Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])]</visible>
-							</control>
+							</control> -->
 							<control type="image">
 								<left>33</left>
-								<top>14</top>
+								<top>19</top>
 								<width>21</width>
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 							</control>
-							<control type="image">
+							<!-- <control type="image">
 								<left>33</left>
-								<top>14</top>
+								<top>19</top>
 								<width>21</width>
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 								<animation effect="fade" time="150">VisibleChange</animation>
 								<visible>Control.HasFocus($PARAM[list_id])</visible>
-							</control>
+							</control> -->
 						</control>
 					</focusedlayout>
 					<itemlayout condition="[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0) + !String.StartsWith(Container.PluginName,plugin.video.the-loop)] | 
@@ -1165,7 +1140,7 @@
 					Container.Content(musicvideos) | 
 					Container.Content(games) | 
 					Window.IsActive(videoplaylist) | 
-					Window.IsActive(musicplaylist)" height="67" width="610">
+					Window.IsActive(musicplaylist)" height="55" width="610">
 						<control type="group">
 							<left>40</left>
 							<control type="label">
@@ -1176,12 +1151,12 @@
 								<aligny>center</aligny>
 								<font>font32</font>
 								<textcolor>lightgrey</textcolor>
-								<label>$VAR[ListLabelVar]</label>
+								<label>$VAR[ListLabelVar]$VAR[RI_EpisodeType]</label>
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="image">
 								<left>33</left>
-								<centertop>49%</centertop>
+								<centertop>52%</centertop>
 								<width>21</width>
 								<height>21</height>
 								<texture colordiffuse="lightgrey">$VAR[ListWatchedIconVar]</texture>
@@ -1201,10 +1176,11 @@
 						Window.IsActive(musicplaylist)
 					]" height="210" width="610" infoupdate="30">
 						<control type="group">
+							<include>VideoTrailerControl</include>
 							<left>40</left>
 							<control type="image">
-								<top>-4</top>
-								<bottom>12</bottom>
+								<top>8</top>
+								<bottom>8</bottom>
 								<width>5</width>
 								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1212,10 +1188,10 @@
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
 							</control>
 							<control type="image">
-								<top>-4</top>
-								<height>61</height>
+								<top>1</top>
+								<height>62</height>
 								<width>4</width>
-								<left>11</left>
+								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
 								<visible>String.IsEmpty(ListItem.Plot) + Control.HasFocus($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
@@ -1275,72 +1251,72 @@
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="textbox">
-								<top>89</top>
+								<top>85</top>
 								<left>33</left>
 								<width>930</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">true</autoscroll>
-								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
+								<autoscroll delay="6000" time="2500" repeat="6000">true</autoscroll>
+								<visible>![Container.OnNext | Container.OnPrevious]</visible>
 							</control>
-							<control type="textbox">
-								<top>89</top>
+							<!-- <control type="textbox">
+								<top>85</top>
 								<left>33</left>
 								<width>930</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + [Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>51</top>
 								<left>33</left>
 								<width>930</width>
 								<bottom>5</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+								<autoscroll delay="6000" time="2500" repeat="6000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>51</top>
 								<left>33</left>
 								<width>930</width>
 								<bottom>5</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
-								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
+								<autoscroll delay="6000" time="2500" repeat="6000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + [[Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])]</visible>
-							</control>
+							</control> -->
 							<control type="image">
 								<left>33</left>
-								<top>14</top>
+								<top>19</top>
 								<width>21</width>
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 							</control>
-							<control type="image">
+							<!-- <control type="image">
 								<left>33</left>
-								<top>14</top>
+								<top>19</top>
 								<width>21</width>
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 								<animation effect="fade" time="150">VisibleChange</animation>
 								<visible>Control.HasFocus($PARAM[list_id])</visible>
-							</control>
+							</control> -->
 						</control>
 					</focusedlayout>
 					<itemlayout condition="!Skin.HasSetting(Disable.50_ListSetting1_Ratings) + 
@@ -1354,7 +1330,7 @@
 						Container.Content(games) | 
 						Window.IsActive(videoplaylist) | 
 						Window.IsActive(musicplaylist)
-					]" height="67" width="610">
+					]" height="55" width="610">
 						<control type="group">
 							<left>40</left>
 							<control type="label">
@@ -1365,12 +1341,12 @@
 								<aligny>center</aligny>
 								<font>font32</font>
 								<textcolor>lightgrey</textcolor>
-								<label>$VAR[ListLabelVar]</label>
+								<label>$VAR[ListLabelVar]$VAR[RI_EpisodeType]</label>
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="image">
 								<left>33</left>
-								<centertop>49%</centertop>
+								<centertop>52%</centertop>
 								<width>21</width>
 								<height>21</height>
 								<texture colordiffuse="lightgrey">$VAR[ListWatchedIconVar]</texture>
@@ -1390,10 +1366,11 @@
 						Window.IsActive(musicplaylist)
 					]" height="210" width="610" infoupdate="30">
 						<control type="group">
+							<include>VideoTrailerControl</include>
 							<left>40</left>
 							<control type="image">
-								<top>-4</top>
-								<bottom>12</bottom>
+								<top>8</top>
+								<bottom>8</bottom>
 								<width>5</width>
 								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1401,10 +1378,10 @@
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
 							</control>
 							<control type="image">
-								<top>-4</top>
-								<height>61</height>
+								<top>-1</top>
+								<height>62</height>
 								<width>4</width>
-								<left>11</left>
+								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
 								<visible>String.IsEmpty(ListItem.Plot) + Control.HasFocus($PARAM[list_id]) + !Control.HasFocus(50600)</visible>
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
@@ -1464,37 +1441,37 @@
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="textbox">
-								<top>89</top>
+								<top>85</top>
 								<left>33</left>
 								<width>1096</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<autoscroll delay="7000" time="3000" repeat="7000">true</autoscroll>
-								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
+								<visible>![Container.OnNext | Container.OnPrevious]</visible>
 							</control>
-							<control type="textbox">
-								<top>89</top>
+							<!-- <control type="textbox">
+								<top>85</top>
 								<left>33</left>
 								<width>1096</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<visible>!String.StartsWith(Container.PluginName,plugin.video.dramacool) + [Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>51</top>
 								<left>33</left>
 								<width>1096</width>
 								<bottom>5</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
@@ -1502,34 +1479,34 @@
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + ![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
 							</control>
 							<control type="textbox">
-								<top>55</top>
+								<top>51</top>
 								<left>33</left>
 								<width>1096</width>
 								<bottom>5</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[RI_Plot]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<autoscroll delay="7000" time="3000" repeat="7000">$PARAM[focused]</autoscroll>
 								<visible>String.StartsWith(Container.PluginName,plugin.video.dramacool) + [[Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])]</visible>
-							</control>
+							</control> -->
 							<control type="image">
 								<left>33</left>
-								<top>14</top>
+								<top>19</top>
 								<width>21</width>
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 							</control>
-							<control type="image">
+							<!-- <control type="image">
 								<left>33</left>
-								<top>14</top>
+								<top>19</top>
 								<width>21</width>
 								<height>21</height>
 								<texture>$VAR[ListWatchedIconVar]</texture>
 								<animation effect="fade" time="150">VisibleChange</animation>
 								<visible>Control.HasFocus($PARAM[list_id])</visible>
-							</control>
+							</control> -->
 						</control>
 					</focusedlayout>
 					<itemlayout condition="Skin.HasSetting(Disable.50_ListSetting1_Ratings) + 
@@ -1543,7 +1520,7 @@
 						Container.Content(games) | 
 						Window.IsActive(videoplaylist) | 
 						Window.IsActive(musicplaylist)
-					]" height="67" width="610">
+					]" height="55" width="610">
 						<control type="group">
 							<left>40</left>
 							<control type="label">
@@ -1554,12 +1531,12 @@
 								<aligny>center</aligny>
 								<font>font32</font>
 								<textcolor>lightgrey</textcolor>
-								<label>$VAR[ListLabelVar]</label>
+								<label>$VAR[ListLabelVar]$VAR[RI_EpisodeType]</label>
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="image">
 								<left>33</left>
-								<centertop>49%</centertop>
+								<centertop>52%</centertop>
 								<width>21</width>
 								<height>21</height>
 								<texture colordiffuse="lightgrey">$VAR[ListWatchedIconVar]</texture>
@@ -1570,10 +1547,10 @@
 						<control type="group">
 							<left>40</left>
 							<control type="image">
-								<top>-1</top>
-								<bottom>10</bottom>
+								<top>8</top>
+								<bottom>8</bottom>
 								<width>5</width>
-								<left>-15</left>
+								<left>5</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
 								<visible>Control.HasFocus($PARAM[list_id])</visible>
 								<animation effect="fade" start="100" end="0" time="300" condition="!Control.HasFocus($PARAM[list_id])">Conditional</animation>
@@ -1620,8 +1597,8 @@
 						<control type="group">
 							<left>40</left>
 							<control type="image">
-								<top>-1</top>
-								<bottom>10</bottom>
+								<top>8</top>
+								<bottom>8</bottom>
 								<width>5</width>
 								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1633,7 +1610,7 @@
 										[Container.Content(addons) + !String.StartsWith(Container.PluginName,plugin.video.otaku) + String.IsEqual(Skin.String(ListArtworkChoice.addons),0)]
 									]" 
 									reversible="true">
-									<effect type="slide" start="0,0" end="20,0" time="0" tween="cubic" easing="in" />
+									<effect type="slide" start="0,0" end="20,0" />
 								</animation>
 							</control>
 							<control type="label">
@@ -1679,8 +1656,8 @@
 						<control type="group">
 							<left>40</left>
 							<control type="image">
-								<top>-4</top>
-								<bottom>12</bottom>
+								<top>8</top>
+								<bottom>8</bottom>
 								<width>5</width>
 								<left>-15</left>
 								<texture colordiffuse="$VAR[FocusColorTheme]">colors/white.png</texture>
@@ -1743,33 +1720,33 @@
 								<autoscroll delay="3000" time="3000" repeat="3000">$PARAM[focused]</autoscroll>
 							</control> -->
 							<control type="textbox">
-								<top>89</top>
+								<top>85</top>
 								<left>33</left>
 								<width>900</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[ListBoxInfoVar]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<autoscroll delay="7000" time="3000" repeat="7000">true</autoscroll>
-								<visible>![Container.OnNext | Container.OnPrevious] + Control.HasFocus($PARAM[list_id])</visible>
+								<visible>![Container.OnNext | Container.OnPrevious]</visible>
 							</control>
-							<control type="textbox">
-								<top>89</top>
+							<!-- <control type="textbox">
+								<top>85</top>
 								<left>33</left>
 								<width>900</width>
 								<bottom>10</bottom>
 								<aligny>center</aligny>
-								<font>font23</font>
+								<font>font27</font>
 								<label>$VAR[ListBoxInfoVar]</label>
 								<textcolor>unfocused_text</textcolor>
 								<shadowcolor>text_shadow</shadowcolor>
 								<visible>[Container.OnNext | Container.OnPrevious] | !Control.HasFocus($PARAM[list_id])</visible>
-							</control>
+							</control> -->
 							<control type="image">
 								<left>890</left>
-								<centertop>11.5%</centertop>
+								<centertop>13.5%</centertop>
 								<width>30</width>
 								<height>30</height>
 								<texture>$VAR[AddonsOriginVar]</texture>
@@ -1777,7 +1754,7 @@
 							</control>
 							<!-- <control type="image">
 								<right>-220</right>
-								<centertop>11.5%</centertop>
+								<centertop>13.5%</centertop>
 								<width>30</width>
 								<height>30</height>
 								<texture>$VAR[AddonsOriginVar]</texture>
@@ -1787,7 +1764,7 @@
 							</control> -->
 							<control type="image">
 								<left>33</left>
-								<centertop>11.5%</centertop>
+								<centertop>13.5%</centertop>
 								<width>33</width>
 								<height>30</height>
 								<texture>$VAR[AddonsListIconVar]</texture>
@@ -1805,7 +1782,7 @@
 							</control> -->
 						</control>
 					</focusedlayout>
-					<itemlayout condition="String.IsEqual(Window(Home).Property(CurrentFolder),addons) | [Container.Content(addons) + !String.StartsWith(Container.PluginName,plugin.video)]" height="67" width="610">
+					<itemlayout condition="String.IsEqual(Window(Home).Property(CurrentFolder),addons) | [Container.Content(addons) + !String.StartsWith(Container.PluginName,plugin.video)]" height="55" width="610">
 						<control type="group">
 							<left>40</left>
 							<control type="label">
@@ -1816,12 +1793,12 @@
 								<aligny>center</aligny>
 								<font>font32</font>
 								<textcolor>lightgrey</textcolor>
-								<label>$INFO[ListItem.Label]</label>
+								<label>$VAR[unfocused_AddonsLabelVar]</label>
 								<shadowcolor>text_shadow</shadowcolor>
 							</control>
 							<control type="image">
 								<left>890</left>
-								<centertop>47%</centertop>
+								<centertop>52%</centertop>
 								<width>30</width>
 								<height>30</height>
 								<aspectratio>keep</aspectratio>
@@ -1829,7 +1806,7 @@
 							</control>
 							<control type="image">
 								<left>33</left>
-								<centertop>47%</centertop>
+								<centertop>52%</centertop>
 								<width>33</width>
 								<height>33</height>
 								<aspectratio>keep</aspectratio>
@@ -1882,7 +1859,7 @@
 						<top>600</top>
 						<width>540</width>
 						<bottom>70</bottom>
-						<autoscroll time="3000" delay="3000" repeat="5000">!System.HasModalDialog + $PARAM[focused]</autoscroll>
+						<autoscroll time="3000" delay="3000" repeat="5000">!System.HasModalDialog + Skin.HasSetting(autoscroll)</autoscroll>
 						<label>$VAR[ListBoxInfoVar]</label>
 						<textcolor>unfocused_text</textcolor>
 						<visible>String.IsEqual(ListItem.DBType,song)</visible>

@@ -12,7 +12,7 @@
 			<include>View_51_PosterFlow</include>
 			<include>View_52_IconWall</include>
 			<include>View_54_PosterInfo</include>
-			<include>View_56_ListInfo</include>
+			<!-- <include>View_56_ListInfo</include> -->
 			<include>View_500_Wall</include>
 			<include>View_501_LandscapeWall</include>
 			<include>CommonScrollbars</include>

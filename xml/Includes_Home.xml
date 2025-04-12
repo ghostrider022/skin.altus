@@ -5,7 +5,7 @@
 		<orientation>vertical</orientation>
 		<height>100%</height>
 		<itemgap>-180</itemgap>
-		<scrolltime tween="cubic" easing="out">500</scrolltime>
+		<scrolltime tween="cubic" easing="out">700</scrolltime>
 		<!-- <onup>20000</onup>
 		<ondown>20001</ondown> -->
 		<usecontrolcoords>true</usecontrolcoords>
@@ -13,8 +13,8 @@
 
 	<include name="FocusedCategoryLabel">
 		<control type="label" id="$PARAM[id]">
-			<label>[LIGHT]$PARAM[label][/LIGHT]</label>
-			<font>widget_header_focused</font>
+			<label>$PARAM[label]</label>
+			<font>font30_title</font>
 			<textcolor>$VAR[FocusColorTheme]</textcolor>
 			<shadowcolor>text_shadow</shadowcolor>
 			<scroll>true</scroll>
@@ -35,6 +35,43 @@
 		</control>
 	</include>
 
+	<include name="LabelSpacer">
+		<param name="visible">true</param>
+		<param name="item_treshold">0</param>
+		<param name="label_focus">$VAR[HomeFlixCrumbsVar]</param>
+		<definition>
+			<control type="group" id="$PARAM[list_id]664">
+				<animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + ![Control.HasFocus($PARAM[list_id]) | Control.HasFocus($PARAM[list_id]1) | String.IsEqual(Window(Home).Property(altus_child_id),$PARAM[list_id])] + ControlGroup(2000).HasFocus">Conditional</animation>
+				<!-- <include content="WidgetZoomAnimation">
+					<param name="list_id" value="$PARAM[list_id]" />
+					<param name="c1" value="57" />
+					<param name="c2" value="225" />
+				</include> -->
+				<left>40</left>
+				<top>72</top>
+				<height>167</height>
+				<width>1380</width>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,$PARAM[item_treshold]) | [Container($PARAM[list_id]).IsUpdating + Integer.IsEqual(Container($PARAM[list_id]).NumItems,0)]</visible>
+				<visible>$PARAM[visible]</visible>
+				<include content="FocusedCategoryLabel">
+					<param name="id" value=""/>
+					<param name="label" value="$VAR[HomescreenFlixCrumbs][COLOR unfocused_text]$PARAM[label][/COLOR]$PARAM[label_focus]"/>
+					<param name="visible" value="Control.HasFocus($PARAM[list_id]) + String.IsEmpty(Window(Home).Property(SpotlightWidget))"/>
+				</include>
+				<include content="FocusedCategoryLabel">
+					<param name="id" value=""/>
+					<param name="label" value=""/>
+					<param name="visible" value="Control.HasFocus($PARAM[list_id]) + !String.IsEmpty(Window(Home).Property(SpotlightWidget))"/>
+				</include>
+				<include content="UnfocusedCategoryLabel">
+					<param name="id" value=""/>
+					<param name="label" value="[COLOR unfocused_text]$PARAM[label][/COLOR]"/>
+					<param name="visible" value="!Control.HasFocus($PARAM[list_id])"/>
+				</include>
+			</control>
+		</definition>
+	</include>
+
 	<include name="CategoryLabel">
 		<param name="visible">true</param>
 		<param name="item_treshold">0</param>
@@ -48,7 +85,7 @@
 					<param name="c2" value="225" />
 				</include> -->
 				<left>40</left>
-				<top>80</top>
+				<top>72</top>
 				<height>50</height>
 				<width>1380</width>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,$PARAM[item_treshold]) | [Container($PARAM[list_id]).IsUpdating + Integer.IsEqual(Container($PARAM[list_id]).NumItems,0)]</visible>
@@ -81,7 +118,7 @@
 				<animation effect="fade" start="100" end="45" time="300" tween="sine" easing="inout" condition="!Skin.HasSetting(Disable.WidgetDimming) + String.IsEmpty(Skin.String(TrailerPlaying)) + ![Control.HasFocus($PARAM[list_id]) | Control.HasFocus($PARAM[list_id]1) | String.IsEqual(Window(Home).Property(altus_child_id),$PARAM[list_id])] + ControlGroup(2000).HasFocus">Conditional</animation>
 				<!-- <animation effect="slide" end="7,0" time="300" condition="Control.HasFocus($PARAM[list_id])">Conditional</animation> -->
 				<left>40</left>
-				<top>80</top>
+				<top>72</top>
 				<height>50</height>
 				<width>1380</width>
 				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
@@ -244,6 +281,11 @@
 	<include name="WidgetListSpotlight">
 		<param name="onclick_condition">false</param>
 		<definition>
+			<include content="LabelSpacer">
+        <param name="label"></param>
+        <param name="list_id" value="$PARAM[list_id]"/>
+        <param name="visible" value="Control.HasFocus($PARAM[list_id]) + [String.EndsWith(Window(Home).Property(altus_saved_list_id),11) | [String.EndsWith(Window(Home).Property(altus_saved_list_id),12) + [Integer.IsEqual(Container(19011).NumItems,0) | Integer.IsEqual(Container(22011).NumItems,0) | Integer.IsEqual(Container(23011).NumItems,0) | Integer.IsEqual(Container(24011).NumItems,0) | Integer.IsEqual(Container(25011).NumItems,0)]]]"/>
+			</include>
 			<include content="CategoryLabel">
 				<param name="label">$PARAM[widget_header]</param>
 				<param name="list_id" value="$PARAM[list_id]"/>
@@ -257,7 +299,7 @@
 				<top>107</top>
 				<right>0</right>
 				<left>0</left>
-				<height>1078</height>
+				<height>1027</height>
 				<!-- <height>1027</height> -->
 				<onright>$PARAM[list_id]</onright>
 				<orientation>horizontal</orientation>
@@ -293,6 +335,7 @@
 						<include content="AutoScrollSpotlightTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -340,7 +383,7 @@
 					<control type="group">
 						<left>23</left>
 						<top>70</top>
-						<include content="FeatureLandscapeLayout">
+						<include content="SpotlightLayout">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 					</control>
@@ -350,13 +393,14 @@
 						<depth>DepthContentPopout</depth>
 						<left>23</left>
 						<top>70</top>
-						<include content="FeatureLandscapeLayout">
+						<include content="SpotlightLayout">
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
 						<include content="AutoScrollSpotlightTimer">
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -413,6 +457,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -470,6 +516,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -527,6 +575,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -584,6 +634,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -637,6 +689,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -694,6 +748,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -745,6 +801,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -800,6 +858,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -853,6 +913,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -910,6 +972,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -966,6 +1030,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -1022,6 +1088,8 @@
 							<param name="focused" value="true" />
 							<param name="list_id" value="$PARAM[list_id]" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[limit]">$PARAM[content_path]</content>
@@ -1081,6 +1149,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1204,6 +1274,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1266,6 +1338,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content target="$PARAM[widget_target]" sortby="$PARAM[list_id]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1328,6 +1402,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content target="$PARAM[widget_target]" sortby="$PARAM[list_id]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1394,6 +1470,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content target="$PARAM[widget_target]" sortby="$PARAM[list_id]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1446,6 +1524,7 @@
 							<texturenofocus border="40" colordiffuse="FF3d3d3d">buttons/dnfo.png</texturenofocus>
 							<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 							<visible>$PARAM[visible_1]</visible>
+							<include>FocusBounce</include>
 						</control>
 						<control type="button" id="$PARAM[button_id]568">
 							<width>auto</width>
@@ -1459,6 +1538,7 @@
 							<texturenofocus border="40" colordiffuse="FF3d3d3d" >buttons/dnfo.png</texturenofocus>
 							<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 							<visible>$PARAM[visible_2] + Window.IsActive(home)</visible>
+							<include>FocusBounce</include>
 						</control>
 						<control type="button" id="$PARAM[button_id]569">
 							<width>auto</width>
@@ -1472,6 +1552,7 @@
 							<texturenofocus border="40" colordiffuse="FF3d3d3d" >buttons/dnfo.png</texturenofocus>
 							<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 							<visible>$PARAM[visible_3] + Window.IsActive(1121)</visible>
+							<include>FocusBounce</include>
 						</control>
 					</control>
 				</control>
@@ -1531,6 +1612,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<content sortby="$PARAM[sortby]" sortorder="$PARAM[sortorder]" target="$PARAM[widget_target]" limit="$PARAM[item_limit]">$PARAM[content_path]</content>
@@ -1554,7 +1637,7 @@
 				<top>157</top>
 				<right>0</right>
 				<left>0</left>
-				<height>480</height>
+				<height>488</height>
 				<onright>$PARAM[list_id]</onright>
 				<movement>6</movement>
 				<include content="WidgetListCommon">
@@ -1579,6 +1662,8 @@
 							<param name="list_id" value="$PARAM[list_id]" />
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
 				<include>$PARAM[content_include]</include>
@@ -1859,7 +1944,7 @@
 	</include>
 
 	<include name="WidgetListCommon">
-		<scrolltime tween="cubic" easing="out">350</scrolltime>
+		<scrolltime tween="cubic" easing="out">400</scrolltime>
 		<orientation>horizontal</orientation>
 		<onfocus>SetProperty(altus_saved_list_id,$PARAM[list_id],home)</onfocus>
 		<!-- <onfocus condition="String.IsEmpty(Window(Home).Property(FirstWidgetID)) + String.IsEmpty(Window(Home).Property(LastWidgetID))">RunScript(script.altus.helper,mode=set_widget_boundaries,$PARAM[list_id])</onfocus> -->
@@ -1867,6 +1952,9 @@
 		<onfocus>ClearProperty(altus_child_id,home)</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],-$INFO[Container($PARAM[list_id]).Position])</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],$INFO[Window(home).Property(Widget_$PARAM[list_id]_Position)])</onfocus>
+		<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
+		<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
+		<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
 		<onleft condition="String.IsEqual(Skin.String(onLeftSetting),0)">9000</onleft>
 		<onleft condition="String.IsEqual(Skin.String(onLeftSetting),1)">$PARAM[list_id]</onleft>
 		<onright>$PARAM[list_id]</onright>
@@ -1882,13 +1970,16 @@
 	</include>
 
 	<include name="WidgetListCommonStacked">
-		<scrolltime tween="cubic" easing="out">350</scrolltime>
+		<scrolltime tween="cubic" easing="out">400</scrolltime>
 		<orientation>horizontal</orientation>
 		<onfocus>RunScript(script.altus.helper,mode=widget_monitor&amp;list_id=$PARAM[list_id])</onfocus>
 		<!-- <onfocus condition="String.IsEmpty(Window(Home).Property(FirstWidgetID)) + String.IsEmpty(Window(Home).Property(LastWidgetID))">RunScript(script.altus.helper,mode=set_widget_boundaries,$PARAM[list_id])</onfocus> -->
 		<onunfocus>SetProperty(Widget_$PARAM[list_id]_Position,$INFO[Container($PARAM[list_id]).Position],home)</onunfocus>
 		<onfocus>Control.Move($PARAM[list_id],-$INFO[Container($PARAM[list_id]).Position])</onfocus>
 		<onfocus>Control.Move($PARAM[list_id],$INFO[Window(home).Property(Widget_$PARAM[list_id]_Position)])</onfocus>
+		<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
+		<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
+		<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
 		<onleft condition="String.IsEqual(Skin.String(onLeftSetting),0)">9000</onleft>
 		<onleft condition="String.IsEqual(Skin.String(onLeftSetting),1)">$PARAM[list_id]</onleft>
 		<onright>$PARAM[list_id]</onright>
@@ -1911,18 +2002,10 @@
 				<visible>$PARAM[visible]</visible>
 				<control type="image">
 					<top>$PARAM[posy]</top>
-					<width>50</width>
-					<height>50</height>
+					<width>80</width>
+					<height>80</height>
 					<aspectratio aligny="center">keep</aspectratio>
-					<texture colordiffuse="$VAR[FocusColorTheme]">dialogs/extendedprogress/loading-back.png</texture>
-				</control>
-				<control type="image">
-					<top>$PARAM[posy]</top>
-					<width>50</width>
-					<height>50</height>
-					<aspectratio aligny="center">keep</aspectratio>
-					<texture colordiffuse="$VAR[FocusColorTheme]">dialogs/extendedprogress/loading.png</texture>
-					<animation effect="rotate" center="auto" start="360" end="0" time="3333" loop="true" condition="true">Conditional</animation>
+					<texture>special://skin/resources/loading.gif</texture>
 				</control>
 			</control>
 		</definition>
@@ -1940,18 +2023,10 @@
 				<visible>$PARAM[visible]</visible>
 				<control type="image">
 					<top>$PARAM[posy]</top>
-					<width>50</width>
-					<height>50</height>
+					<width>80</width>
+					<height>80</height>
 					<aspectratio aligny="center">keep</aspectratio>
-					<texture colordiffuse="$VAR[FocusColorTheme]">dialogs/extendedprogress/loading-back.png</texture>
-				</control>
-				<control type="image">
-					<top>$PARAM[posy]</top>
-					<width>50</width>
-					<height>50</height>
-					<aspectratio aligny="center">keep</aspectratio>
-					<texture colordiffuse="$VAR[FocusColorTheme]">dialogs/extendedprogress/loading.png</texture>
-					<animation effect="rotate" center="auto" start="360" end="0" time="3333" loop="true" condition="true">Conditional</animation>
+					<texture>special://skin/resources/loading.gif</texture>
 				</control>
 			</control>
 		</definition>
@@ -1982,14 +2057,14 @@
 		<onload condition="!Skin.HasSetting(firsttimerun)">ActivateWindow(1112)</onload>
 		<onload condition="Skin.HasSetting(firsttimerun)">RunScript(script.altus.helper,mode=check_for_update&amp;skin_id=skin.altus)</onload>
 		<onload>RunScript(script.altus.helper,mode=check_for_profile_change&amp;skin_id=skin.altus)</onload>
-		<onload condition="String.IsEmpty(Window(Home).Property(altus.starting_widgets))">RunScript(script.altus.helper,mode=starting_widgets)</onload>
-		<!-- <onload condition="String.IsEmpty(Window(Home).Property(altus.starting_widgets))">SetProperty(altus.starting_widgets,true)</onload> -->
+		<onload condition="String.IsEmpty(Window(Home).Property(altus.starting_widgets)) | !Skin.HasSetting(Disable.ResetStacked)">RunScript(script.altus.helper,mode=starting_widgets)</onload>
 		<onload condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onload>
 		<onload condition="String.IsEmpty(Skin.String(BlurRadius))">Skin.SetString(BlurRadius,20)</onload>	
 		<onload condition="String.IsEmpty(Skin.String(BlurSaturation))">Skin.SetString(BlurSaturation,1.5)</onload>
 		<onload condition="String.IsEmpty(Skin.String(waitInterval))">Skin.SetString(waitInterval,1)</onload>	
 		<onload condition="String.IsEmpty(Skin.String(onBackSetting))">Skin.SetString(onBackSetting,0)</onload>	
 		<onload condition="String.IsEmpty(Skin.String(onLeftSetting))">Skin.SetString(onLeftSetting,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(MainBlurTexture))">Skin.SetString(MainBlurTexture,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(altus_category_widget_delay))">Skin.SetString(altus_category_widget_delay,750)</onload>
 		<onload condition="String.IsEmpty(Skin.String(altus_spotlight_delay))">Skin.SetString(altus_spotlight_delay,10)</onload>
 		<onload condition="String.IsEmpty(Skin.String(altus_revert_from_wall_delay))">Skin.SetString(altus_revert_from_wall_delay,2)</onload>
@@ -2018,6 +2093,8 @@
 		<onload condition="String.IsEmpty(Skin.String(51OnDownSetting.Other))">Skin.SetString(51OnDownSetting.Other,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(53OnDownSetting.MovieTV))">Skin.SetString(53OnDownSetting.MovieTV,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(53OnDownSetting.Other))">Skin.SetString(53OnDownSetting.Other,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(56OnDownSetting.MovieTV))">Skin.SetString(56OnDownSetting.MovieTV,0)</onload>
+		<onload condition="String.IsEmpty(Skin.String(56OnDownSetting.Other))">Skin.SetString(56OnDownSetting.Other,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(StudioLogoSetting))">Skin.SetString(StudioLogoSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(StudioLogoColorSetting))">Skin.SetString(StudioLogoColorSetting,0)</onload>
 		<onload condition="String.IsEmpty(Skin.String(OnRightSetting.MovieTV))">Skin.SetString(OnRightSetting.MovieTV,0)</onload>

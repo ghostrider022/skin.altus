@@ -9,38 +9,24 @@
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" tween="sine" condition="$EXP[infodialog_active]">Conditional</animation>
 			<control type="group">
-				<include>OpenClose_Right</include>
-				<!-- <include content="PVRInfoPanel">
-					<param name="top" value="15"/>
-				</include> -->
-				<!-- <control type="label">
-					<top>60</top>
-					<height>60</height>
-					<label>$VAR[ClockCrumbs]$VAR[BreadcrumbsPVRChannelsVar]</label>
-					<textcolor>$VAR[FocusColorTheme]</textcolor>
-					<shadowcolor>black</shadowcolor>
-					<align>center</align>
-					<aligny>center</aligny>
-					<wrapmultiline>true</wrapmultiline>
-					<font>font32</font>
-				</control> -->
+				<include>OpenClose_Left</include>
+				<include>Visible_Left</include>
 				<control type="fixedlist" id="50">
-					<left>-25</left>
-					<right>0</right>
+					<left>0</left>
+					<right>917</right>
 					<align>center</align>
-					<top>100</top>
-					<!-- <right>918</right> -->
+					<top>105</top>
 					<bottom>0</bottom>
 					<onleft>9000</onleft>
 					<onright>73</onright>
 					<onup>50</onup>
 					<ondown>50</ondown>
 					<movement>12</movement>
-					<focusposition>5</focusposition>
+					<focusposition>4</focusposition>
 					<pagecontrol>73</pagecontrol>
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
 					<viewtype label="535">list</viewtype>
-					<include content="MainPVRListItemLayouts">
+					<include content="PVRListItemLayouts">
 						<param name="list_id" value="50" />
 						<param name="label1" value="$INFO[ListItem.Label]" />
 						<param name="has_status_icon" value="true" />
@@ -173,23 +159,22 @@
 				<include>OpenClose_Right</include>
 				<width>870</width>
 				<right>0</right>
-				<!-- <include content="ContentPanel">
-					<param name="left" value="-72" />
-					<param name="width" value="970" />
-					<param name="top" value="-20" />
-					<param name="flipx" value="true" />
-				</include> -->
+				<include content="MenuContentPanel">
+					<param name="bg_left" value="-72"/>
+					<param name="width" value="970"/>
+					<param name="dividerleft" value="-72"/>
+				</include>
 				<control type="scrollbar" id="73">
-					<right>-12</right>
+					<left>-76</left>
 					<top>0</top>
-					<width>12</width>
-					<bottom>0</bottom>
+					<width>8</width>
+					<bottom>-15</bottom>
 					<onleft>50</onleft>
 					<onright>50</onright>
 					<orientation>vertical</orientation>
-					<animation effect="zoom" start="99,100" end="100,100" center="-80,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(73)">conditional</animation>
+					<!-- <animation effect="zoom" start="100,100" end="50,100" center="-50,0" time="300" tween="sine" easing="inout" condition="!Control.HasFocus(73)">conditional</animation> -->
 				</control>
-				
+				<include>PVRInfoPanel</include>
 			</control>
 			<include content="TopBar">
 				<param name="breadcrumbs_label" value="$VAR[BreadcrumbsPVRChannelsVar]" />
@@ -197,7 +182,19 @@
 			<!-- <include content="BottomBar">
 				<param name="info_visible" value="true" />
 			</include> -->
-			
+			<control type="label">
+				<right>20</right>
+				<include>OpenClose_Right</include>
+				<bottom>18</bottom>
+				<width>850</width>
+				<height>60</height>
+				<label>$VAR[UnfocusedPVRNextProgrammeLabel]</label>
+				<shadowcolor>black</shadowcolor>
+				<align>right</align>
+				<aligny>center</aligny>
+				<wrapmultiline>true</wrapmultiline>
+				<font>font27</font>
+			</control>
 			<include>PVRChannelNumberInput</include>
 			<include>MediaMenuMouseOverlay</include>
 			<control type="group">

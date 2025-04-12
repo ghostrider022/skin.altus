@@ -11,12 +11,12 @@
     <texturenofocus/>
     <alttexturefocus border="3" colordiffuse="$VAR[PlayerProgressColor]">osd/Button.png</alttexturefocus>
     <width>64</width>
-    <height>62</height>
+    <height>64</height>
     <radiowidth>40</radiowidth>
     <radioheight>40</radioheight>
     <font></font>
     <radioposx>12</radioposx>
-    <radioposy>11</radioposy>
+    <radioposy>12</radioposy>
     <animation center="32,31" effect="zoom" end="100" reversible="false" start="90" time="480" tween="back">Focus</animation>
 	</include>
 	<include name="PlayerButton">
@@ -92,13 +92,11 @@
 	<include name="DialogSettingButton">
 		<param name="height">70</param>
 		<param name="textoffsetx">40</param>
-		<param name="textoffsety">11</param>
 		<definition>
 			<textoffsetx>$PARAM[textoffsetx]</textoffsetx>
-			<textoffsety>$PARAM[textoffsety]</textoffsety>
 			<top>0</top>
 			<height>$PARAM[height]</height>
-			<aligny>left</aligny>
+			<aligny>center</aligny>
 			<font>font14</font>
 			<invalidcolor>invalid</invalidcolor>
 			<selectedcolor>selected</selectedcolor>
@@ -129,6 +127,7 @@
 		<alttexturenofocus />
 	</include>
 	<include name="SettingsItemCommon1">
+		<include>FocusBounce</include>
 		<texturefocus colordiffuse="$VAR[FocusColorTheme]">colors/grey.png</texturefocus>
 		<texturenofocus colordiffuse="4D000000">colors/dark.png</texturenofocus>
 		<height>60</height>
@@ -157,6 +156,7 @@
 		<param name="texture">colors/white.png</param>
 		<definition>
 			<control type="button" id="$PARAM[id]">
+				<include>FocusBounce</include>
 				<width>$PARAM[width]</width>
 				<height>$PARAM[height]</height>
 				<label>$PARAM[label]</label>
@@ -165,8 +165,8 @@
 				<onclick>$PARAM[onclick]</onclick>
 				<wrapmultiline>$PARAM[wrapmultiline]</wrapmultiline>
 				<align>center</align>
-				<aligny>left</aligny>
-				<textoffsety>15</textoffsety>
+				<aligny>center</aligny>
+				<!-- <textoffsety>15</textoffsety> -->
 				<textcolor>unfocused_text</textcolor>
 				<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 				<texturefocus colordiffuse="$VAR[FocusColorTheme]">$PARAM[texture]</texturefocus>
@@ -270,11 +270,11 @@
 				<font></font>
 				<label>$PARAM[label]</label>
 				<texturefocus colordiffuse="$VAR[FocusColorTheme]">buttons/roundbutton-fo.png</texturefocus>
-				<texturenofocus colordiffuse="$VAR[FocusColorTheme]">buttons/dark-button.png</texturenofocus>
-				<radioposx>33</radioposx>
+				<texturenofocus />
+				<radioposx>30</radioposx>
 				<radioposy>0</radioposy>
-				<radiowidth>33</radiowidth>
-				<radioheight>33</radioheight>
+				<radiowidth>40</radiowidth>
+				<radioheight>40</radioheight>
 				<textureradioonfocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon_on]</textureradioonfocus>
 				<textureradioonnofocus colordiffuse="unfocused_text">$PARAM[icon_on]</textureradioonnofocus>
 				<textureradioofffocus colordiffuse="$VAR[FocusedTextColorVar]">$PARAM[icon_off]</textureradioofffocus>

@@ -16,7 +16,7 @@
 				</include>
 				<control type="fixedlist" id="11">
 					<left>0</left>
-					<top>90</top>
+					<top>105</top>
 					<width>970</width>
 					<bottom>0</bottom>
 					<onleft condition="Control.IsVisible(60)">60</onleft>
@@ -28,7 +28,7 @@
 					<focusposition>4</focusposition>
 					<pagecontrol>60</pagecontrol>
 					<scrolltime tween="cubic" easing="out">500</scrolltime>
-					<include content="MiniPVRListItemLayouts">
+					<include content="PVRListItemLayouts">
 						<param name="list_id" value="11" />
 						<param name="label1" value="$INFO[ListItem.Label]" />
 						<param name="has_status_icon" value="true" />
@@ -52,6 +52,7 @@
 			<control type="group">
 				<depth>DepthOSD</depth>
 				<include>Animation_TopSlide</include>
+				<top>15</top>
 				<control type="label" id="2">
 					<description>header label</description>
 					<textoffsetx>40</textoffsetx>

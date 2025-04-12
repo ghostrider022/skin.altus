@@ -41,6 +41,9 @@
 					
 					[Container.Content(unknown) + [String.IsEqual(Skin.String(Skin.ForcedView.unknown),$LOCALIZE[31099]) | String.IsEmpty(Skin.String(Skin.ForcedView.unknown))]]
 				</visible>
+				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
+				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
+				<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
 				<viewtype label="31099">icon</viewtype>
 				<itemlayout height="290" width="440" condition="Container.Content() | Container.Content(files) | Container.Content(tags) | Container.Content(playlists) | [Container.Content(studios) + System.AddonIsEnabled(resource.images.studios.white)]">
 					<control type="group">
@@ -79,6 +82,7 @@
 				<focusedlayout height="290" width="440" condition="Container.Content() | Container.Content(files) | Container.Content(tags) | Container.Content(playlists) | [Container.Content(studios) + System.AddonIsEnabled(resource.images.studios.white)]" infoupdate="300">
 					<control type="group">
 						<depth>DepthContentPopout</depth>
+						<include>VideoTrailerControl</include>
 						<top>0</top>
 						<control type="image">
 							<left>40</left>
@@ -110,6 +114,7 @@
 							<scroll>true</scroll>
 							<scrollspeed>90</scrollspeed>
 						</control>
+						<include>FocusBounce</include>
 					</control>
 				</focusedlayout>
 				<itemlayout height="181" width="348" condition="Container.Content(genres) | Container.Content(sources) | Container.Content(years) | Container.Content(roles) | Container.Content(countries) | [Container.Content(studios) + !System.AddonIsEnabled(resource.images.studios.white)]">

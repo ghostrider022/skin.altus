@@ -3,11 +3,10 @@
 	<include name="MediaMenuItemsCommon">
 		<width>492</width>
 		<textoffsetx>20</textoffsetx>
-		<textoffsety>14</textoffsety>
 		<top>0</top>
 		<height>71</height>
 		<radioposx>385</radioposx>
-		<aligny>left</aligny>
+		<aligny>center</aligny>
 		<textcolor>unfocused_text</textcolor>
 		<focusedcolor>$VAR[FocusedTextColorVar]</focusedcolor>
 		<invalidcolor>invalid</invalidcolor>
@@ -81,7 +80,7 @@
 					<height>95</height>
 					<control type="grouplist" id="6056">
 						<orientation>horizontal</orientation>
-						<itemgap>-11</itemgap>
+						<itemgap>-13</itemgap>
 						<left>0</left>
 						<height>120</height>
 						<onleft>6056</onleft>
@@ -257,7 +256,7 @@
 	<include name="MediaMenuLabelCommon">
 		<width>492</width>
 		<textoffsetx>20</textoffsetx>
-		<textoffsety>10</textoffsety>
+		<textoffsety>2</textoffsety>
 		<height>50</height>
 		<radioposx>300</radioposx>
 		<font>font25_title</font>
@@ -318,7 +317,7 @@
 				<itemgap>-17</itemgap>
 				<left>$PARAM[left]</left>
 				<onleft>14100</onleft>
-				<width>450</width>
+				<width>487</width>
 				<visible>Player.HasMedia + [$EXP[sidebar_visible]]</visible>
 				<visible>!System.HasActiveModalDialog</visible>
 				<align>center</align>
@@ -336,12 +335,12 @@
 					<param name="icon" value="icons/now-playing/stop.png" />
 				</include>
 				<include content="IconButton">
-					<param name="control_id" value="14104" />
+					<param name="control_id" value="14103" />
 					<param name="onclick" value="PlayerControl(Next)" />
 					<param name="icon" value="icons/now-playing/next.png" />
 				</include>
 				<include content="IconButton">
-					<param name="control_id" value="14105" />
+					<param name="control_id" value="14104" />
 					<param name="onclick" value="Fullscreen" />
 					<param name="icon" value="icons/now-playing/fullscreen.png" />
 				</include>
@@ -499,10 +498,13 @@
 				<onclick>Skin.ToggleSetting(Disable.50_ListSetting0_Ratings)</onclick>
 				<selected>!Skin.HasSetting(Disable.50_ListSetting0_Ratings)</selected>
 				<visible>Control.IsVisible(50) + 
-					[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0)] | 
-					[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),0)] | 
-					[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),0)] | 
-					[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)]</visible>
+					[
+						[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),0)] | 
+						[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),0)] | 
+						[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),0)] | 
+						[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),0)]
+					]
+				</visible>
 			</control>
 			<control type="radiobutton" id="6059">
 				<label>Ratings</label>
@@ -510,10 +512,13 @@
 				<onclick>Skin.ToggleSetting(Disable.50_ListSetting1_Ratings)</onclick>
 				<selected>!Skin.HasSetting(Disable.50_ListSetting1_Ratings)</selected>
 				<visible>Control.IsVisible(50) + 
-					[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),1)] | 
-					[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),1)] | 
-					[!Control.IsVisible(57) + Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),1)] | 
-					[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)]</visible>
+					[
+						[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),1)] | 
+						[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),1)] | 
+						[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),1)] | 
+						[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),1)]
+					]
+				</visible>
 			</control>
 			<control type="radiobutton" id="6060">
 				<label>Ratings</label>
@@ -521,10 +526,13 @@
 				<onclick>Skin.ToggleSetting(Disable.50_ListSetting2_Ratings)</onclick>
 				<selected>!Skin.HasSetting(Disable.50_ListSetting2_Ratings)</selected>
 				<visible>Control.IsVisible(50) + 
-					[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
-					[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
-					[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
-					[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)]</visible>
+					[
+						[Container.Content(movies) + String.IsEqual(Skin.String(ListArtworkChoice.movies),2)] | 
+						[Container.Content(tvshows) + String.IsEqual(Skin.String(ListArtworkChoice.tvshows),2)] | 
+						[Container.Content(seasons) + String.IsEqual(Skin.String(ListArtworkChoice.seasons),2)] | 
+						[Container.Content(episodes) + String.IsEqual(Skin.String(ListArtworkChoice.episodes),2)]
+					]
+				</visible>
 			</control>
 			
 			<!-- 51 -->
@@ -557,6 +565,20 @@
 				<visible>Control.IsVisible(53) + [Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
 			<control type="button" id="6065">
+				<include>MediaMenuItemsCommon</include>
+				<label>On down</label>
+				<label2>[B]$VAR[56OnDownSettingVar.MovieTV][/B]</label2>
+				<onclick>$VAR[56OnDownToggleVar.MovieTV]</onclick>
+				<visible>Control.IsVisible(56) + [[Container.Content(movies) + !String.StartsWith(Container.PluginName,plugin.video.the-loop)] | Container.Content(tvshows)]</visible>
+			</control>
+			<control type="button" id="6066">
+				<include>MediaMenuItemsCommon</include>
+				<label>On down</label>
+				<label2>[B]$VAR[56OnDownSettingVar.Other][/B]</label2>
+				<onclick>$VAR[56OnDownToggleVar.Other]</onclick>
+				<visible>Control.IsVisible(56) + [Container.Content(seasons) | Container.Content(episodes)]</visible>
+			</control>
+			<control type="button" id="6067">
 				<label>    - Revert back in $VAR[SkinSettingRevertFromWallDelay] $VAR[RevertBackLabel]</label>
 				<!-- <label2>[B]$VAR[SkinSettingRevertFromWallDelay][/B]</label2> -->
 				<include>MediaMenuItemsCommon</include>
@@ -566,12 +588,14 @@
 						[Container.Content(movies) | Container.Content(tvshows)] + 
 						[
 								[Control.IsVisible(51) + [String.IsEqual(Skin.String(51OnDownSetting.MovieTV),1) | String.IsEqual(Skin.String(51OnDownSetting.MovieTV),2)]] |
-								[Control.IsVisible(53) + [String.IsEqual(Skin.String(53OnDownSetting.MovieTV),1) | String.IsEqual(Skin.String(53OnDownSetting.MovieTV),2)]]
+								[Control.IsVisible(53) + [String.IsEqual(Skin.String(53OnDownSetting.MovieTV),1) | String.IsEqual(Skin.String(53OnDownSetting.MovieTV),2)]] | 
+								[Control.IsVisible(56) + [String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1) | String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)]]
 						] | 
 						[Container.Content(seasons) | Container.Content(episodes)] + 
 						[
 								[Control.IsVisible(51) + String.IsEqual(Skin.String(51OnDownSetting.Other),1)] |
-								[Control.IsVisible(53) + String.IsEqual(Skin.String(53OnDownSetting.Other),1)]
+								[Control.IsVisible(53) + String.IsEqual(Skin.String(53OnDownSetting.Other),1)] | 
+								[Control.IsVisible(56) + String.IsEqual(Skin.String(56OnDownSetting.Other),1)]
 						]
 					]
 				</visible>
@@ -584,21 +608,21 @@
 				<onclick>$VAR[ItemFanartToggleVar]</onclick>
 				<visible>Control.IsVisible(55) + String.IsEqual(Skin.String(LandscapeSizeSetting),1) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control> -->
-			<control type="radiobutton" id="6066">
+			<control type="radiobutton" id="6068">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused artwork</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.51Dim)</onclick>
 				<selected>!Skin.HasSetting(Disable.51Dim)</selected>
 				<visible>Control.IsVisible(51) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6067">
+			<control type="radiobutton" id="6069">
 				<label>Clearlogo (Spine)</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.SpineClearlogo)</onclick>
 				<selected>Skin.HasSetting(Enable.SpineClearlogo)</selected>
 				<visible>Control.IsVisible(51) + !Skin.HasSetting(Disable.51Dim) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6068">
+			<control type="radiobutton" id="6070">
 				<label>Ratings</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.51Ratings)</onclick>
@@ -608,14 +632,14 @@
 			</control>
 
 			<!-- 53 -->
-			<control type="radiobutton" id="6069">
+			<control type="radiobutton" id="6071">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused items</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.53Dim)</onclick>
 				<selected>Skin.HasSetting(Enable.53Dim)</selected>
 				<visible>Control.IsVisible(53) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6070">
+			<control type="radiobutton" id="6072">
 				<label>Studio logo</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.53StudioLogo)</onclick>
@@ -623,7 +647,7 @@
 				<selected>!Skin.HasSetting(Disable.53StudioLogo)</selected>
 				<visible>Control.IsVisible(53)</visible>
 			</control>
-			<control type="radiobutton" id="6071">
+			<control type="radiobutton" id="6073">
 				<label>Ratings</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.53Ratings)</onclick>
@@ -633,28 +657,28 @@
 			</control>
 
 			<!-- 54 -->
-			<control type="button" id="6072">
+			<control type="button" id="6074">
 				<include>MediaMenuItemsCommon</include>
 				<label>Artwork Size</label>
 				<label2>[B]$VAR[ArtworkSize54SettingVar][/B]</label2>
 				<onclick>$VAR[ArtworkSize54ToggleVar]</onclick>
 				<visible>Control.IsVisible(54) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6073">
+			<control type="radiobutton" id="6075">
 				<label>Enable titles</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.54Titles)</onclick>
 				<selected>Skin.HasSetting(Enable.54Titles)</selected>
 				<visible>Control.IsVisible(54) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6074">
+			<control type="radiobutton" id="6076">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused items</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.54Dim)</onclick>
 				<selected>Skin.HasSetting(Enable.54Dim)</selected>
 				<visible>Control.IsVisible(54) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6075">
+			<control type="radiobutton" id="6077">
 				<label>Ratings</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.54Ratings)</onclick>
@@ -664,28 +688,28 @@
 			</control>
 
 			<!-- 55 -->
-			<control type="button" id="6076">
+			<control type="button" id="6078">
 				<include>MediaMenuItemsCommon</include>
 				<label>Artwork Size</label>
 				<label2>[B]$VAR[ArtworkSize55SettingVar][/B]</label2>
 				<onclick>$VAR[ArtworkSize55ToggleVar]</onclick>
 				<visible>Control.IsVisible(55) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control>
-			<control type="radiobutton" id="6077">
+			<control type="radiobutton" id="6079">
 				<label>Enable titles</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.55Titles)</onclick>
 				<selected>Skin.HasSetting(Enable.55Titles)</selected>
 				<visible>Control.IsVisible(55) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control>
-			<control type="radiobutton" id="6078">
+			<control type="radiobutton" id="6080">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused items</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.55Dim)</onclick>
 				<selected>Skin.HasSetting(Enable.55Dim)</selected>
 				<visible>Control.IsVisible(55) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			<control type="radiobutton" id="6079">
+			<control type="radiobutton" id="6081">
 				<label>Ratings</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.55Ratings)</onclick>
@@ -695,7 +719,14 @@
 			</control>
 
 			<!-- 56 -->
-			<control type="radiobutton" id="6080">
+			<control type="radiobutton" id="6082">
+				<label>Enable titles</label>
+				<include>MediaMenuItemsCommon</include>
+				<onclick>Skin.ToggleSetting(Enable.56Titles)</onclick>
+				<selected>Skin.HasSetting(Enable.56Titles)</selected>
+				<visible>Control.IsVisible(56) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+			</control>
+			<control type="radiobutton" id="6083">
 				<label>Ratings</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.56Ratings)</onclick>
@@ -705,21 +736,21 @@
 			</control>
 
 			<!-- 57 -->
-			<control type="radiobutton" id="6082">
+			<control type="radiobutton" id="6084">
 				<label>Clearlogo</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.57Clearlogo)</onclick>
 				<selected>!Skin.HasSetting(Disable.57Clearlogo)</selected>
 				<visible>Control.IsVisible(57)</visible>
 			</control>
-			<control type="radiobutton" id="6083">
+			<control type="radiobutton" id="6085">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused items</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.57Dim)</onclick>
 				<selected>Skin.HasSetting(Enable.57Dim)</selected>
 				<visible>Control.IsVisible(57)</visible>
 			</control>
-			<control type="radiobutton" id="6084">
+			<control type="radiobutton" id="6086">
 				<label>Studio logo</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Disable.57StudioLogo)</onclick>
@@ -728,21 +759,36 @@
 			</control>
 
 			<!-- 500 -->
-			<control type="button" id="6085">
+			<control type="button" id="6087">
 				<include>MediaMenuItemsCommon</include>
 				<label>Artwork Size</label>
 				<label2>[B]$VAR[ArtworkSize500SettingVar][/B]</label2>
 				<onclick>$VAR[ArtworkSize500ToggleVar]</onclick>
 				<visible>Control.IsVisible(500) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control>
-			<control type="radiobutton" id="6086">
+			<control type="radiobutton" id="6088">
+				<label>Enable info</label>
+				<include>MediaMenuItemsCommon</include>
+				<onclick>Skin.ToggleSetting(Enable.500Info)</onclick>
+				<selected>Skin.HasSetting(Enable.500Info)</selected>
+				<visible>Control.IsVisible(500) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+			</control>
+			<control type="radiobutton" id="6089">
+				<label>    - Ratings</label>
+				<include>MediaMenuItemsCommon</include>
+				<onclick>Skin.ToggleSetting(Disable.500Ratings)</onclick>
+				<selected>!Skin.HasSetting(Disable.500Ratings)</selected>
+				<visible>Control.IsVisible(500) + Skin.HasSetting(Enable.500Info) + 
+					[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+			</control>
+			<control type="radiobutton" id="6090">
 				<label>Enable titles</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.500Titles)</onclick>
 				<selected>Skin.HasSetting(Enable.500Titles)</selected>
 				<visible>Control.IsVisible(500) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control>
-			<control type="radiobutton" id="6087">
+			<control type="radiobutton" id="6091">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused items</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.500Dim)</onclick>
@@ -751,38 +797,51 @@
 			</control>
 
 			<!-- 501 -->
-			<control type="button" id="6088">
+			<control type="button" id="6092">
 				<include>MediaMenuItemsCommon</include>
 				<label>Artwork Size</label>
 				<label2>[B]$VAR[ArtworkSize501SettingVar][/B]</label2>
 				<onclick>$VAR[ArtworkSize501ToggleVar]</onclick>
 				<visible>Control.IsVisible(501) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control>
-			<control type="radiobutton" id="6089">
+			<control type="radiobutton" id="6093">
+				<label>Enable info</label>
+				<include>MediaMenuItemsCommon</include>
+				<onclick>Skin.ToggleSetting(Enable.501Info)</onclick>
+				<selected>Skin.HasSetting(Enable.501Info)</selected>
+				<visible>Control.IsVisible(501) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
+			</control>
+			<control type="radiobutton" id="6094">
+				<label>    - Ratings</label>
+				<include>MediaMenuItemsCommon</include>
+				<onclick>Skin.ToggleSetting(Disable.501Ratings)</onclick>
+				<selected>!Skin.HasSetting(Disable.501Ratings)</selected>
+				<visible>Control.IsVisible(501) + Skin.HasSetting(Enable.501Info) + 
+					[Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
+			</control>
+			<control type="radiobutton" id="6095">
 				<label>Enable titles</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.501Titles)</onclick>
 				<selected>Skin.HasSetting(Enable.501Titles)</selected>
 				<visible>Control.IsVisible(501) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons)]</visible>
 			</control>
-			<control type="radiobutton" id="6090">
+			<control type="radiobutton" id="6096">
 				<label>$VAR[Capitalize_DimorFadeLabel] unfocused items</label>
 				<include>MediaMenuItemsCommon</include>
 				<onclick>Skin.ToggleSetting(Enable.501Dim)</onclick>
 				<selected>Skin.HasSetting(Enable.501Dim)</selected>
 				<visible>Control.IsVisible(501) + [Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes)]</visible>
 			</control>
-			
-			
-			
-			<control type="button" id="6091">
+
+			<control type="button" id="6097">
 				<include>MediaMenuItemsCommon</include>
 				<label>$LOCALIZE[31022]</label>
 				<label2>[B]$INFO[Container.SortMethod][/B]</label2>
 				<visible>Control.IsEnabled(3)</visible>
 				<onclick>SendClick(3)</onclick>
 			</control>
-			<control type="button" id="6092">
+			<control type="button" id="6098">
 				<include>MediaMenuItemsCommon</include>
 				<label>$LOCALIZE[31032]</label>
 				<label2>[B]$INFO[Container.SortOrder][/B]</label2>

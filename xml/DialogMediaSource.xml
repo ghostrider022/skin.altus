@@ -82,8 +82,7 @@
 				<width>930</width>
 				<height>60</height>
 				<align>center</align>
-				<aligny>left</aligny>
-				<textoffsety>8</textoffsety>
+				<aligny>center</aligny>
 				<label></label>
 				<onup>10</onup>
 				<ondown>9001</ondown>

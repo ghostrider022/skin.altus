@@ -440,7 +440,7 @@
       <width>150</width>
       <height>80</height>
       <orientation>vertical</orientation>
-      <itemgap>10</itemgap>
+      <itemgap>7</itemgap>
       <align>center</align>
       <visible>[!String.IsEqual(Skin.String($PARAM[rating_slot]),none) + 
           [
@@ -530,7 +530,7 @@
         <height>38</height>
         <align>left</align>
         <aligny>left</aligny>
-        <textoffsety>1</textoffsety>
+        <textoffsety>-7</textoffsety>
         <label>$PARAM[rating_value]</label>
         <font>font27</font>
         <textcolor>unfocused_text</textcolor>
@@ -544,7 +544,7 @@
 		<param name="left"></param>
 		<param name="visible">!String.IsEmpty(ListItem.Genre) + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | String.StartsWith(ListItem.Path,plugin://plugin.video.mediafusion)] + 
 		[
-			[[Window.IsVisible(Home) | Window.IsVisible(1121)] + !Skin.HasSetting(Disable.HomePanelRatings)] | [Control.IsVisible(51) + !Skin.HasSetting(Disable.51Ratings)] | [Control.IsVisible(53) + !Skin.HasSetting(Disable.53Ratings)] | [Control.IsVisible(54) + !Skin.HasSetting(Disable.54Ratings)] | [Control.IsVisible(55) + !Skin.HasSetting(Disable.55Ratings)] | [Control.IsVisible(56) + !Skin.HasSetting(Disable.56Ratings)]
+			[[Window.IsVisible(Home) | Window.IsVisible(1121)] + !Skin.HasSetting(Disable.HomePanelRatings)] | [Control.IsVisible(51) + !Skin.HasSetting(Disable.51Ratings)] | [Control.IsVisible(53) + !Skin.HasSetting(Disable.53Ratings)] | [Control.IsVisible(54) + !Skin.HasSetting(Disable.54Ratings)] | [Control.IsVisible(55) + !Skin.HasSetting(Disable.55Ratings)] | [Control.IsVisible(56) + !Skin.HasSetting(Disable.56Ratings)] | [Control.IsVisible(500) + !Skin.HasSetting(Disable.500Ratings) | [Control.IsVisible(501) + !Skin.HasSetting(Disable.501Ratings)]]
 		] + 
 		[
 			[String.IsEqual(Skin.String(RatingSlot1),metacritic) + !String.IsEmpty(Window(Home).Property(altus.metascore))] | 
@@ -732,6 +732,17 @@
 						]
 					</visible>
 				</control>
+        
+        <!-- <control type="image">
+          <left>27</left>
+          <width>80</width>
+          <height>38</height>
+          <aspectratio align="center" aligny="center">keep</aspectratio>
+          <texture colordiffuse="artwork_dim">$INFO[$PARAM[infolabel_prefix]ListItem.Studio,resource://resource.images.studios.coloured/,.png]</texture>
+          <visible>!String.IsEmpty($PARAM[infolabel_prefix]ListItem.Studio)</visible>
+          <animation effect="zoom" condition="true" time="0" start="100" end="150" center="auto">Conditiona;</animation>
+        </control> -->
+						
 			</control>
 		</definition>
 	</include>

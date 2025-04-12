@@ -5,49 +5,69 @@
 			<include>OpenClose_Right</include>
 			<include>Visible_Right</include>
 			<left>0</left>
-			<top>700</top>
 			<visible>Control.IsVisible(56)</visible>
+			<control type="image">
+				<right>0</right>
+				<width>1427</width>
+				<height>803</height>
+				<fadetime>500</fadetime>
+				<texture colordiffuse="artwork_dim" background="true" diffuse="overlays/flixinfo-fanartdiffuse.png" fallback="$VAR[AltusCustomBackgroundImage]">$VAR[MediaFanartVar]</texture>
+				<aspectratio align="left" aligny="top">keep</aspectratio>
+				<include>ArtworkAnimations</include>
+			</control>
 			<control type="label">
 				<left>535</left>
-				<right>30</right>
-				<top>-45</top>
-				<!-- <width>1815</width> -->
-				<!-- <label>$INFO[ListItem.IMDbNumber]</label> -->
-				<label>[LIGHT]$VAR[BreadcrumbsVideoVar]$VAR[FlixCategory]$VAR[VideoFlixCrumbsVar][/LIGHT]</label>
-				<font>widget_header_focused</font>
+				<right>video_header_right</right>
+				<top>650</top>
+				<label>$VAR[LeftVideoHeader]</label>
+				<font>font30_title_uppercase</font>
 				<textcolor>$VAR[FocusColorTheme]</textcolor>
 				<shadowcolor>text_shadow</shadowcolor>
 				<align>left</align>
 				<scroll>true</scroll>
 				<scrollspeed>170</scrollspeed>
+				<!-- <visible>!Window.IsVisible(busydialog)</visible> -->
 			</control>
-			<!-- <control type="label">
-				<left>535</left>
+			<control type="label">
 				<right>45</right>
-				<top>-45</top>
-				<width>1815</width>
-				<label>$INFO[ListItem.IMDbNumber]</label>
-				<label>[LIGHT][COLOR unfocused_text]$INFO[Control.GetLabel(10)][/COLOR]  [B]•[/B]  [COLOR unfocused_text]$INFO[Container.CurrentItem][/COLOR] [B]/[/B] [COLOR unfocused_text]$INFO[Container.NumItems][/COLOR][/LIGHT]</label>
-				<font>widget_header_focused</font>
+				<top>650</top>
+				<label>$VAR[RightVideoHeader]</label>
+				<font>font30_title_uppercase</font>
 				<textcolor>$VAR[FocusColorTheme]</textcolor>
 				<shadowcolor>text_shadow</shadowcolor>
 				<align>right</align>
 				<scroll>true</scroll>
 				<scrollspeed>170</scrollspeed>
-			</control> -->
+				<!-- <visible>!Window.IsVisible(busydialog)</visible> -->
+			</control>
 			<control type="fixedlist" id="56">
+				<top>700</top>
 				<left>493</left>
 				<right>0</right>
 				<onright>56</onright>
 				<onleft>56</onleft>
-				<ondown>5199</ondown>
+				<!-- <ondown>5199</ondown> -->
 				<onup>9000</onup>
 				<orientation>horizontal</orientation>
 				<movement>5</movement>
 				<viewtype label="31107">icon</viewtype>
 				<preloaditems>2</preloaditems>
 				<pagecontrol>5199</pagecontrol>
-				<scrolltime tween="cubic" easing="out">350</scrolltime>
+				<scrolltime tween="cubic" easing="out">400</scrolltime>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),0)">5199</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),1)">Container.SetViewMode(500)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),2)">Container.SetViewMode(501)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),3) + String.IsEmpty(Skin.String(TrailerPlaying))">Skin.SetString(TrailerPlaying, true)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),3) + !Player.HasMedia + String.IsEmpty(Skin.String(TrailerPlaying))">$VAR[AutoplayTrailerSource]</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),3) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),3) + Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</ondown>
+				<ondown condition="[$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.MovieTV),4)">info</ondown>
+
+				
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.Other),0)">5199</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.Other),1)">Container.SetViewMode(501)</ondown>
+				<ondown condition="![$EXP[isMovie] | $EXP[isTVShow]] + String.IsEqual(Skin.String(56OnDownSetting.Other),2)">info</ondown>
+
 				<onback condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onback>
 				<onunfocus condition="Player.HasMedia + !String.IsEmpty(Skin.String(TrailerPlaying))">Stop</onunfocus>
 				<onunfocus condition="!String.IsEmpty(Skin.String(TrailerPlaying))">Skin.Reset(TrailerPlaying)</onunfocus>
@@ -97,8 +117,36 @@
 						<include content="SmallPosterLayout">
 							<param name="focused" value="true" />
 						</include>
+						<include>FocusBounce</include>
+						<include>VideoTrailerControl</include>
 					</control>
 				</focusedlayout>
+
+				<!-- <itemlayout width="272" height="337" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]">
+					<control type="group">
+						<include content="ViewUnfocusedAnimations">
+							<param name="id" value="56"/>
+						</include>
+						<top>0</top>
+						<left>25</left>
+						<include>PosterLayout</include>
+						<include>altus.PreloadFanart</include>
+					</control>
+				</itemlayout>
+				<focusedlayout width="272" height="337" condition="[Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | [Container.Content(episodes) + !String.StartsWith(Container.PluginCategory,Season)] | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]]" infoupdate="30">
+					<control type="group">
+						<depth>DepthContentPopout</depth>
+						<top>0</top>
+						<left>25</left>
+						<include content="PosterLayout">
+							<param name="focused" value="true" />
+						</include>
+						<include>FocusBounce</include>
+					</control>
+				</focusedlayout> -->
+
+
+
 				<!-- <itemlayout width="471" height="283" condition="Container.Content(episodes) | [Container.Content(musicvideos) + Skin.HasSetting(show_musicvideoposter)]">
 					<control type="group">
 						<include content="ViewUnfocusedAnimations">
