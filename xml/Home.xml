@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">9000</defaultcontrol>
+	<defaultcontrol always="true">19012</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<include>AltusSkinStringsInitialization</include>
 	<controls>
@@ -43,7 +43,7 @@
 			<control type="group" id="2000">
 			<height>105%</height>
 				<!-- <top>-50</top> -->
-				<left>-1</left>
+				<left>-200</left>
 				<!-- <top>-20</top>
 				<width>200%</width> -->
 				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + String.IsEqual(Skin.String(BackgroundSetting),1) + !ControlGroup(2000).HasFocus" reversible="true">
