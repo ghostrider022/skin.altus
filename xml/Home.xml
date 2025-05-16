@@ -43,7 +43,7 @@
 			<control type="group" id="2000">
 			<height>105%</height>
 				<!-- <top>-50</top> -->
-				<left>-200</left>
+				<left>-500</left>
 				<!-- <top>-20</top>
 				<width>200%</width> -->
 				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + String.IsEqual(Skin.String(BackgroundSetting),1) + !ControlGroup(2000).HasFocus" reversible="true">
@@ -842,8 +842,8 @@
 				<animation effect="slide" condition="ControlGroup(2000).HasFocus + ![ControlGroup(19000).HasFocus | ControlGroup(22000).HasFocus | ControlGroup(23000).HasFocus | ControlGroup(24000).HasFocus | ControlGroup(25000).HasFocus]" time="500" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation>
 				<include content="MenuContentPanel">
 					<param name="bg_left" value="0"/>
-					<param name="width" value="498"/>
-					<param name="dividerleft" value="498"/>
+					<param name="width" value="4.98"/>
+					<param name="dividerleft" value="4.98"/>
 					<param name="visible" value="String.IsEmpty(Window(Home).Property(SpotlightWidget))"/>
 				</include>
 				<include>VerticalInfoPanel</include>
