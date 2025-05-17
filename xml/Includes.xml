@@ -177,6 +177,59 @@
 		</definition>
 	</include>
 
+	
+	<include name="RatingCircle">
+		<param name="animation">False</param>
+		<definition>
+			<control type="group">
+				<animation effect="fade" time="0" condition="$PARAM[animation]">VisibleChange</animation>
+				<include content="UserRatingContent" condition="Skin.HasSetting(circle_userrating)">
+					<param name="infolabel" value="ListItem.UserRating" />
+					<param name="left" value="$PARAM[left]"/>
+					<param name="top" value="$PARAM[top]"/>
+					<param name="width" value="$PARAM[width]"/>
+					<param name="height" value="$PARAM[height]"/>
+					<param name="label-left" value="$PARAM[label-left]"/>
+					<param name="label-top" value="$PARAM[label-top]"/>
+					<param name="cornerdiffuse" value="$PARAM[cornerdiffuse]"/>
+				</include>
+				<include content="UserRatingContent" condition="Skin.HasSetting(circle_rating)">
+					<param name="infolabel" value="ListItem.Rating" />
+					<param name="left" value="$PARAM[left]"/>
+					<param name="top" value="$PARAM[top]"/>
+					<param name="width" value="$PARAM[width]"/>
+					<param name="height" value="$PARAM[height]"/>
+					<param name="label-left" value="$PARAM[label-left]"/>
+					<param name="label-top" value="$PARAM[label-top]"/>
+					<param name="cornerdiffuse" value="$PARAM[cornerdiffuse]"/>
+				</include>
+			</control>
+		</definition>
+	</include>
+
+	<include name="UserRatingContent">
+		<visible>!String.IsEmpty($PARAM[infolabel])</visible>
+		<control type="image">
+			<left>$PARAM[left]</left>
+			<top>$PARAM[top]</top>
+			<width>$PARAM[width]</width>
+			<height>$PARAM[height]</height>
+			<aspectratio>scale</aspectratio>
+			<texture>$PARAM[cornerdiffuse]</texture>
+		</control>
+		<control type="label">
+			<left>$PARAM[label-left]</left>
+			<top>$PARAM[label-top]</top>
+			<align>right</align>
+			<width>44</width>
+			<height>44</height>
+			<font>font30_title</font>
+			<label>$INFO[$PARAM[infolabel]]</label>
+		</control>
+	</include>
+
+	
+
 	<include name="HiddenObject">
 		<left>-3000</left>
 		<top>-3000</top>
