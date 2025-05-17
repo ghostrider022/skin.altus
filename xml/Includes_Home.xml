@@ -72,19 +72,6 @@
 		</definition>
 	</include>
 
-	<control type="group">
-				<left>188</left>
-				<top>-8</top>
-				<include content="RatingCircle" condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">
-					<param name="left">-71.7</param>
-					<param name="top">20</param>
-					<param name="width">139</param>
-					<param name="height">139</param>
-					<param name="label-left">13</param>
-					<param name="label-top">25</param>
-					<param name="cornerdiffuse">overlays/overlaybg3.png</param>
-				</include>
-			</control>
 	
 	<include name="CategoryLabel">
 		<param name="visible">true</param>
