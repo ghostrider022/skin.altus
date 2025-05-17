@@ -716,7 +716,7 @@
 				<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 			</control>
 			<control type="group">
-				<left>380</left>
+				<left>385</left>
 				<top>25</top>
 				<include content="RatingCircle" condition="Skin.HasSetting(circle_rating) | Skin.HasSetting(circle_userrating)">
 					
