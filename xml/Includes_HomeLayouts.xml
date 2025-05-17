@@ -723,7 +723,7 @@
 					<param name="top">20</param>
 					<param name="width">139</param>
 					<param name="height">139</param>
-					<param name="label-left">13</param>
+					<param name="label-left">200</param>
 					<param name="label-top">25</param>
 					<param name="cornerdiffuse">overlays/overlaybg3.png</param>
 				</include>
