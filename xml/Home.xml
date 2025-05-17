@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window>
-	<defaultcontrol always="true">19012</defaultcontrol>
+	<defaultcontrol always="true">19011</defaultcontrol>
 	<backgroundcolor>background</backgroundcolor>
 	<include>AltusSkinStringsInitialization</include>
 	<controls>
@@ -842,8 +842,8 @@
 				<animation effect="slide" condition="ControlGroup(2000).HasFocus + ![ControlGroup(19000).HasFocus | ControlGroup(22000).HasFocus | ControlGroup(23000).HasFocus | ControlGroup(24000).HasFocus | ControlGroup(25000).HasFocus]" time="500" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation>
 				<include content="MenuContentPanel">
 					<param name="bg_left" value="0"/>
-					<param name="width" value="4.98"/>
-					<param name="dividerleft" value="4.98"/>
+					<param name="width" value="0"/> 
+					<param name="dividerleft" value="0"/>
 					<param name="visible" value="String.IsEmpty(Window(Home).Property(SpotlightWidget))"/>
 				</include>
 				<include>VerticalInfoPanel</include>
@@ -855,7 +855,7 @@
 					<control type="fixedlist" id="9000">
 						<left>0</left>
 						<top>180</top>
-						<width>498</width>
+						<width>0</width>
 						<height>832</height>
 						<movement>9</movement>
 						<focusposition>0</focusposition>
@@ -986,7 +986,7 @@
 							<label>$VAR[HomeSubmenuButtonLabelsVar]</label>
 							<!-- <label>$INFO[System.Time] • $INFO[Window(Weather).Property(Current.Temperature)]$INFO[System.TemperatureUnits]</label> -->
 						</control>
-						<control type="grouplist" id="700">
+						<!--<control type="grouplist" id="700">
 							<orientation>horizontal</orientation>
 							<itemgap>-19</itemgap>
 							<width>343</width>
@@ -1023,7 +1023,7 @@
 								<param name="icon" value="icons/submenu/fullscreen.png" />
 								<param name="visible" value="Player.HasMedia" />
 							</include>
-						</control>
+						</control>-->
 					</control>
 				</control>
 			</control>
