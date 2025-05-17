@@ -117,7 +117,7 @@
 				
 				<!-- CUSTOM 3 -->
 				
-				</control>
+				
 			</control>
 			<include content="TopBar">
 				<param name="breadcrumbs_label" value="" />
