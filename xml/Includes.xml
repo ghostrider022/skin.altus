@@ -177,7 +177,7 @@
 		</definition>
 	</include>
 
-	
+	<!--
 	<include name="RatingCircle">
 		<param name="animation">False</param>
 		<definition>
@@ -228,7 +228,7 @@
 		</control>
 	</include>
 
-	
+	-->
 
 	<include name="HiddenObject">
 		<left>-3000</left>
