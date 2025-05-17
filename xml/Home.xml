@@ -153,7 +153,7 @@
 					<!-- <visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus + !Control.HasFocus(20000) + !Control.HasFocus(20001)</visible> -->
 					<visible allowhiddenfocus="true">!$EXP[isContent]</visible>
 					<animation effect="fade" condition="!$EXP[isContent] + String.IsEmpty(Window(Home).Property(SpotlightWidget))" time="300" end="100" tween="sine" easing="inout">Conditional</animation>
-					<width>498</width>
+					<width>0</width>
 					<control type="fixedlist" id="9000">
 						<left>0</left>
 						<top>180</top>
