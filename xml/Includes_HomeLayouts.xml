@@ -547,7 +547,7 @@
 					<visible>!Container($PARAM[list_id]).IsUpdating</visible>
 					<include condition="$PARAM[focused]">Animation_FocusTextureFade</include>
 				</control>
-				<control type="textbox">
+				<!--<control type="textbox">
 					<left>27</left>
 					<top>237</top>
 					<width>222</width>
@@ -571,7 +571,7 @@
 					<label>$INFO[ListItem.Label]</label>
 					<textcolor>unfocused_text</textcolor>
 					<visible>!ListItem.IsParentFolder + [!$PARAM[focused] | [!Control.HasFocus($PARAM[list_id]) + ![Control.IsVisible(54) | Control.IsVisible(500)]]]</visible>
-				</control>
+				</control>-->
 				<control type="image">
 					<left>1</left>
 					<top>-7</top>
