@@ -57,7 +57,7 @@
 			<width>44</width>
 			<height>44</height>
 			<aspectratio>keep</aspectratio>
-			<texture colordiffuse="button_focus">overlays/badge.png</texture>
+			<texture colordiffuse="FF00CCFF">overlays/badge.png</texture>
 		</control>
 		<control type="label">
 			<left>3</left>
