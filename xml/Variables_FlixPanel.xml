@@ -554,7 +554,7 @@
 		<value condition="!ListItem.IsCollection + $EXP[isEpisode]">$VAR[RI_Aired]$VAR[RI_Mpaa]$VAR[RI_Rating]$VAR[RI_Runtime]$VAR[RI_Network]$VAR[RI_Endsat]$VAR[RI_EpisodeType]</value>
 	</variable>
 
-	<variable name="InfoPanelTop">
+	<variable name="InfoPanelTop1">
 		<!-- MOVIES -->
 		<value condition="!ListItem.IsCollection + $EXP[isMovie] + Integer.IsEqual(ListItem.Property(WatchedProgress),0)">$VAR[RI_Digital]$VAR[RI_Mpaa]$VAR[_Genre]$VAR[RI_Rating_Other]$VAR[RI_Runtime]$VAR[RI_AltEndsat]</value>
 		<value condition="!ListItem.IsCollection + $EXP[isMovie] + !Integer.IsEqual(ListItem.Property(WatchedProgress),0)">$VAR[RI_Digital]$VAR[RI_WatchedProgress]$VAR[RI_Mpaa]$VAR[_Genre]$VAR[RI_Rating_Other]$VAR[RI_Runtime]</value>
@@ -572,7 +572,7 @@
 
 	
 
-	<variable name="VI_WidgetInfoPanelTop">
+	<variable name="VI_WidgetInfoPanelTop1">
 		<!-- MOVIES -->
 		<value condition="!ListItem.IsCollection + $EXP[isMovie]">$VAR[VI_Digital]$VAR[VI_Mpaa]$VAR[VI_Genre]$VAR[VI_Runtime]$VAR[RI_StartsEnds]</value>
 		<!-- SHOWS -->
@@ -616,7 +616,7 @@
 		<value condition="!ListItem.IsCollection + $EXP[isEpisode] + !Control.IsVisible(53) + !Integer.IsEqual(ListItem.Property(WatchedProgress),0)">[COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Season]$INFO[Container($PARAM[list_id]).ListItem.Episode,x,][/COLOR] | [COLOR unfocused_text]$INFO[Container($PARAM[list_id]).ListItem.Title][/COLOR] | [COLOR unfocused_text]$INFO[ListItem.Property(WatchedProgress)]% watched[/COLOR]</value>
 	</variable>
 	
-	<variable name="InfoPanelBottom">
+	<variable name="InfoPanelBottom1">
 		<!-- MOVIES, TVSHOWS, SEASONS, EPISODES, COLLECTIONS -->
 		<value condition="!ListItem.IsCollection + [$EXP[isMovie] | $EXP[isTVShow] | $EXP[isSeason] | $EXP[isEpisode]]">$VAR[RI_Plot]</value>
 	</variable>
