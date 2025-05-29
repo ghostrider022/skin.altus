@@ -30,7 +30,7 @@
 			<control type="group" id="2000">
 			
 				<top>560</top>
-				<left>1</left>
+				<left>-500</left>
 				<!-- <top>-20</top>
 				<width>200%</width> -->
 				<animation condition="Skin.HasSetting(Enable.MainMenuWidgetDimming) + String.IsEqual(Skin.String(BackgroundSetting),1) + !ControlGroup(2000).HasFocus" reversible="true">
@@ -124,7 +124,7 @@
 				<include>OpenClose_Left</include>
 				<animation effect="slide" condition="ControlGroup(2000).HasFocus + ![ControlGroup(19000).HasFocus | ControlGroup(22000).HasFocus | ControlGroup(23000).HasFocus | ControlGroup(24000).HasFocus | ControlGroup(25000).HasFocus]" time="500" start="0,0" end="-498,0" tween="cubic" easing="inout">Conditional</animation>
 			
-				<include>VerticalInfoPanel</include>
+				
 				<include>SpotlightInfoPanel</include>
 				<control type="group">
 					<!-- <visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus + !Control.HasFocus(20000) + !Control.HasFocus(20001)</visible> -->
