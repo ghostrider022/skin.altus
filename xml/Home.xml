@@ -130,6 +130,7 @@
 					<param name="visible" value="String.IsEmpty(Window(Home).Property(SpotlightWidget))"/>
 				</include>
 				<include>VerticalInfoPanel</include>
+				<include>SpotlightInfoPanel</include>
 				<control type="group">
 					<!-- <visible allowhiddenfocus="true">!ControlGroup(2000).HasFocus + !Control.HasFocus(20000) + !Control.HasFocus(20001)</visible> -->
 					<visible allowhiddenfocus="true">!$EXP[isContent]</visible>
