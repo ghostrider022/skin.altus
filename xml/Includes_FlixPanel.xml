@@ -282,6 +282,7 @@
 						</control>
 						<control type="textbox">
 							<align>left</align>
+							<top>600</top>
 							<height max="300">auto</height>
 							<label>$VAR[VI_WidgetInfoPanelTop]</label>
 							<font>font27</font>
