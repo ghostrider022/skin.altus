@@ -60,7 +60,8 @@
 	</include>
 
 	<include name="VerticalInfoPanel">
-		<param name="left">0</param>
+		<param name="left">20</param>
+		<param name="top">20</param>
 		<definition>
 			<control type="group">
 				<width>700</width>
