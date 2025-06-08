@@ -55,7 +55,7 @@
 						<pagecontrol>19099</pagecontrol>
 						<include content="MovieCategoryWidgetTop" condition="!Skin.HasSetting(HomeMenuNoMoviesCategories) + !Skin.HasSetting(HomeMenuNoMoviesButton)" />
 						<include content="MovieWidgets" condition="!Skin.HasSetting(HomeMenuNoMoviesButton)" />
-						<include content="MovieCategoryWidgetBottom" condition="!Skin.HasSetting(HomeMenuNoMoviesCategories) + !Skin.HasSetting(HomeMenuNoMoviesButton)" />
+					
 					</control>
 					<include content="WidgetScrollbar" condition="Skin.HasSetting(touchmode)">
 						<param name="scrollbar_id" value="19099"/>
@@ -765,17 +765,15 @@
 			<control type="group">
 				<depth>DepthContentPanel</depth>
 				<include>OpenClose_Left</include>
-				<include content="ContentPanel">
-					<param name="width" value="522" />
-				</include>
+				
 				<control type="group">
 					<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
 					<!-- <visible allowhiddenfocus="true">[!ControlGroup(19000).HasFocus + !ControlGroup(22000).HasFocus]</visible> -->
-					<visible allowhiddenfocus="true">![String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)]</visible>
+					<visible allowhiddenfocus="false">![String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)]</visible>
 					<control type="fixedlist" id="9000">
 						<left>0</left>
 						<top>280</top>
-            <width>492</width>
+            <width>0</width>
 						<bottom>-10</bottom>
 						<movement>7</movement>
 						<focusposition>0</focusposition>
@@ -1004,7 +1002,7 @@
 				</control>
 
 
-				<control type="group">
+				<!--<control type="group">
 					<animation effect="slide" time="300" start="-492,0" end="0,0" tween="sine" easing="inout">VisibleChange</animation>
 					<width>550</width>
 					<visible>String.IsEqual(ListItem.DBtype,movie) | String.IsEqual(ListItem.DBtype,tvshow) | String.IsEqual(ListItem.DBtype,season) | String.IsEqual(ListItem.DBtype,episode)</visible>
@@ -1077,8 +1075,8 @@
 							<param name="sortorder" value="ascending" />
 							<param name="font" value="font13" />
 						</include>
-					</control> -->
-				</control>
+					</control> --
+				</control>-->
 
 
 
@@ -1122,14 +1120,7 @@
 				<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 				<top>30</top>
 				<left>90</left>
-        <control type="image">
-          <left>-2</left>
-          <top>0</top>
-          <aspectratio>keep</aspectratio>
-          <width>275</width>
-          <height>127</height>
-          <texture>special://skin/media/pov_kodi.png</texture>
-        </control>
+        
 				<!-- <control type="image">
 					<left>49</left>
 					<top>0</top>
